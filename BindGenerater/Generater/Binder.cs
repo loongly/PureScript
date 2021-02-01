@@ -17,6 +17,19 @@ namespace Generater
         public static CodeWriter FuncSerWriter;
         public static CodeWriter FuncDeSerWriter;
 
+        private static string[] BindTypes = new string[]
+        {
+            "GameObject","Transform","Debug",
+            "Application","RectTransform","Input",
+            "Resources","Time","AssetBundle",
+            "Camera","Material","Texture2D"
+        };
+        private static string[] IgnorTypes = new string[]
+        {
+            "Unity.Collections.NativeArray`1<T>",
+        };
+
+
         public static void Bind(string dllPath, string outDir)
         {
             OutDir = outDir;
@@ -28,6 +41,14 @@ namespace Generater
             FuncDeSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcdeser.cs")));
 
             ModuleDefinition module = ModuleDefinition.ReadModule(dllPath);
+
+            var ignorSet = Utils.IgnoreTypeSet;
+            foreach(var type in IgnorTypes)
+            {
+                ignorSet.Add(type);
+            }
+
+            var typeSet = new HashSet<string>(BindTypes);
             foreach (TypeDefinition type in module.Types)
             {
                 if (!type.IsPublic)
@@ -35,7 +56,7 @@ namespace Generater
 
                 Console.WriteLine(type.FullName);
 
-                if (type.FullName.Contains("GameObject") || type.FullName.Contains("Transform"))
+                if (typeSet.Contains(type.Name))
                 {
                     AddType(type);
                 }

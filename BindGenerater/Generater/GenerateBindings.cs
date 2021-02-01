@@ -19,7 +19,7 @@ namespace Generater
                 foreach(var method in methods)
                 {
                     CS.Writer.WriteLine("[UnmanagedFunctionPointer(CallingConvention.Cdecl)]", false);
-                    CS.Writer.WriteLine($"public delegate {BindResolver.Resolve(method.ReturnType).Return()} {Utils.BindMethodName(method,true,false)}_Type {Utils.GetParamDefine(method,true)}");
+                    CS.Writer.WriteLine($"public delegate {BindResolver.Resolve(method.ReturnType).TypeName()} {Utils.BindMethodName(method,true,false)}_Type {Utils.GetParamDefine(method,true)}");
                 }
             }
 
@@ -44,6 +44,16 @@ namespace Generater
 
                 CS.Writer.WriteLine("MonoLib.SetFuncPointer(memory)");
                 CS.Writer.End();
+
+                foreach (var method in methods)
+                {
+                    var methodName = Utils.BindMethodName(method, true, false);
+                    CS.Writer.WriteLine($"[MonoPInvokeCallback(typeof({methodName}DelegateType))]", false);
+                    CS.Writer.Start($"static {BindResolver.Resolve(method.ReturnType).TypeName()} {methodName} {Utils.GetParamDefine(method, true)}");
+                    var reName = BindResolver.Resolve(method.ReturnType).Implement(method,"value");
+                    CS.Writer.WriteLine($"return {reName}");
+                    CS.Writer.End();
+                }
             }
 
             using (new CS(Binder.FuncDeSerWriter))

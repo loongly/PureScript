@@ -31,7 +31,7 @@ namespace Generater
 
             foreach (MethodDefinition method in genType.Methods)
             {
-                if(method.IsPublic && !method.IsGetter && !method.IsSetter)
+                if(method.IsPublic && !method.IsGetter && !method.IsSetter && Utils.Filter(method))
                     methods.Add(new MethodGenerater(method));
             }
         }
