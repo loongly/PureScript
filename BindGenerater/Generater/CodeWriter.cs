@@ -100,9 +100,16 @@ namespace Generater
                 WriteLine(str, false);
             else
             {
-                int i = lines.Count - 1;
-                int pd = lines.Last().Deep;
-                pointer.Move(lines.AddBefore(pointer.Last(), new Line(str, pd)));
+                var lastLine = pointer.Last();
+                if(lastLine.Value.Code.Equals(start))
+                    WriteLine(str, false);
+                else
+                {
+                    int i = lines.Count - 1;
+                    int pd = lines.Last().Deep;
+                    //pointer.Move(lines.AddBefore(pointer.Last(), new Line(str, pd)));
+                    lines.AddBefore(pointer.Last(), new Line(str, pd));
+                }
             }
                 
         }
@@ -142,9 +149,15 @@ namespace Generater
             Close();
         }
 
-        public LinePointer CreateLinePoint(string name)
+        public LinePointer CreateLinePoint(string name,bool previous = false)
         {
-            return new LinePointer(lines.AddLast(new Line(name, deeps)));
+            var line = new Line(name, deeps);
+            LinkedListNode<Line> node;
+            if (previous)
+                node = lines.AddBefore(lines.Last, line);
+            else
+                node = lines.AddLast(line);
+            return new LinePointer(node);
         }
         public void UsePointer(LinePointer pointer)
         {

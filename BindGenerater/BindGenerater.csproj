@@ -53,56 +53,23 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>EngineLib\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>EngineLib\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
       <HintPath>EngineLib\UnityEngine.AssetBundleModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>EngineLib\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>EngineLib\UnityEngine.DirectorModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GridModule">
-      <HintPath>EngineLib\UnityEngine.GridModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>EngineLib\UnityEngine.IMGUIModule.dll</HintPath>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>EngineLib\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.InputModule">
       <HintPath>EngineLib\UnityEngine.InputModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>EngineLib\UnityEngine.ParticleSystemModule.dll</HintPath>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>EngineLib\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>EngineLib\UnityEngine.Physics2DModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>EngineLib\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>EngineLib\UnityEngine.SharedInternalsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>EngineLib\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>EngineLib\UnityEngine.UIElementsModule.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>EngineLib\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
       <HintPath>EngineLib\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>EngineLib\UnityEngine.UnityWebRequestModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VideoModule">
-      <HintPath>EngineLib\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +83,7 @@
     <Compile Include="Generater\MethodGenerater.cs" />
     <Compile Include="Generater\CodeWriter.cs" />
     <Compile Include="Generater\PropertyGenerater.cs" />
+    <Compile Include="Generater\TypeDefinitionExtensions.cs" />
     <Compile Include="Generater\Utils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

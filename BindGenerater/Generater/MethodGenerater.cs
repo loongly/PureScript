@@ -34,7 +34,7 @@ namespace Generater
         void GenGeter()
         {
             writer.Start("get");
-            BindResolver.Resolve(genMethod.ReturnType).Get(genMethod, "res");
+            BindResolver.Resolve(genMethod.ReturnType).Call(genMethod, "res");
             writer.WriteLine($"return res");
             writer.End();
         }
@@ -42,7 +42,8 @@ namespace Generater
         void GenSeter()
         {
             writer.Start("set");
-            writer.WriteLine(Utils.BindMethodName(genMethod) );
+            BindResolver.Resolve(genMethod.ReturnType).Call(genMethod, "");
+           // writer.WriteLine(Utils.BindMethodName(genMethod) );
             writer.End();
         }
 
@@ -56,7 +57,7 @@ namespace Generater
             }
             else
             {
-                var res = BindResolver.Resolve(genMethod.ReturnType).Get(genMethod, "res");
+                var res = BindResolver.Resolve(genMethod.ReturnType).Call(genMethod, "res");
                 writer.WriteLine($"return {res}");
             }
             
@@ -82,7 +83,14 @@ namespace Generater
             var param = "(";
             var lastP = genMethod.Parameters.LastOrDefault();
             foreach (var p in genMethod.Parameters)
-                param += $"{p.ParameterType.FullName} {p.Name}" + (p == lastP ? "" : ", ");
+            {
+                var type = p.ParameterType;
+                var typeName = type.Name;
+                if (type.IsGenericInstance)
+                    typeName = Utils.GetGenericTypeName(type);
+
+                param += $"{typeName} {p.Name}" + (p == lastP ? "" : ", ");
+            }
             param += ")";
 
             declear += param;
