@@ -10,7 +10,9 @@ namespace Generater
 {
     public static class Binder
     {
-        static Dictionary<TypeDefinition, CodeGenerater> TypeDic = new Dictionary<TypeDefinition, CodeGenerater>();
+        static Queue<CodeGenerater> generaters = new Queue<CodeGenerater>();
+        static HashSet<TypeReference> types = new HashSet<TypeReference>();
+        static HashSet<TypeReference> moduleTypes;
 
         public static string OutDir;
         public static CodeWriter FuncDefineWriter;
@@ -41,7 +43,7 @@ namespace Generater
             FuncDeSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcdeser.cs")));
 
             ModuleDefinition module = ModuleDefinition.ReadModule(dllPath);
-
+            moduleTypes = new HashSet<TypeReference>(module.Types);
             var ignorSet = Utils.IgnoreTypeSet;
             foreach(var type in IgnorTypes)
             {
@@ -49,7 +51,8 @@ namespace Generater
             }
 
             var typeSet = new HashSet<string>(BindTypes);
-            foreach (TypeDefinition type in module.Types)
+
+            foreach (TypeDefinition type in moduleTypes)
             {
                 if (!type.IsPublic)
                     continue;
@@ -62,33 +65,65 @@ namespace Generater
                 }
             }
 
-            foreach (var gener in TypeDic)
-            {
-                var filePath = Path.Combine(outDir, $"Binder.{gener.Key.FullName}.cs");
-                using (new CS(new CodeWriter(File.CreateText(filePath))))
-                {
-                    gener.Value.Gen();
-                }
-            }
+            TypeResolver.WrapperSide = true;
 
+            var gener = generaters.Dequeue();
+            while (gener != null)
+            {
+                gener.Gen();
+
+                if (generaters.Count < 1)
+                    break;
+                else
+                    gener = generaters.Dequeue();
+            }
+            
+            TypeResolver.WrapperSide = false;
             GenerateBindings.Gen();
             FuncDefineWriter.EndAll();
             FuncSerWriter.EndAll();
             FuncDeSerWriter.EndAll();
+
+            CopyGenerater.GenAsm();
         }
 
         public static void AddType(TypeDefinition type)
         {
-            if (TypeDic.ContainsKey(type))
+            if (type.Name == "UnityAction")
+                Utils.Log("");
+
+            if (type == null || !moduleTypes.Contains(type))
+                return;
+            if (!types.Add(type))
                 return;
 
-            var classGen = new ClassGenerater(type);
-            TypeDic[type] = classGen;
+            CodeGenerater gener = null;
+            if (type.IsValueType || type.IsEnum || type.IsDelegate())
+            {
+                CopyGenerater.AddTpe(type);
+            }
+            else if (type.IsClass)
+            {
+                var baseType = type.BaseType;
+                var bt = baseType.Resolve();
+                if (baseType.Resolve().IsAbstract)
+                    baseType = bt.BaseType;
+                while (baseType != null && baseType.FullName != "System.Object")
+                {
+                    bt = baseType.Resolve();
+                    AddType(bt);
+                    baseType = bt.BaseType;
+                }
+
+                gener = new ClassGenerater(type);
+            }
+            else if(type.IsInterface)
+            {
+                gener = new ClassGenerater(type);
+            }
+            
+            if(gener != null)
+                generaters.Enqueue(gener);
         }
-
-
-
-
-
     }
 }

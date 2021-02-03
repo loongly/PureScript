@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Generater
 {
-    public class BindResolver
+    public class TypeResolver
     {
+        public static bool WrapperSide;
         public static BaseTypeResolver Resolve(TypeReference _type)
         {
             var type = _type.Resolve();
@@ -42,7 +43,7 @@ namespace Generater
             if (_type.IsValueType)
                 return new StructResolver(_type);
 
-            return new ClassResolver(type);
+            return new ClassResolver(_type);
 
         }
     }
@@ -72,74 +73,19 @@ namespace Generater
             return name;
         }
 
-        public virtual string Call(MethodDefinition method, string name)
+        public string RealTypeName()
         {
-            CS.Writer.WriteLine($"var {name} = {Utils.BindMethodName(method)}");
-            return Unbox(name);
+            if (type.Name.Equals("Void"))
+                return "void";
+
+            if (type.FullName.Equals("System.Object"))
+                return "object";
+
+            var tName = type.Name;
+            if (type.IsNested)
+                tName = $"{type.DeclaringType.FullName}.{tName}";
+            return tName;
         }
-
-        public virtual string Implement(MethodDefinition method,string name)
-        {
-            if (method.IsConstructor)
-            {
-                CS.Writer.WriteLine($"var {name} = new {method.DeclaringType.Name}(", false);
-                var lastP = method.Parameters.LastOrDefault();
-                foreach (var p in method.Parameters)
-                {
-                    CS.Writer.Write(BindResolver.Resolve(p.ParameterType).Unbox(p.Name,true));
-                    if (lastP != p)
-                        CS.Writer.Write(",");
-                }
-                CS.Writer.Write(");");
-
-                CS.Writer.WriteLine($"var {name}Handle = ObjectStore.Store({name})");
-                return $"{name}Handle";
-            }
-            else if (method.IsStatic)
-            {
-                CS.Writer.WriteLine($"var {name} = {method.DeclaringType.Name}.{method.Name}(",false);
-
-                var lastP = method.Parameters.LastOrDefault();
-                foreach (var p in method.Parameters)
-                {
-                    CS.Writer.Write(BindResolver.Resolve(p.ParameterType).Unbox(p.Name, true));
-                    if (lastP != p)
-                        CS.Writer.Write(",");
-                }
-                CS.Writer.Write(");");
-            }
-            else
-            {
-                var thizObj = BindResolver.Resolve(method.DeclaringType).Unbox("thiz", true);
-
-                if(method.IsSetter)
-                {
-                    var propertyName = method.Name.Substring("get_".Length);
-                    CS.Writer.WriteLine($"{thizObj}.{propertyName} = {name}");
-                    return "";
-                }
-                else if(method.IsGetter)
-                {
-                    var propertyName = method.Name.Substring("set_".Length);
-                    CS.Writer.WriteLine($"var {name} = {thizObj}.{propertyName}");
-                }
-                else
-                {
-                    CS.Writer.WriteLine($"var {name} = {thizObj}.{method.Name}(", false);
-                    var lastP = method.Parameters.LastOrDefault();
-                    foreach (var p in method.Parameters)
-                    {
-                        CS.Writer.Write(BindResolver.Resolve(p.ParameterType).Unbox(p.Name, true));
-                        if (lastP != p)
-                            CS.Writer.Write(",");
-                    }
-                    CS.Writer.Write(");");
-                }
-            }
-
-            return Box(name);
-        }
-
     }
 
     public class VoidResolver : BaseTypeResolver
@@ -148,10 +94,14 @@ namespace Generater
         {
         }
 
-        public override string Call(MethodDefinition method, string name)
+        public override string Box(string name)
         {
-            CS.Writer.WriteLine(Utils.BindMethodName(method));
             return "";
+        }
+
+        public override string TypeName()
+        {
+            return $"void";
         }
     }
 
@@ -165,14 +115,24 @@ namespace Generater
         {
             return "Int32";
         }
+
+        /// <summary>
+        /// var type_e = (PrimitiveType)type;
+        /// </summary>
+        /// <returns> type_e </returns>
         public override string Box(string name)
         {
             CS.Writer.WriteLine($"var {name}_e = (int) {name}");
             return $"{name}_e";
         }
+
+        /// <summary>
+        /// var type_e = (int) type;
+        /// </summary>
+        /// <returns> type_e </returns>
         public override string Unbox(string name,bool previous)
         {
-            var unboxCmd = $"var {name}_e = ({type.Name}){name}";
+            var unboxCmd = $"var {name}_e = ({RealTypeName()}){name}";
             if (previous)
                 CS.Writer.WritePreviousLine(unboxCmd);
             else
@@ -198,14 +158,26 @@ namespace Generater
             return "Int32";
         }
 
+        /// <summary>
+        /// var value_h = ObjectStore.Store(value);
+        /// </summary>
+        /// <returns> value_h </returns>
         public override string Box(string name)
         {
-            CS.Writer.WriteLine($"var {name}_h = ObjectStore.Store({name})");
+            if(TypeResolver.WrapperSide)
+                CS.Writer.WriteLine($"var {name}_h = {name}.Handle");
+            else
+                CS.Writer.WriteLine($"var {name}_h = ObjectStore.Store({name})");
             return $"{name}_h";
         }
+
+        /// <summary>
+        /// var resObj = ObjectStore.Get<GameObject>(res);
+        /// </summary>
+        /// <returns> resObj </returns>
         public override string Unbox(string name, bool previous)
         {
-            var unboxCmd = $"var {name}Obj = ({type.Name})ObjectStore.Get({name})";
+            var unboxCmd = $"var {name}Obj = WrapperStore.Get<{RealTypeName()}>({name}_h)";
             if (previous)
                 CS.Writer.WritePreviousLine(unboxCmd);
             else
@@ -222,7 +194,7 @@ namespace Generater
         {
             var genericInstace = type as GenericInstanceType;
             genericType = genericInstace.GenericArguments.First();
-            resolver = BindResolver.Resolve(genericType);
+            resolver = TypeResolver.Resolve(genericType);
         }
 
         public override string TypeName()
@@ -243,7 +215,7 @@ namespace Generater
         {
             using (new LP(CS.Writer.CreateLinePoint("//list unbox", previous)))
             {
-                var relTypeName = $"List<{genericType.Name}>";
+                var relTypeName = $"List<{TypeResolver.Resolve(genericType).RealTypeName()}>";
                 CS.Writer.WriteLine($"{relTypeName} {name}_r = new {relTypeName}()");
                 CS.Writer.Start($"foreach (var item in { name})");
                 var res = resolver.Unbox("item");
@@ -276,12 +248,13 @@ namespace Generater
             CS.Writer.WriteLine($"var {name}_p = Marshal.GetFunctionPointerForDelegate({name})");
             return $"{name}_p";
         }
+
         public override string Unbox(string name, bool previous)
         {
-            var typeName = type.Name;
+            var typeName = RealTypeName();
             if (type.IsGenericInstance)
                 typeName = Utils.GetGenericTypeName(type);
-            var unboxCmd = $"var {name}_r = Marshal.GetDelegateForFunctionPointer<{typeName}>({name})";
+            var unboxCmd = $"var {name}_r = Marshal.GetDelegateForFunctionPointer<{typeName}>({name}_p)";
             if (previous)
                 CS.Writer.WritePreviousLine(unboxCmd);
             else
@@ -302,12 +275,28 @@ namespace Generater
         public StringResolver(TypeReference type) : base(type)
         {
         }
+
+        public override string TypeName()
+        {
+            if (type.Name.Equals("Object"))
+                return "object";
+
+            return base.TypeName();
+        }
     }
 
     public class SystemResolver : BaseTypeResolver
     {
         public SystemResolver(TypeReference type) : base(type)
         {
+        }
+
+        public override string TypeName()
+        {
+            if (type.Name.Equals("Object"))
+                return "object";
+
+            return base.TypeName();
         }
     }
 

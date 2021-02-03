@@ -10,6 +10,11 @@ namespace Generater
    public static class Utils
     {
 
+        public static void Log(string str)
+        {
+
+        }
+
         public static HashSet<string> IgnoreTypeSet = new HashSet<string>();
 
         public static string BindMethodName(MethodDefinition method, bool declear = false,bool withParam = true)
@@ -33,7 +38,7 @@ namespace Generater
             if (!method.IsStatic && !method.IsConstructor)
             {
                 if (declear)
-                    param += "int thiz";
+                    param += "int thiz_h";
                 else
                     param += "this.Handle";
 
@@ -46,11 +51,11 @@ namespace Generater
             {
                 if (declear)
                 {
-                    param +=  BindResolver.Resolve(p.ParameterType).Paramer(p.Name) + (p == lastP ? "" : ", ");
+                    param +=  TypeResolver.Resolve(p.ParameterType).Paramer(p.Name) + (p == lastP ? "" : ", ");
                 }
                 else
                 {
-                    param += BindResolver.Resolve(p.ParameterType).Box(p.Name) + (p == lastP ? "" : ", ");
+                    param += TypeResolver.Resolve(p.ParameterType).Box(p.Name) + (p == lastP ? "" : ", ");
                 }
 
             }
@@ -68,6 +73,9 @@ namespace Generater
         static string GetSignName(MethodDefinition method)
         {
             string name = method.Name;
+            foreach (var generic in method.GenericParameters)
+                name += "_" + generic.FullName;
+
             List<string> nameList;
             if(!NameDic.TryGetValue(name,out nameList))
             {
@@ -97,14 +105,45 @@ namespace Generater
             return name;
         }
 
+        public static bool Filter(PropertyDefinition property)
+        {
+            foreach (var attr in property.CustomAttributes)
+            {
+                if (attr.AttributeType.Name.Equals("ObsoleteAttribute"))
+                    return false;
+            }
+            return true;
+        }
+
         public static bool Filter(MethodDefinition method)
         {
             if (IgnoreTypeSet.Contains(method.ReturnType.FullName))
                 return false;
+
+            if (method.GenericParameters != null && method.GenericParameters.Count > 0)
+                return false;
+
+            foreach (var attr in method.CustomAttributes)
+            {
+                if (attr.AttributeType.Name.Equals("ObsoleteAttribute"))
+                    return false;
+            }
+
+            if (method.IsAbstract)
+                return false;
+
+            if (method.ReturnType.IsArray)
+                return false;
+
             foreach (var p in method.Parameters)
             {
                 if (p.IsOut)
                     return false;
+                if (p.ParameterType.IsArray)
+                    return false;
+                if (p.ParameterType.Name.StartsWith("List`"))
+                    return false;
+
                 if (IgnoreTypeSet.Contains(p.ParameterType.FullName))
                     return false;
             }
@@ -247,7 +286,8 @@ namespace Generater
             if (!type.Name.Contains("`") || gType == null)
                 return type.Name;
 
-            var baseType = type.Name.Substring(0, type.Name.IndexOf('`'));
+            var typeName = TypeResolver.Resolve(type).RealTypeName();
+            var baseType = typeName.Substring(0, typeName.IndexOf('`'));
 
             var param = "<";
 
@@ -257,8 +297,35 @@ namespace Generater
                 param += p.Name + (p == lastP ? "" : ", ");
             }
             param += ">";
-
             return baseType + param;
+        }
+
+        
+        public static HashSet<string> GetNameSpaceList(List<MethodDefinition> methods)
+        {
+            HashSet<string> nsSet = new HashSet<string>();
+            foreach(var method in methods)
+            {
+                nsSet.UnionWith(GetNameSpaceRef(method));
+            }
+            return nsSet;
+        }
+
+        public static HashSet<string> GetNameSpaceRef(MethodDefinition method)
+        {
+            HashSet<string> set = new HashSet<string>();
+            if(method.DeclaringType != null)
+                set.Add(method.DeclaringType.Namespace);
+
+            if (method.ReturnType != null)
+                set.Add(method.ReturnType.Namespace);
+
+            foreach (var p in method.Parameters)
+            {
+                set.Add(p.ParameterType.Namespace);
+            }
+            set.Remove("");
+            return set;
         }
     }
 }

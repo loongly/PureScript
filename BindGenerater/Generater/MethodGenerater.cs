@@ -22,6 +22,13 @@ namespace Generater
             if (!genMethod.IsPublic)
                 return;
 
+            foreach (var p in genMethod.Parameters)
+            {
+                var type = p.ParameterType;
+                Binder.AddType(type.Resolve());
+            }
+            Binder.AddType(genMethod.ReturnType.Resolve());
+
             GenerateBindings.AddMethod(genMethod);
             if (genMethod.IsGetter)
                 GenGeter();
@@ -34,16 +41,15 @@ namespace Generater
         void GenGeter()
         {
             writer.Start("get");
-            BindResolver.Resolve(genMethod.ReturnType).Call(genMethod, "res");
-            writer.WriteLine($"return res");
+            var res =  MethodResolver.Resolve(genMethod).Call("res");
+            writer.WriteLine($"return {res}");
             writer.End();
         }
 
         void GenSeter()
         {
             writer.Start("set");
-            BindResolver.Resolve(genMethod.ReturnType).Call(genMethod, "");
-           // writer.WriteLine(Utils.BindMethodName(genMethod) );
+            MethodResolver.Resolve(genMethod).Call("");
             writer.End();
         }
 
@@ -57,22 +63,27 @@ namespace Generater
             }
             else
             {
-                var res = BindResolver.Resolve(genMethod.ReturnType).Call(genMethod, "res");
+                var res = MethodResolver.Resolve(genMethod).Call("res");
                 writer.WriteLine($"return {res}");
             }
             
             writer.End();
         }
 
-
         string GetMethodDelcear()
         {
             string declear = "public ";
             if (genMethod.IsStatic)
                 declear += "static ";
+            
+            if (genMethod.IsOverride())
+                declear += "override ";
+            else if (genMethod.IsVirtual)
+                declear += "virtual ";
+
             if (!genMethod.IsConstructor)
             {
-                declear += genMethod.ReturnType.FullName + " ";
+                declear += TypeResolver.Resolve(genMethod.ReturnType).RealTypeName() + " ";
                 declear += genMethod.Name;
             }
             else
@@ -85,7 +96,7 @@ namespace Generater
             foreach (var p in genMethod.Parameters)
             {
                 var type = p.ParameterType;
-                var typeName = type.Name;
+                var typeName = TypeResolver.Resolve(type).RealTypeName();
                 if (type.IsGenericInstance)
                     typeName = Utils.GetGenericTypeName(type);
 
@@ -94,6 +105,9 @@ namespace Generater
             param += ")";
 
             declear += param;
+
+            if (genMethod.IsConstructor)
+                declear += " : base(0, IntPtr.Zero)";
 
             return declear;
         }
