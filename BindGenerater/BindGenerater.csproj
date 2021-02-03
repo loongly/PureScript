@@ -74,7 +74,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generater\Binder.cs" />
-    <Compile Include="Generater\BindResolver.cs" />
+    <Compile Include="Generater\MethodResolver.cs" />
+    <Compile Include="Generater\TypeResolver.cs" />
     <Compile Include="Generater\ClassGenerater.cs" />
     <Compile Include="Generater\CodeGenerater.cs" />
     <Compile Include="Generater\CopyGenerater.cs" />
@@ -90,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 using Mono.Cecil;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -132,6 +133,7 @@ static internal class TypeDefinitionExtensions
         return false;
     }
 
+
     /// <summary>
     /// 判断一个类型的泛型实参是否有来自函数的泛型实参
     /// </summary>
@@ -263,4 +265,148 @@ static internal class TypeDefinitionExtensions
         return true;
     }
 
+    public static bool IsVoid(this TypeReference type)
+    {
+        return type.Name.Equals("Void");
+    }
+
+    public static bool IsOverride(this MethodReference self)
+    {
+        if (self == null)
+            return false;
+
+        MethodDefinition method = self.Resolve();
+        if ((method == null) || !method.IsVirtual)
+            return false;
+
+        TypeDefinition declaring = method.DeclaringType;
+        TypeDefinition parent = declaring.BaseType != null ? declaring.BaseType.Resolve() : null;
+        while (parent != null)
+        {
+            string name = method.Name;
+            foreach (MethodDefinition md in parent.Methods)
+            {
+                if (name != md.Name)
+                    continue;
+                if (!method.CompareSignature(md))
+                    continue;
+
+                return md.IsVirtual;
+            }
+            parent = parent.BaseType != null ? parent.BaseType.Resolve() : null;
+        }
+        return false;
+    }
+    /// <summary>
+    /// Compare the IMethodSignature members with the one being specified.
+    /// </summary>
+    /// <param name="self">>The IMethodSignature on which the extension method can be called.</param>
+    /// <param name="signature">The IMethodSignature which is being compared.</param>
+    /// <returns>True if the IMethodSignature members are identical, false otherwise</returns>
+    public static bool CompareSignature(this IMethodSignature self, IMethodSignature signature)
+    {
+        if (self == null)
+            return (signature == null);
+
+        if (self.HasThis != signature.HasThis)
+            return false;
+        if (self.ExplicitThis != signature.ExplicitThis)
+            return false;
+        if (self.CallingConvention != signature.CallingConvention)
+            return false;
+
+        if (!AreSameElementTypes(self.ReturnType, signature.ReturnType))
+            return false;
+
+        bool h1 = self.HasParameters;
+        bool h2 = signature.HasParameters;
+        if (h1 != h2)
+            return false;
+        if (!h1 && !h2)
+            return true;
+
+        IList<ParameterDefinition> pdc1 = self.Parameters;
+        IList<ParameterDefinition> pdc2 = signature.Parameters;
+        int count = pdc1.Count;
+        if (count != pdc2.Count)
+            return false;
+
+        for (int i = 0; i < count; ++i)
+        {
+            if (!AreSameElementTypes(pdc1[i].ParameterType, pdc2[i].ParameterType))
+                return false;
+        }
+        return true;
+    }
+
+    private static bool AreSameElementTypes(TypeReference a, TypeReference b)
+    {
+        return a.IsGenericParameter || b.IsGenericParameter || b.IsNamed(a.Namespace, a.Name);
+    }
+
+    /// <summary>
+    /// Check if the type and its namespace are named like the provided parameters.
+    /// This is preferred to checking the FullName property since the later can allocate (string) memory.
+    /// </summary>
+    /// <param name="self">The TypeReference on which the extension method can be called.</param>
+    /// <param name="nameSpace">The namespace to be matched</param>
+    /// <param name="name">The type name to be matched</param>
+    /// <returns>True if the type is namespace and name match the arguments, False otherwise</returns>
+    public static bool IsNamed(this TypeReference self, string nameSpace, string name)
+    {
+        if (nameSpace == null)
+            throw new ArgumentNullException("nameSpace");
+        if (name == null)
+            throw new ArgumentNullException("name");
+        if (self == null)
+            return false;
+
+        if (self.IsNested)
+        {
+            int spos = name.LastIndexOf('/');
+            if (spos == -1)
+                return false;
+            // GetFullName could be optimized away but it's a fairly uncommon case
+            return (nameSpace + "." + name == self.FullName);
+        }
+
+        return ((self.Namespace == nameSpace) && (self.Name == name));
+    }
+
+    /// <summary>
+    /// Check if the type full name match the provided parameter.
+    /// Note: prefer the overload where the namespace and type name can be supplied individually
+    /// </summary>
+    /// <param name="self">The TypeReference on which the extension method can be called.</param>
+    /// <param name="fullName">The full name to be matched</param>
+    /// <returns>True if the type is namespace and name match the arguments, False otherwise</returns>
+    public static bool IsNamed(this TypeReference self, string fullName)
+    {
+        if (fullName == null)
+            throw new ArgumentNullException("fullName");
+        if (self == null)
+            return false;
+
+        if (self.IsNested)
+        {
+            int spos = fullName.LastIndexOf('/');
+            if (spos == -1)
+                return false;
+            // FIXME: GetFullName could be optimized away but it's a fairly uncommon case
+            return (fullName == self.FullName);
+        }
+
+        int dpos = fullName.LastIndexOf('.');
+        string nspace = self.Namespace;
+        if (dpos != nspace.Length)
+            return false;
+
+        if (String.CompareOrdinal(nspace, 0, fullName, 0, dpos) != 0)
+            return false;
+
+        string name = self.Name;
+        if (fullName.Length - dpos - 1 != name.Length)
+            return false;
+        return (String.CompareOrdinal(name, 0, fullName, dpos + 1, fullName.Length - dpos - 1) == 0);
+    }
 }

@@ -15,9 +15,9 @@ namespace Generater
         public PropertyGenerater(PropertyDefinition property)
         {
             genProperty = property;
-            if (genProperty.GetMethod != null && genProperty.GetMethod.IsPublic)
+            if (genProperty.GetMethod != null && genProperty.GetMethod.IsPublic && Utils.Filter(genProperty.GetMethod))
                 methods.Add(new MethodGenerater(genProperty.GetMethod));
-            if (genProperty.SetMethod != null && genProperty.SetMethod.IsPublic)
+            if (genProperty.SetMethod != null && genProperty.SetMethod.IsPublic && Utils.Filter(genProperty.SetMethod))
                 methods.Add(new MethodGenerater(genProperty.SetMethod));
 
         }
@@ -31,7 +31,7 @@ namespace Generater
         {
             base.Gen();
 
-            if (genProperty == null)
+            if (genProperty == null || methods.Count < 1)
                 return;
 
             CS.Writer.Start($"public {genProperty.PropertyType.Name} {genProperty.Name}");
