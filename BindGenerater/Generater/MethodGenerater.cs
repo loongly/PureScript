@@ -19,7 +19,7 @@ namespace Generater
             writer = CS.Writer;
             base.Gen();
 
-            if (!genMethod.IsPublic)
+            if (!genMethod.IsPublic && !genMethod.DeclaringType.IsInterface)
                 return;
 
             foreach (var p in genMethod.Parameters)
@@ -72,10 +72,15 @@ namespace Generater
 
         string GetMethodDelcear()
         {
+           
+
             string declear = "public ";
             if (genMethod.IsStatic)
                 declear += "static ";
-            
+
+            if (Utils.IsUnsafeMethod(genMethod))
+                declear += "unsafe ";
+
             if (genMethod.IsOverride())
                 declear += "override ";
             else if (genMethod.IsVirtual)
@@ -89,6 +94,7 @@ namespace Generater
             else
             {
                 declear += genMethod.DeclaringType.Name;
+
             }
 
             var param = "(";
@@ -105,9 +111,6 @@ namespace Generater
             param += ")";
 
             declear += param;
-
-            if (genMethod.IsConstructor)
-                declear += " : base(0, IntPtr.Zero)";
 
             return declear;
         }

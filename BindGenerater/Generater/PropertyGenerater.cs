@@ -9,6 +9,7 @@ namespace Generater
     {
         PropertyDefinition genProperty;
         FieldDefinition genField;
+        bool isStatic;
 
         List<MethodGenerater> methods = new List<MethodGenerater>();
 
@@ -16,9 +17,15 @@ namespace Generater
         {
             genProperty = property;
             if (genProperty.GetMethod != null && genProperty.GetMethod.IsPublic && Utils.Filter(genProperty.GetMethod))
+            {
+                isStatic = genProperty.GetMethod.IsStatic;
                 methods.Add(new MethodGenerater(genProperty.GetMethod));
+            }
             if (genProperty.SetMethod != null && genProperty.SetMethod.IsPublic && Utils.Filter(genProperty.SetMethod))
+            {
+                isStatic = genProperty.SetMethod.IsStatic;
                 methods.Add(new MethodGenerater(genProperty.SetMethod));
+            }
 
         }
 
@@ -33,8 +40,8 @@ namespace Generater
 
             if (genProperty == null || methods.Count < 1)
                 return;
-
-            CS.Writer.Start($"public {genProperty.PropertyType.Name} {genProperty.Name}");
+            var flag = isStatic ? "static " : "";
+            CS.Writer.Start($"public {flag}{TypeResolver.Resolve(genProperty.PropertyType).RealTypeName()} {genProperty.Name}");
 
             foreach (var m in methods)
                 m.Gen();

@@ -17,7 +17,7 @@ namespace Generater
             var nsSet = Utils.GetNameSpaceList(methods);
             nsSet.Add("System.Runtime.InteropServices");
             nsSet.Add("Object = UnityEngine.Object");
-            nsSet.Add("AOT");
+
 
             using (new CS(Binder.FuncDefineWriter))
             {
@@ -28,7 +28,8 @@ namespace Generater
                 {
                     CS.Writer.WriteLine("[UnmanagedFunctionPointer(CallingConvention.Cdecl)]", false);
                     //MethodResolver.Resolve(method).DefineDelegate();
-                    CS.Writer.WriteLine($"public delegate {MethodResolver.Resolve(method).ReturnType()} {Utils.BindMethodName(method,true,false)}_Type {Utils.GetParamDefine(method,true)}");
+                    var flag = Utils.IsUnsafeMethod(method) ? " unsafe " : " ";
+                    CS.Writer.WriteLine($"public{flag}delegate {MethodResolver.Resolve(method).ReturnType()} {Utils.BindMethodName(method,true,false)}_Type {Utils.GetParamDefine(method,true)}");
                 }
             }
 
@@ -66,7 +67,9 @@ namespace Generater
                 foreach (var ns in nsSet)
                     CS.Writer.WriteLine($"using {ns}");
 
-                CS.Writer.Start("public class UnityBind");
+                CS.Writer.WriteLine($"using AOT");
+
+                CS.Writer.Start("public unsafe class UnityBind");
 
                 foreach (var method in methods)
                 {

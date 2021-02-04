@@ -34,13 +34,13 @@ namespace Generater
             if (_type.IsGenericParameter || _type.IsGenericInstance || type == null)
                 return new GenericResolver(_type);
 
+            if (_type.IsPrimitive || _type.IsPointer)
+                return new BaseTypeResolver(_type);
+
             if (_type.FullName.StartsWith("System."))
                 return new SystemResolver(_type);
 
-            if (_type.IsPrimitive)
-                return new BaseTypeResolver(_type);
-
-            if (_type.IsValueType)
+            if (_type.IsValueType || (_type.IsByReference && _type.GetElementType().IsValueType))
                 return new StructResolver(_type);
 
             return new ClassResolver(_type);
@@ -61,7 +61,32 @@ namespace Generater
         }
         public virtual string TypeName()
         {
-            return $"{type.Name}";
+            return RealTypeName();
+        }
+
+        protected string Alias()
+        {
+            var tName = type.Name;
+            var et = type.GetElementType();
+            if (et != null)
+                tName = et.Name;
+            switch (tName)
+            {
+                case "Void":
+                    tName = "void";
+                    break;
+                case "Int32":
+                    tName = "int";
+                    break;
+                case "Object":
+                    if(type.Namespace == "System")
+                        tName = "object";
+                    break;
+            }
+
+            if (et != null)
+                tName = type.Name.Replace(et.Name, tName);
+            return tName;
         }
 
         public virtual string Unbox(string name,bool previous = false)
@@ -75,15 +100,18 @@ namespace Generater
 
         public string RealTypeName()
         {
-            if (type.Name.Equals("Void"))
-                return "void";
+            var et = type.GetElementType();
 
-            if (type.FullName.Equals("System.Object"))
-                return "object";
+            var tName = Alias();
 
-            var tName = type.Name;
             if (type.IsNested)
                 tName = $"{type.DeclaringType.FullName}.{tName}";
+            else if (et != null && et.IsNested)
+                tName = $"{et.DeclaringType.FullName}.{tName}";
+
+            if (type.IsByReference && et.IsValueType)
+                tName = "ref " + tName.Replace("&", "");
+
             return tName;
         }
     }
@@ -113,7 +141,7 @@ namespace Generater
         
         public override string TypeName()
         {
-            return "Int32";
+            return "int";
         }
 
         /// <summary>
@@ -155,7 +183,7 @@ namespace Generater
 
         public override string TypeName()
         {
-            return "Int32";
+            return "int";
         }
 
         /// <summary>
@@ -177,7 +205,7 @@ namespace Generater
         /// <returns> resObj </returns>
         public override string Unbox(string name, bool previous)
         {
-            var unboxCmd = $"var {name}Obj = WrapperStore.Get<{RealTypeName()}>({name}_h)";
+            var unboxCmd = $"var {name}Obj = ObjectStore.Get<{RealTypeName()}>({name}_h)";
             if (previous)
                 CS.Writer.WritePreviousLine(unboxCmd);
             else
@@ -268,6 +296,21 @@ namespace Generater
         public StructResolver(TypeReference type) : base(type)
         {
         }
+
+        public override string TypeName()
+        {
+
+            return base.TypeName();
+        }
+
+        public override string Box(string name)
+        {
+            if (type.IsByReference)
+                return "ref " + base.Box(name);
+
+            return base.Box(name);
+        }
+
     }
 
     public class StringResolver : BaseTypeResolver
@@ -276,13 +319,13 @@ namespace Generater
         {
         }
 
-        public override string TypeName()
+        /*public override string TypeName()
         {
             if (type.Name.Equals("Object"))
                 return "object";
 
             return base.TypeName();
-        }
+        }*/
     }
 
     public class SystemResolver : BaseTypeResolver
@@ -291,13 +334,13 @@ namespace Generater
         {
         }
 
-        public override string TypeName()
+       /* public override string TypeName()
         {
             if (type.Name.Equals("Object"))
                 return "object";
 
             return base.TypeName();
-        }
+        }*/
     }
 
     public class GenericResolver : BaseTypeResolver
