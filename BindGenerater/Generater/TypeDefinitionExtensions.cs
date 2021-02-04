@@ -108,7 +108,8 @@ static internal class TypeDefinitionExtensions
     /// <returns></returns>
     public static bool IsGeneric(this TypeReference type)
     {
-        if (type.HasGenericParameters || type.IsGenericParameter)
+        var dt = type.Resolve();
+        if (type.HasGenericParameters || type.IsGenericParameter) //|| (dt != null && dt.IsGeneric())
         {
             return true;
         }
@@ -122,7 +123,10 @@ static internal class TypeDefinitionExtensions
         }
         if (type.IsGenericInstance)
         {
-            foreach (var typeArg in ((GenericInstanceType)type).GenericArguments)
+            var gt = (GenericInstanceType)type;
+            if (gt.HasGenericArguments)
+                return true;
+            foreach (var typeArg in gt.GenericArguments)
             {
                 if (typeArg.IsGeneric())
                 {
@@ -408,5 +412,14 @@ static internal class TypeDefinitionExtensions
         if (fullName.Length - dpos - 1 != name.Length)
             return false;
         return (String.CompareOrdinal(name, 0, fullName, dpos + 1, fullName.Length - dpos - 1) == 0);
+    }
+
+    public static TypeReference BaseType(this TypeReference self)
+    {
+        var td = self.Resolve();
+        if (td == null)
+            return null;
+
+        return td.BaseType;
     }
 }

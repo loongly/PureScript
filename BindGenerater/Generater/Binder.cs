@@ -1,4 +1,6 @@
-﻿using Mono.Cecil;
+﻿using ICSharpCode.Decompiler;
+using ICSharpCode.Decompiler.CSharp;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +20,8 @@ namespace Generater
         public static CodeWriter FuncDefineWriter;
         public static CodeWriter FuncSerWriter;
         public static CodeWriter FuncDeSerWriter;
+        public static CSharpDecompiler Decompiler;
+        public static DecompilerSettings DecompilerSetting;
 
         private static string[] BindTypes = new string[]
         {
@@ -28,11 +32,14 @@ namespace Generater
         };
         private static string[] IgnorTypes = new string[]
         {
-            "Unity.Collections.NativeArray`1<T>",
+           // "Unity.Collections.NativeArray`1<T>",
+            "UnityEngine.WSA",
+           // "Unity.Collections.LowLevel.Unsafe",
+            "System.Collections",
+            "UnityEditor"
         };
 
-
-        public static void Bind(string dllPath, string outDir)
+        public static void Init(string outDir)
         {
             OutDir = outDir;
             if (!Directory.Exists(outDir))
@@ -41,8 +48,28 @@ namespace Generater
             FuncDefineWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.define.cs")));
             FuncSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcser.cs")));
             FuncDeSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcdeser.cs")));
+        }
 
-            ModuleDefinition module = ModuleDefinition.ReadModule(dllPath);
+        public static void End()
+        {
+
+        }
+
+        public static void Bind(string dllPath)
+        {
+            DecompilerSetting = new DecompilerSettings(LanguageVersion.CSharp7);
+            Decompiler = new CSharpDecompiler(dllPath, DecompilerSetting);
+            var dir = Path.GetDirectoryName(dllPath);
+            DefaultAssemblyResolver resolver = new DefaultAssemblyResolver();
+            resolver.AddSearchDirectory(dir);
+            ReaderParameters parameters = new ReaderParameters()
+            {
+                AssemblyResolver = resolver,
+                ReadSymbols = false,
+            };
+
+            ModuleDefinition module = ModuleDefinition.ReadModule(dllPath, parameters);
+
             moduleTypes = new HashSet<TypeReference>(module.Types);
             var ignorSet = Utils.IgnoreTypeSet;
             foreach(var type in IgnorTypes)
@@ -50,19 +77,20 @@ namespace Generater
                 ignorSet.Add(type);
             }
 
-            var typeSet = new HashSet<string>(BindTypes);
+            //var typeSet = new HashSet<string>(BindTypes);
 
             foreach (TypeDefinition type in moduleTypes)
             {
                 if (!type.IsPublic)
                     continue;
 
-                Console.WriteLine(type.FullName);
+                AddType(type);
 
+               /* Console.WriteLine(type.FullName);
                 if (typeSet.Contains(type.Name))
                 {
                     AddType(type);
-                }
+                }*/
             }
 
             TypeResolver.WrapperSide = true;
@@ -84,20 +112,21 @@ namespace Generater
             FuncSerWriter.EndAll();
             FuncDeSerWriter.EndAll();
 
-            CopyGenerater.GenAsm();
         }
 
         public static void AddType(TypeDefinition type)
         {
-            if (type.Name == "UnityAction")
-                Utils.Log("");
-
             if (type == null || !moduleTypes.Contains(type))
                 return;
             if (!types.Add(type))
                 return;
 
-            CodeGenerater gener = null;
+            if (!Utils.Filter(type))
+                return;
+
+            generaters.Enqueue(new ClassGenerater(type));
+
+            /*CodeGenerater gener = null;
             if (type.IsValueType || type.IsEnum || type.IsDelegate())
             {
                 CopyGenerater.AddTpe(type);
@@ -123,7 +152,7 @@ namespace Generater
             }
             
             if(gener != null)
-                generaters.Enqueue(gener);
+                generaters.Enqueue(gener);*/
         }
     }
 }

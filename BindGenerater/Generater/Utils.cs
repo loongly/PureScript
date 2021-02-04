@@ -12,7 +12,7 @@ namespace Generater
 
         public static void Log(string str)
         {
-
+            Console.WriteLine(str);
         }
 
         public static HashSet<string> IgnoreTypeSet = new HashSet<string>();
@@ -117,42 +117,146 @@ namespace Generater
 
         public static bool Filter(MethodDefinition method)
         {
-            if (IgnoreTypeSet.Contains(method.ReturnType.FullName))
+            if (!Filter(method.ReturnType))
+                return false;
+
+            if (IsObsolete(method))
                 return false;
 
             if (method.GenericParameters != null && method.GenericParameters.Count > 0)
                 return false;
 
-            foreach (var attr in method.CustomAttributes)
-            {
-                if (attr.AttributeType.Name.Equals("ObsoleteAttribute"))
-                    return false;
-            }
-
             if (method.IsAbstract)
-                return false;
-
-            if (method.ReturnType.IsArray)
                 return false;
 
             foreach (var p in method.Parameters)
             {
-                if (p.IsOut)
-                    return false;
-                if (p.ParameterType.IsArray)
-                    return false;
-                if (p.ParameterType.Name.StartsWith("List`"))
+                if (p.ParameterType.IsByReference && !p.ParameterType.GetElementType().IsValueType)
                     return false;
 
-                if (IgnoreTypeSet.Contains(p.ParameterType.FullName))
+                if (p.IsOut)
+                    return false;
+               
+                if (!Filter(p.ParameterType))
                     return false;
             }
 
             return true;
         }
 
-       // [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-       // public delegate int UnityEngineGameObjectMethodCreatePrimitiveUnityEnginePrimitiveTypeDelegateType(int typeint);
+        public static bool IsObsolete(ICustomAttributeProvider method)
+        {
+            foreach (var attr in method.CustomAttributes)
+            {
+                if (attr.AttributeType.Name.Equals("ObsoleteAttribute"))
+                {
+                    if(attr.ConstructorArguments.Count == 2)
+                    {
+                        bool error = (bool)attr.ConstructorArguments[1].Value ;
+                        return error;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static HashSet<TypeReference> DropTypes = new HashSet<TypeReference>();
+        public static bool Filter(TypeReference type)
+        {
+
+            if (DropTypes.Contains(type))
+                return false;
+
+            foreach (var t in IgnoreTypeSet)
+            {
+                if (type.FullName.Contains(t))
+                {
+                    DropTypes.Add(type);
+                    return false;
+                }
+            }
+
+            if (type.IsGeneric()) // && !IsDelegate(type)
+            {
+                Log("ignorType: " + type.FullName);
+                DropTypes.Add(type);
+                return false;
+            }
+
+            if(IsException(type))
+            {
+                Log("ignorType: " + type.FullName);
+                DropTypes.Add(type);
+                return false;
+            }
+
+            if (type.IsArray)
+            {
+                DropTypes.Add(type);
+                return false;
+            }
+
+            if (IsAttribute(type))
+            {
+                DropTypes.Add(type);
+                return false;
+            }
+
+            var td = type.Resolve();
+            if (td != null && IsObsolete(td))
+            {
+                DropTypes.Add(type);
+                return false;
+            }
+
+            var ct = type.BaseType();
+            while(ct != null)
+            {
+                if (!Filter(ct))
+                {
+                    DropTypes.Add(type);
+                    return false;
+                }
+
+                ct = ct.BaseType();
+            }
+
+            return true;
+        }
+
+        public static bool IsAttribute(TypeReference type)
+        {
+            var td = type.Resolve();
+            if (td == null)
+                return false;
+            if (type.Name == "Attribute")
+                return true;
+
+            if (td.BaseType != null && IsAttribute(td.BaseType))
+                return true;
+
+            return false;
+            
+        }
+
+        public static bool IsException(TypeReference type)
+        {
+            var td = type.Resolve();
+            if (td == null)
+                return false;
+            if (type.Name == "Exception")
+                return true;
+
+            if (td.BaseType != null && IsException(td.BaseType))
+                return true;
+
+            return false;
+
+        }
+
+        // [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        // public delegate int UnityEngineGameObjectMethodCreatePrimitiveUnityEnginePrimitiveTypeDelegateType(int typeint);
         static void AppendDelegateType(MethodDefinition method, CodeWriter writer)
         {
             writer.Write("[UnmanagedFunctionPointer(CallingConvention.Cdecl)]\n");
@@ -261,13 +365,11 @@ namespace Generater
 
         public static bool IsDelegate(TypeReference type)
         {
-            if (type.Name.Contains("Action"))
-                Console.WriteLine(type.Name);
 
             TypeReference curType = type;
             while(curType != null)
             {
-                if (curType.FullName.Equals("System.Delegate"))
+                if (curType.FullName.Equals("System.Delegate") || curType.FullName.Equals("System.MulticastDelegate"))
                     return true;
 
                 var tDef = curType.Resolve();
@@ -327,5 +429,50 @@ namespace Generater
             set.Remove("");
             return set;
         }
+
+        public static bool IsManagedValueType(TypeReference _type)
+        {
+            return _type.IsValueType && !IsFullValueType(_type);
+        }
+
+        public static bool IsFullValueType(TypeReference _type)
+        {
+            var type = _type.Resolve();
+            if (!_type.IsValueType)
+            {
+                return false;
+            }
+            if (type == null)
+                return false;
+
+            if (_type.IsPrimitive || type.IsEnum || _type.IsVoid())
+            {
+                return true;
+            }
+
+            foreach (var field in type.Fields)
+            {
+                if (!field.IsStatic && !IsFullValueType(field.FieldType))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool IsUnsafeMethod(MethodDefinition method)
+        {
+            if (method.ReturnType.IsPointer)
+                return true;
+            foreach (var p in method.Parameters)
+            {
+                if (p.ParameterType.IsPointer)
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 }

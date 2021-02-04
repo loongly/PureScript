@@ -1,120 +1,155 @@
-﻿// Holds objects and provides handles to them in the form of ints
+﻿#define WRAPPER_SIDE
+using System;
 using System.Collections.Generic;
-namespace UnityEngine
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+
+public class WObject
 {
-    // Holds objects and provides handles to them in the form of ints
-    public static class ObjectStore
+    private int _handle;
+    internal int Handle { get { return _handle; } }
+    protected void SetHandle(int handle)
     {
-        // Lookup handles by object.
-        static Dictionary<object, int> objectHandleCache;
+        _handle = handle;
+    }
+    ~WObject()
+    {
+        ObjectStore.Remove(_handle);
+    }
+}
 
-        // Stored objects. The first is never used so 0 can be "null".
-        static object[] objects;
+public static class ObjectStore
+{
+    // Lookup handles by object.
+    static Dictionary<object, int> objectHandleCache;
 
-        // Stack of available handles.
-        static int[] handles;
+    // Stored objects. The first is never used so 0 can be "null".
+    static object[] objects;
 
-        // Index of the next available handle
-        static int nextHandleIndex;
+    // Stack of available handles.
+    static int[] handles;
 
-        // The maximum number of objects to store. Must be positive.
-        static int maxObjects;
+    // Index of the next available handle
+    static int nextHandleIndex;
 
-        public static void Init(int maxObjects)
+    // The maximum number of objects to store. Must be positive.
+    static int maxObjects;
+
+    [MethodImpl(MethodImplOptions.InternalCall)]
+    private static extern object NewObject(Type type);
+
+    public static void Init(int maxObjects)
+    {
+        ObjectStore.maxObjects = maxObjects;
+        objectHandleCache = new Dictionary<object, int>(maxObjects);
+
+        // Initialize the objects as all null plus room for the
+        // first to always be null.
+        objects = new object[maxObjects + 1];
+
+        // Initialize the handles stack as 1, 2, 3, ...
+        handles = new int[maxObjects];
+        for (
+            int i = 0, handle = maxObjects;
+            i < maxObjects;
+            ++i, --handle)
         {
-            ObjectStore.maxObjects = maxObjects;
-            objectHandleCache = new Dictionary<object, int>(maxObjects);
+            handles[i] = handle;
+        }
+        nextHandleIndex = maxObjects - 1;
+    }
 
-            // Initialize the objects as all null plus room for the
-            // first to always be null.
-            objects = new object[maxObjects + 1];
-
-            // Initialize the handles stack as 1, 2, 3, ...
-            handles = new int[maxObjects];
-            for (
-                int i = 0, handle = maxObjects;
-                i < maxObjects;
-                ++i, --handle)
-            {
-                handles[i] = handle;
-            }
-            nextHandleIndex = maxObjects - 1;
+    public static int Store(object obj)
+    {
+        // Null is always zero
+        if (object.ReferenceEquals(obj, null))
+        {
+            return 0;
         }
 
-        public static int Store(object obj)
+        lock (objects)
         {
-            // Null is always zero
-            if (object.ReferenceEquals(obj, null))
+            // Pop a handle off the stack
+            int handle = handles[nextHandleIndex];
+            nextHandleIndex--;
+
+            // Store the object
+            StoreInternal(handle, obj);
+
+            return handle;
+        }
+    }
+
+    private static void StoreInternal(int handle, object obj)
+    {
+        objects[handle] = obj;
+        objectHandleCache.Add(obj, handle);
+    }
+
+
+    public static T Get<T>(int handle)
+    {
+        var obj = (T)objects[handle];
+
+#if WRAPPER_SIDE
+        if (obj == null)
+        {
+            obj = (T)NewObject(typeof(T));
+            StoreInternal(handle, obj);
+        }
+#endif
+
+        return obj;
+    }
+
+    public static int GetHandle(object obj)
+    {
+        // Null is always zero
+        if (object.ReferenceEquals(obj, null))
+        {
+            return 0;
+        }
+
+        lock (objects)
+        {
+            int handle;
+
+            // Get handle from object cache
+            if (objectHandleCache.TryGetValue(obj, out handle))
             {
-                return 0;
-            }
-
-            lock (objects)
-            {
-                // Pop a handle off the stack
-                int handle = handles[nextHandleIndex];
-                nextHandleIndex--;
-
-                // Store the object
-                objects[handle] = obj;
-                objectHandleCache.Add(obj, handle);
-
                 return handle;
             }
         }
 
-        public static T Get<T>(int handle) where T : class
+        // Object not found
+        return Store(obj);
+    }
+
+    public static object Remove(int handle)
+    {
+        // Null is never stored, so there's nothing to remove
+        if (handle == 0)
         {
-            var obj = objects[handle];
-            return obj as T;
+            return null;
         }
 
-        public static int GetHandle(object obj)
+        lock (objects)
         {
-            // Null is always zero
-            if (object.ReferenceEquals(obj, null))
-            {
-                return 0;
-            }
+            // Forget the object
+            object obj = objects[handle];
+            objects[handle] = null;
 
-            lock (objects)
-            {
-                int handle;
+            // Push the handle onto the stack
+            nextHandleIndex++;
+            handles[nextHandleIndex] = handle;
 
-                // Get handle from object cache
-                if (objectHandleCache.TryGetValue(obj, out handle))
-                {
-                    return handle;
-                }
-            }
+            // Remove the object from the cache
+            objectHandleCache.Remove(obj);
 
-            // Object not found
-            return Store(obj);
-        }
-
-        public static object Remove(int handle)
-        {
-            // Null is never stored, so there's nothing to remove
-            if (handle == 0)
-            {
-                return null;
-            }
-
-            lock (objects)
-            {
-                // Forget the object
-                object obj = objects[handle];
-                objects[handle] = null;
-
-                // Push the handle onto the stack
-                nextHandleIndex++;
-                handles[nextHandleIndex] = handle;
-
-                // Remove the object from the cache
-                objectHandleCache.Remove(obj);
-
-                return obj;
-            }
+            return obj;
         }
     }
 }
+
