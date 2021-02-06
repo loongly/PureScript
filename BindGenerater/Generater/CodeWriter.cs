@@ -61,6 +61,8 @@ namespace Generater
         private int deeps = 0;
 
         private Stack<LinePointer> pointers = new Stack<LinePointer>();
+        private Dictionary<string, LinePointer> pointerDic = new Dictionary<string, LinePointer>();
+
         public CodeWriter(TextWriter _writer)
         {
             writer = _writer;
@@ -146,39 +148,63 @@ namespace Generater
             for(int i= 0;i< count; i++)
                 End(newLine);
 
-            Close();
+            Flush();
         }
 
         public LinePointer CreateLinePoint(string name,bool previous = false)
         {
-            var line = new Line(name, deeps);
+            var line = new Line("", deeps);
             LinkedListNode<Line> node;
             if (previous)
-                node = lines.AddBefore(lines.Last, line);
+                node = lines.AddBefore(pointer.Last(), line);
+            else if (pointers.Count > 0)
+                node = lines.AddAfter(pointer.Last(), line);
             else
                 node = lines.AddLast(line);
-            return new LinePointer(node);
+
+            if (pointers.Count > 0)
+                pointer.Move(node);
+
+            var newPointer = new LinePointer(name, node);
+            pointerDic[name] = newPointer;
+            return newPointer;
         }
+
+        public LinePointer GetLinePoint(string name)
+        {
+            if (pointerDic.TryGetValue(name, out var pointer))
+                return pointer;
+            return null;
+        }
+
         public void UsePointer(LinePointer pointer)
         {
+            if (pointer == null)
+                return;
             pointers.Push(pointer);
         }
         public void UnUsePointer(LinePointer pointer)
         {
-            if(pointers.Peek() == pointer)
+            if (pointer == null)
+                return;
+
+            if (pointers.Peek() == pointer)
                 pointers.Pop();
         }
 
-        public void Close()
+        public void Flush()
         {
             foreach(var line in lines)
             {
                 writer.WriteLine(line);
             }
 
-            pointers.Clear();
             lines.Clear();
             writer.Flush();
+
+            pointers.Clear();
+            pointerDic.Clear();
+            UsePointer(CreateLinePoint("// -- flush --"));
         }
 
 
@@ -232,8 +258,9 @@ namespace Generater
     {
         private LinkedListNode<Line> pointer;
         public string Name { get; private set; }
-        public LinePointer(LinkedListNode<Line> node)
+        public LinePointer(string name, LinkedListNode<Line> node)
         {
+            Name = name;
             pointer = node;
         }
 

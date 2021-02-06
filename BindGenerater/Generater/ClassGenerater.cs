@@ -15,48 +15,93 @@ namespace Generater
     {
         private TypeDefinition genType;
 
-        List<PropertyGenerater> properties = new List<PropertyGenerater>();
-        List<MethodGenerater> methods = new List<MethodGenerater>();
-        List<TypeDefinition> nestType = new List<TypeDefinition>();
-        HashSet<string> refNameSpace = new HashSet<string>();
-        bool hasDefaultConstructor = false;
+        private List<PropertyGenerater> properties = new List<PropertyGenerater>();
+        private List<DelegateGenerater> events = new List<DelegateGenerater>();
+        private List<MethodGenerater> methods = new List<MethodGenerater>();
+        private List<TypeDefinition> nestType = new List<TypeDefinition>();
+        private HashSet<string> refNameSpace = new HashSet<string>();
+        private bool hasDefaultConstructor = false;
+        private bool isFullValueType;
+        private StreamWriter FileStream;
 
-        public ClassGenerater(TypeDefinition type)
+        public ClassGenerater(TypeDefinition type, StreamWriter writer = null)
         {
             genType = type;
 
+            if (writer == null)
+            {
+                var filePath = Path.Combine(Binder.OutDir, $"Binder.{TypeFullName()}.cs");
+                FileStream = File.CreateText(filePath);
+            }
+            else
+            {
+                FileStream = writer;
+            }
+            
+
+            isFullValueType = Utils.IsFullValueType(genType);
+
             foreach (var t in type.NestedTypes)
             {
-                if (CopyOrign(t))
+                if (t.Name.StartsWith("<"))
+                    continue;
+                if (CopyOrign(t) && (t.IsPublic || t.IsNestedPublic))
+                {
                     nestType.Add(t);
+                    foreach (FieldDefinition field in t.Fields)
+                    {
+                        refNameSpace.Add(field.FieldType.Namespace);
+                    }
+                }
             }
-            if (CopyOrign(genType))
-                return;
 
-            foreach (FieldDefinition field in genType.Fields)
+            if(!isFullValueType)
             {
-                properties.Add(new PropertyGenerater(field));
-                refNameSpace.Add(field.FieldType.Namespace);
+                foreach (FieldDefinition field in genType.Fields)
+                {
+                    if (field.IsPublic)
+                    {
+                        properties.Add(new PropertyGenerater(field));
+                        refNameSpace.Add(field.FieldType.Namespace);
+                    }
+                    
+                }
+            }
+            
+
+            foreach(var e in genType.Events)
+            {
+                if(Utils.Filter(e))
+                {
+                    events.Add(new DelegateGenerater(e));
+                    refNameSpace.Add(e.EventType.Namespace);
+                }
             }
 
             foreach (PropertyDefinition prop in genType.Properties)
             {
-                if(Utils.Filter(prop))
+                
+                if (Utils.Filter(prop))
                 {
                     properties.Add(new PropertyGenerater(prop));
                     refNameSpace.Add(prop.PropertyType.Namespace);
                 }
             }
 
-            foreach (MethodDefinition method in genType.Methods)
+            if(!genType.IsDelegate())
             {
-                if((method.IsPublic || genType.IsInterface) && !method.IsGetter && !method.IsSetter && Utils.Filter(method))
+                foreach (MethodDefinition method in genType.Methods)
                 {
-                    methods.Add(new MethodGenerater(method));
-                    refNameSpace.UnionWith(Utils.GetNameSpaceRef(method));
+                    // if (isFullValueType && (method.Name.StartsWith("op_") || method.Name == "Equals"))
+                    //     continue;
+                    if ((method.IsPublic || genType.IsInterface) && !method.IsGetter && !method.IsSetter && !method.IsAddOn && !method.IsRemoveOn && Utils.Filter(method))
+                    {
+                        methods.Add(new MethodGenerater(method));
+                        refNameSpace.UnionWith(Utils.GetNameSpaceRef(method));
+                    }
+                    if (method.IsConstructor && method.Parameters.Count == 0 && method.IsPublic)
+                        hasDefaultConstructor = true;
                 }
-                if (method.IsConstructor && method.Parameters.Count == 0 && method.IsPublic)
-                    hasDefaultConstructor = true;
             }
         }
 
@@ -65,18 +110,28 @@ namespace Generater
             return genType.FullName;
         }
 
+        private void GenNested()
+        {
+            if (nestType.Count <= 0)
+                return;
+
+            CS.Writer.Flush();
+            foreach (var t in nestType)
+            {
+                new ClassGenerater(t, FileStream).Gen();
+            }
+        }
+
         public override void Gen()
         {
-            
 
-            var filePath = Path.Combine(Binder.OutDir, $"Binder.{TypeFullName()}.cs");
-            using (new CS(new CodeWriter(File.CreateText(filePath))))
+            using (new CS(new CodeWriter(FileStream)))
             {
                 base.Gen();
 
                 if (CopyOrign(genType))
                 {
-                    CS.Writer.WriteLine(CopyGen(genType,false), false);
+                    CopyGen(genType);
                     CS.Writer.EndAll();
                     return;
                 }
@@ -86,12 +141,14 @@ namespace Generater
                     if (!string.IsNullOrEmpty(ns))
                     {
                         CS.Writer.WriteLine($"using {ns}");
-                       // if(!ns.StartsWith("System"))
-                       //     CS.Writer.WriteLine($"using PS_{ns}");
+                        // if(!ns.StartsWith("System"))
+                        //     CS.Writer.WriteLine($"using PS_{ns}");
                     }
                 }
                 CS.Writer.WriteLine("using System.Runtime.InteropServices");
                 CS.Writer.WriteLine("using Object = UnityEngine.Object");
+
+                
 
                 if (!string.IsNullOrEmpty(genType.Namespace))
                 {
@@ -117,10 +174,7 @@ namespace Generater
 
                 CS.Writer.Start(classDefine);
 
-                foreach(var t in nestType)
-                {
-                    CS.Writer.WriteLine(CopyGen(t,true),false);
-                }
+                GenNested();
 
                 /*CS.Writer.Start($"internal {genType.Name}(int handle,IntPtr ptr): base(handle, ptr)");
                 CS.Writer.End();*/
@@ -130,6 +184,10 @@ namespace Generater
                     p.Gen();
                 }
 
+                foreach(var e in events)
+                {
+                    e.Gen();
+                }
 
                 if(!hasDefaultConstructor && !genType.IsSealed)
                 {
@@ -146,39 +204,79 @@ namespace Generater
 
         bool CopyOrign(TypeDefinition type)
         {
-            if (!type.IsPublic && !type.IsNestedPublic)
-                return false;
             return type.IsValueType || type.IsEnum || type.IsDelegate() || type.IsInterface;
         }
 
-        string CopyGen(TypeDefinition type ,bool isNested)
+        void CopyGen(TypeDefinition type )
         {
-            var tName = type.FullName.Replace("/", "+");
-            var name = new FullTypeName(tName);
-            SyntaxTree syntaxTree;
 
-            if (isNested)
+            bool isNested = type.IsNested;
+
+            if (!(isNested && CopyOrign(genType.DeclaringType)))
             {
-                ITypeDefinition typeInfo = Binder.Decompiler.TypeSystem.MainModule.Compilation.FindType(name).GetDefinition();
-                var tokenOfFirstMethod = typeInfo.MetadataToken;
-                syntaxTree = Binder.Decompiler.Decompile(tokenOfFirstMethod);
+                var tName = type.FullName.Replace("/", "+");
+                var name = new FullTypeName(tName);
+                SyntaxTree syntaxTree;
+
+                if (isNested)
+                {
+                    ITypeDefinition typeInfo = Binder.Decompiler.TypeSystem.MainModule.Compilation.FindType(name).GetDefinition();
+                    var tokenOfFirstMethod = typeInfo.MetadataToken;
+                    syntaxTree = Binder.Decompiler.Decompile(tokenOfFirstMethod);
+                }
+                else
+                {
+                    syntaxTree = Binder.Decompiler.DecompileType(name);
+                }
+
+                StringWriter w = new StringWriter();
+                var outVisitor = new CustomOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
+                syntaxTree.AcceptVisitor(outVisitor);
+
+                if (!isNested)
+                {
+                    foreach (var ns in outVisitor.nestedUsing)
+                    {
+                        CS.Writer.WriteHead($"using {ns}");
+                    }
+                }
+                
+
+                var txt = w.ToString();
+                CS.Writer.WriteLine(txt, false);
             }
-            else
+
+            if(genType.IsStruct())
             {
-                syntaxTree = Binder.Decompiler.DecompileType(name);
+                foreach(var f in genType.Fields)
+                {
+                    var fType = f.FieldType.Resolve();
+                    if (fType != null && !fType.IsPublic && !fType.IsNested)
+                        Binder.AddType(fType);
+                }
+
+                if (!string.IsNullOrEmpty(genType.Namespace))
+                {
+                    CS.Writer.Start($"namespace {genType.Namespace}");
+                }
+
+                var classDefine = $"public partial struct {genType.Name}";
+
+                CS.Writer.Start(classDefine);
+
+                GenNested();
+
+                foreach (var p in properties)
+                {
+                    p.Gen();
+                }
+
+                foreach (var m in methods)
+                {
+                    m.Gen();
+                }
+
             }
-
-            StringWriter w = new StringWriter();
-            var outVisitor = new CustomOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
-            syntaxTree.AcceptVisitor(outVisitor);
-
-            foreach(var ns in outVisitor.nestedUsing)
-            {
-                CS.Writer.WriteHead($"using {ns}");
-            }
-
-            var txt = w.ToString();
-            return txt;
 
         }
     }

@@ -23,20 +23,25 @@ namespace Generater
         public static CSharpDecompiler Decompiler;
         public static DecompilerSettings DecompilerSetting;
 
-        private static string[] BindTypes = new string[]
-        {
-            "GameObject","Transform","Debug",
-            "Application","RectTransform","Input",
-            "Resources","Time","AssetBundle",
-            "Camera","Material","Texture2D"
-        };
+
         private static string[] IgnorTypes = new string[]
         {
            // "Unity.Collections.NativeArray`1<T>",
             "UnityEngine.WSA",
            // "Unity.Collections.LowLevel.Unsafe",
             "System.Collections",
-            "UnityEditor"
+            "UnityEditor",
+
+            "AtomicSafetyHandle", // cant used in script
+            "TransformAccessArray",//rely on above
+
+            "UnityEngine.Experimental.GlobalIllumination.Lightmapping", //NativeArray`1<T>
+
+            //Windows Strip
+            "UnityEngine.iOS",
+            "UnityEngine.tvOS",
+            "UnityEngine.Apple",
+            "UnityEngine.Handheld"
         };
 
         public static void Init(string outDir)

@@ -9,6 +9,7 @@ namespace Generater
     {
         PropertyDefinition genProperty;
         FieldDefinition genField;
+ 
         bool isStatic;
 
         List<MethodGenerater> methods = new List<MethodGenerater>();
@@ -34,12 +35,21 @@ namespace Generater
             genField = field;
         }
 
+        
+
         public override void Gen()
         {
             base.Gen();
-
-            if (genProperty == null || methods.Count < 1)
+            if (methods.Count < 1)
                 return;
+
+            if (genProperty != null)
+                GenProperty();
+
+        }
+
+        void GenProperty()
+        {
             var flag = isStatic ? "static " : "";
             CS.Writer.Start($"public {flag}{TypeResolver.Resolve(genProperty.PropertyType).RealTypeName()} {genProperty.Name}");
 
@@ -47,8 +57,6 @@ namespace Generater
                 m.Gen();
 
             CS.Writer.End();
-
-
         }
 
     }

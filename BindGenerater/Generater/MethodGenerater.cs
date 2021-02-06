@@ -12,14 +12,10 @@ namespace Generater
         public MethodGenerater(MethodDefinition method)
         {
             genMethod = method;
-        }
-
-        public override void Gen()
-        {
-            writer = CS.Writer;
-            base.Gen();
 
             if (!genMethod.IsPublic && !genMethod.DeclaringType.IsInterface)
+                return;
+            if (genMethod.IsConstructor && genMethod.DeclaringType.IsAbstract)
                 return;
 
             foreach (var p in genMethod.Parameters)
@@ -30,10 +26,26 @@ namespace Generater
             Binder.AddType(genMethod.ReturnType.Resolve());
 
             GenerateBindings.AddMethod(genMethod);
+        }
+
+        public override void Gen()
+        {
+            writer = CS.Writer;
+            base.Gen();
+
+            if (!genMethod.IsPublic && !genMethod.DeclaringType.IsInterface)
+                return;
+            if (genMethod.IsConstructor && genMethod.DeclaringType.IsAbstract)
+                return;
+
             if (genMethod.IsGetter)
                 GenGeter();
             else if (genMethod.IsSetter)
                 GenSeter();
+            else if (genMethod.IsAddOn)
+                GenAddOn();
+            else if (genMethod.IsRemoveOn)
+                GenRemoveOn();
             else
                 GenMethod();
         }
@@ -53,13 +65,34 @@ namespace Generater
             writer.End();
         }
 
+        void GenAddOn()
+        {
+            writer.Start("add");
+            MethodResolver.Resolve(genMethod).Call("");
+            writer.End();
+        }
+
+        void GenRemoveOn()
+        {
+            writer.Start("remove");
+            MethodResolver.Resolve(genMethod).Call("");
+            writer.End();
+        }
+
         void GenMethod()
         {
             writer.Start(GetMethodDelcear());
             if(genMethod.IsConstructor)
             {
-                CS.Writer.WriteLine($"var h = {Utils.BindMethodName(genMethod)}"); ;
-                writer.WriteLine($"SetHandle(h)");
+                if(genMethod.DeclaringType.IsValueType)
+                {
+                    CS.Writer.WriteLine(Utils.BindMethodName(genMethod));
+                }
+                else
+                {
+                    CS.Writer.WriteLine($"var h = {Utils.BindMethodName(genMethod)}");
+                    writer.WriteLine($"SetHandle(h)");
+                }
             }
             else
             {
@@ -72,7 +105,6 @@ namespace Generater
 
         string GetMethodDelcear()
         {
-           
 
             string declear = "public ";
             if (genMethod.IsStatic)
@@ -83,18 +115,52 @@ namespace Generater
 
             if (genMethod.IsOverride())
                 declear += "override ";
-            else if (genMethod.IsVirtual)
+            else if (genMethod.IsVirtual && !genMethod.IsFinal)
                 declear += "virtual ";
+
+            var methodName = genMethod.Name;
+
+            switch(methodName)
+            {
+                case "op_Addition":
+                    methodName = "operator+";
+                    break;
+                case "op_Subtraction":
+                    methodName = "operator-";
+                    break;
+                case "op_UnaryNegation":
+                    methodName = "operator-";
+                    break;
+                case "op_Multiply":
+                    methodName = "operator*";
+                    break;
+                case "op_Division":
+                    methodName = "operator/";
+                    break;
+                case "op_Equality":
+                    methodName = "operator==";
+                    break;
+                case "op_Inequality":
+                    methodName = "operator!=";
+                    break;
+                case "op_Implicit":
+                    methodName = "implicit operator " + genMethod.ReturnType.Name;
+                    break;
+                case "op_Explicit":
+                    methodName = "explicit operator " + genMethod.ReturnType.Name;
+                    break;
+
+            }
 
             if (!genMethod.IsConstructor)
             {
-                declear += TypeResolver.Resolve(genMethod.ReturnType).RealTypeName() + " ";
-                declear += genMethod.Name;
+                if(!methodName.StartsWith("implicit")&& !methodName.StartsWith("explicit"))
+                    declear += TypeResolver.Resolve(genMethod.ReturnType).RealTypeName() + " ";
+                declear += methodName;
             }
             else
             {
                 declear += genMethod.DeclaringType.Name;
-
             }
 
             var param = "(";
@@ -111,6 +177,9 @@ namespace Generater
             param += ")";
 
             declear += param;
+
+            if (genMethod.IsConstructor && genMethod.DeclaringType.IsValueType)
+                declear += ":this()";
 
             return declear;
         }

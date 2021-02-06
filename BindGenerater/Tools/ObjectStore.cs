@@ -1,4 +1,4 @@
-﻿#define WRAPPER_SIDE
+﻿//#define WRAPPER_SIDE
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ public class WObject
 {
     private int _handle;
     internal int Handle { get { return _handle; } }
-    protected void SetHandle(int handle)
+    internal void SetHandle(int handle)
     {
         _handle = handle;
     }
@@ -18,10 +18,26 @@ public class WObject
     {
         ObjectStore.Remove(_handle);
     }
+
+    
+}
+
+public class WObjComparer : IEqualityComparer<object>
+{
+    public bool Equals(object x, object y)
+    {
+        return RuntimeHelpers.ReferenceEquals(x, y);
+    }
+
+    public int GetHashCode(object obj)
+    {
+        return RuntimeHelpers.GetHashCode(obj);
+    }
 }
 
 public static class ObjectStore
 {
+   
     // Lookup handles by object.
     static Dictionary<object, int> objectHandleCache;
 
@@ -40,10 +56,15 @@ public static class ObjectStore
     [MethodImpl(MethodImplOptions.InternalCall)]
     private static extern object NewObject(Type type);
 
+    static ObjectStore()
+    {
+        Init(1 << 16); 
+    }
+
     public static void Init(int maxObjects)
     {
         ObjectStore.maxObjects = maxObjects;
-        objectHandleCache = new Dictionary<object, int>(maxObjects);
+        objectHandleCache = new Dictionary<object, int>(maxObjects,new WObjComparer());
 
         // Initialize the objects as all null plus room for the
         // first to always be null.
@@ -71,8 +92,16 @@ public static class ObjectStore
 
         lock (objects)
         {
+            int handle;
+
+            // Get handle from object cache
+            if (objectHandleCache.TryGetValue(obj, out handle))
+            {
+                return handle;
+            }
+
             // Pop a handle off the stack
-            int handle = handles[nextHandleIndex];
+            handle = handles[nextHandleIndex];
             nextHandleIndex--;
 
             // Store the object
@@ -90,6 +119,9 @@ public static class ObjectStore
 
 
     public static T Get<T>(int handle)
+#if WRAPPER_SIDE
+        where T: WObject
+#endif
     {
         var obj = (T)objects[handle];
 
@@ -97,6 +129,7 @@ public static class ObjectStore
         if (obj == null)
         {
             obj = (T)NewObject(typeof(T));
+            obj.SetHandle(handle);
             StoreInternal(handle, obj);
         }
 #endif
@@ -104,28 +137,7 @@ public static class ObjectStore
         return obj;
     }
 
-    public static int GetHandle(object obj)
-    {
-        // Null is always zero
-        if (object.ReferenceEquals(obj, null))
-        {
-            return 0;
-        }
 
-        lock (objects)
-        {
-            int handle;
-
-            // Get handle from object cache
-            if (objectHandleCache.TryGetValue(obj, out handle))
-            {
-                return handle;
-            }
-        }
-
-        // Object not found
-        return Store(obj);
-    }
 
     public static object Remove(int handle)
     {

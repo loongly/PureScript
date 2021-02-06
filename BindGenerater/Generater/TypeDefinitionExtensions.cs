@@ -422,4 +422,10 @@ static internal class TypeDefinitionExtensions
 
         return td.BaseType;
     }
+
+    public static bool IsStruct(this TypeDefinition type)
+    {
+        return type.IsValueType && !type.IsEnum && !type.IsPrimitive;
+
+    }
 }
