@@ -54,7 +54,7 @@ namespace Generater
                 return "";
             }
 
-            var reName = TypeResolver.Resolve(method.ReturnType).Paramer(name);
+            var reName = TypeResolver.Resolve(method.ReturnType).LocalVariable(name);
 
             CS.Writer.WriteLine($"{reName} = {Utils.BindMethodName(method)}");
             return TypeResolver.Resolve(method.ReturnType).Unbox(name);
@@ -76,13 +76,48 @@ namespace Generater
             else
                 CS.Writer.WriteLine($"var {name} = ", false);
 
-            CS.Writer.Write($"{thizObj}.{method.Name}(");
+            string paramSeparation = ",";
+
+            if (method.Name == "op_Implicit")
+                CS.Writer.Write($"");
+            else if (method.Name == "op_Equality")
+                paramSeparation = "==";
+            else if (method.Name == "op_Inequality")
+                paramSeparation = "!=";
+
+            else if (method.Name == "op_Addition")
+                paramSeparation = "+";
+            else if (method.Name == "op_Subtraction")
+                paramSeparation = "-";
+            else if (method.Name == "op_Multiply")
+                paramSeparation = "*";
+            else if (method.Name == "op_Division")
+                paramSeparation = "/";
+            else if (method.Name == "op_LessThan")
+                paramSeparation = "<";
+            else if (method.Name == "op_GreaterThan")
+                paramSeparation = ">";
+            else if (method.Name == "op_Explicit")
+                CS.Writer.Write($"({TypeResolver.Resolve(method.ReturnType).RealTypeName()})");
+            else if (method.Name == "op_UnaryNegation")
+                CS.Writer.Write($"-");
+
+            
+
+            else
+                CS.Writer.Write($"{thizObj}.{method.Name}");
+
+            CS.Writer.Write($"(");
             var lastP = method.Parameters.LastOrDefault();
             foreach (var p in method.Parameters)
             {
-                CS.Writer.Write(TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true));
+                var value = TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true);
+                if (p.ParameterType.IsByReference)
+                    value = "ref " + value;
+
+                CS.Writer.Write(value);
                 if (lastP != p)
-                    CS.Writer.Write(",");
+                    CS.Writer.Write(paramSeparation);
             }
             CS.Writer.Write(");");
 
@@ -92,7 +127,7 @@ namespace Generater
         protected string GetThizObj()
         {
             if (method.IsStatic)
-                return method.DeclaringType.Name;
+                return method.DeclaringType.FullName.Replace("/",".");
             else
                 return TypeResolver.Resolve(method.DeclaringType).Unbox("thiz", true);
         }
@@ -100,12 +135,17 @@ namespace Generater
 
     public class ConstructorMethodResolver : BaseMethodResolver
     {
+        bool IsValueTypeConstructor;
         public ConstructorMethodResolver(MethodDefinition _method) : base(_method)
         {
+            IsValueTypeConstructor = Utils.IsFullValueType(method.DeclaringType);
         }
 
         public override string ReturnType()
         {
+            if(IsValueTypeConstructor)
+                return "void";
+
             return "int";
         }
 
@@ -117,18 +157,62 @@ namespace Generater
         /// <returns> valueHandle </returns>
         public override string Implement(string name)
         {
-            CS.Writer.WriteLine($"var {name} = new {method.DeclaringType.Name}(", false);
-            var lastP = method.Parameters.LastOrDefault();
-            foreach (var p in method.Parameters)
-            {
-                CS.Writer.Write(TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true));
-                if (lastP != p)
-                    CS.Writer.Write(",");
-            }
-            CS.Writer.Write(");");
 
-            CS.Writer.WriteLine($"var {name}Handle = ObjectStore.Store({name})");
-            return $"{name}Handle";
+            if(!IsValueTypeConstructor)
+            {
+                CS.Writer.WriteLine($"var {name} = new {TypeResolver.Resolve(method.DeclaringType).RealTypeName()}(", false);
+                var lastP = method.Parameters.LastOrDefault();
+                foreach (var p in method.Parameters)
+                {
+                    CS.Writer.Write(TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true));
+                    if (lastP != p)
+                        CS.Writer.Write(",");
+                }
+                CS.Writer.Write(");");
+
+                CS.Writer.WriteLine($"var {name}Handle = ObjectStore.Store({name})");
+                return $"{name}Handle";
+            }
+            else
+            {
+                //if (UnityEngine_Vector3__ctor_94_info == null)
+                //    UnityEngine_Vector3__ctor_94_info = typeof(UnityEngine.Vector3).GetConstructor(new Type[] { typeof(System.Single), typeof(System.Single), typeof(System.Single) });
+                //UnityEngine_Vector3__ctor_94_info.Invoke(thiz, System.Reflection.BindingFlags.Default, Type.DefaultBinder, new object[] { x, y, z }, null);
+
+                /*var infoName = Utils.BindMethodName(method, true, false) + "_info";
+                CS.Writer.WriteLine($"if({infoName} == null)", false);
+                CS.Writer.Write($"{infoName} = typeof({TypeResolver.Resolve(method.DeclaringType).RealTypeName()}).GetConstructor(new Type[] {{ ");
+                var lastP = method.Parameters.LastOrDefault();
+                foreach (var p in method.Parameters)
+                {
+                    CS.Writer.Write($"typeof({TypeResolver.Resolve(p.ParameterType).RealTypeName()})");
+                    if (lastP != p)
+                        CS.Writer.Write(",");
+                }
+                CS.Writer.Write(" });");
+
+                CS.Writer.WriteLine($"{infoName}.Invoke(thiz, System.Reflection.BindingFlags.Default, Type.DefaultBinder, new object[] {{", false);
+                lastP = method.Parameters.LastOrDefault();
+                foreach (var p in method.Parameters)
+                {
+                    CS.Writer.Write(TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true));
+                    if (lastP != p)
+                        CS.Writer.Write(",");
+                }
+                CS.Writer.Write("}, null);");*/
+
+                CS.Writer.WriteLine($"var n = new {TypeResolver.Resolve(method.DeclaringType).RealTypeName()}(",false);
+                var lastP = method.Parameters.LastOrDefault();
+                foreach (var p in method.Parameters)
+                {
+                    CS.Writer.Write(TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true));
+                    if (lastP != p)
+                        CS.Writer.Write(",");
+                }
+                CS.Writer.Write(");");
+                CS.Writer.WriteLine("thiz = n");
+                return "";
+            }
         }
     }
 
@@ -145,6 +229,7 @@ namespace Generater
         /// <returns> valueHandle </returns>
         public override string Implement(string name)
         {
+            name = "value";
             var thizObj = GetThizObj();
             var propertyName = method.Name.Substring("set_".Length);
             var valueName = TypeResolver.Resolve(method.Parameters.First().ParameterType).Unbox(name, true);
@@ -180,12 +265,82 @@ namespace Generater
         {
         }
 
+        /*
+        static Action <int,int,int> logMessageReceived;
+    static void OnlogMessageReceived(string arg0, string arg1, LogType arg2)
+    {
+        logMessageReceived(box(arg0), box(arg1), box(arg2));
+    }
+    [MonoPInvokeCallback(typeof(UnityEngine_Application_logMessageReceived_Type))]
+	static void UnityEngine_Application_logMessageReceived (IntPtr value_p)
+	{
+        logMessageReceived = Marshal.GetDelegateForFunctionPointer<Action<int, int, int>>(value_p);
+        UnityEngine.Application.logMessageReceived += OnlogMessageReceived;
+	}
+             */
         public override string Implement(string name)
         {
-            var thizObj = GetThizObj();
             var propertyName = method.Name.Substring("add_".Length);
-            var value = TypeResolver.Resolve(method.Parameters.FirstOrDefault().ParameterType).Unbox(name);
-            CS.Writer.WriteLine($"{thizObj}.{propertyName} += {value}");
+            var isStatic = method.IsStatic;
+
+            var type = method.Parameters.FirstOrDefault().ParameterType; // LogCallback(string condition, string stackTrace, LogType type);
+            var paramTpes = Utils.GetDelegateParams(type,isStatic? null: method.DeclaringType, out var returnType); // string , string , LogType ,returnType
+            var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStatic ? null : method.DeclaringType); //Action <int,int,int>
+
+            var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).RealTypeName() : "void";
+
+            //static void OnlogMessageReceived(string arg0, string arg1, LogType arg2)
+            var eventFuncDeclear = $"static {returnTypeName} On{propertyName}("; 
+            for (int i = 0;i< paramTpes.Count;i++)
+            {
+                var p = paramTpes[i];
+                if (!isStatic && i == 0)
+                    eventFuncDeclear += "this ";
+                eventFuncDeclear += $"{TypeResolver.Resolve(p).RealTypeName()} arg{i}";
+                if (i != paramTpes.Count -1)
+                {
+                    eventFuncDeclear += ",";
+                }
+            }
+            eventFuncDeclear += ")";
+
+            using (new LP(CS.Writer.GetLinePoint("//Method")))
+            {
+                CS.Writer.WriteLine($"static {eventDeclear} {propertyName}");
+
+                CS.Writer.Start(eventFuncDeclear);
+
+                var callCmd = $"{propertyName}(";
+                if (returnType != null)
+                    callCmd = "var res = " + callCmd;
+
+                for (int i = 0; i < paramTpes.Count; i++)
+                {
+                    var p = paramTpes[i];
+                    callCmd += TypeResolver.Resolve(p).Box($"arg{i}");
+                        
+                    if (i != paramTpes.Count - 1)
+                            callCmd += ",";
+                }
+                
+                callCmd += ")";
+                CS.Writer.WriteLine(callCmd);
+                if (returnType != null)
+                {
+                    var res = TypeResolver.Resolve(returnType).Box("res");
+                    CS.Writer.WriteLine($"return {res}");
+                }
+
+                CS.Writer.End();
+            }
+
+            name = "value";
+            var thizObj = GetThizObj();
+            CS.Writer.WriteLine($"{propertyName} = Marshal.GetDelegateForFunctionPointer<{eventDeclear}>({name}_p)");
+
+            var actionTarget = isStatic ? $"On{propertyName}" : $"{thizObj}.On{propertyName}";
+            CS.Writer.WriteLine($"{thizObj}.{propertyName} += {actionTarget}");
+            
             return "";
         }
     }
@@ -198,10 +353,13 @@ namespace Generater
         
         public override string Implement(string name)
         {
+            name = "value";
             var thizObj = GetThizObj();
+            var isStatic = method.IsStatic;
+
             var propertyName = method.Name.Substring("remove_".Length);
-            var value = TypeResolver.Resolve(method.Parameters.FirstOrDefault().ParameterType).Unbox(name);
-            CS.Writer.WriteLine($"{thizObj}.{propertyName} -= {value}");
+            var actionTarget = isStatic ? $"On{propertyName}" : $"{thizObj}.On{propertyName}";
+            CS.Writer.WriteLine($"{thizObj}.{propertyName} -= {actionTarget}");
             return "";
         }
     }

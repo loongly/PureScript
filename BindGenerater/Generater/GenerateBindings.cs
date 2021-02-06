@@ -6,17 +6,25 @@ namespace Generater
 {
     public static class GenerateBindings
     {
-        static List<MethodDefinition> methods = new List<MethodDefinition>();
+        static HashSet<MethodDefinition> methods = new HashSet<MethodDefinition>();
+        static HashSet<string> delegateDefines = new HashSet<string>();
         public static void AddMethod(MethodDefinition method)
         {
             methods.Add(method);
+        }
+
+        public static void AddDelegateDefine(string defineStr)
+        {
+            delegateDefines.Add(defineStr);
         }
 
         public static void Gen()
         {
             var nsSet = Utils.GetNameSpaceList(methods);
             nsSet.Add("System.Runtime.InteropServices");
+            nsSet.Add("System.Collections.Generic");
             nsSet.Add("Object = UnityEngine.Object");
+            nsSet.Add("Random = UnityEngine.Random");
 
 
             using (new CS(Binder.FuncDefineWriter))
@@ -29,7 +37,12 @@ namespace Generater
                     CS.Writer.WriteLine("[UnmanagedFunctionPointer(CallingConvention.Cdecl)]", false);
                     //MethodResolver.Resolve(method).DefineDelegate();
                     var flag = Utils.IsUnsafeMethod(method) ? " unsafe " : " ";
-                    CS.Writer.WriteLine($"public{flag}delegate {MethodResolver.Resolve(method).ReturnType()} {Utils.BindMethodName(method,true,false)}_Type {Utils.GetParamDefine(method,true)}");
+                    CS.Writer.WriteLine($"public{flag}delegate {MethodResolver.Resolve(method).ReturnType()} {Utils.BindMethodName(method,true,false)}_Type {Utils.BindMethodParamDefine(method,true)}");
+                }
+
+                foreach(var define in delegateDefines)
+                {
+                    CS.Writer.WriteLine(define);
                 }
             }
 
@@ -38,7 +51,7 @@ namespace Generater
                 foreach (var ns in nsSet)
                     CS.Writer.WriteLine($"using {ns}");
 
-                CS.Writer.Start("public class MonoBind");
+                CS.Writer.Start("public static class MonoBind");
 
                 foreach (var method in methods)
                 {
@@ -69,7 +82,7 @@ namespace Generater
 
                 CS.Writer.WriteLine($"using AOT");
 
-                CS.Writer.Start("public unsafe class UnityBind");
+                CS.Writer.Start("public static unsafe class UnityBind");
 
                 foreach (var method in methods)
                 {
@@ -78,7 +91,7 @@ namespace Generater
                 }
 
                 CS.Writer.Start("public static IntPtr BindFunc()");
-                CS.Writer.WriteLine("IntPtr memory = Marshal.AllocHGlobal(1024)");
+                CS.Writer.WriteLine("IntPtr memory = Marshal.AllocHGlobal(8192*8)");
                 CS.Writer.WriteLine("int curMemory = 0;");
                 
                 foreach (var method in methods)
@@ -94,17 +107,19 @@ namespace Generater
 
                 foreach (var method in methods)
                 {
-                    if (method.Name.Contains("lowMemory"))
-                        Utils.Log("");
-
                     var methodName = Utils.BindMethodName(method, true, false);
-                    CS.Writer.WriteLine($"[MonoPInvokeCallback(typeof({methodName}_Type))]", false);
-                    CS.Writer.Start($"static {MethodResolver.Resolve(method).ReturnType()} {methodName} {Utils.GetParamDefine(method, true)}");
 
-                    var reName = MethodResolver.Resolve(method).Implement("value");
-                    if(!string.IsNullOrEmpty(reName))
+
+                    CS.Writer.CreateLinePoint("//Method");
+
+                    CS.Writer.WriteLine($"[MonoPInvokeCallback(typeof({methodName}_Type))]", false);
+                    CS.Writer.Start($"static {MethodResolver.Resolve(method).ReturnType()} {methodName} {Utils.BindMethodParamDefine(method, true)}");
+
+                    var reName = MethodResolver.Resolve(method).Implement("_value");
+                    if (!string.IsNullOrEmpty(reName))
                         CS.Writer.WriteLine($"return {reName}");
                     CS.Writer.End();
+
                 }
 
                 CS.Writer.End();

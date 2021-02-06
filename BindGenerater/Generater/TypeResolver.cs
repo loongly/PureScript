@@ -59,6 +59,12 @@ namespace Generater
         {
             return $"{TypeName()} {name}";
         }
+
+        public virtual string LocalVariable(string name)
+        {
+            return Paramer(name);
+        }
+
         public virtual string TypeName()
         {
             return RealTypeName();
@@ -66,27 +72,33 @@ namespace Generater
 
         protected string Alias()
         {
-            var tName = type.Name;
+            var tName = type.FullName;
             var et = type.GetElementType();
             if (et != null)
-                tName = et.Name;
+                tName = et.FullName;
             switch (tName)
             {
-                case "Void":
+                case "System.Void":
                     tName = "void";
                     break;
-                case "Int32":
+                case "System.Int32":
                     tName = "int";
                     break;
-                case "Object":
-                    if(type.Namespace == "System")
-                        tName = "object";
+                case "System.Object":
+                    tName = "object";
+                    break;
+
+                default:
+                    if (!tName.StartsWith("System"))
+                        tName = "global::" + tName;
+
                     break;
             }
 
             if (et != null)
-                tName = type.Name.Replace(et.Name, tName);
-            return tName;
+                tName = type.FullName.Replace(et.FullName, tName);
+
+            return tName.Replace("/",".");
         }
 
         public virtual string Unbox(string name,bool previous = false)
@@ -95,7 +107,10 @@ namespace Generater
         }
         public virtual string Box(string name)
         {
-            return name;
+            if (type.IsByReference)
+                return "ref " + name;
+            else
+                return name;
         }
 
         public string RealTypeName()
@@ -103,11 +118,6 @@ namespace Generater
             var et = type.GetElementType();
 
             var tName = Alias();
-
-            if (type.IsNested)
-                tName = $"{type.DeclaringType.FullName}.{tName}";
-            else if (et != null && et.IsNested)
-                tName = $"{et.DeclaringType.FullName}.{tName}";
 
             if (type.IsByReference && et.IsValueType)
                 tName = "ref " + tName.Replace("&", "");
@@ -297,18 +307,27 @@ namespace Generater
         {
         }
 
-        public override string TypeName()
+        public override string Paramer(string name)
         {
-
-            return base.TypeName();
+            if(type.IsByReference)
+                return base.Paramer(name);
+            else 
+                return "ref " + base.Paramer(name);
         }
+
+        public override string LocalVariable(string name)
+        {
+            return base.Paramer(name);
+        }
+
 
         public override string Box(string name)
         {
-            if (type.IsByReference)
-                return "ref " + base.Box(name);
+            name = base.Box(name);
+            if (TypeResolver.WrapperSide && !name.StartsWith("ref "))
+                name = "ref " + name;
 
-            return base.Box(name);
+            return name;
         }
 
     }

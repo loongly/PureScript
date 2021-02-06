@@ -17,6 +17,8 @@ namespace Generater
 
         public static HashSet<string> IgnoreTypeSet = new HashSet<string>();
 
+        //declear : static void UnityEngine_GameObject_SetActive (int thiz_h, System.Boolean value)
+        //or: MonoBind.UnityEngine_GameObject_SetActive(this.Handle, value)
         public static string BindMethodName(MethodDefinition method, bool declear = false,bool withParam = true)
         {
             var name = method.DeclaringType.FullName + "_" + GetSignName(method);
@@ -26,24 +28,42 @@ namespace Generater
                 res = "MonoBind." + res;
 
             if (withParam)
-                res += GetParamDefine(method, declear);
+                res += BindMethodParamDefine(method, declear);
 
             return res;
         }
 
-        public static string GetParamDefine(MethodDefinition method, bool declear = false)
+        //declear : (int thiz_h, System.Boolean value)
+        //or:(this.Handle, value)
+        public static string BindMethodParamDefine(MethodDefinition method, bool declear = false)
         {
             var param = "(";
 
-            if (!method.IsStatic && !method.IsConstructor)
+            if (!method.IsStatic)
             {
-                if (declear)
-                    param += "int thiz_h";
-                else
-                    param += "this.Handle";
+                if(method.DeclaringType.IsValueType)
+                {
+                    if (declear)
+                        param += TypeResolver.Resolve(method.DeclaringType).Paramer("thiz");
+                    else
+                        param += "ref this";
+						
+					if (method.HasParameters)
+                        param += ", ";
+                }
+                else if (!method.IsConstructor)
+                {
+                    if (declear)
+                        param += TypeResolver.Resolve(method.DeclaringType).Paramer("thiz");
+                    else
+                        param += "this.Handle";
+						
+					if (method.HasParameters)
+                        param += ", ";
+                }
+                
 
-                if (method.HasParameters)
-                    param += ", ";
+                
             }
 
             var lastP = method.Parameters.LastOrDefault();
@@ -66,7 +86,7 @@ namespace Generater
 
         static string ReName(string name)
         {
-            return name.Replace("::", "_").Replace(".", "_");
+            return name.Replace("::", "_").Replace(".", "_").Replace("/","_");
         }
 
         static Dictionary<string, List<string>> NameDic = new Dictionary<string, List<string>>();
@@ -107,6 +127,11 @@ namespace Generater
 
         public static bool Filter(PropertyDefinition property)
         {
+            if(property.HasThis && property.Name == "Item")
+            {//TODO:indexer
+                return false; 
+            }
+
             foreach (var attr in property.CustomAttributes)
             {
                 if (attr.AttributeType.Name.Equals("ObsoleteAttribute"))
@@ -133,6 +158,8 @@ namespace Generater
             {
                 if (p.ParameterType.IsByReference && !p.ParameterType.GetElementType().IsValueType)
                     return false;
+                if (p.ParameterType.IsPointer && method.IsConstructor && method.DeclaringType.IsStruct())
+                    return false;
 
                 if (p.IsOut)
                     return false;
@@ -141,6 +168,24 @@ namespace Generater
                     return false;
             }
 
+            return true;
+        }
+
+        public static bool Filter(EventDefinition genEvent)
+        {
+            var gType = genEvent.EventType as GenericInstanceType;
+
+            if (genEvent.AddMethod != null && !genEvent.AddMethod.IsPublic)
+                return false;
+
+            if(gType != null)
+            {
+                foreach (var p in gType.GenericArguments)
+                {
+                    if (p.IsGenericInstance || !Filter(p))
+                        return false;
+                }
+            }
             return true;
         }
 
@@ -177,7 +222,7 @@ namespace Generater
                 }
             }
 
-            if (type.IsGeneric()) // && !IsDelegate(type)
+            if (type.IsGeneric() && !IsDelegate(type)) // 
             {
                 Log("ignorType: " + type.FullName);
                 DropTypes.Add(type);
@@ -204,7 +249,7 @@ namespace Generater
             }
 
             var td = type.Resolve();
-            if (td != null && IsObsolete(td))
+            if (td != null && IsObsolete(td) || td.IsInterface)
             {
                 DropTypes.Add(type);
                 return false;
@@ -353,8 +398,8 @@ namespace Generater
 
             foreach (FieldDefinition field in type.Fields)
             {
-                if (!field.IsPublic
-                    || (!field.IsStatic
+                if (//!field.IsPublic|| 
+                    (!field.IsStatic
                         && !IsFullValueType(field.FieldType.Resolve())))
                 {
                     return false;
@@ -382,7 +427,7 @@ namespace Generater
             return false;
         }
 
-        public static string GetGenericTypeName(TypeReference type)
+        public static string GetGenericTypeName(TypeReference type, bool boxedType = false)
         {
             var gType = type as GenericInstanceType;
             if (!type.Name.Contains("`") || gType == null)
@@ -393,17 +438,93 @@ namespace Generater
 
             var param = "<";
 
-            var lastP = gType.GenericArguments.LastOrDefault();
-            foreach (var p in gType.GenericArguments)
+            for(int i = 0;i< gType.GenericArguments.Count;i++)
             {
-                param += p.Name + (p == lastP ? "" : ", ");
+                var p = gType.GenericArguments[i];
+
+                var pName = boxedType ? TypeResolver.Resolve(p).TypeName() : TypeResolver.Resolve(p).RealTypeName();
+                if (p.IsGenericInstance)
+                    pName = Utils.GetGenericTypeName(p, boxedType);
+
+                param += pName + (i == gType.GenericArguments.Count -1 ? "" : ", ");
             }
             param += ">";
             return baseType + param;
         }
 
+        /// <summary>
+        /// GetDelegateParams
+        /// </summary>
+        /// <param name="type">delegate type</param>
+        /// <param name="delegateTarget">static:null    else:delegate.Target</param>
+        /// <param name="returnType">void:null    else:return type</param>
+        /// <returns></returns>
+        public static List<TypeReference> GetDelegateParams(TypeReference type, TypeReference delegateTarget, out TypeReference returnType)
+        {
+            List<TypeReference> types = new List<TypeReference>();
+
+            if (delegateTarget != null)
+                types.Add(delegateTarget);
+
+            if (type.IsGenericInstance)
+            {
+                var gType = type as GenericInstanceType;
+                types.AddRange(gType.GenericArguments);
+                returnType = null;
+
+                if (type.Name.StartsWith("Func"))
+                {
+                    returnType = types.Last();
+                    types.Remove(returnType);
+                }
+                return types;
+            }
+
+            var invokMethod = type.Resolve().Methods.Where(m => m.Name == "Invoke").FirstOrDefault();
+            foreach (var p in invokMethod.Parameters)
+                types.Add(p.ParameterType);
+
+            if (invokMethod.ReturnType.IsVoid())
+                returnType = null;
+            else
+                returnType = invokMethod.ReturnType;
+            return types;
+        }
+
+        static Dictionary<string, string> delegateSignDic = new Dictionary<string, string>();
+
+        public static string GetDelegateWrapTypeName(TypeReference type, TypeReference delegateTarget)
+        {
+            var paramTpes = Utils.GetDelegateParams(type, delegateTarget, out var returnType);
+
+            var paramDeclear = "(";
+            for (int i = 0; i < paramTpes.Count; i++)
+            {
+                var p = paramTpes[i];
+                paramDeclear += $"{TypeResolver.Resolve(p).TypeName()} arg{i} ";
+                if (i != paramTpes.Count - 1)
+                    paramDeclear += ",";
+            }
+            paramDeclear += ")";
+
+            var returnName = returnType == null ? "void" : TypeResolver.Resolve(returnType).TypeName();
+            var sign = paramDeclear + returnName;
+            var delegateName = "";
+            if(!delegateSignDic.TryGetValue(sign,out delegateName))
+            {
+                delegateName = "Delegate" + sign.GetHashCode().ToString("x");
+                delegateSignDic[sign] = delegateName;
+            }
+            
+            var define = $"public delegate {returnName} {delegateName} {paramDeclear}";
+
+            GenerateBindings.AddDelegateDefine(define);
+
+            return delegateName;
+        }
+
         
-        public static HashSet<string> GetNameSpaceList(List<MethodDefinition> methods)
+        public static HashSet<string> GetNameSpaceList(HashSet<MethodDefinition> methods)
         {
             HashSet<string> nsSet = new HashSet<string>();
             foreach(var method in methods)
