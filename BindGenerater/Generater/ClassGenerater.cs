@@ -41,11 +41,14 @@ namespace Generater
 
             isFullValueType = Utils.IsFullValueType(genType);
 
+            if(type.BaseType != null)
+                refNameSpace.Add(type.BaseType.Namespace);
+
             foreach (var t in type.NestedTypes)
             {
                 if (t.Name.StartsWith("<"))
                     continue;
-                if (CopyOrign(t) && (t.IsPublic || t.IsNestedPublic))
+                if ( CopyOrign(t) && (t.IsPublic || t.IsNestedPublic) && !Utils.IsObsolete(t))
                 {
                     nestType.Add(t);
                     foreach (FieldDefinition field in t.Fields)
@@ -80,11 +83,18 @@ namespace Generater
 
             foreach (PropertyDefinition prop in genType.Properties)
             {
-                
                 if (Utils.Filter(prop))
                 {
-                    properties.Add(new PropertyGenerater(prop));
-                    refNameSpace.Add(prop.PropertyType.Namespace);
+                    var pt = prop.PropertyType.Resolve();
+                    if (pt.IsDelegate())
+                    {
+                        events.Add(new DelegateGenerater(prop));
+                    }
+                    else
+                    {
+                        properties.Add(new PropertyGenerater(prop));
+                        refNameSpace.Add(prop.PropertyType.Namespace);
+                    }
                 }
             }
 
@@ -107,7 +117,7 @@ namespace Generater
 
         public override string TypeFullName()
         {
-            return genType.FullName;
+            return genType.FullName.Replace("`","_");
         }
 
         private void GenNested()
@@ -155,7 +165,11 @@ namespace Generater
                     CS.Writer.Start($"namespace {genType.Namespace}");
                 }
 
-                var classDefine = $"public class {genType.Name}";
+                var flag = "public";
+                if (genType.IsAbstract)
+                    flag += " abstract";
+
+                var classDefine = $"{flag} class {genType.Name}";
 
                 if (genType.IsInterface)
                 {
@@ -204,6 +218,8 @@ namespace Generater
 
         bool CopyOrign(TypeDefinition type)
         {
+            if (type.IsGeneric() && !type.IsDelegate())
+                return false;
             return type.IsValueType || type.IsEnum || type.IsDelegate() || type.IsInterface;
         }
 

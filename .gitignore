@@ -1,3 +1,12 @@
 /BindGenerater/bin
 /BindGenerater/obj
+/BindGenerater/EngineLib
+/BindGenerater/Test
+/BindGenerater/glue
+/DemoProject
+/Glue
+/ScriptEngine
+/packages
+/Test
+/back
 .vs

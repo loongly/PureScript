@@ -132,6 +132,9 @@ namespace Generater
                 return false; 
             }
 
+            if (!Filter(property.PropertyType))
+                return false;
+
             foreach (var attr in property.CustomAttributes)
             {
                 if (attr.AttributeType.Name.Equals("ObsoleteAttribute"))
@@ -149,9 +152,6 @@ namespace Generater
                 return false;
 
             if (method.GenericParameters != null && method.GenericParameters.Count > 0)
-                return false;
-
-            if (method.IsAbstract)
                 return false;
 
             foreach (var p in method.Parameters)
@@ -176,6 +176,9 @@ namespace Generater
             var gType = genEvent.EventType as GenericInstanceType;
 
             if (genEvent.AddMethod != null && !genEvent.AddMethod.IsPublic)
+                return false;
+
+            if (IsObsolete(genEvent))
                 return false;
 
             if(gType != null)
@@ -385,28 +388,7 @@ namespace Generater
             return TypeKind.ManagedStruct;
         }
 
-        public static bool IsFullValueType(TypeDefinition type)
-        {
-            if (!type.IsValueType)
-            {
-                return false;
-            }
-            if (type.IsPrimitive || type.IsEnum )
-            {
-                return true;
-            }
-
-            foreach (FieldDefinition field in type.Fields)
-            {
-                if (//!field.IsPublic|| 
-                    (!field.IsStatic
-                        && !IsFullValueType(field.FieldType.Resolve())))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        
 
         public static bool IsDelegate(TypeReference type)
         {
@@ -595,5 +577,25 @@ namespace Generater
             return false;
         }
 
+    }
+
+    public class NameCounter
+    {
+        Dictionary<string, int> nameDic = new Dictionary<string, int>();
+        public string UniqueName(string name)
+        {
+            if (nameDic.TryGetValue(name, out var count))
+            {
+                count++;
+                nameDic[name] = count;
+                name += "_" + count;
+            }
+            else
+            {
+                nameDic[name] = 0;
+            }
+
+            return name;
+        }
     }
 }
