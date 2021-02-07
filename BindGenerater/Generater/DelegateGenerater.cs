@@ -6,25 +6,61 @@ namespace Generater
 {
     public class DelegateGenerater : CodeGenerater
     {
-        EventDefinition genEvent;
+        string genName;
+        TypeReference genType;
+        TypeReference declarType;
         bool isStatic;
+        bool isEvent;
+        MethodDefinition addMethod;
+        MethodDefinition removeMethod;
+
+        MethodDefinition setMethod;
+        MethodDefinition getMethod;
+
         List<MethodGenerater> methods = new List<MethodGenerater>();
         public DelegateGenerater(EventDefinition e)
         {
-            genEvent = e;
+            genName = e.Name;
+            genType = e.EventType;
+            declarType = e.DeclaringType;
 
             if (e.AddMethod != null)
             {
+                addMethod = e.AddMethod;
                 methods.Add(new MethodGenerater(e.AddMethod));
                 isStatic = e.AddMethod.IsStatic;
             }
 
             if (e.RemoveMethod != null)
             {
+                removeMethod = e.RemoveMethod;
                 methods.Add(new MethodGenerater(e.RemoveMethod));
                 isStatic = e.RemoveMethod.IsStatic;
             }
+            isEvent = true;
         }
+        public DelegateGenerater(PropertyDefinition prop)
+        {
+            genName = prop.Name;
+            genType = prop.PropertyType;
+            declarType = prop.DeclaringType;
+
+            if (prop.SetMethod != null)
+            {
+                setMethod = prop.SetMethod;
+                methods.Add(new MethodGenerater(prop.SetMethod));
+                isStatic = prop.SetMethod.IsStatic;
+            }
+
+            if (prop.GetMethod != null)
+            {
+                getMethod = prop.GetMethod;
+                methods.Add(new MethodGenerater(prop.GetMethod));
+                isStatic = prop.GetMethod.IsStatic;
+            }
+            isEvent = false;
+        }
+        
 
         /*
          static event global::UnityEngine.Application.LogCallback _logMessageReceived;
@@ -58,21 +94,22 @@ namespace Generater
              */
         public override void Gen()
         {
-            var name = genEvent.Name;
+            var name = genName;
             
-            var flag = isStatic ? "static " : "";
-            var type = genEvent.EventType; // LogCallback(string condition, string stackTrace, LogType type);
+            var flag = isStatic ? "static" : "";
+            flag += isEvent ? " event" : "";
+            var type = genType; // LogCallback(string condition, string stackTrace, LogType type);
 
             var eventTypeName = TypeResolver.Resolve(type).RealTypeName();
             if (type.IsGenericInstance)
                 eventTypeName = Utils.GetGenericTypeName(type);
 
-            var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStatic ? null : genEvent.DeclaringType); //Action <int,int,int>
-            var paramTpes = Utils.GetDelegateParams(type, isStatic ? null : genEvent.DeclaringType, out var returnType); // string , string , LogType ,returnType
+            var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStatic ? null : declarType); //Action <int,int,int>
+            var paramTpes = Utils.GetDelegateParams(type, isStatic ? null : declarType, out var returnType); // string , string , LogType ,returnType
             var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).RealTypeName() : "void";
 
             //static event global::UnityEngine.Application.LogCallback _logMessageReceived;
-            CS.Writer.WriteLine($"public {flag}event {eventTypeName} _{name}");
+            CS.Writer.WriteLine($"public {flag} {eventTypeName} _{name}");
 
             //static Action<int, int, int> logMessageReceivedAction = OnlogMessageReceived;
             CS.Writer.WriteLine($"static {eventDeclear} {name}Action = On{name}");
@@ -127,34 +164,42 @@ namespace Generater
             CS.Writer.End();
 
             //public static event LogCallback logMessageReceived
-            CS.Writer.Start($"public {flag}event {eventTypeName} {name}");
+            CS.Writer.Start($"public {flag} {eventTypeName} {name}");
 
             var targetHandle = isStatic ? "" : "this.Handle, ";
-            if (genEvent.AddMethod != null)
+            if (addMethod != null || setMethod != null)
             {
-                CS.Writer.Start("add");
+                var method = isEvent ? addMethod : setMethod;
+                var op = isEvent ? "+=" : "=";
+                CS.Writer.Start(isEvent? "add":"set");
                 CS.Writer.WriteLine($"bool attach = (_{name} == null)");
-                CS.Writer.WriteLine($"_{name} += value");
+                CS.Writer.WriteLine($"_{name} {op} value");
 
                 CS.Writer.Start("if(attach)");
                 var res = TypeResolver.Resolve(type).Box($"{name}Action");
                 
-                CS.Writer.WriteLine(Utils.BindMethodName(genEvent.AddMethod, false, false) + $"({targetHandle}{res})");
+                CS.Writer.WriteLine(Utils.BindMethodName(method, false, false) + $"({targetHandle}{res})");
                 //var value_p = Marshal.GetFunctionPointerForDelegate(logMessageReceivedAction);
                 //MonoBind.UnityEngine_Application_add_logMessageReceived(value_p);
                 CS.Writer.End(); //if(attach)
                 CS.Writer.End(); // add
             }
-            if(genEvent.RemoveMethod != null)
+            if(removeMethod != null)
             {
                 CS.Writer.Start("remove");
                 CS.Writer.WriteLine($"_{name} -= value");
 
                 CS.Writer.Start($"if(_{name} == null)");
                 var res = TypeResolver.Resolve(type).Box($"{name}Action");
-                CS.Writer.WriteLine(Utils.BindMethodName(genEvent.RemoveMethod, false, false) + $"({targetHandle}{res})");
+                CS.Writer.WriteLine(Utils.BindMethodName(removeMethod, false, false) + $"({targetHandle}{res})");
                 CS.Writer.End(); //if(attach)
                 CS.Writer.End(); // remove
+            }
+            else if (getMethod != null)
+            {
+                CS.Writer.Start("get");
+                CS.Writer.WriteLine($"return _{name}");
+                CS.Writer.End(); //get
             }
 
             CS.Writer.End();

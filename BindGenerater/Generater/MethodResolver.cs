@@ -14,12 +14,18 @@ namespace Generater
             if (_method.IsConstructor)
                 return new ConstructorMethodResolver(_method);
             if (_method.IsSetter)
-                return new SetterMethodResolver(_method);
+            {
+                var firstParam = _method.Parameters.FirstOrDefault()?.ParameterType?.Resolve();
+                if (firstParam != null && firstParam.IsDelegate())
+                    return new AddOnMethodResolver(_method,false);
+                else
+                    return new SetterMethodResolver(_method);
+            }
             if (_method.IsGetter)
                 return new GetterMethodResolver(_method);
 
             if(_method.IsAddOn)
-                return new AddOnMethodResolver(_method);
+                return new AddOnMethodResolver(_method, true);
             if (_method.IsRemoveOn)
                 return new RemoveOnMethodResolver(_method);
 
@@ -112,8 +118,8 @@ namespace Generater
             foreach (var p in method.Parameters)
             {
                 var value = TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true);
-                if (p.ParameterType.IsByReference)
-                    value = "ref " + value;
+                //if (p.ParameterType.IsByReference)
+                //    value = "ref " + value;
 
                 CS.Writer.Write(value);
                 if (lastP != p)
@@ -261,8 +267,15 @@ namespace Generater
 
     public class AddOnMethodResolver : BaseMethodResolver
     {
-        public AddOnMethodResolver(MethodDefinition _method) : base(_method)
+        bool isEvent;
+        string propertyName;
+        string uniqueName;
+        public AddOnMethodResolver(MethodDefinition _method,bool _event) : base(_method)
         {
+            isEvent = _event;
+
+            propertyName = method.Name.Substring(4);//trim "add_" or "set_"
+            uniqueName = method.DeclaringType.Name.Replace("/", "_") + "_" + propertyName;
         }
 
         /*
@@ -280,7 +293,7 @@ namespace Generater
              */
         public override string Implement(string name)
         {
-            var propertyName = method.Name.Substring("add_".Length);
+            
             var isStatic = method.IsStatic;
 
             var type = method.Parameters.FirstOrDefault().ParameterType; // LogCallback(string condition, string stackTrace, LogType type);
@@ -290,7 +303,7 @@ namespace Generater
             var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).RealTypeName() : "void";
 
             //static void OnlogMessageReceived(string arg0, string arg1, LogType arg2)
-            var eventFuncDeclear = $"static {returnTypeName} On{propertyName}("; 
+            var eventFuncDeclear = $"static {returnTypeName} On{uniqueName}("; 
             for (int i = 0;i< paramTpes.Count;i++)
             {
                 var p = paramTpes[i];
@@ -306,11 +319,11 @@ namespace Generater
 
             using (new LP(CS.Writer.GetLinePoint("//Method")))
             {
-                CS.Writer.WriteLine($"static {eventDeclear} {propertyName}");
+                CS.Writer.WriteLine($"static {eventDeclear} {uniqueName}");
 
                 CS.Writer.Start(eventFuncDeclear);
 
-                var callCmd = $"{propertyName}(";
+                var callCmd = $"{uniqueName}(";
                 if (returnType != null)
                     callCmd = "var res = " + callCmd;
 
@@ -336,10 +349,11 @@ namespace Generater
 
             name = "value";
             var thizObj = GetThizObj();
-            CS.Writer.WriteLine($"{propertyName} = Marshal.GetDelegateForFunctionPointer<{eventDeclear}>({name}_p)");
+            CS.Writer.WriteLine($"{uniqueName} = Marshal.GetDelegateForFunctionPointer<{eventDeclear}>({name}_p)");
 
-            var actionTarget = isStatic ? $"On{propertyName}" : $"{thizObj}.On{propertyName}";
-            CS.Writer.WriteLine($"{thizObj}.{propertyName} += {actionTarget}");
+            var actionTarget = isStatic ? $"On{uniqueName}" : $"{thizObj}.On{uniqueName}";
+            var op = isEvent ? "+=" : "=";
+            CS.Writer.WriteLine($"{thizObj}.{propertyName} {op} {actionTarget}");
             
             return "";
         }
@@ -347,8 +361,12 @@ namespace Generater
 
     public class RemoveOnMethodResolver : BaseMethodResolver
     {
+        string propertyName;
+        string uniqueName;
         public RemoveOnMethodResolver(MethodDefinition _method) : base(_method)
         {
+            propertyName = method.Name.Substring("remove_".Length);
+            uniqueName = method.DeclaringType.Name.Replace("/", "_") + "_" + propertyName;
         }
         
         public override string Implement(string name)
@@ -357,8 +375,8 @@ namespace Generater
             var thizObj = GetThizObj();
             var isStatic = method.IsStatic;
 
-            var propertyName = method.Name.Substring("remove_".Length);
-            var actionTarget = isStatic ? $"On{propertyName}" : $"{thizObj}.On{propertyName}";
+            
+            var actionTarget = isStatic ? $"On{uniqueName}" : $"{thizObj}.On{uniqueName}";
             CS.Writer.WriteLine($"{thizObj}.{propertyName} -= {actionTarget}");
             return "";
         }

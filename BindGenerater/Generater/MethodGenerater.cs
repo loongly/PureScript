@@ -25,7 +25,8 @@ namespace Generater
             }
             Binder.AddType(genMethod.ReturnType.Resolve());
 
-            GenerateBindings.AddMethod(genMethod);
+            if (!method.IsAbstract)
+                GenerateBindings.AddMethod(genMethod);
         }
 
         public override void Gen()
@@ -46,6 +47,8 @@ namespace Generater
                 GenAddOn();
             else if (genMethod.IsRemoveOn)
                 GenRemoveOn();
+            else if (genMethod.IsAbstract)
+                GenAbstract();
             else
                 GenMethod();
         }
@@ -103,6 +106,12 @@ namespace Generater
             writer.End();
         }
 
+        void GenAbstract()
+        {
+            writer.WriteLine(GetMethodDelcear());
+        }
+
+
         string GetMethodDelcear()
         {
 
@@ -113,7 +122,9 @@ namespace Generater
             if (Utils.IsUnsafeMethod(genMethod))
                 declear += "unsafe ";
 
-            if (genMethod.IsOverride())
+            if (genMethod.IsAbstract)
+                declear += "abstract ";
+            else if (genMethod.IsOverride())
                 declear += "override ";
             else if (genMethod.IsVirtual && !genMethod.IsFinal)
                 declear += "virtual ";

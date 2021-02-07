@@ -72,6 +72,8 @@ namespace Generater
                     CS.Writer.WriteLine("curMemory += IntPtr.Size");
                 }
 
+                CS.Writer.WriteLine("Custom.DeSer(memory + curMemory)");
+
                 CS.Writer.EndAll();
             }
 
@@ -101,7 +103,7 @@ namespace Generater
                     CS.Writer.WriteLine("curMemory += IntPtr.Size");
                 }
 
-                //CS.Writer.WriteLine("MonoLib.SetFuncPointer(memory)");
+                CS.Writer.WriteLine("Custom.Ser(memory + curMemory)");
                 CS.Writer.WriteLine("return memory");
                 CS.Writer.End();
 

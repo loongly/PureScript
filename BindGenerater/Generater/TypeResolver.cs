@@ -103,7 +103,10 @@ namespace Generater
 
         public virtual string Unbox(string name,bool previous = false)
         {
-            return name;
+            if (type.IsByReference)
+                return "ref " + name;
+            else
+                return name;
         }
         public virtual string Box(string name)
         {
@@ -203,7 +206,7 @@ namespace Generater
         public override string Box(string name)
         {
             if(TypeResolver.WrapperSide)
-                CS.Writer.WriteLine($"var {name}_h = {name}.Handle");
+                CS.Writer.WriteLine($"var {name}_h = {name}.__GetHandle()");
             else
                 CS.Writer.WriteLine($"var {name}_h = ObjectStore.Store({name})");
             return $"{name}_h";
@@ -329,7 +332,6 @@ namespace Generater
 
             return name;
         }
-
     }
 
     public class StringResolver : BaseTypeResolver

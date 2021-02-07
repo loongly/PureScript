@@ -41,7 +41,9 @@ namespace Generater
             "UnityEngine.iOS",
             "UnityEngine.tvOS",
             "UnityEngine.Apple",
-            "UnityEngine.Handheld"
+            "UnityEngine.Handheld",
+            "UnityEngine.Experimental.UIElements",
+            "UnityEngine.Social"
         };
 
         public static void Init(string outDir)
@@ -57,7 +59,11 @@ namespace Generater
 
         public static void End()
         {
-
+            TypeResolver.WrapperSide = false;
+            GenerateBindings.Gen();
+            FuncDefineWriter.EndAll();
+            FuncSerWriter.EndAll();
+            FuncDeSerWriter.EndAll();
         }
 
         public static void Bind(string dllPath)
@@ -100,23 +106,13 @@ namespace Generater
 
             TypeResolver.WrapperSide = true;
 
-            var gener = generaters.Dequeue();
-            while (gener != null)
+            while(generaters.Count > 0)
             {
-                gener.Gen();
-
-                if (generaters.Count < 1)
-                    break;
-                else
-                    gener = generaters.Dequeue();
+                var gener = generaters.Dequeue();
+                if (gener != null)
+                    gener.Gen();
             }
-            
-            TypeResolver.WrapperSide = false;
-            GenerateBindings.Gen();
-            FuncDefineWriter.EndAll();
-            FuncSerWriter.EndAll();
-            FuncDeSerWriter.EndAll();
-
+            generaters.Clear();
         }
 
         public static void AddType(TypeDefinition type)
