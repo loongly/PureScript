@@ -11,6 +11,9 @@ namespace Generater
         FieldDefinition genField;
  
         bool isStatic;
+        bool isAbstract;
+        bool isOverride;
+        bool isVirtual;
 
         List<MethodGenerater> methods = new List<MethodGenerater>();
 
@@ -20,11 +23,17 @@ namespace Generater
             if (genProperty.GetMethod != null && genProperty.GetMethod.IsPublic && Utils.Filter(genProperty.GetMethod))
             {
                 isStatic = genProperty.GetMethod.IsStatic;
+                isAbstract = genProperty.GetMethod.IsAbstract;
+                isOverride = genProperty.GetMethod.IsOverride();
+                isVirtual = genProperty.GetMethod.IsVirtual && !genProperty.DeclaringType.IsValueType;
                 methods.Add(new MethodGenerater(genProperty.GetMethod));
             }
             if (genProperty.SetMethod != null && genProperty.SetMethod.IsPublic && Utils.Filter(genProperty.SetMethod))
             {
                 isStatic = genProperty.SetMethod.IsStatic;
+                isAbstract = genProperty.SetMethod.IsAbstract;
+                isOverride = genProperty.SetMethod.IsOverride();
+                isVirtual = genProperty.SetMethod.IsVirtual && !genProperty.DeclaringType.IsValueType;
                 methods.Add(new MethodGenerater(genProperty.SetMethod));
             }
 
@@ -51,6 +60,13 @@ namespace Generater
         void GenProperty()
         {
             var flag = isStatic ? "static " : "";
+            if (isAbstract)
+                flag += "abstract ";
+            else if (isOverride)
+                flag += "override ";
+            else if(isVirtual)
+                flag += "virtual ";
+
             CS.Writer.Start($"public {flag}{TypeResolver.Resolve(genProperty.PropertyType).RealTypeName()} {genProperty.Name}");
 
             foreach (var m in methods)

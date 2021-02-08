@@ -55,6 +55,11 @@ namespace Generater
 
         void GenGeter()
         {
+            if(genMethod.IsAbstract)
+            {
+                writer.WriteLine("get");
+                return;
+            }
             writer.Start("get");
             var res =  MethodResolver.Resolve(genMethod).Call("res");
             writer.WriteLine($"return {res}");
@@ -63,6 +68,12 @@ namespace Generater
 
         void GenSeter()
         {
+            if (genMethod.IsAbstract)
+            {
+                writer.WriteLine("set");
+                return;
+            }
+
             writer.Start("set");
             MethodResolver.Resolve(genMethod).Call("");
             writer.End();
