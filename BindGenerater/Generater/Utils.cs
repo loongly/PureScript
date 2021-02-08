@@ -173,6 +173,8 @@ namespace Generater
 
         public static bool Filter(EventDefinition genEvent)
         {
+            if (!Filter(genEvent.EventType))
+                return false;
             var gType = genEvent.EventType as GenericInstanceType;
 
             if (genEvent.AddMethod != null && !genEvent.AddMethod.IsPublic)
@@ -225,6 +227,20 @@ namespace Generater
                 }
             }
 
+            if(IsDelegate(type))
+            {
+                var tList = GetDelegateParams(type, null, out var rType);
+                tList.Add(rType);
+                foreach(var t in tList)
+                {
+                    if(t != null && !Utils.Filter(t))
+                    {
+                        DropTypes.Add(type);
+                        return false;
+                    }
+                }
+            }
+
             if (type.IsGeneric() && !IsDelegate(type)) // 
             {
                 Log("ignorType: " + type.FullName);
@@ -251,12 +267,27 @@ namespace Generater
                 return false;
             }
 
+            
+
             var td = type.Resolve();
             if (td != null && IsObsolete(td) || td.IsInterface)
             {
                 DropTypes.Add(type);
                 return false;
             }
+
+            if (td != null && td.IsStruct())
+            {
+                foreach (var f in td.Fields)
+                {
+                    if (!f.IsStatic && !Utils.Filter(f.FieldType))
+                    {
+                        DropTypes.Add(type);
+                        return false;
+                    }
+                }
+            }
+
 
             var ct = type.BaseType();
             while(ct != null)
@@ -434,6 +465,17 @@ namespace Generater
             return baseType + param;
         }
 
+        public static TypeReference GetGenericParamTyep(GenericParameter paramType, GenericInstanceType instanceType)
+        {
+            if (paramType == null || instanceType == null)
+                return null;
+
+            var postion = paramType.Position;
+            if (postion >= 0 && postion < instanceType.GenericArguments.Count)
+                return instanceType.GenericArguments[postion];
+            return null;
+        }
+
         /// <summary>
         /// GetDelegateParams
         /// </summary>
@@ -448,7 +490,25 @@ namespace Generater
             if (delegateTarget != null)
                 types.Add(delegateTarget);
 
-            if (type.IsGenericInstance)
+            
+
+            var invokMethod = type.Resolve().Methods.Where(m => m.Name == "Invoke").FirstOrDefault();
+            if(invokMethod != null)
+            {
+                foreach (var p in invokMethod.Parameters)
+                {
+                    if (p.ParameterType.IsGenericParameter)
+                        types.Add(GetGenericParamTyep(p.ParameterType as GenericParameter, type as GenericInstanceType));
+                    else
+                        types.Add(p.ParameterType);
+                }
+
+                if (invokMethod.ReturnType.IsVoid())
+                    returnType = null;
+                else
+                    returnType = invokMethod.ReturnType;
+            }
+            else if (type.IsGenericInstance)
             {
                 var gType = type as GenericInstanceType;
                 types.AddRange(gType.GenericArguments);
@@ -461,15 +521,11 @@ namespace Generater
                 }
                 return types;
             }
-
-            var invokMethod = type.Resolve().Methods.Where(m => m.Name == "Invoke").FirstOrDefault();
-            foreach (var p in invokMethod.Parameters)
-                types.Add(p.ParameterType);
-
-            if (invokMethod.ReturnType.IsVoid())
-                returnType = null;
             else
-                returnType = invokMethod.ReturnType;
+            {
+                returnType = null;
+            }
+            
             return types;
         }
 

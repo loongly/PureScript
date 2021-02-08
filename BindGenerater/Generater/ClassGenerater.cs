@@ -18,11 +18,12 @@ namespace Generater
         private List<PropertyGenerater> properties = new List<PropertyGenerater>();
         private List<DelegateGenerater> events = new List<DelegateGenerater>();
         private List<MethodGenerater> methods = new List<MethodGenerater>();
-        private List<TypeDefinition> nestType = new List<TypeDefinition>();
-        private HashSet<string> refNameSpace = new HashSet<string>();
+        private List<ClassGenerater> nestType = new List<ClassGenerater>();
         private bool hasDefaultConstructor = false;
         private bool isFullValueType;
         private StreamWriter FileStream;
+
+        public HashSet<string> RefNameSpace = new HashSet<string>();
 
         public ClassGenerater(TypeDefinition type, StreamWriter writer = null)
         {
@@ -42,19 +43,17 @@ namespace Generater
             isFullValueType = Utils.IsFullValueType(genType);
 
             if(type.BaseType != null)
-                refNameSpace.Add(type.BaseType.Namespace);
+                RefNameSpace.Add(type.BaseType.Namespace);
 
             foreach (var t in type.NestedTypes)
             {
-                if (t.Name.StartsWith("<"))
+                if (t.Name.StartsWith("<") || !Utils.Filter(t))
                     continue;
-                if ( CopyOrign(t) && (t.IsPublic || t.IsNestedPublic) && !Utils.IsObsolete(t))
+                if ((t.IsPublic || t.IsNestedPublic) && !Utils.IsObsolete(t))
                 {
-                    nestType.Add(t);
-                    foreach (FieldDefinition field in t.Fields)
-                    {
-                        refNameSpace.Add(field.FieldType.Namespace);
-                    }
+                    var nestGen = new ClassGenerater(t, FileStream);
+                    nestType.Add(nestGen);
+                    RefNameSpace.UnionWith(nestGen.RefNameSpace);
                 }
             }
 
@@ -65,7 +64,7 @@ namespace Generater
                     if (field.IsPublic)
                     {
                         properties.Add(new PropertyGenerater(field));
-                        refNameSpace.Add(field.FieldType.Namespace);
+                        RefNameSpace.Add(field.FieldType.Namespace);
                     }
                     
                 }
@@ -77,7 +76,7 @@ namespace Generater
                 if(Utils.Filter(e))
                 {
                     events.Add(new DelegateGenerater(e));
-                    refNameSpace.Add(e.EventType.Namespace);
+                    RefNameSpace.Add(e.EventType.Namespace);
                 }
             }
 
@@ -93,7 +92,7 @@ namespace Generater
                     else
                     {
                         properties.Add(new PropertyGenerater(prop));
-                        refNameSpace.Add(prop.PropertyType.Namespace);
+                        RefNameSpace.Add(prop.PropertyType.Namespace);
                     }
                 }
             }
@@ -107,7 +106,7 @@ namespace Generater
                     if ((method.IsPublic || genType.IsInterface) && !method.IsGetter && !method.IsSetter && !method.IsAddOn && !method.IsRemoveOn && Utils.Filter(method))
                     {
                         methods.Add(new MethodGenerater(method));
-                        refNameSpace.UnionWith(Utils.GetNameSpaceRef(method));
+                        RefNameSpace.UnionWith(Utils.GetNameSpaceRef(method));
                     }
                     if (method.IsConstructor && method.Parameters.Count == 0 && method.IsPublic)
                         hasDefaultConstructor = true;
@@ -128,7 +127,7 @@ namespace Generater
             CS.Writer.Flush();
             foreach (var t in nestType)
             {
-                new ClassGenerater(t, FileStream).Gen();
+                t.Gen();
             }
         }
 
@@ -146,25 +145,24 @@ namespace Generater
                     return;
                 }
 
-                foreach (var ns in refNameSpace)
+                if(!genType.IsNested)
                 {
-                    if (!string.IsNullOrEmpty(ns))
+                    foreach (var ns in RefNameSpace)
                     {
-                        CS.Writer.WriteLine($"using {ns}");
-                        // if(!ns.StartsWith("System"))
-                        //     CS.Writer.WriteLine($"using PS_{ns}");
+                        if (!string.IsNullOrEmpty(ns))
+                        {
+                            CS.Writer.WriteLine($"using {ns}");
+                        }
+                    }
+                    CS.Writer.WriteLine("using System.Runtime.InteropServices");
+                    CS.Writer.WriteLine("using Object = UnityEngine.Object");
+
+                    if (!string.IsNullOrEmpty(genType.Namespace))
+                    {
+                        CS.Writer.Start($"namespace {genType.Namespace}");
                     }
                 }
-                CS.Writer.WriteLine("using System.Runtime.InteropServices");
-                CS.Writer.WriteLine("using Object = UnityEngine.Object");
-
                 
-
-                if (!string.IsNullOrEmpty(genType.Namespace))
-                {
-                    CS.Writer.Start($"namespace {genType.Namespace}");
-                }
-
                 var flag = "public";
                 if (genType.IsAbstract)
                     flag += " abstract";
@@ -177,7 +175,7 @@ namespace Generater
                 }
                 else if (genType.BaseType != null)
                 {
-                    string baseName = genType.BaseType.Name;
+                    string baseName = genType.BaseType.IsNested ? genType.BaseType.FullName.Replace("/", ".") : genType.BaseType.Name;
                     if (genType.BaseType.FullName == "System.Object")
                         baseName = "WObject";
                     else
@@ -251,9 +249,11 @@ namespace Generater
 
                 if (!isNested)
                 {
-                    foreach (var ns in outVisitor.nestedUsing)
+                    RefNameSpace.UnionWith(outVisitor.nestedUsing);
+                    foreach (var ns in RefNameSpace)
                     {
-                        CS.Writer.WriteHead($"using {ns}");
+                        if(!string.IsNullOrEmpty(ns))
+                            CS.Writer.WriteHead($"using {ns}");
                     }
                 }
                 
