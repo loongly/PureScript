@@ -21,6 +21,7 @@ namespace Generater
         private List<ClassGenerater> nestType = new List<ClassGenerater>();
         private bool hasDefaultConstructor = false;
         private bool isFullValueType;
+        private bool isUnityNative;
         private StreamWriter FileStream;
 
         public HashSet<string> RefNameSpace = new HashSet<string>();
@@ -39,10 +40,10 @@ namespace Generater
                 FileStream = writer;
             }
             
-
             isFullValueType = Utils.IsFullValueType(genType);
+            isUnityNative = Utils.IsUnityICallBind(type);
 
-            if(type.BaseType != null)
+            if (type.BaseType != null)
                 RefNameSpace.Add(type.BaseType.Namespace);
 
             foreach (var t in type.NestedTypes)
@@ -138,7 +139,7 @@ namespace Generater
             {
                 base.Gen();
 
-                if (CopyOrign(genType))
+                if (IsCopyOrign(genType))
                 {
                     CopyGen(genType);
                     CS.Writer.EndAll();
@@ -214,19 +215,25 @@ namespace Generater
             }
         }
 
-        bool CopyOrign(TypeDefinition type)
+        bool IsCopyOrign(TypeDefinition type)
         {
             if (type.IsGeneric() && !type.IsDelegate())
                 return false;
-            return type.IsValueType || type.IsEnum || type.IsDelegate() || type.IsInterface;
+            return type.IsValueType || type.IsEnum || type.IsDelegate() || type.IsInterface || isUnityNative;
         }
 
         void CopyGen(TypeDefinition type )
         {
 
             bool isNested = type.IsNested;
+            
 
-            if (!(isNested && CopyOrign(genType.DeclaringType)))
+            HashSet<string> IgnoreNestType = new HashSet<string>();
+
+            if (isUnityNative)
+                CBinder.AddType(type);
+
+            if (!(isNested && IsCopyOrign(genType.DeclaringType)))
             {
                 var tName = type.FullName.Replace("/", "+");
                 var name = new FullTypeName(tName);
@@ -244,7 +251,12 @@ namespace Generater
                 }
 
                 StringWriter w = new StringWriter();
-                var outVisitor = new CustomOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
+                CustomOutputVisitor outVisitor;
+                if(isUnityNative)
+                    outVisitor = new UntiyObjectOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
+                else
+                    outVisitor = new BlittableOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
+
                 syntaxTree.AcceptVisitor(outVisitor);
 
                 if (!isNested)
@@ -262,7 +274,7 @@ namespace Generater
                 CS.Writer.WriteLine(txt, false);
             }
 
-            if(genType.IsStruct())
+            if(genType.IsStruct() && !isUnityNative)
             {
                 foreach(var f in genType.Fields)
                 {

@@ -91,16 +91,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generater\Binder.cs" />
-    <Compile Include="Generater\CustomOutputVisitor.cs" />
-    <Compile Include="Generater\MethodResolver.cs" />
-    <Compile Include="Generater\TypeResolver.cs" />
-    <Compile Include="Generater\ClassGenerater.cs" />
-    <Compile Include="Generater\CodeGenerater.cs" />
-    <Compile Include="Generater\DelegateGenerater.cs" />
-    <Compile Include="Generater\GenerateBindings.cs" />
-    <Compile Include="Generater\MethodGenerater.cs" />
+    <Compile Include="Generater\CBinder.cs" />
+    <Compile Include="Generater\CSharp\CustomOutputVisitor.cs" />
+    <Compile Include="Generater\CSharp\MethodResolver.cs" />
+    <Compile Include="Generater\CSharp\TypeResolver.cs" />
+    <Compile Include="Generater\CSharp\ClassGenerater.cs" />
+    <Compile Include="Generater\CSharp\CodeGenerater.cs" />
+    <Compile Include="Generater\CSharp\DelegateGenerater.cs" />
+    <Compile Include="Generater\CSharp\GenerateBindings.cs" />
+    <Compile Include="Generater\CSharp\MethodGenerater.cs" />
     <Compile Include="Generater\CodeWriter.cs" />
-    <Compile Include="Generater\PropertyGenerater.cs" />
+    <Compile Include="Generater\CSharp\PropertyGenerater.cs" />
+    <Compile Include="Generater\C\ClassCacheGenerater.cs" />
+    <Compile Include="Generater\C\CTypeResolver.cs" />
+    <Compile Include="Generater\C\CUtils.cs" />
+    <Compile Include="Generater\C\EventGenerater.cs" />
+    <Compile Include="Generater\C\ICallGenerater.cs" />
     <Compile Include="Generater\TypeDefinitionExtensions.cs" />
     <Compile Include="Generater\Utils.cs" />
     <Compile Include="Program.cs" />
@@ -108,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

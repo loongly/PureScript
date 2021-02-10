@@ -5,7 +5,8 @@
 /BindGenerater/glue
 /DemoProject
 /Glue
-/ScriptEngine
+/ScriptEngine/Win32
+/ScriptEngine/x64
 /packages
 /Test
 /back

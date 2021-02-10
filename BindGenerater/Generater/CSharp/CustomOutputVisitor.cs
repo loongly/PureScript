@@ -12,22 +12,9 @@ using System.Threading.Tasks;
 
 public class CustomOutputVisitor : CSharpOutputVisitor
 {
-    static HashSet<string> ignoreUsing = new HashSet<string>();
-    static HashSet<string> includeMethod = new HashSet<string>();
-    static CustomOutputVisitor()
-    {
-        ignoreUsing.Add("UnityEngine.Internal");
-        ignoreUsing.Add("UnityEngine.Scripting.APIUpdating");
-       // includeMethod.Add("Equals");
-/*
-        includeMethod.Add("Dispose");
-        includeMethod.Add("MoveNext");
-        includeMethod.Add("Reset");
-        includeMethod.Add("Current");*/
-    }
-
-    bool isNested;
+    protected bool isNested;
     public List<string> nestedUsing = new List<string>();
+    public HashSet<string> IgnoreNestType = new HashSet<string>();
     public CustomOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(textWriter, formattingPolicy)
     {
         isNested = _isNested;
@@ -37,11 +24,11 @@ public class CustomOutputVisitor : CSharpOutputVisitor
     {
         foreach (var attSec in attributes)
         {
-            foreach(var att in attSec.Attributes)
+            foreach (var att in attSec.Attributes)
             {
                 var t = att.Type.Annotation<ResolveResult>(); // .Annotations.First() as ResolveResult
                 var td = t.Type as ITypeDefinition;
-                if(td.IsBuiltinAttribute() == KnownAttribute.None)
+                if (td.IsBuiltinAttribute() == KnownAttribute.None)
                 {
                     att.Remove();
                 }
@@ -63,31 +50,18 @@ public class CustomOutputVisitor : CSharpOutputVisitor
             nestedUsing.Add(usingDeclaration.Namespace);
             return;
         }
-        if(!ignoreUsing.Contains(usingDeclaration.Namespace))
-            base.VisitUsingDeclaration(usingDeclaration);
+
+        base.VisitUsingDeclaration(usingDeclaration);
     }
 
-
-    public override void VisitFieldDeclaration(FieldDeclaration fieldDeclaration)
-    {
-        
-        foreach(var token in fieldDeclaration.ModifierTokens)
-        {
-            if (token.Modifier == Modifiers.Static)
-                return;
-        }
-
-        base.VisitFieldDeclaration(fieldDeclaration);
-    }
 
     public override void VisitTypeDeclaration(TypeDeclaration typeDeclaration)
     {
-        /*if(typeDeclaration.ClassType != ClassType.Enum)
-        {
-            typeDeclaration.BaseTypes.Clear();
-        }*/
+        var type = typeDeclaration.Annotation<ResolveResult>().Type;
+        if (IgnoreNestType.Contains(type.Name))
+            return;
 
-        if(typeDeclaration.ClassType == ClassType.Struct)
+        if (typeDeclaration.ClassType == ClassType.Struct || typeDeclaration.ClassType == ClassType.Class)
         {
             typeDeclaration.Modifiers |= Modifiers.Partial;
         }
@@ -103,6 +77,40 @@ public class CustomOutputVisitor : CSharpOutputVisitor
             typeDeclaration.BaseTypes.Remove(t);
 
         base.VisitTypeDeclaration(typeDeclaration);
+    }
+}
+
+public class BlittableOutputVisitor : CustomOutputVisitor
+{
+    static HashSet<string> ignoreUsing = new HashSet<string>();
+    static HashSet<string> includeMethod = new HashSet<string>();
+    static BlittableOutputVisitor()
+    {
+        ignoreUsing.Add("UnityEngine.Internal");
+        ignoreUsing.Add("UnityEngine.Scripting.APIUpdating");
+    }
+
+    public BlittableOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(_isNested,textWriter, formattingPolicy)
+    {
+    }
+
+    public override void VisitUsingDeclaration(UsingDeclaration usingDeclaration)
+    {
+        if(!ignoreUsing.Contains(usingDeclaration.Namespace))
+            base.VisitUsingDeclaration(usingDeclaration);
+    }
+
+
+    public override void VisitFieldDeclaration(FieldDeclaration fieldDeclaration)
+    {
+        
+        foreach(var token in fieldDeclaration.ModifierTokens)
+        {
+            if (token.Modifier == Modifiers.Static)
+                return;
+        }
+
+        base.VisitFieldDeclaration(fieldDeclaration);
     }
 
     public override void VisitIndexerDeclaration(IndexerDeclaration indexerDeclaration)
@@ -142,6 +150,13 @@ public class CustomOutputVisitor : CSharpOutputVisitor
     }
 }
 
+
+public class UntiyObjectOutputVisitor : CustomOutputVisitor
+{
+    public UntiyObjectOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(_isNested,textWriter, formattingPolicy)
+    {
+    }
+}
 
 /*
 public class CheckMethodBodyVisible: CSharpOutputVisitor

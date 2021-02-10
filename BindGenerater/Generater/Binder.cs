@@ -23,6 +23,17 @@ namespace Generater
         public static CSharpDecompiler Decompiler;
         public static DecompilerSettings DecompilerSetting;
 
+        private static string[] IcallSupportTypes = new string[]
+            {
+                "Object",
+                "Application",
+                "Debug",
+                "Vector3",
+                "Vector2",
+                "Quaternion",
+                "Color",
+                "Color32",
+            };
 
         private static string[] IgnorTypes = new string[]
         {
@@ -55,6 +66,9 @@ namespace Generater
             FuncDefineWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.define.cs")));
             FuncSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcser.cs")));
             FuncDeSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcdeser.cs")));
+
+            Utils.IgnoreTypeSet.UnionWith(IgnorTypes);
+            Utils.IcallSupportClass.UnionWith(IcallSupportTypes);
         }
 
         public static void End()
@@ -82,13 +96,6 @@ namespace Generater
             ModuleDefinition module = ModuleDefinition.ReadModule(dllPath, parameters);
 
             moduleTypes = new HashSet<TypeReference>(module.Types);
-            var ignorSet = Utils.IgnoreTypeSet;
-            foreach(var type in IgnorTypes)
-            {
-                ignorSet.Add(type);
-            }
-
-            //var typeSet = new HashSet<string>(BindTypes);
 
             foreach (TypeDefinition type in moduleTypes)
             {
@@ -96,12 +103,6 @@ namespace Generater
                     continue;
 
                 AddType(type);
-
-               /* Console.WriteLine(type.FullName);
-                if (typeSet.Contains(type.Name))
-                {
-                    AddType(type);
-                }*/
             }
 
             TypeResolver.WrapperSide = true;
@@ -126,34 +127,7 @@ namespace Generater
                 return;
 
             generaters.Enqueue(new ClassGenerater(type));
-
-            /*CodeGenerater gener = null;
-            if (type.IsValueType || type.IsEnum || type.IsDelegate())
-            {
-                CopyGenerater.AddTpe(type);
-            }
-            else if (type.IsClass)
-            {
-                var baseType = type.BaseType;
-                var bt = baseType.Resolve();
-                if (baseType.Resolve().IsAbstract)
-                    baseType = bt.BaseType;
-                while (baseType != null && baseType.FullName != "System.Object")
-                {
-                    bt = baseType.Resolve();
-                    AddType(bt);
-                    baseType = bt.BaseType;
-                }
-
-                gener = new ClassGenerater(type);
-            }
-            else if(type.IsInterface)
-            {
-                gener = new ClassGenerater(type);
-            }
             
-            if(gener != null)
-                generaters.Enqueue(gener);*/
         }
     }
 }
