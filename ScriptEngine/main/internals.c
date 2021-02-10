@@ -1,0 +1,121 @@
+#include "internals.h"
+#include "il2cpp-class-internals.h"
+
+//class-private-definition.h
+struct _MonoClass {
+	/* element class for arrays and enum basetype for enums */
+	MonoClass *element_class;
+	/* used for subtype checks */
+	MonoClass *cast_class;
+
+	/* for fast subtype checks */
+	MonoClass **supertypes;
+	guint16     idepth;
+
+	/* array dimension */
+	guint8     rank;
+
+	/* One of the values from MonoTypeKind */
+	guint8     class_kind;
+
+	int        instance_size; /* object instance size */
+
+	guint inited : 1;
+
+	/* A class contains static and non static data. Static data can be
+	 * of the same type as the class itselfs, but it does not influence
+	 * the instance size of the class. To avoid cyclic calls to
+	 * mono_class_init_internal (from mono_class_instance_size ()) we first
+	 * initialise all non static fields. After that we set size_inited
+	 * to 1, because we know the instance size now. After that we
+	 * initialise all static fields.
+	 */
+
+	 /* ALL BITFIELDS SHOULD BE WRITTEN WHILE HOLDING THE LOADER LOCK */
+	guint size_inited : 1;
+	guint valuetype : 1; /* derives from System.ValueType */
+	guint enumtype : 1; /* derives from System.Enum */
+	guint blittable : 1; /* class is blittable */
+	guint unicode : 1; /* class uses unicode char when marshalled */
+	guint wastypebuilder : 1; /* class was created at runtime from a TypeBuilder */
+	guint is_array_special_interface : 1; /* gtd or ginst of once of the magic interfaces that arrays implement */
+	guint is_byreflike : 1; /* class is a valuetype and has System.Runtime.CompilerServices.IsByRefLikeAttribute */
+
+	/* next byte */
+	guint8 min_align;
+
+	/* next byte */
+	guint packing_size : 4;
+	guint ghcimpl : 1; /* class has its own GetHashCode impl */
+	guint has_finalize : 1; /* class has its own Finalize impl */
+#ifndef DISABLE_REMOTING
+	guint marshalbyref : 1; /* class is a MarshalByRefObject */
+	guint contextbound : 1; /* class is a ContextBoundObject */
+#endif
+	/* next byte */
+	guint delegate        : 1; /* class is a Delegate */
+	guint gc_descr_inited : 1; /* gc_descr is initialized */
+	guint has_cctor : 1; /* class has a cctor */
+	guint has_references : 1; /* it has GC-tracked references in the instance */
+	guint has_static_refs : 1; /* it has static fields that are GC-tracked */
+	guint no_special_static_fields : 1; /* has no thread/context static fields */
+	/* directly or indirectly derives from ComImport attributed class.
+	 * this means we need to create a proxy for instances of this class
+	 * for COM Interop. set this flag on loading so all we need is a quick check
+	 * during object creation rather than having to traverse supertypes
+	 */
+	guint is_com_object : 1;
+	guint nested_classes_inited : 1; /* Whenever nested_class is initialized */
+
+	/* next byte*/
+	guint interfaces_inited : 1; /* interfaces is initialized */
+	guint simd_type : 1; /* class is a simd intrinsic type */
+	guint has_finalize_inited : 1; /* has_finalize is initialized */
+	guint fields_inited : 1; /* setup_fields () has finished */
+	guint has_failure : 1; /* See mono_class_get_exception_data () for a MonoErrorBoxed with the details */
+	guint has_weak_fields : 1; /* class has weak reference fields */
+	guint has_dim_conflicts : 1; /* Class has conflicting default interface methods */
+
+	MonoClass  *parent;
+	MonoClass  *nested_in;
+
+	MonoImage *image;
+	const char *name;
+	const char *name_space;
+
+	guint32    type_token;
+	int        vtable_size; /* number of slots */
+
+	guint16     interface_count;
+	guint32     interface_id;        /* unique inderface id (for interfaces) */
+	guint32     max_interface_id;
+
+	guint16     interface_offsets_count;
+	MonoClass **interfaces_packed;
+	guint16    *interface_offsets_packed;
+	guint8     *interface_bitmap;
+
+	MonoClass **interfaces;
+
+	//....
+
+};
+bool il2cpp_check_flag(Il2CppClass* klass, int value)
+{
+	return klass->initialized & value;
+}
+
+void il2cpp_add_flag(Il2CppClass* klass, int value)
+{
+	il2cpp_class_has_references(klass);// Class::Init
+	klass->initialized |= value;
+}
+
+bool mono_check_flag(MonoClass* klass, int value) 
+{
+	return klass->inited & value;
+}
+void mono_add_flag(MonoClass* klass, int value)
+{
+	klass->inited |= value;
+}

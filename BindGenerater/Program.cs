@@ -17,6 +17,8 @@ namespace BindGenerater
 
             string fileDir = @"..\..\EngineLib\full\";
             Binder.Init(@"..\..\glue\");
+            CBinder.Init(@"..\..\..\ScriptEngine\generated\");
+
             foreach (var filePath in Directory.GetFiles(fileDir))
             {
                 var file = Path.GetFileName(filePath);
@@ -27,6 +29,8 @@ namespace BindGenerater
                     Binder.Bind(filePath);
                 }
             }
+            CBinder.Bind();
+            CBinder.End();
             Binder.End();
 
         }

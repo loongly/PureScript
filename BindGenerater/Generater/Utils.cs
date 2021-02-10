@@ -633,6 +633,83 @@ namespace Generater
             return false;
         }
 
+        private static FieldDefinition GetFirstParam(TypeDefinition type)
+        {
+            foreach (var p in type.Fields)
+            {
+                if (!p.IsStatic)
+                    return p;
+            }
+            return null;
+        }
+
+        
+        private static bool HaveHeadPtr(TypeReference _type)
+        {
+            if (_type.IsArray || _type.IsByReference || _type.IsPointer)
+                return HaveHeadPtr(_type.GetElementType());
+
+            if (_type.Name.StartsWith("List`") || _type.Name.StartsWith("Action`"))
+            {
+                var gType = _type as GenericInstanceType;
+                foreach (var p in gType.GenericArguments)
+                {
+                    if (!HaveHeadPtr(p))
+                        return false;
+                }
+                return true;
+            }
+
+            if (_type.IsValueType || _type.Name == "String" || _type.Name == "Void")
+                return true;
+
+            var type = _type.Resolve();
+
+            FieldDefinition firstParam = GetFirstParam(type);
+
+            while (type.BaseType != null)
+            {
+                var p = GetFirstParam(type.BaseType.Resolve());
+                if (p != null)
+                    firstParam = p;
+
+                type = type.BaseType.Resolve();
+            }
+
+            return firstParam != null && firstParam.FieldType.Name == "IntPtr";
+        }
+
+        public static HashSet<string> IcallSupportClass = new HashSet<string>();
+        private static bool SupportIcallBind(TypeReference _type)
+        {
+            if (IcallSupportClass.Contains(_type.Name))
+                return true;
+            var ct = _type.BaseType();
+            while (ct != null)
+            {
+                if (SupportIcallBind(ct))
+                    return true;
+
+                ct = ct.BaseType();
+            }
+
+            return false;
+
+        }
+        public static bool IsUnityICallBind(TypeReference _type)
+        {
+            if(_type.Namespace.StartsWith("UnityEngine"))
+            {
+                if (SupportIcallBind(_type))
+                    return true;
+
+                if (HaveHeadPtr(_type))
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 
     public class NameCounter
