@@ -17,8 +17,28 @@ namespace Generater
             if (!Directory.Exists(outDir))
                 Directory.CreateDirectory(outDir);
 
-            CUtils.IgnoreTypeSet.Add("System.Type");
-            CUtils.IgnoreTypeSet.Add("UnityEngine.StackTraceUtility");
+            string[] ignore = new string[]
+            {
+                "System.Type",
+                "System.Reflection",
+                "UnityEngine.WSA",
+                "UnityEngine.XR.WSA",
+                "UnityEngine.StackTraceUtility",
+                "Unity.Burst.LowLevel",
+                "Audio.AudioSampleProvider",
+                "BuiltinRuntimeReflectionSystem",
+                "ScriptableRuntimeReflectionSystemWrapper",
+                "IScriptableRuntimeReflectionSystem",
+                "SubsystemDescriptor",
+                "System.Collections.IDictionary",
+                "UnityEngine.SocialPlatforms",
+                "UnityEngine.iOS.LocalNotification",
+                "UnityEngine.AttributeHelperEngine",
+                "UnityEngine.ComputeBuffer"
+                //UnsafeUtility?
+            };
+
+            CUtils.IgnoreTypeSet = new HashSet<string>(ignore);
         }
 
         public static void End()
@@ -28,49 +48,7 @@ namespace Generater
             ClassCacheGenerater.Gen();
         }
 
-        public static void AddType(TypeReference type)
-        {
-            TypeSet.Add(type);
-        }
-
-        public static void Bind()
-        {
-            foreach (TypeDefinition type in TypeSet)
-            {
-                //Console.WriteLine(type.FullName);
-                if(!CUtils.Filter(type))
-                {
-                    Console.WriteLine("ignor type:" + type.FullName);
-                    continue;
-                }
-
-                foreach (var method in type.Methods)
-                {
-                    if (CUtils.IsIcall(method))
-                    {
-                        if (!CUtils.Filter(method))
-                        {
-                            Console.WriteLine("ignor icall:"+ method.FullName);
-                            continue;
-                        }
-
-                        ICallGenerater.AddMethod(method);
-                    }
-                    else if (CUtils.IsEventCallback(method) && !method.IsConstructor)
-                    {
-                        if (!CUtils.Filter(method))
-                        {
-                            Console.WriteLine("ignor event:" + method.FullName);
-                            continue;
-                        }
-
-                        EventGenerater.AddMethod(method);
-                    }
-                }
-            }
-        }
-
-        public static void TestType(string dllPath)
+        public static void Bind(string dllPath)
         {
             var dir = Path.GetDirectoryName(dllPath);
             DefaultAssemblyResolver resolver = new DefaultAssemblyResolver();
@@ -82,12 +60,41 @@ namespace Generater
             };
 
             ModuleDefinition module = ModuleDefinition.ReadModule(dllPath, parameters);
+
             var moduleTypes = new HashSet<TypeReference>(module.Types);
 
             foreach (TypeDefinition type in moduleTypes)
             {
-                if(Utils.IsUnityICallBind(type))
-                    Console.WriteLine($"{type.FullName}");
+                //Utils.Log(type.FullName);
+                if(!CUtils.Filter(type))
+                {
+                    Utils.Log("ignor type:" + type.FullName);
+                    continue;
+                }
+
+                foreach (var method in type.Methods)
+                {
+                    if (CUtils.IsIcall(method))
+                    {
+                        if (!CUtils.Filter(method))
+                        {
+                            Utils.Log("ignor icall:"+ method.FullName);
+                            continue;
+                        }
+
+                        ICallGenerater.AddMethod(method);
+                    }
+                    else if (CUtils.IsEventCallback(method) && !method.IsConstructor)
+                    {
+                        if (!CUtils.Filter(method))
+                        {
+                            Utils.Log("ignor event:" + method.FullName);
+                            continue;
+                        }
+
+                        EventGenerater.AddMethod(method);
+                    }
+                }
             }
         }
 

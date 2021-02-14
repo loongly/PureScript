@@ -274,6 +274,32 @@ void mono_ios_register_icall(void);
 //void mono_ios_register_modules(void);
 //void mono_ios_setup_execution_mode(void);
 
+void mono_debug() {
+
+	mono_debug_init(MONO_DEBUG_FORMAT_MONO);
+
+	static const char* options[] = {
+		  "--soft-breakpoints",
+		  "--debugger-agent=transport=dt_socket,address=127.0.0.1:10001,embedding=1,server=y,suspend=n"
+	};
+	mono_jit_parse_options(sizeof(options) / sizeof(char*), (char**)options);
+
+
+	/*int da_port = GLOBAL_DEF("mono/debugger_agent/port", 23685);
+	bool da_suspend = GLOBAL_DEF("mono/debugger_agent/wait_for_debugger", false);
+	int da_timeout = GLOBAL_DEF("mono/debugger_agent/wait_timeout", 3000);
+
+	CharString da_args = String("--debugger-agent=transport=dt_socket,address=127.0.0.1:" + itos(da_port) +
+		",embedding=1,server=y,suspend=" + (da_suspend ? "y,timeout=" + itos(da_timeout) : "n"))
+		.utf8();
+	// --debugger-agent=help
+	const char *options[] = {
+		"--soft-breakpoints",
+		da_args.get_data()
+	};
+	mono_jit_parse_options(2, (char **)options);*/
+}
+
 int 
 mono_setup(char* bundleDir, const char* file) {
 
@@ -284,18 +310,15 @@ mono_setup(char* bundleDir, const char* file) {
 
 	//MonoAllocatorVTable mem_vtable = {custom_malloc};
 	//mono_set_allocator_vtable (&mem_vtable);
-
-
-	mono_debug_init(MONO_DEBUG_FORMAT_MONO);
+	
 	mono_install_assembly_preload_hook(assembly_preload_hook, NULL);
-
 
 	mono_install_unhandled_exception_hook(unhandled_exception_handler, NULL);
 	mono_trace_set_log_handler(log_callback, NULL);
 	mono_set_signal_chaining(TRUE);
 	mono_set_crash_chaining(TRUE);
 
-
+	mono_debug();
 	/*
 	 * Load the default Mono configuration file, this is needed
 	 * if you are planning on using the dllmaps defined on the

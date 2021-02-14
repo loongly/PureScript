@@ -176,7 +176,7 @@
     <ClInclude Include="main\il2cpp_support.h" />
     <ClInclude Include="main\internals.h" />
     <ClInclude Include="main\runtime.h" />
-    <ClInclude Include="main\Marshal.h" />
+    <ClInclude Include="main\Mediator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="custom\event_binding.c" />
@@ -191,7 +191,7 @@
     <ClCompile Include="main\main.c" />
     <ClCompile Include="main\runtime.c" />
     <ClCompile Include="ScriptEngine.c" />
-    <ClCompile Include="main\Marshal.cpp" />
+    <ClCompile Include="main\Mediator.cpp" />
     <ClCompile Include="custom\wrapper.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

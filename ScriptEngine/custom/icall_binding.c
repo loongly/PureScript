@@ -1,7 +1,16 @@
 #include "../main/runtime.h"
 #include "../main/il2cpp_support.h"
-#include "../main/Marshal.h"
+#include "../main/Mediator.h"
 #include "wrapper.h"
+
+
+MonoObject* NewObject(MonoReflectionType* type)
+{
+	MonoType* monoType = mono_reflection_type_get_type(type);
+	MonoClass * mclass = mono_class_from_mono_type(monoType);
+	MonoObject* monoObj = mono_object_new(mono_domain_get(), mclass);
+	return monoObj;
+}
 
 /*
 MonoObject* UnityEngine_GameObject_CreatePrimitive(int32_t type)
@@ -160,8 +169,6 @@ MonoObject* UnityEngine_GameObject_Internal_AddComponentWithType(MonoObject* obj
 
 	MonoObject* monoObj = get_mono_object(res, mclass);
 
-	call_wrapper_init(res);
-
 	return monoObj;
 }
 
@@ -292,6 +299,8 @@ void mono_ios_register_icall(void)
 
 	regist_icall_gen();
 	
+	mono_add_internal_call("ObjectStore::NewObject", NewObject);
+
 	//Aono_add_internal_call("UnityEngine.GameObject::CreatePrimitive", (void*)UnityEngine_GameObject_CreatePrimitive);
 	//Aono_add_internal_call("UnityEngine.DebugLogHandler::Internal_Log", (void*)UnityEngine_DebugLogHandler_Internal_Log);
 	//Aono_add_internal_call("UnityEngine.GameObject::get_transform", (void*)UnityEngine_GameObject_get_transform);

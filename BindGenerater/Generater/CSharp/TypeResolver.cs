@@ -14,17 +14,14 @@ namespace Generater
         {
             var type = _type.Resolve();
 
-           // if (Utils.IsDelegate(_type))
-           //     Console.WriteLine(type.Name);
-            
             if (Utils.IsDelegate(_type))
                 return new DelegateResolver(_type);
 
             if (_type.Name.Equals("Void"))
                 return new VoidResolver(_type);
 
-            if (_type.Name.StartsWith("List`"))
-                return new ListResolver(_type);
+           // if (_type.Name.StartsWith("List`"))
+           //     return new ListResolver(_type);
 
             if (_type.Name.Equals("String") || _type.FullName.Equals("System.Object"))
                 return new StringResolver(_type);

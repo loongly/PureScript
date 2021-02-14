@@ -26,6 +26,11 @@ DLLEXPORT void SetFuncPointer(void * ptr)
 	g_manageFuncPtr = ptr;
 }
 
+DLLEXPORT void* GetFuncPointer()
+{
+	return g_manageFuncPtr;
+}
+
 
 /*
 #include <iostream>

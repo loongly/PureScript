@@ -15,7 +15,8 @@ namespace Generater.C
             
             if(_type.IsByReference)
             {
-                if(type.IsValueType)
+                var et = _type.GetElementType();
+                if (et.IsValueType)
                     return new ValueTypeResolver(_type, il2cppType);
                 else
                     return new ValueTypeResolver(_type, il2cppType); //TODO ref String

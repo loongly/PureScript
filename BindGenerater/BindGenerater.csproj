@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generater\Binder.cs" />
+    <Compile Include="Generater\TestBinder.cs" />
     <Compile Include="Generater\CBinder.cs" />
     <Compile Include="Generater\CSharp\CustomOutputVisitor.cs" />
     <Compile Include="Generater\CSharp\MethodResolver.cs" />
