@@ -21,7 +21,6 @@ namespace Generater
         private List<ClassGenerater> nestType = new List<ClassGenerater>();
         private bool hasDefaultConstructor = false;
         private bool isFullValueType;
-        private bool isUnityNative;
         private StreamWriter FileStream;
 
         public HashSet<string> RefNameSpace = new HashSet<string>();
@@ -41,7 +40,6 @@ namespace Generater
             }
             
             isFullValueType = Utils.IsFullValueType(genType);
-            isUnityNative = Utils.IsUnityICallBind(type);
 
             if (type.BaseType != null)
                 RefNameSpace.Add(type.BaseType.Namespace);
@@ -219,7 +217,7 @@ namespace Generater
         {
             if (type.IsGeneric() && !type.IsDelegate())
                 return false;
-            return type.IsValueType || type.IsEnum || type.IsDelegate() || type.IsInterface || isUnityNative;
+            return type.IsValueType || type.IsEnum || type.IsDelegate() || type.IsInterface;
         }
 
         void CopyGen(TypeDefinition type )
@@ -229,9 +227,6 @@ namespace Generater
             
 
             HashSet<string> IgnoreNestType = new HashSet<string>();
-
-            if (isUnityNative)
-                CBinder.AddType(type);
 
             if (!(isNested && IsCopyOrign(genType.DeclaringType)))
             {
@@ -252,10 +247,7 @@ namespace Generater
 
                 StringWriter w = new StringWriter();
                 CustomOutputVisitor outVisitor;
-                if(isUnityNative)
-                    outVisitor = new UntiyObjectOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
-                else
-                    outVisitor = new BlittableOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
+                outVisitor = new BlittableOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
 
                 syntaxTree.AcceptVisitor(outVisitor);
 
@@ -274,7 +266,7 @@ namespace Generater
                 CS.Writer.WriteLine(txt, false);
             }
 
-            if(genType.IsStruct() && !isUnityNative)
+            if(genType.IsStruct())
             {
                 foreach(var f in genType.Fields)
                 {

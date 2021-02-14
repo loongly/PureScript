@@ -12,6 +12,13 @@ using System.Threading.Tasks;
 
 public class CustomOutputVisitor : CSharpOutputVisitor
 {
+    static HashSet<string> IgnoreUsing = new HashSet<string>();
+    static CustomOutputVisitor()
+    {
+        IgnoreUsing.Add("UnityEngine.Internal");
+        IgnoreUsing.Add("UnityEngine.Scripting.APIUpdating");
+    }
+
     protected bool isNested;
     public List<string> nestedUsing = new List<string>();
     public HashSet<string> IgnoreNestType = new HashSet<string>();
@@ -45,15 +52,17 @@ public class CustomOutputVisitor : CSharpOutputVisitor
 
     public override void VisitUsingDeclaration(UsingDeclaration usingDeclaration)
     {
+        
+
         if (isNested)
         {
             nestedUsing.Add(usingDeclaration.Namespace);
             return;
         }
 
-        base.VisitUsingDeclaration(usingDeclaration);
+        if (!IgnoreUsing.Contains(usingDeclaration.Namespace))
+            base.VisitUsingDeclaration(usingDeclaration);
     }
-
 
     public override void VisitTypeDeclaration(TypeDeclaration typeDeclaration)
     {
@@ -82,23 +91,13 @@ public class CustomOutputVisitor : CSharpOutputVisitor
 
 public class BlittableOutputVisitor : CustomOutputVisitor
 {
-    static HashSet<string> ignoreUsing = new HashSet<string>();
-    static HashSet<string> includeMethod = new HashSet<string>();
-    static BlittableOutputVisitor()
-    {
-        ignoreUsing.Add("UnityEngine.Internal");
-        ignoreUsing.Add("UnityEngine.Scripting.APIUpdating");
-    }
+
 
     public BlittableOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(_isNested,textWriter, formattingPolicy)
     {
     }
 
-    public override void VisitUsingDeclaration(UsingDeclaration usingDeclaration)
-    {
-        if(!ignoreUsing.Contains(usingDeclaration.Namespace))
-            base.VisitUsingDeclaration(usingDeclaration);
-    }
+
 
 
     public override void VisitFieldDeclaration(FieldDeclaration fieldDeclaration)
@@ -140,21 +139,13 @@ public class BlittableOutputVisitor : CustomOutputVisitor
         if (!methodDeclaration.HasModifier(Modifiers.Public) && methodDeclaration.Name == "Dispose")
             forceWrite = true;
 
-        if (includeMethod.Contains(methodDeclaration.Name) || forceWrite)
+        if (forceWrite)
             base.VisitMethodDeclaration(methodDeclaration);
     }
     public override void VisitPropertyDeclaration(PropertyDeclaration propertyDeclaration)
     {
         if (!propertyDeclaration.HasModifier(Modifiers.Public) && propertyDeclaration.Name == "Current")
             base.VisitPropertyDeclaration(propertyDeclaration);
-    }
-}
-
-
-public class UntiyObjectOutputVisitor : CustomOutputVisitor
-{
-    public UntiyObjectOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(_isNested,textWriter, formattingPolicy)
-    {
     }
 }
 

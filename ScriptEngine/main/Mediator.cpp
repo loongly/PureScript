@@ -1,4 +1,4 @@
-#include "Marshal.h"
+#include "Mediator.h"
 #include <mono/metadata/object.h>
 #include <mono/metadata/environment.h>
 #include <mono/utils/mono-publib.h>
@@ -14,9 +14,8 @@
 #include <string>
 
 #include "runtime.h"
-#include "internals.h"
+//#include "internals.h"
 #include "../custom/Wrapper.h"
-//#include "il2cpp-object-internals.h"
 
 
 bool is_unity_name_space(const char* ns)
@@ -31,15 +30,16 @@ bool is_wrapper_name_space(const char* ns)
 
 bool is_wrapper_class(Il2CppClass* klass)
 {
-	return il2cpp_check_flag(klass, CLASS_MASK_WRAPPER);
+	//return il2cpp_check_flag(klass, CLASS_MASK_WRAPPER);
 	//return klass->initialized & CLASS_MASK_WRAPPER;
-	//const char* ns = il2cpp_class_get_namespace(mclass);
-	//return is_wrapper_name_space(ns);
+	const char* ns = il2cpp_class_get_namespace(klass);
+	return is_wrapper_name_space(ns);
 }
 
 bool is_unity_native(MonoClass* klass)
 {
-	return mono_check_flag(klass, CLASS_MASK_UNITY_NATIVE);
+	return true;
+	//return mono_check_flag(klass, CLASS_MASK_UNITY_NATIVE);
 	//return  klass->inited & CLASS_MASK_UNITY_NATIVE;
 }
 
@@ -73,8 +73,6 @@ void on_mono_object_gc(void* user_data)
 
 void bind_mono_il2cpp_object(MonoObject* mono, Il2CppObject* il2cpp)
 {
-	
-
 	uint32_t i2Handle = il2cpp_gchandle_new(il2cpp, FALSE);
 	uint32_t monoHandle = mono_gchandle_new_weakref(mono, FALSE);
 
@@ -363,29 +361,6 @@ MonoClass* get_casthelp_class()
 	MonoClass* klass = mono_embeddinator_search_class("UnityEngine.CoreModule.dll", "UnityEngine", "CastHelper`1");
 	return klass;
 }*/
-
-
-
-void call_wrapper_init(Il2CppObject* obj)
-{
-	Il2CppClass* klass = il2cpp_object_get_class(obj);
-
-	/*const char* ns = il2cpp_class_get_namespace(kclass);
-	if (!is_wrapper_name_space(ns))
-		return;*/
-
-	if (!is_wrapper_class(klass))
-		return;
-
-	const MethodInfo* method = il2cpp_class_get_method_from_name(klass, "Init", 0);
-
-	Il2CppException* exc = NULL;
-	il2cpp_runtime_invoke(method, obj, NULL, &exc);
-	if (exc != NULL)
-	{
-		debug_il2cpp_obj((Il2CppObject*)exc);
-	}
-}
 
 /*
 void bind_monobehaviour_function(MonoClass * kclass, const char* func_name,  int method_index, Il2CppObject * il2cppObj)

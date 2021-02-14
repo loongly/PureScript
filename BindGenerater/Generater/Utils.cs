@@ -644,7 +644,7 @@ namespace Generater
         }
 
         
-        private static bool HaveHeadPtr(TypeReference _type)
+        public static bool HaveHeadPtr(TypeReference _type)
         {
             if (_type.IsArray || _type.IsByReference || _type.IsPointer)
                 return HaveHeadPtr(_type.GetElementType());
@@ -662,6 +662,7 @@ namespace Generater
 
             if (_type.IsValueType || _type.Name == "String" || _type.Name == "Void")
                 return true;
+
 
             var type = _type.Resolve();
 
@@ -682,17 +683,19 @@ namespace Generater
         public static HashSet<string> IcallSupportClass = new HashSet<string>();
         private static bool SupportIcallBind(TypeReference _type)
         {
-            if (IcallSupportClass.Contains(_type.Name))
-                return true;
-            var ct = _type.BaseType();
-            while (ct != null)
+            if (_type.Namespace.StartsWith("UnityEngine"))
             {
-                if (SupportIcallBind(ct))
+                if (IcallSupportClass.Contains(_type.Name))
                     return true;
+                var ct = _type.BaseType();
+                while (ct != null)
+                {
+                    if (SupportIcallBind(ct))
+                        return true;
 
-                ct = ct.BaseType();
+                    ct = ct.BaseType();
+                }
             }
-
             return false;
 
         }
@@ -703,8 +706,8 @@ namespace Generater
                 if (SupportIcallBind(_type))
                     return true;
 
-                if (HaveHeadPtr(_type))
-                    return true;
+                //if (HaveHeadPtr(_type))
+                //    return true;
             }
 
             return false;

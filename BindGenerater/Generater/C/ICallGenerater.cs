@@ -28,7 +28,7 @@ namespace Generater.C
             {
                 CS.Writer.WriteLine("#include \"../main/runtime.h\"",false);
                 CS.Writer.WriteLine("#include \"../main/il2cpp_support.h\"", false);
-                CS.Writer.WriteLine("#include \"../main/Marshal.h\"", false);
+                CS.Writer.WriteLine("#include \"../main/Mediator.h\"", false);
                 CS.Writer.WriteLine("#include \"class_cache_gen.h\"", false);
 
                 foreach (var m in methodSet)

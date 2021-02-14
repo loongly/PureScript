@@ -23,38 +23,10 @@ namespace Generater
         public static CSharpDecompiler Decompiler;
         public static DecompilerSettings DecompilerSetting;
 
-        private static string[] IcallSupportTypes = new string[]
-            {
-                "Object",
-                "Application",
-                "Debug",
-                "Vector3",
-                "Vector2",
-                "Quaternion",
-                "Color",
-                "Color32",
-            };
-
         private static string[] IgnorTypes = new string[]
         {
-           // "Unity.Collections.NativeArray`1<T>",
-            "UnityEngine.WSA",
-           // "Unity.Collections.LowLevel.Unsafe",
             "System.Collections",
             "UnityEditor",
-
-            "AtomicSafetyHandle", // cant used in script
-            "TransformAccessArray",//rely on above
-
-            "UnityEngine.Experimental.GlobalIllumination.Lightmapping", //NativeArray`1<T>
-
-            //Windows Strip
-            "UnityEngine.iOS",
-            "UnityEngine.tvOS",
-            "UnityEngine.Apple",
-            "UnityEngine.Handheld",
-            "UnityEngine.Experimental.UIElements",
-            "UnityEngine.Social"
         };
 
         public static void Init(string outDir)
@@ -68,7 +40,6 @@ namespace Generater
             FuncDeSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcdeser.cs")));
 
             Utils.IgnoreTypeSet.UnionWith(IgnorTypes);
-            Utils.IcallSupportClass.UnionWith(IcallSupportTypes);
         }
 
         public static void End()
@@ -82,6 +53,10 @@ namespace Generater
 
         public static void Bind(string dllPath)
         {
+            /*var file = Path.GetFileName(dllPath);
+            if (IgnoreAssemblySet.Contains(file))
+                return;*/
+
             DecompilerSetting = new DecompilerSettings(LanguageVersion.CSharp7);
             Decompiler = new CSharpDecompiler(dllPath, DecompilerSetting);
             var dir = Path.GetDirectoryName(dllPath);

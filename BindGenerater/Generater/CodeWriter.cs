@@ -14,15 +14,18 @@ namespace Generater
     {
         private static Stack<CodeWriter> writers = new Stack<CodeWriter>();
         public static CodeWriter Writer { get { return writers.Peek(); } }
-
-        public CS(CodeWriter writer)
+        private bool AutoFlush = false;
+        public CS(CodeWriter writer, bool autoFlush = true)
         {
             writers.Push(writer);
+            AutoFlush = autoFlush;
         }
 
         public void Dispose()
         {
-            writers.Pop();
+            var writer = writers.Pop();
+            if (AutoFlush)
+                writer.Flush();
         }
     }
 

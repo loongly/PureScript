@@ -89,7 +89,7 @@ namespace Generater.C
                 CS.Writer.WriteLine("#pragma once", false);
                 CS.Writer.WriteLine("#include \"../main/runtime.h\"", false);
                 CS.Writer.WriteLine("#include \"../main/il2cpp_support.h\"", false);
-                CS.Writer.WriteLine("#include \"../main/Marshal.h\"", false);
+                CS.Writer.WriteLine("#include \"../main/Mediator.h\"", false);
 
                 CS.Writer.WriteLine("#if defined(__cplusplus)", false);
                 CS.Writer.WriteLine("extern \"C\" {", false);

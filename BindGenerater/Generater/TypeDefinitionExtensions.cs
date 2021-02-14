@@ -86,12 +86,6 @@ static internal class TypeDefinitionExtensions
       }
    }
 
-
-    /// <summary>
-    /// 判断一个类型是否是delegate
-    /// </summary>
-    /// <param name="typeDefinition">要判断的类型</param>
-    /// <returns></returns>
     public static bool IsDelegate(this TypeDefinition typeDefinition)
     {
         if (typeDefinition.BaseType == null)
@@ -101,11 +95,6 @@ static internal class TypeDefinitionExtensions
         return typeDefinition.BaseType.FullName == "System.MulticastDelegate";
     }
 
-    /// <summary>
-    /// 判断一个类型是不是泛型
-    /// </summary>
-    /// <param name="type">要判断的类型</param>
-    /// <returns></returns>
     public static bool IsGeneric(this TypeReference type)
     {
         var dt = type.Resolve();
@@ -137,12 +126,6 @@ static internal class TypeDefinitionExtensions
         return false;
     }
 
-
-    /// <summary>
-    /// 判断一个类型的泛型实参是否有来自函数的泛型实参
-    /// </summary>
-    /// <param name="type">要判断的类型</param>
-    /// <returns></returns>
     public static bool HasGenericArgumentFromMethod(this TypeReference type)
     {
         if (type.IsGenericParameter)
@@ -171,11 +154,6 @@ static internal class TypeDefinitionExtensions
         return false;
     }
 
-    /// <summary>
-    /// 判断一个方法是不是泛型
-    /// </summary>
-    /// <param name="method">要判断的方法</param>
-    /// <returns></returns>
     public static bool IsGeneric(this MethodReference method)
     {
         if (method.HasGenericParameters) return true;
@@ -197,78 +175,11 @@ static internal class TypeDefinitionExtensions
         return false;
     }
 
-    /// <summary>
-    /// 判断一个字段的类型是不是泛型
-    /// </summary>
-    /// <param name="field">要判断字段</param>
-    /// <returns></returns>
     public static bool IsGeneric(this FieldReference field)
     {
         return field.FieldType.IsGeneric();
     }
-
-    /// <summary>
-    /// 判断两个类型是不是同一个
-    /// </summary>
-    /// <param name="left">类型1</param>
-    /// <param name="right">类型2</param>
-    /// <returns></returns>
-    public static bool IsSameType(this TypeReference left, TypeReference right)
-    {
-        return left.FullName == right.FullName
-            && left.Module.Assembly.FullName == right.Module.Assembly.FullName
-            && left.Module.FullyQualifiedName == right.Module.FullyQualifiedName;
-    }
-
-    /// <summary>
-    /// 判断两个类型的名字是否相同
-    /// </summary>
-    /// <param name="left">类型1</param>
-    /// <param name="right">类型2</param>
-    /// <returns></returns>
-    public static bool IsSameName(this TypeReference left, TypeReference right)
-    {
-        return left.FullName == right.FullName;
-    }
-
-    /// <summary>
-    /// 判断两个方法，如果仅判断其参数类型及返回值类型的名字，是否相等
-    /// </summary>
-    /// <param name="left">方法1</param>
-    /// <param name="right">方法2</param>
-    /// <returns></returns>
-    public static bool IsTheSame(this MethodReference left, MethodReference right)
-    {
-        if (left.Parameters.Count != right.Parameters.Count
-                    || left.Name != right.Name
-                    || !left.ReturnType.IsSameName(right.ReturnType)
-                    || !left.DeclaringType.IsSameName(right.DeclaringType)
-                    || left.HasThis != left.HasThis
-                    || left.GenericParameters.Count != right.GenericParameters.Count)
-        {
-            return false;
-        }
-
-        for (int i = 0; i < left.Parameters.Count; i++)
-        {
-            if (left.Parameters[i].Attributes != right.Parameters[i].Attributes
-                || !left.Parameters[i].ParameterType.IsSameName(right.Parameters[i].ParameterType))
-            {
-                return false;
-            }
-        }
-
-        for (int i = 0; i < left.GenericParameters.Count; i++)
-        {
-            if (left.GenericParameters[i].IsSameName(right.GenericParameters[i]))
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
+    
     public static bool IsVoid(this TypeReference type)
     {
         return type.Name.Equals("Void");

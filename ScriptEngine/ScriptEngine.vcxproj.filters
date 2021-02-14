@@ -27,9 +27,6 @@
     <ClInclude Include="main\glib.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="main\Marshal.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="custom\wrapper.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -40,6 +37,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="main\internals.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="main\Mediator.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,9 +62,6 @@
     <ClCompile Include="main\embeddinator.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main\Marshal.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="custom\icall_binding.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -84,6 +81,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main\internals.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main\Mediator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
