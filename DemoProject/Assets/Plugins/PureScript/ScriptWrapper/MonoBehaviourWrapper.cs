@@ -81,7 +81,7 @@ namespace PureScriptWrapper
 
         public void Dispose()
         {
-            WrapperUtils.Dispose(Handle);
+            WrapperUtils.Dispose(this);
         }
     }
     enum MonoBehaviourMethod

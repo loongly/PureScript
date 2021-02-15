@@ -216,14 +216,20 @@ namespace Generater.C
                 }
             }
 
-            if (!method.IsStatic && !IsUnityObject(method.DeclaringType))
-                res = false;
+            //if (!IsUnityObject(method.DeclaringType))
+            //    res = false;
 
         return res;
         }
 
         public static bool IsEventCallback(MethodDefinition method)
         {
+            foreach(var p in method.Parameters)
+            {
+                if (Utils.IsDelegate(p.ParameterType))
+                    return false;
+            }
+
             bool res = IsNativeCallback(method);
             if (!res)
                 return false;
@@ -236,7 +242,7 @@ namespace Generater.C
                 if(instructions.OpCode.Code == Mono.Cecil.Cil.Code.Callvirt)
                 {
                     var op = instructions.Operand;
-                    var invockMethod = op as MethodDefinition;
+                    var invockMethod = op as MethodReference;
                     if(invockMethod != null)
                     {
                         if (Utils.IsDelegate(invockMethod.DeclaringType) && invockMethod.Name == "Invoke")

@@ -9,7 +9,10 @@ void init_event_method(EventMethodDesc* desc, MonoClass *monoklass, Il2CppClass*
 }
 
 void init_event_gen();
+
+
 void init_event()
 {
 	init_event_gen();
 }
+

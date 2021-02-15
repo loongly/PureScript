@@ -7,7 +7,6 @@ public class TestBehaviourScript : MonoBehaviour
     public GameObject testObj;
     public Transform testTrans;
     private Vector3 moveTarget;
-    bool firsttest = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,30 +14,13 @@ public class TestBehaviourScript : MonoBehaviour
         testTrans = testObj.transform;
         moveTarget = new Vector3(1, 0, 0);
 
-        firsttest = true;
-
-        Debug.LogError("==== aa: " + this.name);
+        Debug.LogError($"==== name: {this.name} tag:{gameObject.tag}" );
 
         StartCoroutine(RunCoroutineTest("teststr",1));
-
-        Application.focusChanged += OnFocus;
-        DebugHelper.InitLog(true);
-
-
-        Debug.LogError("==== persistentDataPath: " + Application.streamingAssetsPath);
-        Debug.LogError("==== isPlaying: " + Application.isPlaying);
-        Debug.LogError("==== platform: " + Application.platform);
-        Debug.LogError("==== tag: " + gameObject.tag);
-        Application.OpenURL("http://www.baidu.com");
-        Application.targetFrameRate = 10;
-        
+        StartCoroutine(StartTestGC());
+        TestGetComponent();
     }
-
-    void OnFocus(bool focus)
-    {
-        Debug.LogError("==focus: " + focus);
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -48,32 +30,10 @@ public class TestBehaviourScript : MonoBehaviour
         else if (curPos.x < -6)
             moveTarget = Vector3.right;
 
-        //testTrans.Rotate(Vector3.up, 1);
+        testTrans.Rotate(Vector3.up, 1);
         testTrans.position = curPos + moveTarget * Time.deltaTime* 3;
-
-        if(firsttest)
-        {
-            firsttest = false;
-            TestGetMonoBehaviour();
-        }
     }
 
-
-    void TestGetMonoBehaviour()
-    {
-        System.GC.Collect();
-        Debug.LogError("== TestGetMonoBehaviour == " + testObj.name);
-        var scrpit = gameObject.GetComponent<TestBehaviourScript>();
-        System.GC.Collect();
-        scrpit.Print();
-        Debug.LogError("== isequl: " + (scrpit == this));
-        System.GC.Collect();
-    }
-
-    public void Print()
-    {
-        Debug.LogError("==== print: " + testObj.name);
-    }
 
     IEnumerator RunCoroutineTest(string str, int a = 1)
     {
@@ -85,11 +45,8 @@ public class TestBehaviourScript : MonoBehaviour
         
         yield return StartCoroutine(TestSecendEnumerator());
 
-
         Debug.LogError("00" + str);
         yield return new WaitForEndOfFrame();
-        //var resReq = Resources.LoadAsync("test/res");
-        //yield return resReq;
 
         Debug.LogError("AAA" + str);
 
@@ -141,6 +98,43 @@ public class TestBehaviourScript : MonoBehaviour
             {
                 return Time.time < waitTime;
             }
+        }
+    }
+
+
+    IEnumerator StartTestGC()
+    {
+        var obj = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+        obj.AddComponent<TestGC>().Info = "Test1";
+        obj.AddComponent<TestGC>().Info = "Test2";
+
+        yield return new WaitForSeconds(3.0f);
+        Destroy(obj);
+
+        yield return new WaitForSeconds(1.0f);
+        System.GC.Collect();
+    }
+
+    private void OnDestroy()
+    {
+        Debug.LogError("== TestBehaviourScript OnDestroy");
+    }
+
+    ~TestBehaviourScript()
+    {
+        Debug.LogError("~TestBehaviourScript");
+    }
+
+    void TestGetComponent()
+    {
+        Debug.LogError("== TestGetMonoBehaviour == " + testObj.name);
+        var scrpit = gameObject.GetComponent<TestBehaviourScript>();
+        Debug.LogError("== isequl: " + (scrpit == this));
+
+        var cps = gameObject.GetComponents<MonoBehaviour>();
+        foreach (var cp in cps)
+        {
+            Debug.LogError("cp: " + cp.GetType().Name);
         }
     }
 }

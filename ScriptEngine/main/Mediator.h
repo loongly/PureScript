@@ -21,7 +21,7 @@ extern "C"
 
 	void bind_mono_il2cpp_object(MonoObject* mono, Il2CppObject* il2cpp);
 	MonoObject* get_mono_object(Il2CppObject* il2cpp, MonoClass* m_class);
-	Il2CppObject* get_il2cpp_object(MonoObject* mono);
+	Il2CppObject* get_il2cpp_object(MonoObject* mono,Il2CppClass* m_class);
 	Il2CppObject* get_il2cpp_object_with_ptr(void* objPtr);
 	void* get_il2cpp_internal_ptr(Il2CppObject* obj);
 
@@ -40,6 +40,7 @@ extern "C"
 	MonoClass* get_mono_class(Il2CppClass* mclass);
 
 	Il2CppReflectionType* get_il2cpp_reflection_type(MonoReflectionType * type);
+	MonoReflectionType* get_mono_reflection_type(Il2CppReflectionType * type);
 
 	bool is_unity_name_space(const char* ns);
 	const char* debug_mono_obj(MonoObject* obj);

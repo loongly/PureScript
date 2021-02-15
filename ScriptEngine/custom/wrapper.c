@@ -248,7 +248,7 @@ Il2CppObject* invoke_enumerator_current(Il2CppObject* obj, void* methodPtr)
 	bool isAsyncOperation = mono_class_is_subclass_of(monoClass, get_AsyncOperation_class(), FALSE);
 	if (isCoroutine || isAsyncOperation)
 	{
-		il2cppRes = get_il2cpp_object(monoRes);
+		il2cppRes = get_il2cpp_object(monoRes, NULL);
 		debug_il2cpp_obj(il2cppRes);
 	}
 	//YieldInstruction	WaitForEndOfFrame / WaitForFixedUpdate / WaitForSeconds	//  float m_Seconds;*/

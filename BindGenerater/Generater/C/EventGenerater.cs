@@ -53,6 +53,19 @@ namespace Generater.C
             EventWriter.EndAll();
         }
 
+        /*
+        void UnityEngine_AsyncOperation_InvokeCompletionEvent(Il2CppObject* obj, const MethodInfo* imethod)
+        {
+	        const int index = 52;
+	        typedef void(*THUNK_METHOD EventMethod) (MonoObject* obj, MonoException** exc);
+	        static EventMethod thunk;
+	        if (!thunk)
+		        thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
+	        MonoException *exc = NULL;
+	        MonoObject* monoobj = get_mono_object(obj, mono_get_class_UnityEngine_AsyncOperation());
+	        thunk(monoobj, &exc);
+        }
+             */
         private static void ImplementEventMethod(MethodDefinition method,int index)
         {
             var returnTypeName = CTypeResolver.Resolve(method.ReturnType, false).TypeName();
