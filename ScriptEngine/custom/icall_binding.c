@@ -158,7 +158,7 @@ MonoObject* UnityEngine_GameObject_Internal_AddComponentWithType(MonoObject* obj
 	if (!icall)
 		icall = (AddComponentWithType)il2cpp_resolve_icall("UnityEngine.GameObject::Internal_AddComponentWithType");
 
-	Il2CppObject* il2cppObj = get_il2cpp_object(obj);
+	Il2CppObject* il2cppObj = get_il2cpp_object(obj,NULL);
 	
 	MonoType* monoType = mono_reflection_type_get_type(type);
 	MonoClass * mclass = mono_class_from_mono_type(monoType);
@@ -179,7 +179,7 @@ MonoArray* UnityEngine_GameObject_GetComponentsInternal(MonoObject* obj, MonoRef
 	if (!icall)
 		icall = (GetComponentsInternal)il2cpp_resolve_icall("UnityEngine.GameObject::GetComponentsInternal");
 
-	Il2CppObject* il2cppObj = get_il2cpp_object(obj);
+	Il2CppObject* il2cppObj = get_il2cpp_object(obj, NULL);
 	Il2CppReflectionType* il2cppType = get_il2cpp_reflection_type(type);
 	
 	Il2CppArray* res = icall(il2cppObj, il2cppType, useSearchTypeAsArrayReturnType, recursive, includeInactive, reverse, resultList);
@@ -233,7 +233,7 @@ bool UnityEngine_MonoBehaviour_IsObjectMonoBehaviour(MonoObject* obj)
 
 MonoObject* UnityEngine_MonoBehaviour_StartCoroutineManaged2(MonoObject* obj,MonoObject* enumerator)
 {
-	Il2CppObject* il2cpp = get_il2cpp_object(obj);
+	Il2CppObject* il2cpp = get_il2cpp_object(obj, NULL);
 
 	typedef Il2CppObject*(*StartCoroutineManaged2) (Il2CppObject*, Il2CppObject*);
 	static StartCoroutineManaged2 icall;
@@ -318,7 +318,7 @@ void mono_ios_register_icall(void)
 	mono_add_internal_call("UnityEngine.GameObject::Internal_AddComponentWithType", (void*)UnityEngine_GameObject_Internal_AddComponentWithType);
 	mono_add_internal_call("UnityEngine.GameObject::GetComponentFastPath", (void*)UnityEngine_GameObject_GetComponentFastPath);
 	mono_add_internal_call("UnityEngine.Component::GetComponentFastPath", (void*)UnityEngine_GameObject_GetComponentFastPath);
-	mono_add_internal_call("UnityEngine.GameObject::GetComponentsInternal", (void*)UnityEngine_GameObject_Internal_AddComponentWithType);
+	mono_add_internal_call("UnityEngine.GameObject::GetComponentsInternal", (void*)UnityEngine_GameObject_GetComponentsInternal);
 
 	//Aono_add_internal_call("UnityEngine.MonoBehaviour::IsObjectMonoBehaviour", (void*)UnityEngine_MonoBehaviour_IsObjectMonoBehaviour);
 	mono_add_internal_call("UnityEngine.MonoBehaviour::StartCoroutineManaged2", (void*)UnityEngine_MonoBehaviour_StartCoroutineManaged2);

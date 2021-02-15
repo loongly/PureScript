@@ -36,8 +36,10 @@ namespace Generater.C
 
             if (_type.Name.Equals("String") )
                 return new StringResolver(_type, il2cppType);
+            if (_type.FullName.Equals("System.Type"))
+                return new ReflectionTypeResolver(_type, il2cppType);
 
-            if(_type.IsArray)
+            if (_type.IsArray)
                 return new ArrayResolver(_type, il2cppType);
 
             return new RefTypeResolver(_type,il2cppType);
@@ -219,6 +221,9 @@ namespace Generater.C
         {
             var reName = $"mono{name}";
             var classCache = ClassCacheGenerater.GetClass(type.Resolve());
+            if(type.FullName == "UnityEngine.Object" || type.FullName == "System.Object")
+                classCache = $"get_mono_class(il2cpp_object_get_class({name}))";
+
             var cmd = $"MonoObject* {reName} = get_mono_object({name},{classCache})";
             if (previous)
                 CS.Writer.WritePreviousLine(cmd);
@@ -230,7 +235,16 @@ namespace Generater.C
         public override string Unbox(string name, bool previous = false)
         {
             var reName = $"i2{name}";
-            var cmd = $"Il2CppObject* {reName} = get_il2cpp_object({name})";
+            string classCache = "NULL";
+            if (type.Namespace.StartsWith("UnityEngine"))
+            {
+                classCache = ClassCacheGenerater.GetClass(type.Resolve(), true);
+               // if (type.FullName == "UnityEngine.Object" || type.FullName == "System.Object")
+               //     classCache = $"get_il2cpp_class(mono_object_get_class({name}))";
+            }
+
+
+            var cmd = $"Il2CppObject* {reName} = get_il2cpp_object({name},{classCache})";
             if (previous)
                 CS.Writer.WritePreviousLine(cmd);
             else
@@ -244,8 +258,44 @@ namespace Generater.C
             else
                 return "MonoObject*";
         }
-
     }
+
+    public class ReflectionTypeResolver : BaseTypeResolver
+    {
+        public ReflectionTypeResolver(TypeReference _type, bool _il2cppType) : base(_type, _il2cppType)
+        {
+        }
+
+        public override string Box(string name, bool previous = false)
+        {
+            var reName = $"mono{name}";
+            var cmd = $"MonoReflectionType* {reName} = get_mono_reflection_type({name})";
+            if (previous)
+                CS.Writer.WritePreviousLine(cmd);
+            else
+                CS.Writer.WriteLine(cmd);
+            return reName;
+        }
+        public override string Unbox(string name, bool previous = false)
+        {
+            var reName = $"i2{name}";
+
+            var cmd = $"Il2CppReflectionType* {reName} = get_il2cpp_reflection_type({name})";
+            if (previous)
+                CS.Writer.WritePreviousLine(cmd);
+            else
+                CS.Writer.WriteLine(cmd);
+            return reName;
+        }
+        public override string TypeName()
+        {
+            if (il2cppType)
+                return "Il2CppReflectionType*";
+            else
+                return "MonoReflectionType*";
+        }
+    }
+
 
     public class ArrayResolver : BaseTypeResolver
     {

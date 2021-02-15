@@ -19,7 +19,7 @@ namespace Generater
 
             string[] ignore = new string[]
             {
-                "System.Type",
+                //"System.Type",
                 "System.Reflection",
                 "UnityEngine.WSA",
                 "UnityEngine.XR.WSA",

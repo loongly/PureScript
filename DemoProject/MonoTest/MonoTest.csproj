@@ -50,14 +50,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="DelegeTest.cs" />
     <Compile Include="Demo\DebugHelper.cs" />
     <Compile Include="Demo\TestBehaviourScript.cs" />
     <Compile Include="Demo\TestClass.cs" />
     <Compile Include="Demo\TestDelegate.cs" />
+    <Compile Include="Demo\TestGC.cs" />
+    <Compile Include="Demo\TestLoader.cs" />
     <Compile Include="Demo\TestStaticClass.cs" />
-    <Compile Include="FuncTest.cs" />
+    <Compile Include="EngineTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

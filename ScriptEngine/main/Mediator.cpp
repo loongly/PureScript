@@ -115,6 +115,8 @@ MonoObject* get_mono_object(Il2CppObject* il2cpp, MonoClass* m_class)
 	if (monoHandle != 0)
 	{
 		monoObj = mono_gchandle_get_target(monoHandle);
+		if (monoObj == NULL)
+			mono_gchandle_free(monoHandle);
 	}
 	if (monoObj == NULL && m_class != NULL)
 	{
@@ -123,16 +125,22 @@ MonoObject* get_mono_object(Il2CppObject* il2cpp, MonoClass* m_class)
 	}
 	return monoObj;
 }
-Il2CppObject* get_il2cpp_object(MonoObject* mono)
+Il2CppObject* get_il2cpp_object(MonoObject* mono, Il2CppClass* m_class)
 {
 	if (mono == NULL)
 		return NULL;
 
+	Il2CppObject* il2cpp = NULL;
 	if (is_unity_native(mono_object_get_class(mono)))
 	{
 		UnityObjectHead* monoHead = (UnityObjectHead*)(mono);
 		if (monoHead->objectPtr == NULL)
-			return NULL;
+		{
+			il2cpp = il2cpp_object_new(m_class);
+			bind_mono_il2cpp_object(mono, il2cpp);
+			return il2cpp;
+			//return NULL;
+		}
 
 		return get_il2cpp_object_with_ptr(monoHead->objectPtr);
 	}
@@ -216,7 +224,7 @@ Il2CppArray* get_il2cpp_array(MonoArray* array)
 	for (int i = 0; i < len; i++)
 	{
 		MonoObject* monoObj = mono_array_get(array, MonoObject*, i);
-		Il2CppObject* i2Obj = get_il2cpp_object(monoObj);
+		Il2CppObject* i2Obj = get_il2cpp_object(monoObj, NULL);
 		il2cpp_array_setref(i2Array, i, i2Obj);
 	}
 	return i2Array;
@@ -282,6 +290,13 @@ Il2CppReflectionType* get_il2cpp_reflection_type(MonoReflectionType * type)
 	Il2CppReflectionType* rtype = (Il2CppReflectionType*)il2cpp_type_get_object(ktype);
 	return rtype;
 }
+
+MonoReflectionType* get_mono_reflection_type(Il2CppReflectionType * type) 
+{
+	//TODO: get_mono_reflection_type
+	return NULL;
+}
+
 
 MonoImage* mono_get_image(const char* assembly)
 {
