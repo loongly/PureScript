@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PureScriptWrapper
 {
-    public class MonoBehaviourWrapper : MonoBehaviour, IWrapper
+    internal class MonoBehaviourWrapper : MonoBehaviour, IWrapper
     {
         private uint Handle = 0;
         private bool awakeAfterInit = false;

@@ -181,8 +181,8 @@ log_callback(const char *log_domain, const char *log_level, const char *message,
 	}
 }
 
-static MonoObject *
-fetch_exception_property(MonoObject *obj, const char *name, bool is_virtual)
+MonoObject *
+mono_exception_property(MonoObject *obj, const char *name, char is_virtual)
 {
 	MonoMethod *get = NULL;
 	MonoMethod *get_virt = NULL;
@@ -208,7 +208,7 @@ fetch_exception_property(MonoObject *obj, const char *name, bool is_virtual)
 static char *
 fetch_exception_property_string(MonoObject *obj, const char *name, bool is_virtual)
 {
-	MonoString *str = (MonoString *)fetch_exception_property(obj, name, is_virtual);
+	MonoString *str = (MonoString *)mono_exception_property(obj, name, is_virtual);
 	return str ? mono_string_to_utf8(str) : NULL;
 }
 
@@ -216,23 +216,23 @@ void
 unhandled_exception_handler(MonoObject *exc, void *user_data)
 {
 	//NSMutableString *msg = [[NSMutableString alloc] init];
-
 	MonoClass *type = mono_object_get_class(exc);
 	const char* type_name = mono_class_get_name(type);
 	//char *type_name = strdup_printf("%s.%s", mono_class_get_namespace(type), mono_class_get_name(type));
 	char *trace = fetch_exception_property_string(exc, "get_StackTrace", true);
 	char *message = fetch_exception_property_string(exc, "get_Message", true);
 
-	printf("Unhandled managed exception:\n");
+	mono_free(trace);
+	mono_free(message);
+
+	//printf("Unhandled managed exception:\n");
 	//printf("%s (%s)\n%s\n", message, type_name, trace ? trace : "");
 
-	//free(trace);
-	//free(message);
-	free(type_name);
+	
 
 	//os_log_info (OS_LOG_DEFAULT, "%@", msg);
-	printf("Exit code: %d.", 1);
-	exit(1);
+	//printf("Exit code: %d.", 1);
+	//exit(1);
 }
 
 

@@ -18,6 +18,11 @@ namespace BindGenerater
             "UnityEngine.UnityAnalyticsModule.dll",
         };
 
+        private static HashSet<string> AdapterSet = new HashSet<string>
+        {
+            "EngineAdapter.dll",
+        };
+
         static void Main(string[] args)
         {
             Utils.Log("Hello world.");
@@ -36,10 +41,10 @@ namespace BindGenerater
                 {
                     TestBinder.TestBind(filePath);
 
-                    if (file.StartsWith("UnityEngine."))
-                        CBinder.Bind(filePath);
-                    else
+                    if (AdapterSet.Contains(file))
                         Binder.Bind(filePath);
+                    else if (file.StartsWith("UnityEngine."))
+                        CBinder.Bind(filePath);
                 }
             }
             CBinder.End();

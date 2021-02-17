@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PureScriptWrapper
 {
-    public static class WrapperUtils
+    internal static class WrapperUtils
     {
         
         [MethodImpl(MethodImplOptions.InternalCall)]

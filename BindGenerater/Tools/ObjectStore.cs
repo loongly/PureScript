@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-public static class ObjectStore
+internal static class ObjectStore
 {
     // Lookup handles by object.
     static Dictionary<object, int> objectHandleCache;
@@ -101,7 +101,7 @@ public static class ObjectStore
         return 0;
     }
 
-    public class RObjComparer : IEqualityComparer<object>
+    internal class RObjComparer : IEqualityComparer<object>
     {
         public bool Equals(object x, object y)
         {

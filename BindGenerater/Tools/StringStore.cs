@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using AOT;
 #endif
 
-public static class StringStore
+internal static class StringStore
 {
 
 #if !WRAPPER_SIDE

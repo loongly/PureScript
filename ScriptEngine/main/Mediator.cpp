@@ -366,39 +366,58 @@ MonoMethod* mono_lookup_method(const char* method_name, MonoClass *kclass, int p
 	return method;
 }
 
-/*
-MonoClass* castClass = get_casthelp_class();
-MonoObject* castObj = mono_value_box(g_domain, castClass, objPtr);
-MonoClassField * field = mono_class_get_field_from_name(castClass, "t");
-mono_field_set_value(castObj, field, monoObj);
-MonoClass* get_casthelp_class() 
+//Exception:
+MonoException* get_mono_exception(Il2CppException* il2cpp)
 {
-	MonoClass* klass = mono_embeddinator_search_class("UnityEngine.CoreModule.dll", "UnityEngine", "CastHelper`1");
-	return klass;
-}*/
+	Il2CppString* trace = (Il2CppString*)il2cpp_exception_property((Il2CppObject*)il2cpp, "get_StackTrace", 1);
+	Il2CppString* message = (Il2CppString*)il2cpp_exception_property((Il2CppObject*)il2cpp, "get_Message", 1);
 
-/*
-void bind_monobehaviour_function(MonoClass * kclass, const char* func_name,  int method_index, Il2CppObject * il2cppObj)
+	return mono_exception_from_name_two_strings(mono_get_corlib(), "System", "Exception", get_mono_string(message), get_mono_string(trace));
+}
+Il2CppException* get_il2cpp_exception(MonoException* mono)
 {
-	MonoMethod* method = mono_embeddinator_lookup_method(func_name, kclass);
-	DataOnHead* scriptHead = dataOnHead(il2cppObj);
-	scriptHead->methods[method_index] = method;
+	MonoString* trace = (MonoString*)mono_exception_property((MonoObject*)mono, "get_StackTrace", 1);
+	MonoString* message = (MonoString*)mono_exception_property((MonoObject*)mono, "get_Message", 1);
+	char *traceStr = mono_string_to_utf8(trace);
+	char *msgStr = mono_string_to_utf8(message);
+	std::string outputMsg = std::string(msgStr) +"\n"+ std::string(traceStr);
+	Il2CppException* exc = il2cpp_exception_from_name_msg(il2cpp_get_corlib(), "System", "Exception", outputMsg.c_str());
+
+	mono_free(traceStr);
+	mono_free(msgStr);
+	return	exc;
 }
 
-// NOTE: structure members match with "MonoBehaviourWrapper" Intptr field.  MUST NOT CHANGE ORDER. 
-//static char* monobehaviour_func[] = { "Awake()","OnEnable()", "Start()","Update()", "OnDisable()","OnDestroy()", "OnApplicationQuit()" };
-
-MonoObject* create_monobehaviour(MonoClass * kclass,Il2CppObject * il2cppObj)
+void check_il2cpp_exception(Il2CppException* il2cpp)
 {
-	MonoObject* monoObj = get_mono_object(il2cppObj, kclass);
-	const char* cname = mono_class_get_name(kclass);
-	int func_len = sizeof(monobehaviour_func) / sizeof(char*);
-	for (int i = 0; i < func_len; i++)
+	if (il2cpp != NULL)
 	{
-		bind_monobehaviour_function(kclass, monobehaviour_func[i], i, il2cppObj);
+		MonoException* mono = get_mono_exception(il2cpp);
+		mono_raise_exception(mono);
 	}
-	return monoObj;
-}*/
+}
+
+void check_mono_exception(MonoException* mono)
+{
+	if (mono != NULL)
+	{
+		Il2CppException* il2cpp = get_il2cpp_exception(mono);
+		il2cpp_raise_exception(il2cpp);
+	}
+}
+
+void raise_mono_exception_runtime(const char* msg)
+{
+	MonoException* exc = mono_exception_from_name_msg(mono_get_corlib(), "System", "Exception", msg);
+	mono_raise_exception(exc);
+	//mono_reraise_exception(exc);
+}
+
+void raise_il2cpp_exception_runtime(const char* msg)
+{
+	Il2CppException* exc = il2cpp_exception_from_name_msg(il2cpp_get_corlib(), "System", "Exception", msg);
+	il2cpp_raise_exception(exc);
+}
 
 
 

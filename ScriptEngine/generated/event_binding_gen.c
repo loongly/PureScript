@@ -11,6 +11,7 @@ void UnityEngine_AI_NavMesh_Internal_CallOnNavMeshPreUpdate(const MethodInfo* im
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_AnimatorOverrideController_OnInvalidateOverrideController(Il2CppObject* controller, const MethodInfo* imethod) 
 {
@@ -22,6 +23,7 @@ void UnityEngine_AnimatorOverrideController_OnInvalidateOverrideController(Il2Cp
 	MonoException *exc = NULL;
 	MonoObject* monocontroller = get_mono_object(controller,mono_get_class_UnityEngine_AnimatorOverrideController());
 	thunk(monocontroller,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_AudioSettings_InvokeOnAudioConfigurationChanged(bool deviceWasChanged, const MethodInfo* imethod) 
 {
@@ -32,6 +34,7 @@ void UnityEngine_AudioSettings_InvokeOnAudioConfigurationChanged(bool deviceWasC
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(deviceWasChanged,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_AudioClip_InvokePCMReaderCallback_Internal(Il2CppObject* thiz, void* data, const MethodInfo* imethod) 
 {
@@ -43,6 +46,7 @@ void UnityEngine_AudioClip_InvokePCMReaderCallback_Internal(Il2CppObject* thiz, 
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_AudioClip());
 	thunk(monothiz,data,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_AudioClip_InvokePCMSetPositionCallback_Internal(Il2CppObject* thiz, int32_t position, const MethodInfo* imethod) 
 {
@@ -54,6 +58,7 @@ void UnityEngine_AudioClip_InvokePCMSetPositionCallback_Internal(Il2CppObject* t
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_AudioClip());
 	thunk(monothiz,position,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Application_CallLowMemory(const MethodInfo* imethod) 
 {
@@ -64,6 +69,7 @@ void UnityEngine_Application_CallLowMemory(const MethodInfo* imethod)
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Application_CallLogCallback(Il2CppString* logString, Il2CppString* stackTrace, int32_t type, bool invokedOnMainThread, const MethodInfo* imethod) 
 {
@@ -76,6 +82,7 @@ void UnityEngine_Application_CallLogCallback(Il2CppString* logString, Il2CppStri
 	MonoString* monologString = get_mono_string(logString);
 	MonoString* monostackTrace = get_mono_string(stackTrace);
 	thunk(monologString,monostackTrace,type,invokedOnMainThread,&exc);
+	check_mono_exception(exc);
 }
 bool UnityEngine_Application_Internal_ApplicationWantsToQuit(const MethodInfo* imethod) 
 {
@@ -86,6 +93,7 @@ bool UnityEngine_Application_Internal_ApplicationWantsToQuit(const MethodInfo* i
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	bool res = thunk(&exc);
+	check_mono_exception(exc);
 	return res;
 }
 void UnityEngine_Application_Internal_ApplicationQuit(const MethodInfo* imethod) 
@@ -97,6 +105,7 @@ void UnityEngine_Application_Internal_ApplicationQuit(const MethodInfo* imethod)
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Application_InvokeFocusChanged(bool focus, const MethodInfo* imethod) 
 {
@@ -107,6 +116,7 @@ void UnityEngine_Application_InvokeFocusChanged(bool focus, const MethodInfo* im
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(focus,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_AsyncOperation_InvokeCompletionEvent(Il2CppObject* thiz, const MethodInfo* imethod) 
 {
@@ -118,6 +128,7 @@ void UnityEngine_AsyncOperation_InvokeCompletionEvent(Il2CppObject* thiz, const 
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_AsyncOperation());
 	thunk(monothiz,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Camera_FireOnPreCull(Il2CppObject* cam, const MethodInfo* imethod) 
 {
@@ -129,6 +140,7 @@ void UnityEngine_Camera_FireOnPreCull(Il2CppObject* cam, const MethodInfo* imeth
 	MonoException *exc = NULL;
 	MonoObject* monocam = get_mono_object(cam,mono_get_class_UnityEngine_Camera());
 	thunk(monocam,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Camera_FireOnPreRender(Il2CppObject* cam, const MethodInfo* imethod) 
 {
@@ -140,6 +152,7 @@ void UnityEngine_Camera_FireOnPreRender(Il2CppObject* cam, const MethodInfo* ime
 	MonoException *exc = NULL;
 	MonoObject* monocam = get_mono_object(cam,mono_get_class_UnityEngine_Camera());
 	thunk(monocam,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Camera_FireOnPostRender(Il2CppObject* cam, const MethodInfo* imethod) 
 {
@@ -151,6 +164,7 @@ void UnityEngine_Camera_FireOnPostRender(Il2CppObject* cam, const MethodInfo* im
 	MonoException *exc = NULL;
 	MonoObject* monocam = get_mono_object(cam,mono_get_class_UnityEngine_Camera());
 	thunk(monocam,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_CullingGroup_SendEvents(Il2CppObject* cullingGroup, void * eventsPtr, int32_t count, const MethodInfo* imethod) 
 {
@@ -162,6 +176,7 @@ void UnityEngine_CullingGroup_SendEvents(Il2CppObject* cullingGroup, void * even
 	MonoException *exc = NULL;
 	MonoObject* monocullingGroup = get_mono_object(cullingGroup,mono_get_class_UnityEngine_CullingGroup());
 	thunk(monocullingGroup,eventsPtr,count,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Display_FireDisplaysUpdated(const MethodInfo* imethod) 
 {
@@ -172,6 +187,7 @@ void UnityEngine_Display_FireDisplaysUpdated(const MethodInfo* imethod)
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_ReflectionProbe_CallReflectionProbeEvent(Il2CppObject* probe, int32_t probeEvent, const MethodInfo* imethod) 
 {
@@ -183,6 +199,7 @@ void UnityEngine_ReflectionProbe_CallReflectionProbeEvent(Il2CppObject* probe, i
 	MonoException *exc = NULL;
 	MonoObject* monoprobe = get_mono_object(probe,mono_get_class_UnityEngine_ReflectionProbe());
 	thunk(monoprobe,probeEvent,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_ReflectionProbe_CallSetDefaultReflection(Il2CppObject* defaultReflectionCubemap, const MethodInfo* imethod) 
 {
@@ -194,6 +211,7 @@ void UnityEngine_ReflectionProbe_CallSetDefaultReflection(Il2CppObject* defaultR
 	MonoException *exc = NULL;
 	MonoObject* monodefaultReflectionCubemap = get_mono_object(defaultReflectionCubemap,mono_get_class_UnityEngine_Cubemap());
 	thunk(monodefaultReflectionCubemap,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_SceneManagement_SceneManager_Internal_SceneLoaded(void * scene, int32_t mode, const MethodInfo* imethod) 
 {
@@ -204,6 +222,7 @@ void UnityEngine_SceneManagement_SceneManager_Internal_SceneLoaded(void * scene,
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(scene,mode,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_SceneManagement_SceneManager_Internal_SceneUnloaded(void * scene, const MethodInfo* imethod) 
 {
@@ -214,6 +233,7 @@ void UnityEngine_SceneManagement_SceneManager_Internal_SceneUnloaded(void * scen
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(scene,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_SceneManagement_SceneManager_Internal_ActiveSceneChanged(void * previousActiveScene, void * newActiveScene, const MethodInfo* imethod) 
 {
@@ -224,6 +244,7 @@ void UnityEngine_SceneManagement_SceneManager_Internal_ActiveSceneChanged(void *
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(previousActiveScene,newActiveScene,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Windows_Speech_PhraseRecognitionSystem_PhraseRecognitionSystem_InvokeErrorEvent(int32_t errorCode, const MethodInfo* imethod) 
 {
@@ -234,6 +255,7 @@ void UnityEngine_Windows_Speech_PhraseRecognitionSystem_PhraseRecognitionSystem_
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(errorCode,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Windows_Speech_PhraseRecognitionSystem_PhraseRecognitionSystem_InvokeStatusChangedEvent(int32_t status, const MethodInfo* imethod) 
 {
@@ -244,6 +266,7 @@ void UnityEngine_Windows_Speech_PhraseRecognitionSystem_PhraseRecognitionSystem_
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(status,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Windows_Speech_PhraseRecognizer_InvokePhraseRecognizedEvent(Il2CppObject* thiz, Il2CppString* text, int32_t confidence, void* semanticMeanings, int64_t phraseStartFileTime, int64_t phraseDurationTicks, const MethodInfo* imethod) 
 {
@@ -256,6 +279,7 @@ void UnityEngine_Windows_Speech_PhraseRecognizer_InvokePhraseRecognizedEvent(Il2
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Windows_Speech_PhraseRecognizer());
 	MonoString* monotext = get_mono_string(text);
 	thunk(monothiz,monotext,confidence,semanticMeanings,phraseStartFileTime,phraseDurationTicks,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeHypothesisGeneratedEvent(Il2CppObject* thiz, Il2CppString* keyword, const MethodInfo* imethod) 
 {
@@ -268,6 +292,7 @@ void UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeHy
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer());
 	MonoString* monokeyword = get_mono_string(keyword);
 	thunk(monothiz,monokeyword,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeResultGeneratedEvent(Il2CppObject* thiz, Il2CppString* keyword, int32_t minimumConfidence, const MethodInfo* imethod) 
 {
@@ -280,6 +305,7 @@ void UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeRe
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer());
 	MonoString* monokeyword = get_mono_string(keyword);
 	thunk(monothiz,monokeyword,minimumConfidence,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeCompletedEvent(Il2CppObject* thiz, int32_t cause, const MethodInfo* imethod) 
 {
@@ -291,6 +317,7 @@ void UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeCo
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer());
 	thunk(monothiz,cause,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeErrorEvent(Il2CppObject* thiz, Il2CppString* error, int32_t hresult, const MethodInfo* imethod) 
 {
@@ -303,6 +330,7 @@ void UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeEr
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer());
 	MonoString* monoerror = get_mono_string(error);
 	thunk(monothiz,monoerror,hresult,&exc);
+	check_mono_exception(exc);
 }
 void* UnityEngine_Profiling_Memory_Experimental_MemoryProfiler_PrepareMetadata(const MethodInfo* imethod) 
 {
@@ -313,6 +341,7 @@ void* UnityEngine_Profiling_Memory_Experimental_MemoryProfiler_PrepareMetadata(c
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	void* res = thunk(&exc);
+	check_mono_exception(exc);
 	return res;
 }
 void UnityEngine_Profiling_Memory_Experimental_MemoryProfiler_FinalizeSnapshot(Il2CppString* path, bool result, const MethodInfo* imethod) 
@@ -325,6 +354,7 @@ void UnityEngine_Profiling_Memory_Experimental_MemoryProfiler_FinalizeSnapshot(I
 	MonoException *exc = NULL;
 	MonoString* monopath = get_mono_string(path);
 	thunk(monopath,result,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_RectTransform_SendReapplyDrivenProperties(Il2CppObject* driven, const MethodInfo* imethod) 
 {
@@ -336,6 +366,7 @@ void UnityEngine_RectTransform_SendReapplyDrivenProperties(Il2CppObject* driven,
 	MonoException *exc = NULL;
 	MonoObject* monodriven = get_mono_object(driven,mono_get_class_UnityEngine_RectTransform());
 	thunk(monodriven,&exc);
+	check_mono_exception(exc);
 }
 bool UnityEngine_U2D_SpriteAtlasManager_RequestAtlas(Il2CppString* tag, const MethodInfo* imethod) 
 {
@@ -347,6 +378,7 @@ bool UnityEngine_U2D_SpriteAtlasManager_RequestAtlas(Il2CppString* tag, const Me
 	MonoException *exc = NULL;
 	MonoString* monotag = get_mono_string(tag);
 	bool res = thunk(monotag,&exc);
+	check_mono_exception(exc);
 	return res;
 }
 void UnityEngine_U2D_SpriteAtlasManager_PostRegisteredAtlas(Il2CppObject* spriteAtlas, const MethodInfo* imethod) 
@@ -359,6 +391,7 @@ void UnityEngine_U2D_SpriteAtlasManager_PostRegisteredAtlas(Il2CppObject* sprite
 	MonoException *exc = NULL;
 	MonoObject* monospriteAtlas = get_mono_object(spriteAtlas,mono_get_class_UnityEngine_U2D_SpriteAtlas());
 	thunk(monospriteAtlas,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Playables_PlayableDirector_SendOnPlayableDirectorPlay(Il2CppObject* thiz, const MethodInfo* imethod) 
 {
@@ -370,6 +403,7 @@ void UnityEngine_Playables_PlayableDirector_SendOnPlayableDirectorPlay(Il2CppObj
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Playables_PlayableDirector());
 	thunk(monothiz,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Playables_PlayableDirector_SendOnPlayableDirectorPause(Il2CppObject* thiz, const MethodInfo* imethod) 
 {
@@ -381,6 +415,7 @@ void UnityEngine_Playables_PlayableDirector_SendOnPlayableDirectorPause(Il2CppOb
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Playables_PlayableDirector());
 	thunk(monothiz,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Playables_PlayableDirector_SendOnPlayableDirectorStop(Il2CppObject* thiz, const MethodInfo* imethod) 
 {
@@ -392,6 +427,7 @@ void UnityEngine_Playables_PlayableDirector_SendOnPlayableDirectorStop(Il2CppObj
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Playables_PlayableDirector());
 	thunk(monothiz,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_GUIUtility_MarkGUIChanged(const MethodInfo* imethod) 
 {
@@ -402,6 +438,7 @@ void UnityEngine_GUIUtility_MarkGUIChanged(const MethodInfo* imethod)
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_GUIUtility_TakeCapture(const MethodInfo* imethod) 
 {
@@ -412,6 +449,7 @@ void UnityEngine_GUIUtility_TakeCapture(const MethodInfo* imethod)
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_GUIUtility_RemoveCapture(const MethodInfo* imethod) 
 {
@@ -422,6 +460,7 @@ void UnityEngine_GUIUtility_RemoveCapture(const MethodInfo* imethod)
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 bool UnityEngine_GUIUtility_ProcessEvent(int32_t instanceID, void * nativeEventPtr, const MethodInfo* imethod) 
 {
@@ -432,6 +471,7 @@ bool UnityEngine_GUIUtility_ProcessEvent(int32_t instanceID, void * nativeEventP
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	bool res = thunk(instanceID,nativeEventPtr,&exc);
+	check_mono_exception(exc);
 	return res;
 }
 bool UnityEngine_GUIUtility_EndContainerGUIFromException(Il2CppObject* exception, const MethodInfo* imethod) 
@@ -444,6 +484,7 @@ bool UnityEngine_GUIUtility_EndContainerGUIFromException(Il2CppObject* exception
 	MonoException *exc = NULL;
 	MonoObject* monoexception = get_mono_object(exception,mono_get_class_System_Exception());
 	bool res = thunk(monoexception,&exc);
+	check_mono_exception(exc);
 	return res;
 }
 void UnityEngineInternal_Input_NativeInputSystem_NotifyBeforeUpdate(int32_t updateType, const MethodInfo* imethod) 
@@ -455,6 +496,7 @@ void UnityEngineInternal_Input_NativeInputSystem_NotifyBeforeUpdate(int32_t upda
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(updateType,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngineInternal_Input_NativeInputSystem_NotifyUpdate(int32_t updateType, void * eventBuffer, const MethodInfo* imethod) 
 {
@@ -465,6 +507,7 @@ void UnityEngineInternal_Input_NativeInputSystem_NotifyUpdate(int32_t updateType
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(updateType,eventBuffer,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngineInternal_Input_NativeInputSystem_NotifyDeviceDiscovered(int32_t deviceId, Il2CppString* deviceDescriptor, const MethodInfo* imethod) 
 {
@@ -476,6 +519,7 @@ void UnityEngineInternal_Input_NativeInputSystem_NotifyDeviceDiscovered(int32_t 
 	MonoException *exc = NULL;
 	MonoString* monodeviceDescriptor = get_mono_string(deviceDescriptor);
 	thunk(deviceId,monodeviceDescriptor,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Font_InvokeTextureRebuilt_Internal(Il2CppObject* font, const MethodInfo* imethod) 
 {
@@ -487,6 +531,7 @@ void UnityEngine_Font_InvokeTextureRebuilt_Internal(Il2CppObject* font, const Me
 	MonoException *exc = NULL;
 	MonoObject* monofont = get_mono_object(font,mono_get_class_UnityEngine_Font());
 	thunk(monofont,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Canvas_SendWillRenderCanvases(const MethodInfo* imethod) 
 {
@@ -497,6 +542,7 @@ void UnityEngine_Canvas_SendWillRenderCanvases(const MethodInfo* imethod)
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_CanvasRenderer_RequestRefresh(const MethodInfo* imethod) 
 {
@@ -507,6 +553,7 @@ void UnityEngine_CanvasRenderer_RequestRefresh(const MethodInfo* imethod)
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Video_VideoPlayer_InvokePrepareCompletedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
@@ -518,6 +565,7 @@ void UnityEngine_Video_VideoPlayer_InvokePrepareCompletedCallback_Internal(Il2Cp
 	MonoException *exc = NULL;
 	MonoObject* monosource = get_mono_object(source,mono_get_class_UnityEngine_Video_VideoPlayer());
 	thunk(monosource,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Video_VideoPlayer_InvokeFrameReadyCallback_Internal(Il2CppObject* source, int64_t frameIdx, const MethodInfo* imethod) 
 {
@@ -529,6 +577,7 @@ void UnityEngine_Video_VideoPlayer_InvokeFrameReadyCallback_Internal(Il2CppObjec
 	MonoException *exc = NULL;
 	MonoObject* monosource = get_mono_object(source,mono_get_class_UnityEngine_Video_VideoPlayer());
 	thunk(monosource,frameIdx,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Video_VideoPlayer_InvokeLoopPointReachedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
@@ -540,6 +589,7 @@ void UnityEngine_Video_VideoPlayer_InvokeLoopPointReachedCallback_Internal(Il2Cp
 	MonoException *exc = NULL;
 	MonoObject* monosource = get_mono_object(source,mono_get_class_UnityEngine_Video_VideoPlayer());
 	thunk(monosource,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Video_VideoPlayer_InvokeStartedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
@@ -551,6 +601,7 @@ void UnityEngine_Video_VideoPlayer_InvokeStartedCallback_Internal(Il2CppObject* 
 	MonoException *exc = NULL;
 	MonoObject* monosource = get_mono_object(source,mono_get_class_UnityEngine_Video_VideoPlayer());
 	thunk(monosource,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Video_VideoPlayer_InvokeFrameDroppedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
@@ -562,6 +613,7 @@ void UnityEngine_Video_VideoPlayer_InvokeFrameDroppedCallback_Internal(Il2CppObj
 	MonoException *exc = NULL;
 	MonoObject* monosource = get_mono_object(source,mono_get_class_UnityEngine_Video_VideoPlayer());
 	thunk(monosource,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Video_VideoPlayer_InvokeErrorReceivedCallback_Internal(Il2CppObject* source, Il2CppString* errorStr, const MethodInfo* imethod) 
 {
@@ -574,6 +626,7 @@ void UnityEngine_Video_VideoPlayer_InvokeErrorReceivedCallback_Internal(Il2CppOb
 	MonoObject* monosource = get_mono_object(source,mono_get_class_UnityEngine_Video_VideoPlayer());
 	MonoString* monoerrorStr = get_mono_string(errorStr);
 	thunk(monosource,monoerrorStr,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Video_VideoPlayer_InvokeSeekCompletedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
@@ -585,6 +638,7 @@ void UnityEngine_Video_VideoPlayer_InvokeSeekCompletedCallback_Internal(Il2CppOb
 	MonoException *exc = NULL;
 	MonoObject* monosource = get_mono_object(source,mono_get_class_UnityEngine_Video_VideoPlayer());
 	thunk(monosource,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Video_VideoPlayer_InvokeClockResyncOccurredCallback_Internal(Il2CppObject* source, double seconds, const MethodInfo* imethod) 
 {
@@ -596,6 +650,7 @@ void UnityEngine_Video_VideoPlayer_InvokeClockResyncOccurredCallback_Internal(Il
 	MonoException *exc = NULL;
 	MonoObject* monosource = get_mono_object(source,mono_get_class_UnityEngine_Video_VideoPlayer());
 	thunk(monosource,seconds,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_XR_XRDevice_InvokeDeviceLoaded(Il2CppString* loadedDeviceName, const MethodInfo* imethod) 
 {
@@ -607,6 +662,7 @@ void UnityEngine_XR_XRDevice_InvokeDeviceLoaded(Il2CppString* loadedDeviceName, 
 	MonoException *exc = NULL;
 	MonoString* monoloadedDeviceName = get_mono_string(loadedDeviceName);
 	thunk(monoloadedDeviceName,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_XR_InputTracking_InvokeTrackingEvent(int32_t eventType, int32_t nodeType, int64_t uniqueID, bool tracked, const MethodInfo* imethod) 
 {
@@ -617,6 +673,7 @@ void UnityEngine_XR_InputTracking_InvokeTrackingEvent(int32_t eventType, int32_t
 		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
 	MonoException *exc = NULL;
 	thunk(eventType,nodeType,uniqueID,tracked,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Experimental_XR_XRCameraSubsystem_InvokeFrameReceivedEvent(Il2CppObject* thiz, const MethodInfo* imethod) 
 {
@@ -628,6 +685,7 @@ void UnityEngine_Experimental_XR_XRCameraSubsystem_InvokeFrameReceivedEvent(Il2C
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Experimental_XR_XRCameraSubsystem());
 	thunk(monothiz,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Experimental_XR_XRDepthSubsystem_InvokePointCloudUpdatedEvent(Il2CppObject* thiz, const MethodInfo* imethod) 
 {
@@ -639,6 +697,7 @@ void UnityEngine_Experimental_XR_XRDepthSubsystem_InvokePointCloudUpdatedEvent(I
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Experimental_XR_XRDepthSubsystem());
 	thunk(monothiz,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneAddedEvent(Il2CppObject* thiz, void * plane, const MethodInfo* imethod) 
 {
@@ -650,6 +709,7 @@ void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneAddedEvent(Il2CppOb
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem());
 	thunk(monothiz,plane,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneUpdatedEvent(Il2CppObject* thiz, void * plane, const MethodInfo* imethod) 
 {
@@ -661,6 +721,7 @@ void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneUpdatedEvent(Il2Cpp
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem());
 	thunk(monothiz,plane,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneRemovedEvent(Il2CppObject* thiz, void * removedPlane, const MethodInfo* imethod) 
 {
@@ -672,6 +733,7 @@ void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneRemovedEvent(Il2Cpp
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem());
 	thunk(monothiz,removedPlane,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Experimental_XR_XRReferencePointSubsystem_InvokeReferencePointUpdatedEvent(Il2CppObject* thiz, void * updatedReferencePoint, int32_t previousTrackingState, void * previousPose, const MethodInfo* imethod) 
 {
@@ -683,6 +745,7 @@ void UnityEngine_Experimental_XR_XRReferencePointSubsystem_InvokeReferencePointU
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Experimental_XR_XRReferencePointSubsystem());
 	thunk(monothiz,updatedReferencePoint,previousTrackingState,previousPose,&exc);
+	check_mono_exception(exc);
 }
 void UnityEngine_Experimental_XR_XRSessionSubsystem_InvokeTrackingStateChangedEvent(Il2CppObject* thiz, int32_t newState, const MethodInfo* imethod) 
 {
@@ -694,6 +757,7 @@ void UnityEngine_Experimental_XR_XRSessionSubsystem_InvokeTrackingStateChangedEv
 	MonoException *exc = NULL;
 	MonoObject* monothiz = get_mono_object(thiz,mono_get_class_UnityEngine_Experimental_XR_XRSessionSubsystem());
 	thunk(monothiz,newState,&exc);
+	check_mono_exception(exc);
 }
 void init_event_gen()
 {

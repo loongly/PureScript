@@ -27,7 +27,7 @@ public static class WObjectExtend
 }
 
 
-public static class ObjectStore
+internal static class ObjectStore
 {
     // Lookup handles by object.
     static ConditionalWeakTable<object, HandleRef> objectHandleCache = new ConditionalWeakTable<object, HandleRef>();
@@ -37,6 +37,9 @@ public static class ObjectStore
 
     [MethodImpl(MethodImplOptions.InternalCall)]
     private static extern object NewObject(Type type);
+
+    [MethodImpl(MethodImplOptions.InternalCall)]
+    private static extern object OnException(Exception e);
 
     private static Handler handler;
     private static List<int> dropList = new List<int>();
@@ -98,7 +101,7 @@ public static class ObjectStore
         return 0;
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    //[MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static object Get(int handle)
     {
         var gcHandle = Handles[handle];

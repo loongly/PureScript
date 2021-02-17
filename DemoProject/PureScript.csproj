@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\PureScript\ScriptEngine.cs" />
     <Compile Include="Assets\Plugins\PureScript\ScriptWrapper\EnumeratorWrapper.cs" />
     <Compile Include="Assets\Plugins\PureScript\ScriptWrapper\IWrapper.cs" />
     <Compile Include="Assets\Plugins\PureScript\ScriptWrapper\MonoBehaviourWrapper.cs" />
@@ -298,6 +299,9 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="AdapterGen">
+      <HintPath>F:/Project/UnityBind/PureScript/DemoProject/Assets/Scripts/AdapterGen.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>F:/Project/UnityBind/PureScript/DemoProject/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>

@@ -5,9 +5,9 @@ using System.Runtime.CompilerServices;
 
 namespace PureScriptWrapper
 {
-    class EnumeratorWrapper : IEnumerator, IWrapper
+    internal class EnumeratorWrapper : IEnumerator, IWrapper
     {
-        private IntPtr m_CachedPtr = IntPtr.Zero;//Align with Ojbect
+        private IntPtr m_CachedPtr = IntPtr.Zero;//Align with Object
         private uint Handle = 0;
 
         private IntPtr CurrentFuncPtr = IntPtr.Zero;

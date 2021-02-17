@@ -100,6 +100,35 @@ Il2CppMethodPointer hook_method2(Il2CppClass* klass, const char* method, int32_t
 	return orign;
 }
 
+Il2CppClass* il2cpp_get_exception_class() 
+{
+	static Il2CppClass* klass = NULL;
+	if (klass == NULL)
+	{
+		klass = il2cpp_get_class(il2cpp_get_corlib(), "System", "Exception");
+	}
+	return klass;
+}
+
+Il2CppObject * il2cpp_exception_property(Il2CppObject *obj, const char *name, char is_virtual)
+{
+	Il2CppObject *get = NULL;
+	Il2CppObject *get_virt = NULL;
+	Il2CppObject *exc = NULL;
+
+	get = il2cpp_class_get_method_from_name(il2cpp_get_exception_class(), name, 0);
+	if (get) {
+		if (is_virtual) {
+			get_virt = il2cpp_object_get_virtual_method(obj, get);
+			if (get_virt)
+				get = get_virt;
+		}
+
+		return (Il2CppObject *)il2cpp_runtime_invoke(get, obj, NULL, &exc);
+	}
+
+	return NULL;
+}
 
 
 
