@@ -2,6 +2,8 @@
 //
 
 #include "main/runtime.h"
+#include "main/Mediator.h"
+
 // Macro to put before functions that need to be exposed to C#
 #ifdef _WIN32
 #define DLLEXPORT __declspec(dllexport)
@@ -31,6 +33,15 @@ DLLEXPORT void* GetFuncPointer()
 	return g_manageFuncPtr;
 }
 
+DLLEXPORT void OnExceptionIl2cpp(const char* msg)
+{
+	raise_mono_exception_runtime(msg);
+}
+
+DLLEXPORT void OnExceptionMono(const char* msg)
+{
+	raise_il2cpp_exception_runtime(msg);
+}
 
 /*
 #include <iostream>

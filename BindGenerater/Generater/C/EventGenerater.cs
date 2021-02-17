@@ -99,7 +99,7 @@ namespace Generater.C
             }
 
             CS.Writer.Write("&exc);");
-
+            CS.Writer.WriteLine("check_mono_exception(exc)");
             if (!method.ReturnType.IsVoid())
             {
                 var monoRes = CTypeResolver.Resolve(method.ReturnType).Unbox("res",false);

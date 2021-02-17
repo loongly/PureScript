@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using PureScript;
 
 public class EngineTest
 {
@@ -14,6 +15,9 @@ public class EngineTest
 
     static void StartTest()
     {
+        var ptr = ScriptEngine.GetFuncPointer();
+        MonoBind.InitBind(ptr);
+
         DebugHelper.InitLog(true);
 
         Debug.LogError(" ========223 中午 ==== +-*x&!@$#$()_+<>?{}|ff ~");
@@ -23,9 +27,10 @@ public class EngineTest
         TestCube();
 
         var obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        obj.AddComponent<TestDelegate>();
-        obj.AddComponent<TestLoader>();
-        obj.AddComponent<TestBehaviourScript>();
+        //obj.AddComponent<TestDelegate>();
+        //obj.AddComponent<TestLoader>();
+        //obj.AddComponent<TestBehaviourScript>();
+        obj.AddComponent<TestException>();
         
     }
 

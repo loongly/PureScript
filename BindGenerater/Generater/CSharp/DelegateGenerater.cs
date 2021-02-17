@@ -128,7 +128,7 @@ namespace Generater
             eventFuncDeclear += ")";
 
             CS.Writer.Start(eventFuncDeclear);
-
+            CS.Writer.Start("try");
             //_logMessageReceived(unbox(arg0), unbox(arg1), unbox(arg2));
             var callCmd = $"_{name}(";
             var targetObj = "";
@@ -161,7 +161,14 @@ namespace Generater
                 var res = TypeResolver.Resolve(returnType).Box("res");
                 CS.Writer.WriteLine($"return {res}");
             }
-            CS.Writer.End();
+            CS.Writer.End();//try
+            CS.Writer.Start("catch(Exception e)");
+            CS.Writer.WriteLine("ScriptEngine.OnException(e.ToString())");
+            if (returnType != null)
+                CS.Writer.WriteLine($"return default({returnTypeName})");
+            CS.Writer.End();//catch
+
+            CS.Writer.End();//method
 
             //public static event LogCallback logMessageReceived
             CS.Writer.Start($"public {flag} {eventTypeName} {name}");

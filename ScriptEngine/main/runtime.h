@@ -25,7 +25,8 @@ extern "C"
 	int mono_exit();
 	void set_log_callback(print_log callback);
 	MonoAssembly* load_assembly(const char *name, const char *culture);
-	void unhandled_exception_handler(MonoObject *exc, void *user_data);
+
+	MonoObject * mono_exception_property(MonoObject *obj, const char *name, char is_virtual);
 
 	MonoObject* mono_runtime_invoke_try(MonoMethod *method, void *obj, void **params);
 

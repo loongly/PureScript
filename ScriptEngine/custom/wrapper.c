@@ -35,10 +35,7 @@ void call_wrapper_init(Il2CppObject* il2cpp, MonoObject* mono)
 	//void* args[1] = { il2cpp_value_box(handle) };
 	Il2CppException* exc = NULL;
 	il2cpp_runtime_invoke(method, il2cpp, NULL, &exc);
-	if (exc != NULL)
-	{
-		debug_il2cpp_obj((Il2CppObject*)exc);
-	}
+	check_il2cpp_exception(exc);
 }
 
 //more efficient "get_mono_object" for wrapper
@@ -130,11 +127,7 @@ void InvokeMonoBehaviourFunction(Il2CppObject* obj, void* methodPtr)
 	MonoObject *exc = NULL;
 	MonoObject* res = mono_runtime_invoke(method, mono_obj, NULL, &exc);
 
-	if (exc != NULL)
-	{
-		int c = 0;
-		//TODO: exception..
-	}
+	check_mono_exception(exc);
 }
 #pragma endregion
 
@@ -228,11 +221,7 @@ Il2CppObject* invoke_enumerator_current(Il2CppObject* obj, void* methodPtr)
 	MonoObject *exc = NULL;
 	MonoObject* monoRes = mono_runtime_invoke(method, monoObj, NULL, &exc);
 
-	if (exc != NULL)
-	{
-		int c = 0;
-		//TODO: exception..
-	}
+	check_mono_exception(exc);
 
 	if (monoRes == NULL)
 		return NULL;
@@ -296,13 +285,7 @@ bool invoke_enumerator_moveNext(Il2CppObject* obj, void* methodPtr)
 
 	MonoObject* monoRes = mono_runtime_invoke(method, monoObj, NULL, &exc);
 
-
-	if (exc != NULL)
-	{
-		unhandled_exception_handler(exc, NULL);
-		int c = 0;
-		//TODO: exception..
-	}
+	check_mono_exception(exc);
 
 	bool value = *(bool*)mono_object_unbox(monoRes);
 

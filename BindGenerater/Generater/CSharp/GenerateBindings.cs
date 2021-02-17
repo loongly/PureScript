@@ -116,11 +116,18 @@ namespace Generater
 
                     CS.Writer.WriteLine($"[MonoPInvokeCallback(typeof({methodName}_Type))]", false);
                     CS.Writer.Start($"static {MethodResolver.Resolve(method).ReturnType()} {methodName} {Utils.BindMethodParamDefine(method, true)}");
+                    CS.Writer.Start("try");
 
                     var reName = MethodResolver.Resolve(method).Implement("_value");
                     if (!string.IsNullOrEmpty(reName))
                         CS.Writer.WriteLine($"return {reName}");
-                    CS.Writer.End();
+                    CS.Writer.End();//try
+                    CS.Writer.Start("catch(Exception e)");
+                    CS.Writer.WriteLine("ScriptEngine.OnException(e.ToString())");
+                    if (!string.IsNullOrEmpty(reName))
+                        CS.Writer.WriteLine($"return default({MethodResolver.Resolve(method).ReturnType()})");
+                    CS.Writer.End();//catch
+                    CS.Writer.End();//method
 
                 }
 

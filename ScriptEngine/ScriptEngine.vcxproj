@@ -171,10 +171,8 @@
     <ClInclude Include="custom\event_binding.h" />
     <ClInclude Include="custom\wrapper.h" />
     <ClInclude Include="generated\class_cache_gen.h" />
-    <ClInclude Include="main\embeddinator.h" />
     <ClInclude Include="main\glib.h" />
     <ClInclude Include="main\il2cpp_support.h" />
-    <ClInclude Include="main\internals.h" />
     <ClInclude Include="main\runtime.h" />
     <ClInclude Include="main\Mediator.h" />
   </ItemGroup>
@@ -183,10 +181,8 @@
     <ClCompile Include="generated\class_cache_gen.c" />
     <ClCompile Include="generated\event_binding_gen.c" />
     <ClCompile Include="generated\icall_binding_gen.c" />
-    <ClCompile Include="main\embeddinator.c" />
     <ClCompile Include="main\glib.c" />
     <ClCompile Include="custom\icall_binding.c" />
-    <ClCompile Include="main\internals.c" />
     <ClCompile Include="main\il2cpp_support.c" />
     <ClCompile Include="main\main.c" />
     <ClCompile Include="main\runtime.c" />

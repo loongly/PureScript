@@ -1,3 +1,4 @@
+/*
 using UnityEngine;
 using System.Runtime.InteropServices;
 using AOT;
@@ -5,9 +6,8 @@ using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using XMono;
 
-public class UnityBind
+public class UnityBindDemo
 {
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -25,7 +25,7 @@ public class UnityBind
     static readonly UnityEngineComponentPropertyGetTransformDelegateType UnityEngineComponentPropertyGetTransformDelegate = new UnityEngineComponentPropertyGetTransformDelegateType(UnityEngineComponentPropertyGetTransform);
     static readonly UnityEngineTransformPropertySetPositionDelegateType UnityEngineTransformPropertySetPositionDelegate = new UnityEngineTransformPropertySetPositionDelegateType(UnityEngineTransformPropertySetPosition);
 
-    public static void BindXMono()
+    public static IntPtr BindFunc()
     {
         int memorySize = 1024;
         IntPtr memory = Marshal.AllocHGlobal(memorySize);
@@ -41,7 +41,7 @@ public class UnityBind
         Marshal.WriteIntPtr(memory, curMemory, Marshal.GetFunctionPointerForDelegate(UnityEngineTransformPropertySetPositionDelegate));
         curMemory += IntPtr.Size;
 
-        ScriptEngine.SetFuncPointer(memory);
+        return memory;
     }
 
 
@@ -124,3 +124,4 @@ public class UnityBind
         }
     }
 }
+*/

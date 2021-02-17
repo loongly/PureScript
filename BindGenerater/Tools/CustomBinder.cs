@@ -10,7 +10,7 @@ using AOT;
 #endif
 
 
-public enum HandlerType
+internal enum HandlerType
 {
     Object,
 
@@ -18,7 +18,7 @@ public enum HandlerType
 }
 
 [StructLayout(LayoutKind.Sequential)]
-public struct Handler
+internal struct Handler
 {
     // Index of the next available handle
     IntPtr nextHandleIndex;
@@ -71,7 +71,7 @@ public struct Handler
     }
 }
 
-public static unsafe class Custom
+internal static unsafe class Custom
 {
     enum DelegateType
     {
@@ -103,10 +103,10 @@ public static unsafe class Custom
 
             RemoveHandle = Marshal.GetDelegateForFunctionPointer<RemoveHandleType>(Marshal.ReadIntPtr(ptr, offset));
             offset += IntPtr.Size;
-
+        
             StoreStringType storeString = StringStore.OnReceiveStr;
             StoreDelegate((int)DelegateType.StoreString, Marshal.GetFunctionPointerForDelegate(storeString));
-        }
+    }
 #else
     public static void Ser(IntPtr ptr)
     {

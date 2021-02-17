@@ -39,8 +39,18 @@ extern "C"
 	Il2CppClass* get_il2cpp_class(MonoClass* mclass);
 	MonoClass* get_mono_class(Il2CppClass* mclass);
 
+	//System.Type
 	Il2CppReflectionType* get_il2cpp_reflection_type(MonoReflectionType * type);
 	MonoReflectionType* get_mono_reflection_type(Il2CppReflectionType * type);
+
+	//Exception
+	MonoException* get_mono_exception(Il2CppException* il2cpp);
+	Il2CppException* get_il2cpp_exception(MonoException* mono);
+	void check_il2cpp_exception(Il2CppException* il2cpp);
+	void check_mono_exception(MonoException* mono);
+	void raise_mono_exception_runtime(const char* msg);
+	void raise_il2cpp_exception_runtime(const char* msg);
+
 
 	bool is_unity_name_space(const char* ns);
 	const char* debug_mono_obj(MonoObject* obj);

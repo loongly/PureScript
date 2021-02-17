@@ -105,7 +105,8 @@ namespace Generater
                 else
                 {
                     CS.Writer.WriteLine($"var h = {Utils.BindMethodName(genMethod)}");
-                    writer.WriteLine($"SetHandle(h)");
+                    CS.Writer.WriteLine($"SetHandle(h)");
+                    CS.Writer.WriteLine("ObjectStore.Store(this, h)");
                 }
             }
             else

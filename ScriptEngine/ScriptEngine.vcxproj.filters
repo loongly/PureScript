@@ -18,9 +18,6 @@
     <ClInclude Include="main\runtime.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="main\embeddinator.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="main\il2cpp_support.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -34,9 +31,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="custom\event_binding.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="main\internals.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="main\Mediator.h">
@@ -59,9 +53,6 @@
     <ClCompile Include="main\glib.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main\embeddinator.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="custom\icall_binding.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -78,9 +69,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="generated\class_cache_gen.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="main\internals.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="main\Mediator.cpp">
