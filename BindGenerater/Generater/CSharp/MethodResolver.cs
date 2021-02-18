@@ -338,6 +338,7 @@ namespace Generater
                 
                 callCmd += ")";
                 CS.Writer.WriteLine(callCmd);
+                CS.Writer.WriteLine("ScriptEngine.CheckException()");
                 if (returnType != null)
                 {
                     var res = TypeResolver.Resolve(returnType).Box("res");

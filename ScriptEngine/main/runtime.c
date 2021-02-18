@@ -222,8 +222,10 @@ unhandled_exception_handler(MonoObject *exc, void *user_data)
 	char *trace = fetch_exception_property_string(exc, "get_StackTrace", true);
 	char *message = fetch_exception_property_string(exc, "get_Message", true);
 
-	mono_free(trace);
-	mono_free(message);
+	if(trace != NULL)
+		mono_free(trace);
+	if(message != NULL)
+		mono_free(message);
 
 	//printf("Unhandled managed exception:\n");
 	//printf("%s (%s)\n%s\n", message, type_name, trace ? trace : "");

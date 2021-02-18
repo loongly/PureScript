@@ -16,6 +16,8 @@ namespace PureScript
 
         [DllImport(XMONO_LIB, EntryPoint = "OnExceptionMono", CallingConvention = CallingConvention.Cdecl)]
         public static extern void OnException(string msg);
+        [DllImport(XMONO_LIB, EntryPoint = "CheckExceptionIl2cpp", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CheckException();
     }
 }
 

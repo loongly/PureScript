@@ -116,6 +116,8 @@ namespace Generater
 
                     CS.Writer.WriteLine($"[MonoPInvokeCallback(typeof({methodName}_Type))]", false);
                     CS.Writer.Start($"static {MethodResolver.Resolve(method).ReturnType()} {methodName} {Utils.BindMethodParamDefine(method, true)}");
+
+                    CS.Writer.WriteLine("Exception __e = null");
                     CS.Writer.Start("try");
 
                     var reName = MethodResolver.Resolve(method).Implement("_value");
@@ -123,10 +125,14 @@ namespace Generater
                         CS.Writer.WriteLine($"return {reName}");
                     CS.Writer.End();//try
                     CS.Writer.Start("catch(Exception e)");
-                    CS.Writer.WriteLine("ScriptEngine.OnException(e.ToString())");
+                    CS.Writer.WriteLine("__e = e");
+                    CS.Writer.End();//catch
+
+                    CS.Writer.WriteLine("if(__e != null)", false);
+                    CS.Writer.WriteLine("ScriptEngine.OnException(__e.ToString())");
                     if (!string.IsNullOrEmpty(reName))
                         CS.Writer.WriteLine($"return default({MethodResolver.Resolve(method).ReturnType()})");
-                    CS.Writer.End();//catch
+
                     CS.Writer.End();//method
 
                 }

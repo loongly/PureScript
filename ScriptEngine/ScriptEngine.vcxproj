@@ -79,8 +79,8 @@
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Program Files\Mono\include\mono-2.0;E:\Program Files\Unity2018.4.7f\Editor\Data\il2cpp\libil2cpp;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\Mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>F:\Work\Project\mono\msvc\include;E:\Program Files\Unity2018.4.7f\Editor\Data\il2cpp\libil2cpp;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\Work\Project\mono\msvc\build\sgen\x64\lib\Debug;$(LibraryPath)</LibraryPath>
     <OutDir>F:\Project\UnityBind\PureScript\DemoProject\Export\build\bin\DemoProject_Data\Plugins\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
