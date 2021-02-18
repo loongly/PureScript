@@ -128,6 +128,7 @@ namespace Generater
             eventFuncDeclear += ")";
 
             CS.Writer.Start(eventFuncDeclear);
+            CS.Writer.WriteLine("Exception __e = null");
             CS.Writer.Start("try");
             //_logMessageReceived(unbox(arg0), unbox(arg1), unbox(arg2));
             var callCmd = $"_{name}(";
@@ -163,10 +164,12 @@ namespace Generater
             }
             CS.Writer.End();//try
             CS.Writer.Start("catch(Exception e)");
-            CS.Writer.WriteLine("ScriptEngine.OnException(e.ToString())");
+            CS.Writer.WriteLine("__e = e");
+            CS.Writer.End();//catch
+            CS.Writer.WriteLine("if(__e != null)", false);
+            CS.Writer.WriteLine("ScriptEngine.OnException(__e.ToString())");
             if (returnType != null)
                 CS.Writer.WriteLine($"return default({returnTypeName})");
-            CS.Writer.End();//catch
 
             CS.Writer.End();//method
 
@@ -188,6 +191,7 @@ namespace Generater
                 CS.Writer.WriteLine(Utils.BindMethodName(method, false, false) + $"({targetHandle}{res})");
                 //var value_p = Marshal.GetFunctionPointerForDelegate(logMessageReceivedAction);
                 //MonoBind.UnityEngine_Application_add_logMessageReceived(value_p);
+                CS.Writer.WriteLine("ScriptEngine.CheckException()");
                 CS.Writer.End(); //if(attach)
                 CS.Writer.End(); // add
             }
@@ -199,6 +203,7 @@ namespace Generater
                 CS.Writer.Start($"if(_{name} == null)");
                 var res = TypeResolver.Resolve(type).Box($"{name}Action");
                 CS.Writer.WriteLine(Utils.BindMethodName(removeMethod, false, false) + $"({targetHandle}{res})");
+                CS.Writer.WriteLine("ScriptEngine.CheckException()");
                 CS.Writer.End(); //if(attach)
                 CS.Writer.End(); // remove
             }

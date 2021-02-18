@@ -62,6 +62,7 @@ namespace Generater
             }
             writer.Start("get");
             var res =  MethodResolver.Resolve(genMethod).Call("res");
+            writer.WriteLine("ScriptEngine.CheckException()");
             writer.WriteLine($"return {res}");
             writer.End();
         }
@@ -76,6 +77,7 @@ namespace Generater
 
             writer.Start("set");
             MethodResolver.Resolve(genMethod).Call("");
+            writer.WriteLine("ScriptEngine.CheckException()");
             writer.End();
         }
 
@@ -83,6 +85,7 @@ namespace Generater
         {
             writer.Start("add");
             MethodResolver.Resolve(genMethod).Call("");
+            writer.WriteLine("ScriptEngine.CheckException()");
             writer.End();
         }
 
@@ -90,6 +93,7 @@ namespace Generater
         {
             writer.Start("remove");
             MethodResolver.Resolve(genMethod).Call("");
+            writer.WriteLine("ScriptEngine.CheckException()");
             writer.End();
         }
 
@@ -101,10 +105,12 @@ namespace Generater
                 if(genMethod.DeclaringType.IsValueType)
                 {
                     CS.Writer.WriteLine(Utils.BindMethodName(genMethod));
+                    writer.WriteLine("ScriptEngine.CheckException()");
                 }
                 else
                 {
                     CS.Writer.WriteLine($"var h = {Utils.BindMethodName(genMethod)}");
+                    writer.WriteLine("ScriptEngine.CheckException()");
                     CS.Writer.WriteLine($"SetHandle(h)");
                     CS.Writer.WriteLine("ObjectStore.Store(this, h)");
                 }
@@ -112,6 +118,7 @@ namespace Generater
             else
             {
                 var res = MethodResolver.Resolve(genMethod).Call("res");
+                writer.WriteLine("ScriptEngine.CheckException()");
                 writer.WriteLine($"return {res}");
             }
             

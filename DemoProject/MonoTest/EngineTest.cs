@@ -10,7 +10,15 @@ public class EngineTest
 
     public static void Main(string[] args)
     {
-        StartTest();
+
+        try
+        {
+            StartTest();
+        }catch(Exception e)
+        {
+            Debug.LogError(e.ToString());
+        }
+        
     }
 
     static void StartTest()
@@ -31,7 +39,6 @@ public class EngineTest
         //obj.AddComponent<TestLoader>();
         //obj.AddComponent<TestBehaviourScript>();
         obj.AddComponent<TestException>();
-        
     }
 
     static void TestCube()
