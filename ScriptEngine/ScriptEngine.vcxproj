@@ -184,11 +184,16 @@
     <ClCompile Include="main\glib.c" />
     <ClCompile Include="custom\icall_binding.c" />
     <ClCompile Include="main\il2cpp_support.c" />
-    <ClCompile Include="main\main.c" />
+    <ClCompile Include="main\ios\aot_module_register.c" />
     <ClCompile Include="main\runtime.c" />
     <ClCompile Include="ScriptEngine.c" />
     <ClCompile Include="main\Mediator.cpp" />
     <ClCompile Include="custom\wrapper.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="main\ios\ios_setup.m">
+      <FileType>CppCode</FileType>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

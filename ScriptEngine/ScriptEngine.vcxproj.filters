@@ -38,9 +38,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main\main.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main\runtime.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -74,5 +71,11 @@
     <ClCompile Include="main\Mediator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="main\ios\aot_module_register.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="main\ios\ios_setup.m" />
   </ItemGroup>
 </Project>
