@@ -291,7 +291,7 @@ MonoString* UnityEngine_Application_get_persistentDataPath()
 
 void init_event();
 void regist_icall_gen();
-void mono_ios_register_icall(void)
+void mono_register_icall(void)
 {
 	init_il2cpp();
 	init_wrapper();

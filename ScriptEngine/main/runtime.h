@@ -12,6 +12,10 @@
 #include <mono/jit/jit.h>
 //#include <mono/metadata/object.h>
 
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR || TARGET_OS_TV || TARGET_TVOS_SIMULATOR
+#define RUNTIME_IOS 1
+#endif
+
 #if defined(__cplusplus)
 extern "C"
 {
@@ -27,8 +31,6 @@ extern "C"
 	MonoAssembly* load_assembly(const char *name, const char *culture);
 
 	MonoObject * mono_exception_property(MonoObject *obj, const char *name, char is_virtual);
-
-	MonoObject* mono_runtime_invoke_try(MonoMethod *method, void *obj, void **params);
 
 #if defined(__cplusplus)
 }

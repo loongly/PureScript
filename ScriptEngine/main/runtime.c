@@ -1,8 +1,4 @@
-#if IOS
-#import <Foundation/Foundation.h>
-#import <os/log.h>
-#include <sys/mman.h>
-#else
+#if !RUNTIME_IOS
 #include <windows.h>
 #include <assert.h>
 #endif
@@ -13,10 +9,6 @@
 #include <mono/metadata/assembly.h>
 #include <mono/metadata/mono-debug.h>
 #include <mono/metadata/exception.h>
-
-
-
-
 
 #include <sys/stat.h>
 #include <stdio.h>
@@ -29,7 +21,6 @@ typedef char bool;
 #define true 1
 
 char* bundle_path = NULL;
-char* doc_path = NULL;
 
 void* g_manageFuncPtr;
 MonoDomain *g_domain;
@@ -55,86 +46,35 @@ strdup_printf(const char *msg, ...)
 }
 
 const char *
-get_bundle_path(void)
+runtime_bundle_path(void)
 {
-	if (bundle_path)
-		return bundle_path;
-
-#if IOS
-	NSBundle *main_bundle = [NSBundle mainBundle];
-	NSString *path;
-
-	path = [main_bundle bundlePath];
-	bundle_path = strdup([path UTF8String]);
-#else
-
-/*
-	char path[1024];
-	bundle_path = (char *)malloc(MAX_PATH);
-	memset(bundle_path, 0, MAX_PATH);
-	GetModuleFileName(NULL, bundle_path, MAX_PATH); // 得到当前执行文件的文件名（包含路径）
-	*(strrchr(bundle_path, '\\')) = '\0';   // 删除文件名，只留下目录
-*/
-
-	if ((bundle_path = _getcwd(NULL, 0)) == NULL)
-	{
-		perror("getcwd error");
-	}
-	else
-	{
-		printf("bundle_path=%s\n", bundle_path);
-	}
-#endif
-
 	return bundle_path;
 }
 
-const char *
-get_documents_path(void)
-{
-	if (doc_path)
-		return doc_path;
-
-#if IOS
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [paths objectAtIndex : 0];
-	doc_path = strdup([path UTF8String]);
-#else
-	if ((doc_path = _getcwd(NULL, 0)) == NULL)
-	{
-		perror("getcwd error");
-	}
-	else
-	{
-		printf("doc_path=%s\n", doc_path);
-	}
-#endif
-	return doc_path;
-}
 
 MonoAssembly*
 load_assembly(const char *name, const char *culture)
 {
-	const char *bundle = get_bundle_path();
+	const char *bundle = runtime_bundle_path();
 	char path[1024];
 	int res;
 
-	printf("assembly_preload_hook: %s %s %s\n", name, culture, bundle);
+	printf("load_assembly: %s %s %s\n", name, culture, bundle);
 	if (culture && strcmp(culture, ""))
 		res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s/%s", bundle, culture, name);
 	else
 		res = snprintf(path, sizeof(path) - 1, "%s\\Managed\\%s", bundle, name);
 	assert(res > 0);
 
-	if (!file_exists(path))
+	/*if (!file_exists(path))
 	{
 		const char *documents = get_documents_path();
 		res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s", documents, name);
 		assert(res > 0);
-	}
+	}*/
 
 
-	printf("assembly_preload_hook load path: %s \n", path);
+	printf("load_assembly load path: %s \n", path);
 	if (file_exists(path)) {
 		MonoAssembly *assembly = mono_assembly_open(path, NULL);
 		assert(assembly);
@@ -222,44 +162,17 @@ unhandled_exception_handler(MonoObject *exc, void *user_data)
 	char *trace = fetch_exception_property_string(exc, "get_StackTrace", true);
 	char *message = fetch_exception_property_string(exc, "get_Message", true);
 
-	if(trace != NULL)
+	printf("Unhandled managed exception:\n");
+	printf("%s (%s)\n%s\n", message, type_name, trace ? trace : "");
+
+	if (trace != NULL)
 		mono_free(trace);
-	if(message != NULL)
+	if (message != NULL)
 		mono_free(message);
 
-	//printf("Unhandled managed exception:\n");
-	//printf("%s (%s)\n%s\n", message, type_name, trace ? trace : "");
-
-	
-
 	//os_log_info (OS_LOG_DEFAULT, "%@", msg);
-	//printf("Exit code: %d.", 1);
-	//exit(1);
-}
-
-
-MonoObject* mono_runtime_invoke_try(MonoMethod *method, void *obj, void **params) 
-{
-	MonoObject *exc = NULL;
-	MonoObject* res = mono_runtime_invoke(method, obj, params, &exc);
-
-	if (exc != NULL)
-	{
-		MonoClass *type = mono_object_get_class(exc);
-		const char* type_name = mono_class_get_name(type);
-		//char *type_name = strdup_printf("%s.%s", mono_class_get_namespace(type), mono_class_get_name(type));
-		char *trace = fetch_exception_property_string(exc, "get_StackTrace", true);
-		char *message = fetch_exception_property_string(exc, "get_Message", true);
-
-		//printf("%s (%s)\n%s\n", message, type_name, trace ? trace : "");
-		//TODO: exception..
-
-		free(trace);
-		free(message);
-		free(type_name);
-		return NULL;
-	}
-	return res;
+	printf("Exit code: %d.", 1);
+	exit(1);
 }
 
 /*
@@ -272,9 +185,11 @@ static void* custom_malloc(size_t bytes)
 }*/
 
 /* Implemented by generated code */
-void mono_ios_register_icall(void);
-//void mono_ios_register_modules(void);
-//void mono_ios_setup_execution_mode(void);
+void mono_register_icall(void);
+
+#if RUNTIME_IOS
+void mono_ios_runtime_init(void);
+#endif
 
 void mono_debug() {
 
@@ -285,21 +200,6 @@ void mono_debug() {
 		  "--debugger-agent=transport=dt_socket,address=127.0.0.1:10001,embedding=1,server=y,suspend=n"
 	};
 	mono_jit_parse_options(sizeof(options) / sizeof(char*), (char**)options);
-
-
-	/*int da_port = GLOBAL_DEF("mono/debugger_agent/port", 23685);
-	bool da_suspend = GLOBAL_DEF("mono/debugger_agent/wait_for_debugger", false);
-	int da_timeout = GLOBAL_DEF("mono/debugger_agent/wait_timeout", 3000);
-
-	CharString da_args = String("--debugger-agent=transport=dt_socket,address=127.0.0.1:" + itos(da_port) +
-		",embedding=1,server=y,suspend=" + (da_suspend ? "y,timeout=" + itos(da_timeout) : "n"))
-		.utf8();
-	// --debugger-agent=help
-	const char *options[] = {
-		"--soft-breakpoints",
-		da_args.get_data()
-	};
-	mono_jit_parse_options(2, (char **)options);*/
 }
 
 int 
@@ -331,20 +231,22 @@ mono_setup(char* bundleDir, const char* file) {
 	 * mono_jit_init() creates a domain: each assembly is
 	 * loaded and run in a MonoDomain.
 	 */
+
+#if RUNTIME_IOS
+	mono_ios_runtime_init();
+#endif
 	g_domain = mono_jit_init (file);
 	/*
 	 * We add our special internal call, so that C# code
 	 * can call us back.
 	 */
-	mono_ios_register_icall();
+	mono_register_icall();
 
 	char *managed_argv[2];
 	managed_argv[0] = file;
 	managed_argv[1] = file;
 	main_function (g_domain, file, 2, managed_argv);
 	
-	//fprintf (stdout, "custom malloc calls = %d\n", malloc_count);
-
 	return retval;
 }
 
