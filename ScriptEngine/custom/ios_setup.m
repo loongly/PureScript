@@ -30,6 +30,58 @@ extern void mono_sgen_mono_ilgen_init (void);
 
 const char * runtime_bundle_path(void);
 
+static char *bundle_path;
+static char *doc_path;
+
+const char *
+get_bundle_path (void)
+{
+    if (bundle_path)
+        return bundle_path;
+    
+    #if RUNTIME_IOS
+    NSBundle *main_bundle = [NSBundle mainBundle];
+    NSString *path;
+    
+    path = [main_bundle bundlePath];
+    bundle_path = strdup ([path UTF8String]);
+#else
+    if ((bundle_path = _getcwd(NULL, 0)) == NULL)
+    {
+        perror("getcwd error");
+    }
+    else
+    {
+        printf("doc_path=%s\n", doc_path);
+    }
+#endif
+    return bundle_path;
+}
+
+const char *
+get_documents_path(void)
+{
+    if (doc_path)
+        return doc_path;
+    
+#if RUNTIME_IOS
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [paths objectAtIndex : 0];
+    doc_path = strdup([path UTF8String]);
+#else
+    if ((doc_path = _getcwd(NULL, 0)) == NULL)
+    {
+        perror("getcwd error");
+    }
+    else
+    {
+        printf("doc_path=%s\n", doc_path);
+    }
+#endif
+    return doc_path;
+}
+
+
 void mono_ios_setup_execution_mode (void)
 {
 	mono_icall_table_init ();
@@ -58,7 +110,7 @@ load_aot_data (MonoAssembly *assembly, int size, void *user_data, void **out_han
 	const char *bundle = runtime_bundle_path ();
 
 	// LOG (PRODUCT ": Looking for aot data for assembly '%s'.", name);
-	res = snprintf (path, sizeof (path) - 1, "%s/%s.aotdata", bundle, aname);
+	res = snprintf (path, sizeof (path) - 1, "%s/%s.dll.aotdata", bundle, aname);
 	assert (res > 0);
 
 	int fd = open (path, O_RDONLY);
@@ -129,28 +181,96 @@ mono_ios_runtime_init (void)
 	//mono_jit_init_version ("Mono.ios", "mobile");
 }
 
-char* doc_path = NULL;
-const char *
-get_documents_path(void)
-{
-	if (doc_path)
-		return doc_path;
 
-#if RUNTIME_IOS
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [paths objectAtIndex : 0];
-	doc_path = strdup([path UTF8String]);
+
+//
+// ICALLS used by the mobile profile of mscorlib
+//
+// NOTE: The timezone functions are duplicated in XI, so if you're going to modify here, you have to
+// modify there.
+//
+// See in XI runtime/xamarin-support.m
+
+void*
+xamarin_timezone_get_data (const char *name, uint32_t *size)
+{
+    NSTimeZone *tz = nil;
+    if (name) {
+        NSString *n = [[NSString alloc] initWithUTF8String: name];
+        tz = [[NSTimeZone alloc] initWithName:n];
+    } else {
+        tz = [NSTimeZone localTimeZone];
+    }
+    NSData *data = [tz data];
+    *size = [data length];
+    void* result = malloc (*size);
+    memcpy (result, data.bytes, *size);
+    return result;
+}
+
+//
+// Returns the geopolitical region ID of the local timezone.
+
+const char *
+xamarin_timezone_get_local_name ()
+{
+    NSTimeZone *tz = nil;
+    tz = [NSTimeZone localTimeZone];
+    NSString *name = [tz name];
+    return (name != nil) ? strdup ([name UTF8String]) : strdup ("Local");
+}
+
+char**
+xamarin_timezone_get_names (uint32_t *count)
+{
+    // COOP: no managed memory access: any mode.
+    NSArray *array = [NSTimeZone knownTimeZoneNames];
+    *count = array.count;
+    char** result = (char**) malloc (sizeof (char*) * (*count));
+    for (uint32_t i = 0; i < *count; i++) {
+        NSString *s = [array objectAtIndex: i];
+        result [i] = strdup (s.UTF8String);
+    }
+    return result;
+}
+
+// called from mono-extensions/mcs/class/corlib/System/Environment.iOS.cs
+const char *
+xamarin_GetFolderPath (int folder)
+{
+    // COOP: no managed memory access: any mode.
+    // NSUInteger-based enum (and we do not want corlib exposed to 32/64 bits differences)
+    NSSearchPathDirectory dd = (NSSearchPathDirectory) folder;
+    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:dd inDomains:NSUserDomainMask] lastObject];
+    NSString *path = [url path];
+    return strdup ([path UTF8String]);
+}
+
+
+// mcs/class/corlib/System/Console.iOS.cs
+void
+xamarin_log (const unsigned short *unicodeMessage)
+{
+    // COOP: no managed memory access: any mode.
+    int length = 0;
+    const unsigned short *ptr = unicodeMessage;
+    while (*ptr++)
+        length += sizeof (unsigned short);
+    NSString *msg = [[NSString alloc] initWithBytes: unicodeMessage length: length encoding: NSUTF16LittleEndianStringEncoding];
+    
+   // if(print_log_callback != NULL)
+    //    print_log_callback(msg);
+#if TARGET_OS_WATCH && defined (__arm__) // maybe make this configurable somehow?
+    const char *utf8 = [msg UTF8String];
+    int len = strlen (utf8);
+    fwrite (utf8, 1, len, stdout);
+    if (len == 0 || utf8 [len - 1] != '\n')
+        fwrite ("\n", 1, 1, stdout);
+    fflush (stdout);
 #else
-	if ((doc_path = _getcwd(NULL, 0)) == NULL)
-	{
-		perror("getcwd error");
-	}
-	else
-	{
-		printf("doc_path=%s\n", doc_path);
-	}
+ //   os_log (stdout_log, "%{public}@", msg);
+    NSLog (@"%@", msg);
 #endif
-	return doc_path;
 }
 
 #endif

@@ -181,7 +181,11 @@ MonoString* get_mono_string(Il2CppString* str)
 }
 Il2CppString* get_il2cpp_string(MonoString* str)
 {
-	return (Il2CppString*)str;
+    int32_t len = mono_string_length(str);
+    Il2CppChar* chars = (Il2CppChar* )mono_string_to_utf16(str);
+
+    return  il2cpp_string_new_utf16(chars, len);
+
 }
 
 MonoArray* get_mono_array(Il2CppArray * array)
@@ -193,6 +197,14 @@ MonoArray* get_mono_array(Il2CppArray * array)
 
 	Il2CppClass* eklass = il2cpp_class_get_element_class(il2cpp_object_get_class((Il2CppObject*)array));
 	MonoClass* monoklass = get_mono_class(eklass);
+    if(monoklass == NULL)
+    {
+        Il2CppObject* il2cppObj = il2cpp_array_get(array, Il2CppObject*, 0);
+        MonoObject* monoObj = get_mono_object(il2cppObj, NULL);
+        if(monoObj != NULL)
+            monoklass = mono_object_get_class(monoObj);
+    }
+    
 	int32_t len = il2cpp_array_length(array);
 	monoArray = mono_array_new(g_domain, monoklass, len);
 	if (len == 0)
@@ -260,6 +272,8 @@ Il2CppClass* get_il2cpp_class(MonoClass* mclass)
 MonoClass* get_mono_class(Il2CppClass* mclass) 
 {
 	const char* ns = il2cpp_class_get_namespace(mclass);
+    if(is_wrapper_name_space(ns))
+        return NULL;
 	const char* cname = il2cpp_class_get_name(mclass);
 	const Il2CppImage* mimage = il2cpp_class_get_image(mclass);
 	const char* asmName = il2cpp_image_get_name(mimage);

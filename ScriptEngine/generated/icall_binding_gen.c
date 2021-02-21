@@ -15499,13 +15499,16 @@ void UnityEngine_Cursor_SetCursor_Injected(MonoObject* texture, void * hotspot, 
 }
 void UnityEngine_DebugLogHandler_Internal_Log(int32_t level, MonoString* msg, MonoObject* obj)
 {
+   
 	typedef void (* ICallMethod) (int32_t level, Il2CppString* msg, Il2CppObject* obj);
 	static ICallMethod icall;
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.DebugLogHandler::Internal_Log");
+    Il2CppChar* chars = (Il2CppChar* )mono_string_to_utf16(msg);
+    
 	Il2CppString* i2msg = get_il2cpp_string(msg);
 	Il2CppObject* i2obj = get_il2cpp_object(obj,il2cpp_get_class_UnityEngine_Object());
-	icall(level,i2msg,i2obj);
+	//icall(level,i2msg,i2obj);
 }
 void UnityEngine_DebugLogHandler_Internal_LogException(MonoObject* exception, MonoObject* obj)
 {
