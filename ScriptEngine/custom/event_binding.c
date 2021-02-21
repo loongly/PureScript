@@ -1,6 +1,7 @@
-// auto gengerated !
-#include "../custom/event_binding.h"
-#include "../main/Mediator.h"
+
+#include "engine_include.h"
+#include "event_binding.h"
+
 
 void init_event_method(EventMethodDesc* desc, MonoClass *monoklass, Il2CppClass* ilklass, const char* method_name, int param_count, Il2CppMethodPointer hook2)
 {

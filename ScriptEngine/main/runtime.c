@@ -1,20 +1,22 @@
+#include "runtime.h"
+
 #if !RUNTIME_IOS
 #include <windows.h>
-#include <assert.h>
+#include <direct.h>
 #endif
 
-#include <mono/metadata/environment.h>
-#include <mono/utils/mono-publib.h>
-#include <mono/utils/mono-logger.h>
-#include <mono/metadata/assembly.h>
-#include <mono/metadata/mono-debug.h>
-#include <mono/metadata/exception.h>
+#include "mono/metadata/environment.h"
+#include "mono/utils/mono-publib.h"
+#include "mono/utils/mono-logger.h"
+#include "mono/metadata/assembly.h"
+#include "mono/metadata/mono-debug.h"
+#include "mono/metadata/exception.h"
 
 #include <sys/stat.h>
 #include <stdio.h>
-#include <direct.h>
-
-#include "runtime.h"
+#include <string.h>
+#include <assert.h>
+#include <stdarg.h>
 
 typedef char bool;
 #define false 0
@@ -217,8 +219,8 @@ mono_setup(char* bundleDir, const char* file) {
 
 	mono_install_unhandled_exception_hook(unhandled_exception_handler, NULL);
 	mono_trace_set_log_handler(log_callback, NULL);
-	mono_set_signal_chaining(TRUE);
-	mono_set_crash_chaining(TRUE);
+	mono_set_signal_chaining(true);
+	mono_set_crash_chaining(true);
 
 	mono_debug();
 	/*

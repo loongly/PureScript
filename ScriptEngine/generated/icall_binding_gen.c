@@ -1,7 +1,7 @@
 
-#include "../main/runtime.h"
-#include "../main/il2cpp_support.h"
-#include "../main/Mediator.h"
+#include "../lib/include/runtime.h"
+#include "../lib/include/il2cpp_support.h"
+#include "../lib/include/Mediator.h"
 #include "class_cache_gen.h"
 void UnityEngine_AI_NavMeshPath__ctor(MonoObject* thiz)
 {

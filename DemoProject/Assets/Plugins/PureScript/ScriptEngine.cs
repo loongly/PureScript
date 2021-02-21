@@ -9,7 +9,11 @@ namespace PureScript
 {
     public class ScriptEngine
     {
+#if UNITY_IOS
+        const string XMONO_LIB = "__Internal";
+#else
         const string XMONO_LIB = "ScriptEngine";
+#endif
 
         [DllImport(XMONO_LIB, CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetupMono([In()] [MarshalAs(UnmanagedType.LPStr)]string bundleDir, [In()] [MarshalAs(UnmanagedType.LPStr)] string exeName);

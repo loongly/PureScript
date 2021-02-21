@@ -1,9 +1,9 @@
-﻿// MonoLib.cpp : 定义 DLL 应用程序的导出函数。
+// MonoLib.cpp : 定义 DLL 应用程序的导出函数。
 //
 
-#include "main/runtime.h"
-#include "main/Mediator.h"
-#include <mono/metadata/exception.h>
+#include "runtime.h"
+#include "Mediator.h"
+#include "mono/metadata/exception.h"
 
 // Macro to put before functions that need to be exposed to C#
 #ifdef _WIN32

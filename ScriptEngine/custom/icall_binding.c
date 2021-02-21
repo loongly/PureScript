@@ -1,6 +1,4 @@
-#include "../main/runtime.h"
-#include "../main/il2cpp_support.h"
-#include "../main/Mediator.h"
+#include "engine_include.h"
 #include "wrapper.h"
 
 

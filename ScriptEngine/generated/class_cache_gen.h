@@ -1,8 +1,8 @@
 
 #pragma once
-#include "../main/runtime.h"
-#include "../main/il2cpp_support.h"
-#include "../main/Mediator.h"
+#include "../lib/include/runtime.h"
+#include "../lib/include/il2cpp_support.h"
+#include "../lib/include/Mediator.h"
 #if defined(__cplusplus)
 extern "C" {
 #endif

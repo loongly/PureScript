@@ -1,21 +1,21 @@
 #include "Mediator.h"
-#include <mono/metadata/object.h>
-#include <mono/metadata/environment.h>
-#include <mono/utils/mono-publib.h>
-#include <mono/utils/mono-logger.h>
-#include <mono/metadata/assembly.h>
-#include <mono/metadata/mono-debug.h>
-#include <mono/metadata/exception.h>
-#include <mono/metadata/debug-helpers.h>
-#include <mono/metadata/object-forward.h>
-#include <mono/metadata/object.h>
+#include "mono/metadata/object.h"
+#include "mono/metadata/environment.h"
+#include "mono/utils/mono-publib.h"
+#include "mono/utils/mono-logger.h"
+#include "mono/metadata/assembly.h"
+#include "mono/metadata/mono-debug.h"
+#include "mono/metadata/exception.h"
+#include "mono/metadata/debug-helpers.h"
+#include "mono/metadata/object-forward.h"
+#include "mono/metadata/object.h"
 
 #include <map>
 #include <string>
 
 #include "runtime.h"
 //#include "internals.h"
-#include "../custom/Wrapper.h"
+//#include "../custom/Wrapper.h"
 
 
 bool is_unity_name_space(const char* ns)
@@ -419,6 +419,82 @@ void raise_il2cpp_exception_runtime(const char* msg)
 	il2cpp_raise_exception(exc);
 }
 
+#pragma region WrapperBind
+
+
+void call_wrapper_init(Il2CppObject* il2cpp, MonoObject* mono)
+{
+    Il2CppClass* klass = il2cpp_object_get_class(il2cpp);
+    
+    /*if (!is_wrapper_class(klass))
+     return;*/
+    
+    WrapperHead* il2cppHead = (WrapperHead*)(il2cpp);
+    if(il2cppHead->handle != 0)
+        mono_gchandle_free(il2cppHead->handle);
+    il2cppHead->handle = mono_gchandle_new(mono, FALSE);
+    
+    const char* ns = mono_class_get_namespace(mono_object_get_class(mono));
+    if (klass == get_monobehaviour_wrapper_class())
+    {
+        UnityObjectHead* monoHead = (UnityObjectHead*)(mono);
+        if (monoHead->objectPtr == NULL)
+            monoHead->objectPtr = il2cpp;
+    }
+    
+    const MethodInfo* method = il2cpp_class_get_method_from_name(klass, "Init", 0);
+    
+    //void* args[1] = { il2cpp_value_box(handle) };
+    Il2CppException* exc = NULL;
+    il2cpp_runtime_invoke(method, il2cpp, NULL, &exc);
+    check_il2cpp_exception(exc);
+}
+
+//more efficient "get_mono_object" for wrapper
+MonoObject* get_mono_wrapper_object(Il2CppObject* il2cpp, MonoClass* m_class)
+{
+    if (il2cpp == NULL)
+        return NULL;
+    WrapperHead* il2cppHead = (WrapperHead*)(il2cpp);
+    MonoObject* mono = NULL;
+    
+    int32_t curHandle = il2cppHead->handle;
+    
+    if (curHandle != 0)
+        mono = mono_gchandle_get_target(curHandle);
+    
+    if (mono == NULL && m_class != NULL)
+    {
+        mono = mono_object_new(g_domain, m_class);
+        call_wrapper_init(il2cpp, mono);
+    }
+    return mono;
+}
+
+Il2CppClass* get_monobehaviour_wrapper_class()
+{
+    static Il2CppClass* monobehaviour_wrapper_class;
+    if (monobehaviour_wrapper_class == NULL)
+    {
+        monobehaviour_wrapper_class = il2cpp_search_class("PureScript.dll", "PureScriptWrapper", "MonoBehaviourWrapper");
+        //il2cpp_add_flag(monobehaviour_wrapper_class, CLASS_MASK_WRAPPER);
+    }
+    return monobehaviour_wrapper_class;
+}
+
+Il2CppReflectionType* get_monobehaviour_wrapper_rtype()
+{
+    static Il2CppReflectionType* monobehaviour_wrapper_rtype;
+    if (monobehaviour_wrapper_rtype == NULL)
+    {
+        Il2CppClass* kclass = get_monobehaviour_wrapper_class();
+        const Il2CppType* ktype = il2cpp_class_get_type(kclass);
+        monobehaviour_wrapper_rtype = (Il2CppReflectionType*)il2cpp_type_get_object(ktype);
+    }
+    
+    return monobehaviour_wrapper_rtype;
+}
+#pragma endregion
 
 
 const char* debug_mono_obj(MonoObject* obj)
