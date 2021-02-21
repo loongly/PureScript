@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../main/runtime.h"
-#include "../main/il2cpp_support.h"
+#include "engine_include.h"
 
 
 #if defined(__cplusplus)

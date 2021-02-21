@@ -3,8 +3,7 @@
 #ifndef __h_event_binding__
 #define __h_event_binding__
 
-#include <mono/jit/jit.h>
-#include "../main//il2cpp_support.h"
+#include "engine_include.h"
 //#include "il2cpp-class-internals.h"
 
 #if defined _MSC_VER
