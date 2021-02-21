@@ -48,9 +48,15 @@ strdup_printf(const char *msg, ...)
 }
 
 const char *
+get_bundle_path (void);
+
+const char *
+get_documents_path (void);
+
+const char *
 runtime_bundle_path(void)
 {
-	return bundle_path;
+	return get_bundle_path();
 }
 
 
@@ -65,7 +71,7 @@ load_assembly(const char *name, const char *culture)
 	if (culture && strcmp(culture, ""))
 		res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s/%s", bundle, culture, name);
 	else
-		res = snprintf(path, sizeof(path) - 1, "%s\\Managed\\%s", bundle, name);
+		res = snprintf(path, sizeof(path) - 1, "%s/%s", bundle, name);
 	assert(res > 0);
 
 	/*if (!file_exists(path))
@@ -91,6 +97,7 @@ static void main_function (MonoDomain *domain, const char *file, int argc, char*
 
 	//assembly = mono_domain_assembly_open (domain, file);
 
+    load_assembly("AdapterWrapper.dll", NULL);
 	MonoAssembly *assembly = load_assembly(file, NULL);
 
 	if (!assembly)
@@ -114,7 +121,7 @@ assembly_preload_hook(MonoAssemblyName *aname, char **assemblies_path, void* use
 }
 
 void
-log_callback(const char *log_domain, const char *log_level, const char *message, mono_bool fatal, void *user_data)
+log_callback_default(const char *log_domain, const char *log_level, const char *message, mono_bool fatal, void *user_data)
 {
 	printf("(%s %s) %s", log_domain, log_level, message);
 	if (fatal) {
@@ -218,7 +225,7 @@ mono_setup(char* bundleDir, const char* file) {
 	mono_install_assembly_preload_hook(assembly_preload_hook, NULL);
 
 	mono_install_unhandled_exception_hook(unhandled_exception_handler, NULL);
-	mono_trace_set_log_handler(log_callback, NULL);
+	mono_trace_set_log_handler(log_callback_default, NULL);
 	mono_set_signal_chaining(true);
 	mono_set_crash_chaining(true);
 

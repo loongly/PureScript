@@ -54,7 +54,7 @@ extern "C"
     MonoObject* get_mono_wrapper_object(Il2CppObject* il2cpp, MonoClass* m_class);
     Il2CppClass* get_monobehaviour_wrapper_class();
     Il2CppReflectionType* get_monobehaviour_wrapper_rtype();
-    
+    void call_wrapper_init(Il2CppObject* il2cpp, MonoObject* mono);
 	//Exception
 	MonoException* get_mono_exception(Il2CppException* il2cpp);
 	Il2CppException* get_il2cpp_exception(MonoException* mono);

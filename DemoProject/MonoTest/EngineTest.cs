@@ -23,10 +23,10 @@ public class EngineTest
 
     static void StartTest()
     {
-        var ptr = ScriptEngine.GetFuncPointer();
-        MonoBind.InitBind(ptr);
+        //var ptr = ScriptEngine.GetFuncPointer();
+        //MonoBind.InitBind(ptr);
 
-        DebugHelper.InitLog(true);
+        //DebugHelper.InitLog(true);
 
         Debug.LogError(" ========223 中午 ==== +-*x&!@$#$()_+<>?{}|ff ~");
 
@@ -36,9 +36,9 @@ public class EngineTest
 
         var obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         //obj.AddComponent<TestDelegate>();
-        //obj.AddComponent<TestLoader>();
-        //obj.AddComponent<TestBehaviourScript>();
-        obj.AddComponent<TestException>();
+        obj.AddComponent<TestLoader>();
+        obj.AddComponent<TestBehaviourScript>();
+        //obj.AddComponent<TestException>();
     }
 
     static void TestCube()

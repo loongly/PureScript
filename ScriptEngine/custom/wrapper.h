@@ -11,7 +11,7 @@ extern "C" {
 
 	Il2CppReflectionType* get_monobehaviour_wrapper_rtype();
 	Il2CppClass* get_monobehaviour_wrapper_class();
-	void call_wrapper_init(Il2CppObject* il2cpp, MonoObject* mono);
+
 
 	//more efficient "get_mono_object" for wrapper
 	MonoObject* get_mono_wrapper_object(Il2CppObject* il2cpp, MonoClass* m_class);
