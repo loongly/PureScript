@@ -5,6 +5,7 @@
 #include <direct.h>
 #endif
 
+#include "mono/jit/jit.h"
 #include "mono/metadata/environment.h"
 #include "mono/utils/mono-publib.h"
 #include "mono/utils/mono-logger.h"
@@ -22,7 +23,7 @@ typedef char bool;
 #define false 0
 #define true 1
 
-char* bundle_path = NULL;
+extern char* mono_runtime_bundle_path;
 
 void* g_manageFuncPtr;
 MonoDomain *g_domain;
@@ -56,6 +57,9 @@ get_documents_path (void);
 const char *
 runtime_bundle_path(void)
 {
+    if(mono_runtime_bundle_path != NULL)
+        return mono_runtime_bundle_path;
+    
 	return get_bundle_path();
 }
 
@@ -66,12 +70,15 @@ load_assembly(const char *name, const char *culture)
 	const char *bundle = runtime_bundle_path();
 	char path[1024];
 	int res;
+    const char *post = name + strlen(name) -4;
 
 	printf("load_assembly: %s %s %s\n", name, culture, bundle);
 	if (culture && strcmp(culture, ""))
 		res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s/%s", bundle, culture, name);
+    else if(strcmp(post, ".dll") == 0 || strcmp(post, ".exe") == 0)
+        res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s", bundle, name);
 	else
-		res = snprintf(path, sizeof(path) - 1, "%s/%s", bundle, name);
+		res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s.dll", bundle, name);
 	assert(res > 0);
 
 	/*if (!file_exists(path))
@@ -214,7 +221,8 @@ void mono_debug() {
 int 
 mono_setup(char* bundleDir, const char* file) {
 
-	bundle_path = bundleDir;
+    mono_runtime_bundle_path = NULL;
+    //mono_runtime_bundle_path = strdup(bundleDir);
 
 
 	int retval = 0;

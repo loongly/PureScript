@@ -1,0 +1,32 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.1'
+# use_frameworks!
+# inhibit_all_warnings!
+use_modular_headers!
+target 'Unity-iPhone' do
+
+  # Pods for Unity-iPhone
+  target 'Unity-iPhone Tests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'UnityFramework' do
+
+  inherit! :search_paths
+  pod 'PureScript', :path => '/Users/***/Documents/Project/PureScript/ScriptEngine'
+  # Pods for UnityFramework
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+      
+    target.build_configurations.each do |config|
+      config.build_settings['ARCHS'] = 'arm64'
+    end
+      
+  end
+end

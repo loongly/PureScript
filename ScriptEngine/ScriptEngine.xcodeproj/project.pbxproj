@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		FD17C11C25E0C90A008C67BE /* ScriptEngine.c in Sources */ = {isa = PBXBuildFile; fileRef = FD17C10725E0C90A008C67BE /* ScriptEngine.c */; };
+		FD45F2C825E5489000A73608 /* runtime.c in Sources */ = {isa = PBXBuildFile; fileRef = FD45F2C425E5489000A73608 /* runtime.c */; };
+		FD45F2C925E5489000A73608 /* il2cpp_support.c in Sources */ = {isa = PBXBuildFile; fileRef = FD45F2C525E5489000A73608 /* il2cpp_support.c */; };
+		FD45F2CA25E5489000A73608 /* Mediator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FD45F2C625E5489000A73608 /* Mediator.cpp */; };
+		FD45F2CB25E5489000A73608 /* glib.c in Sources */ = {isa = PBXBuildFile; fileRef = FD45F2C725E5489000A73608 /* glib.c */; };
+		FD45F2E525E5492800A73608 /* ios_setup.m in Sources */ = {isa = PBXBuildFile; fileRef = FD45F2DB25E5492800A73608 /* ios_setup.m */; };
+		FD45F2E625E5492800A73608 /* wrapper.c in Sources */ = {isa = PBXBuildFile; fileRef = FD45F2DC25E5492800A73608 /* wrapper.c */; };
+		FD45F2E725E5492800A73608 /* event_binding.c in Sources */ = {isa = PBXBuildFile; fileRef = FD45F2DD25E5492800A73608 /* event_binding.c */; };
+		FD45F2E825E5492800A73608 /* icall_binding.c in Sources */ = {isa = PBXBuildFile; fileRef = FD45F2DE25E5492800A73608 /* icall_binding.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,10 +31,63 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		FD173FC025E25F2E00BD43A7 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = SOURCE_ROOT; };
-		FD173FC125E25F4300BD43A7 /* main */ = {isa = PBXFileReference; lastKnownFileType = folder; path = main; sourceTree = SOURCE_ROOT; };
 		FD17C0F525E0C809008C67BE /* libScriptEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScriptEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD17C10725E0C90A008C67BE /* ScriptEngine.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ScriptEngine.c; sourceTree = SOURCE_ROOT; };
+		FD1DEB7525E8B78D00EA173D /* generated */ = {isa = PBXFileReference; lastKnownFileType = folder; path = generated; sourceTree = SOURCE_ROOT; };
+		FD45F2C425E5489000A73608 /* runtime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = runtime.c; sourceTree = "<group>"; };
+		FD45F2C525E5489000A73608 /* il2cpp_support.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = il2cpp_support.c; sourceTree = "<group>"; };
+		FD45F2C625E5489000A73608 /* Mediator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mediator.cpp; sourceTree = "<group>"; };
+		FD45F2C725E5489000A73608 /* glib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glib.c; sourceTree = "<group>"; };
+		FD45F2CD25E548A900A73608 /* libmono-ee-interp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmono-ee-interp.a"; path = "lib/libmono-ee-interp.a"; sourceTree = "<group>"; };
+		FD45F2CF25E548A900A73608 /* libmono-icall-table.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmono-icall-table.a"; path = "lib/libmono-icall-table.a"; sourceTree = "<group>"; };
+		FD45F2D125E548A900A73608 /* libmono-ilgen.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmono-ilgen.a"; path = "lib/libmono-ilgen.a"; sourceTree = "<group>"; };
+		FD45F2D325E548A900A73608 /* libmono-native-unified.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmono-native-unified.a"; path = "lib/libmono-native-unified.a"; sourceTree = "<group>"; };
+		FD45F2D525E548A900A73608 /* libmonosgen-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libmonosgen-2.0.a"; path = "lib/libmonosgen-2.0.a"; sourceTree = "<group>"; };
+		FD45F2D825E5492800A73608 /* wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wrapper.h; sourceTree = "<group>"; };
+		FD45F2DB25E5492800A73608 /* ios_setup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ios_setup.m; sourceTree = "<group>"; };
+		FD45F2DC25E5492800A73608 /* wrapper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wrapper.c; sourceTree = "<group>"; };
+		FD45F2DD25E5492800A73608 /* event_binding.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = event_binding.c; sourceTree = "<group>"; };
+		FD45F2DE25E5492800A73608 /* icall_binding.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = icall_binding.c; sourceTree = "<group>"; };
+		FD45F3CB25E5623300A73608 /* glib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glib.h; sourceTree = "<group>"; };
+		FD45F3CC25E5623300A73608 /* Mediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mediator.h; sourceTree = "<group>"; };
+		FD45F3CD25E5623300A73608 /* runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runtime.h; sourceTree = "<group>"; };
+		FD45F3D025E5623300A73608 /* mono-dl-fallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-dl-fallback.h"; sourceTree = "<group>"; };
+		FD45F3D125E5623300A73608 /* mono-forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-forward.h"; sourceTree = "<group>"; };
+		FD45F3D225E5623300A73608 /* mono-error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-error.h"; sourceTree = "<group>"; };
+		FD45F3D325E5623300A73608 /* mono-jemalloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-jemalloc.h"; sourceTree = "<group>"; };
+		FD45F3D425E5623300A73608 /* mono-publib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-publib.h"; sourceTree = "<group>"; };
+		FD45F3D525E5623300A73608 /* mono-counters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-counters.h"; sourceTree = "<group>"; };
+		FD45F3D625E5623300A73608 /* mono-logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-logger.h"; sourceTree = "<group>"; };
+		FD45F3D825E5623300A73608 /* jit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jit.h; sourceTree = "<group>"; };
+		FD45F3DA25E5623300A73608 /* mono-config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-config.h"; sourceTree = "<group>"; };
+		FD45F3DB25E5623300A73608 /* assembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = assembly.h; sourceTree = "<group>"; };
+		FD45F3DC25E5623300A73608 /* mono-debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-debug.h"; sourceTree = "<group>"; };
+		FD45F3DD25E5623300A73608 /* blob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blob.h; sourceTree = "<group>"; };
+		FD45F3DE25E5623300A73608 /* debug-mono-symfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "debug-mono-symfile.h"; sourceTree = "<group>"; };
+		FD45F3DF25E5623300A73608 /* attrdefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = attrdefs.h; sourceTree = "<group>"; };
+		FD45F3E025E5623300A73608 /* profiler-events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "profiler-events.h"; sourceTree = "<group>"; };
+		FD45F3E125E5623300A73608 /* threads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threads.h; sourceTree = "<group>"; };
+		FD45F3E225E5623300A73608 /* debug-helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "debug-helpers.h"; sourceTree = "<group>"; };
+		FD45F3E325E5623300A73608 /* opcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opcodes.h; sourceTree = "<group>"; };
+		FD45F3E425E5623300A73608 /* metadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metadata.h; sourceTree = "<group>"; };
+		FD45F3E525E5623300A73608 /* row-indexes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "row-indexes.h"; sourceTree = "<group>"; };
+		FD45F3E625E5623300A73608 /* environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = environment.h; sourceTree = "<group>"; };
+		FD45F3E725E5623300A73608 /* object-forward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "object-forward.h"; sourceTree = "<group>"; };
+		FD45F3E825E5623300A73608 /* loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loader.h; sourceTree = "<group>"; };
+		FD45F3E925E5623300A73608 /* sgen-bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "sgen-bridge.h"; sourceTree = "<group>"; };
+		FD45F3EA25E5623300A73608 /* tokentype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tokentype.h; sourceTree = "<group>"; };
+		FD45F3EB25E5623300A73608 /* class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = class.h; sourceTree = "<group>"; };
+		FD45F3EC25E5623300A73608 /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
+		FD45F3ED25E5623300A73608 /* appdomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appdomain.h; sourceTree = "<group>"; };
+		FD45F3EE25E5623300A73608 /* mono-gc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mono-gc.h"; sourceTree = "<group>"; };
+		FD45F3EF25E5623300A73608 /* profiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = profiler.h; sourceTree = "<group>"; };
+		FD45F3F025E5623300A73608 /* exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception.h; sourceTree = "<group>"; };
+		FD45F3F125E5623300A73608 /* image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image.h; sourceTree = "<group>"; };
+		FD45F3F225E5623300A73608 /* reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reflection.h; sourceTree = "<group>"; };
+		FD45F3F325E5623300A73608 /* verify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = verify.h; sourceTree = "<group>"; };
+		FD45F3F425E5623300A73608 /* il2cpp_support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = il2cpp_support.h; sourceTree = "<group>"; };
+		FD45F40125E56D5100A73608 /* engine_include.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = engine_include.h; sourceTree = "<group>"; };
+		FD45F40225E56D5100A73608 /* event_binding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event_binding.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +106,7 @@
 			children = (
 				FD17C0F725E0C809008C67BE /* ScriptEngine */,
 				FD17C0F625E0C809008C67BE /* Products */,
+				FD45F2CC25E548A900A73608 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,11 +121,128 @@
 		FD17C0F725E0C809008C67BE /* ScriptEngine */ = {
 			isa = PBXGroup;
 			children = (
-				FD173FC125E25F4300BD43A7 /* main */,
-				FD173FC025E25F2E00BD43A7 /* lib */,
+				FD1DEB7525E8B78D00EA173D /* generated */,
+				FD45F3CA25E5623300A73608 /* include */,
+				FD45F2D725E5492800A73608 /* custom */,
+				FD45F2C325E5489000A73608 /* main */,
 				FD17C10725E0C90A008C67BE /* ScriptEngine.c */,
 			);
 			path = ScriptEngine;
+			sourceTree = "<group>";
+		};
+		FD45F2C325E5489000A73608 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				FD45F2C425E5489000A73608 /* runtime.c */,
+				FD45F2C525E5489000A73608 /* il2cpp_support.c */,
+				FD45F2C625E5489000A73608 /* Mediator.cpp */,
+				FD45F2C725E5489000A73608 /* glib.c */,
+			);
+			path = main;
+			sourceTree = SOURCE_ROOT;
+		};
+		FD45F2CC25E548A900A73608 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD45F2CD25E548A900A73608 /* libmono-ee-interp.a */,
+				FD45F2CF25E548A900A73608 /* libmono-icall-table.a */,
+				FD45F2D125E548A900A73608 /* libmono-ilgen.a */,
+				FD45F2D325E548A900A73608 /* libmono-native-unified.a */,
+				FD45F2D525E548A900A73608 /* libmonosgen-2.0.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FD45F2D725E5492800A73608 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				FD45F2D825E5492800A73608 /* wrapper.h */,
+				FD45F2DB25E5492800A73608 /* ios_setup.m */,
+				FD45F2DC25E5492800A73608 /* wrapper.c */,
+				FD45F2DD25E5492800A73608 /* event_binding.c */,
+				FD45F2DE25E5492800A73608 /* icall_binding.c */,
+			);
+			path = custom;
+			sourceTree = SOURCE_ROOT;
+		};
+		FD45F3CA25E5623300A73608 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				FD45F40125E56D5100A73608 /* engine_include.h */,
+				FD45F40225E56D5100A73608 /* event_binding.h */,
+				FD45F3CB25E5623300A73608 /* glib.h */,
+				FD45F3CC25E5623300A73608 /* Mediator.h */,
+				FD45F3CD25E5623300A73608 /* runtime.h */,
+				FD45F3CE25E5623300A73608 /* mono */,
+				FD45F3F425E5623300A73608 /* il2cpp_support.h */,
+			);
+			name = include;
+			path = lib/include;
+			sourceTree = SOURCE_ROOT;
+		};
+		FD45F3CE25E5623300A73608 /* mono */ = {
+			isa = PBXGroup;
+			children = (
+				FD45F3CF25E5623300A73608 /* utils */,
+				FD45F3D725E5623300A73608 /* jit */,
+				FD45F3D925E5623300A73608 /* metadata */,
+			);
+			path = mono;
+			sourceTree = "<group>";
+		};
+		FD45F3CF25E5623300A73608 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				FD45F3D025E5623300A73608 /* mono-dl-fallback.h */,
+				FD45F3D125E5623300A73608 /* mono-forward.h */,
+				FD45F3D225E5623300A73608 /* mono-error.h */,
+				FD45F3D325E5623300A73608 /* mono-jemalloc.h */,
+				FD45F3D425E5623300A73608 /* mono-publib.h */,
+				FD45F3D525E5623300A73608 /* mono-counters.h */,
+				FD45F3D625E5623300A73608 /* mono-logger.h */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		FD45F3D725E5623300A73608 /* jit */ = {
+			isa = PBXGroup;
+			children = (
+				FD45F3D825E5623300A73608 /* jit.h */,
+			);
+			path = jit;
+			sourceTree = "<group>";
+		};
+		FD45F3D925E5623300A73608 /* metadata */ = {
+			isa = PBXGroup;
+			children = (
+				FD45F3DA25E5623300A73608 /* mono-config.h */,
+				FD45F3DB25E5623300A73608 /* assembly.h */,
+				FD45F3DC25E5623300A73608 /* mono-debug.h */,
+				FD45F3DD25E5623300A73608 /* blob.h */,
+				FD45F3DE25E5623300A73608 /* debug-mono-symfile.h */,
+				FD45F3DF25E5623300A73608 /* attrdefs.h */,
+				FD45F3E025E5623300A73608 /* profiler-events.h */,
+				FD45F3E125E5623300A73608 /* threads.h */,
+				FD45F3E225E5623300A73608 /* debug-helpers.h */,
+				FD45F3E325E5623300A73608 /* opcodes.h */,
+				FD45F3E425E5623300A73608 /* metadata.h */,
+				FD45F3E525E5623300A73608 /* row-indexes.h */,
+				FD45F3E625E5623300A73608 /* environment.h */,
+				FD45F3E725E5623300A73608 /* object-forward.h */,
+				FD45F3E825E5623300A73608 /* loader.h */,
+				FD45F3E925E5623300A73608 /* sgen-bridge.h */,
+				FD45F3EA25E5623300A73608 /* tokentype.h */,
+				FD45F3EB25E5623300A73608 /* class.h */,
+				FD45F3EC25E5623300A73608 /* object.h */,
+				FD45F3ED25E5623300A73608 /* appdomain.h */,
+				FD45F3EE25E5623300A73608 /* mono-gc.h */,
+				FD45F3EF25E5623300A73608 /* profiler.h */,
+				FD45F3F025E5623300A73608 /* exception.h */,
+				FD45F3F125E5623300A73608 /* image.h */,
+				FD45F3F225E5623300A73608 /* reflection.h */,
+				FD45F3F325E5623300A73608 /* verify.h */,
+			);
+			path = metadata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,7 +279,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FD17C0F025E0C809008C67BE /* Build configuration list for PBXProject "ScriptEngine" */;
+			buildConfigurationList = FD17C0F025E0C809008C67BE /* Build configuration list for PBXProject "ScriptEngine1" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -122,6 +301,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD45F2CB25E5489000A73608 /* glib.c in Sources */,
+				FD45F2E625E5492800A73608 /* wrapper.c in Sources */,
+				FD45F2E525E5492800A73608 /* ios_setup.m in Sources */,
+				FD45F2E825E5492800A73608 /* icall_binding.c in Sources */,
+				FD45F2C825E5489000A73608 /* runtime.c in Sources */,
+				FD45F2E725E5492800A73608 /* event_binding.c in Sources */,
+				FD45F2C925E5489000A73608 /* il2cpp_support.c in Sources */,
+				FD45F2CA25E5489000A73608 /* Mediator.cpp in Sources */,
 				FD17C11C25E0C90A008C67BE /* ScriptEngine.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,9 +432,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					TARGET_OS_IPHONE,
+					"DEBUG=1",
+					"RUNTIME_IOS=1",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/lib/include",
@@ -257,7 +445,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-force_load",
+					"$(SRCROOT)/lib/libmono-native-unified.a",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -268,7 +460,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				GCC_PREPROCESSOR_DEFINITIONS = TARGET_OS_IPHONE;
+				DEAD_CODE_STRIPPING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "RUNTIME_IOS=1";
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/lib/include",
 					/Applications/Unity/2019.4.20f1c1/PlaybackEngines/iOSSupport/il2cpp/libil2cpp/include,
@@ -277,7 +470,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/lib",
 				);
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-force_load",
+					"$(SRCROOT)/lib/libmono-native-unified.a",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -287,7 +484,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FD17C0F025E0C809008C67BE /* Build configuration list for PBXProject "ScriptEngine" */ = {
+		FD17C0F025E0C809008C67BE /* Build configuration list for PBXProject "ScriptEngine1" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FD17C0FC25E0C809008C67BE /* Debug */,

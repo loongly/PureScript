@@ -23,10 +23,10 @@ public class EngineTest
 
     static void StartTest()
     {
-        //var ptr = ScriptEngine.GetFuncPointer();
-        //MonoBind.InitBind(ptr);
+        var ptr = ScriptEngine.GetFuncPointer();
+        MonoBind.InitBind(ptr);
 
-        //DebugHelper.InitLog(true);
+        DebugHelper.InitLog(true);
 
         Debug.LogError(" ========223 中午 ==== +-*x&!@$#$()_+<>?{}|ff ~");
 
