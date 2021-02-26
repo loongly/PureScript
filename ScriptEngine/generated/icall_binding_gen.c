@@ -15504,7 +15504,8 @@ void UnityEngine_DebugLogHandler_Internal_Log(int32_t level, MonoString* msg, Mo
 	static ICallMethod icall;
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.DebugLogHandler::Internal_Log");
-    Il2CppChar* chars = (Il2CppChar* )mono_string_to_utf16(msg);
+    char* chars = mono_string_to_utf8(msg);
+    
     
 	Il2CppString* i2msg = get_il2cpp_string(msg);
 	Il2CppObject* i2obj = get_il2cpp_object(obj,il2cpp_get_class_UnityEngine_Object());

@@ -1,5 +1,4 @@
 
-#include "engine_include.h"
 #if RUNTIME_IOS
 #import <Foundation/Foundation.h>
 #import <os/log.h>
@@ -8,7 +7,7 @@
 
 #include "../lib/include/mono/metadata/assembly.h"
 #include "../lib/include/mono/utils/mono-logger.h"
-
+#include "../lib/include/runtime.h"
 
 #define PRINT(...) do { printf (__VA_ARGS__); } while (0);
 
@@ -30,21 +29,21 @@ extern void mono_sgen_mono_ilgen_init (void);
 
 const char * runtime_bundle_path(void);
 
-static char *bundle_path;
-static char *doc_path;
+char *mono_runtime_bundle_path;
+char *doc_path;
 
 const char *
 get_bundle_path (void)
 {
-    if (bundle_path)
-        return bundle_path;
+    if (mono_runtime_bundle_path)
+        return mono_runtime_bundle_path;
     
     #if RUNTIME_IOS
     NSBundle *main_bundle = [NSBundle mainBundle];
     NSString *path;
     
     path = [main_bundle bundlePath];
-    bundle_path = strdup ([path UTF8String]);
+    mono_runtime_bundle_path = strdup ([path UTF8String]);
 #else
     if ((bundle_path = _getcwd(NULL, 0)) == NULL)
     {
@@ -55,7 +54,7 @@ get_bundle_path (void)
         printf("doc_path=%s\n", doc_path);
     }
 #endif
-    return bundle_path;
+    return mono_runtime_bundle_path;
 }
 
 const char *
@@ -110,7 +109,7 @@ load_aot_data (MonoAssembly *assembly, int size, void *user_data, void **out_han
 	const char *bundle = runtime_bundle_path ();
 
 	// LOG (PRODUCT ": Looking for aot data for assembly '%s'.", name);
-	res = snprintf (path, sizeof (path) - 1, "%s/%s.dll.aotdata", bundle, aname);
+	res = snprintf (path, sizeof (path) - 1, "%s/Managed/%s.dll.aotdata", bundle, aname);
 	assert (res > 0);
 
 	int fd = open (path, O_RDONLY);
@@ -161,7 +160,7 @@ register_dllmap (void)
 void mono_ios_register_modules (void);
 
 void
-mono_ios_runtime_init (void)
+mono_ios_runtime_init(void)
 {
 	register_dllmap ();
 
@@ -192,7 +191,7 @@ mono_ios_runtime_init (void)
 // See in XI runtime/xamarin-support.m
 
 void*
-xamarin_timezone_get_data (const char *name, uint32_t *size)
+xamarin_timezone_get_data(const char *name, uint32_t *size)
 {
     NSTimeZone *tz = nil;
     if (name) {

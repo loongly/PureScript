@@ -17,7 +17,6 @@
 //#include "internals.h"
 //#include "../custom/Wrapper.h"
 
-
 bool is_unity_name_space(const char* ns)
 {
 	return strncmp(ns, "UnityEngine", 11) == 0;

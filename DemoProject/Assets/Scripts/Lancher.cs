@@ -1,6 +1,7 @@
 ﻿using PureScript;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class Lancher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BundleDir = @"F:\Project\UnityBind\PureScript\DemoProject"; // Application.dataPath.Replace("Assets", "Managed");
+        BundleDir =  Path.Combine(Application.streamingAssetsPath , "assembly");
     }
 
     void OnGUI()
