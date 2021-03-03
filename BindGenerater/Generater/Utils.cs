@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Process = System.Diagnostics.Process;
 
 namespace Generater
 {
@@ -711,6 +712,34 @@ namespace Generater
             }
 
             return false;
+        }
+
+
+        
+
+        public static int RunCMD(string cmd, string[] args, string workdir = null)
+        {
+            var argument = string.Join("\" \"", args);
+            Console.WriteLine($"RunCMD: {cmd} {argument}");
+            Process p = new Process();
+            p.StartInfo.FileName = cmd;
+            p.StartInfo.Arguments = argument;
+            p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.CreateNoWindow = true;
+            if (workdir != null)
+                p.StartInfo.WorkingDirectory = workdir;
+            p.Start();
+
+            while (!p.StandardOutput.EndOfStream)
+            {
+                string line = p.StandardOutput.ReadLine();
+                Console.WriteLine(line);
+            }
+            p.WaitForExit();
+
+            return p.ExitCode;
         }
 
     }

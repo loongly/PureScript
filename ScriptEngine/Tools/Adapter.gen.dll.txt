@@ -1,0 +1,14 @@
+-out:F:\Project\UnityBind\PureScript\ScriptEngine\Managed\Adapter.gen.dll
+-t:library
+-unsafe
+-r:..\Managed\mscorlib.dll
+-r:..\Managed\PureScript.dll
+-r:..\Managed\netstandard.dll
+-r:..\Managed\AdapterTest.dll
+-r:..\Managed\netstandard.dll
+-r:..\Managed\UnityEngine.CoreModule.dll
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\glue\Binder.define.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\glue\Binder.funcser.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\Tools\CustomBinder.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\Tools\ObjectStore.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\Tools\StringStore.cs

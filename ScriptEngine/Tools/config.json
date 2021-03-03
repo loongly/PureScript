@@ -1,0 +1,5 @@
+{
+  "ScriptEngineDir": "..",
+  "AdapterSet": [ "AdapterTest.dll" ],
+  "InterpSet": ["TestEntry.dll","Code.dll"]
+}

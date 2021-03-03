@@ -28,10 +28,12 @@ namespace Generater
         public ClassGenerater(TypeDefinition type, StreamWriter writer = null)
         {
             genType = type;
+            RefNameSpace.Add("PureScript.Mono");
 
             if (writer == null)
             {
                 var filePath = Path.Combine(Binder.OutDir, $"Binder.{TypeFullName()}.cs");
+                CSCGenerater.AdapterWrapperCompiler.AddSource(filePath);
                 FileStream = File.CreateText(filePath);
             }
             else

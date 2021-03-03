@@ -54,8 +54,9 @@ namespace Generater
 
     public class CodeWriter
     {
-        const string start = "{";
-        const string end = "}";
+        public string _start = "{";
+        public string _end = "}";
+        public string _eol = ";";
         LinkedList<Line> lines = new LinkedList<Line>();
 
         private LinePointer pointer { get { return pointers.Peek(); } }
@@ -91,7 +92,7 @@ namespace Generater
         public void WriteLine(string str, bool endCode = true)
         {
             if (endCode)
-                str = str + ";";
+                str = str + _eol;
 
             pointer.Move(lines.AddAfter(pointer.Last(),new Line(str,deeps)));
         }
@@ -99,14 +100,14 @@ namespace Generater
         public void WritePreviousLine(string str, bool endCode = true)
         {
             if (endCode)
-                str = str + ";";
+                str = str + _eol;
 
             if (lines.Count == 0)
                 WriteLine(str, false);
             else
             {
                 var lastLine = pointer.Last();
-                if(lastLine.Value.Code.Equals(start))
+                if(lastLine.Value.Code.Equals(_start))
                     WriteLine(str, false);
                 else
                 {
@@ -122,7 +123,7 @@ namespace Generater
         public void WriteHead(string str, bool endCode = true)
         {
             if (endCode)
-                str = str + ";";
+                str = str + _eol;
 
             if (lines.Count == 0)
                 WriteLine(str, false);
@@ -135,14 +136,14 @@ namespace Generater
             if (str != null)
                 WriteLine(str,false);
 
-                WriteLine(start,false);
+                WriteLine(_start,false);
             deeps++;
         }
 
         public void End(bool newLine = true)
         {
             deeps--;
-            WriteLine(end,false);
+            WriteLine(_end,false);
         }
 
         public void EndAll(bool newLine = true)

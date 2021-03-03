@@ -1,7 +1,7 @@
 
 #include "event_binding.h"
 #include "class_cache_gen.h"
-EventMethodDesc methods[64];
+EventMethodDesc methods[63];
 void UnityEngine_AI_NavMesh_Internal_CallOnNavMeshPreUpdate(const MethodInfo* imethod) 
 {
 	const int index = 0;
@@ -544,20 +544,9 @@ void UnityEngine_Canvas_SendWillRenderCanvases(const MethodInfo* imethod)
 	thunk(&exc);
 	check_mono_exception(exc);
 }
-void UnityEngine_CanvasRenderer_RequestRefresh(const MethodInfo* imethod) 
-{
-	const int index = 46;
-	typedef void (* THUNK_METHOD EventMethod) (MonoException** exc);
-	static EventMethod thunk;
-	if(!thunk)
-		thunk = mono_method_get_unmanaged_thunk(methods[index].hooked);
-	MonoException *exc = NULL;
-	thunk(&exc);
-	check_mono_exception(exc);
-}
 void UnityEngine_Video_VideoPlayer_InvokePrepareCompletedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
-	const int index = 47;
+	const int index = 46;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* source, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -569,7 +558,7 @@ void UnityEngine_Video_VideoPlayer_InvokePrepareCompletedCallback_Internal(Il2Cp
 }
 void UnityEngine_Video_VideoPlayer_InvokeFrameReadyCallback_Internal(Il2CppObject* source, int64_t frameIdx, const MethodInfo* imethod) 
 {
-	const int index = 48;
+	const int index = 47;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* source, int64_t frameIdx, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -581,7 +570,7 @@ void UnityEngine_Video_VideoPlayer_InvokeFrameReadyCallback_Internal(Il2CppObjec
 }
 void UnityEngine_Video_VideoPlayer_InvokeLoopPointReachedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
-	const int index = 49;
+	const int index = 48;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* source, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -593,7 +582,7 @@ void UnityEngine_Video_VideoPlayer_InvokeLoopPointReachedCallback_Internal(Il2Cp
 }
 void UnityEngine_Video_VideoPlayer_InvokeStartedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
-	const int index = 50;
+	const int index = 49;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* source, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -605,7 +594,7 @@ void UnityEngine_Video_VideoPlayer_InvokeStartedCallback_Internal(Il2CppObject* 
 }
 void UnityEngine_Video_VideoPlayer_InvokeFrameDroppedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
-	const int index = 51;
+	const int index = 50;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* source, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -617,7 +606,7 @@ void UnityEngine_Video_VideoPlayer_InvokeFrameDroppedCallback_Internal(Il2CppObj
 }
 void UnityEngine_Video_VideoPlayer_InvokeErrorReceivedCallback_Internal(Il2CppObject* source, Il2CppString* errorStr, const MethodInfo* imethod) 
 {
-	const int index = 52;
+	const int index = 51;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* source, MonoString* errorStr, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -630,7 +619,7 @@ void UnityEngine_Video_VideoPlayer_InvokeErrorReceivedCallback_Internal(Il2CppOb
 }
 void UnityEngine_Video_VideoPlayer_InvokeSeekCompletedCallback_Internal(Il2CppObject* source, const MethodInfo* imethod) 
 {
-	const int index = 53;
+	const int index = 52;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* source, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -642,7 +631,7 @@ void UnityEngine_Video_VideoPlayer_InvokeSeekCompletedCallback_Internal(Il2CppOb
 }
 void UnityEngine_Video_VideoPlayer_InvokeClockResyncOccurredCallback_Internal(Il2CppObject* source, double seconds, const MethodInfo* imethod) 
 {
-	const int index = 54;
+	const int index = 53;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* source, double seconds, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -654,7 +643,7 @@ void UnityEngine_Video_VideoPlayer_InvokeClockResyncOccurredCallback_Internal(Il
 }
 void UnityEngine_XR_XRDevice_InvokeDeviceLoaded(Il2CppString* loadedDeviceName, const MethodInfo* imethod) 
 {
-	const int index = 55;
+	const int index = 54;
 	typedef void (* THUNK_METHOD EventMethod) (MonoString* loadedDeviceName, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -666,7 +655,7 @@ void UnityEngine_XR_XRDevice_InvokeDeviceLoaded(Il2CppString* loadedDeviceName, 
 }
 void UnityEngine_XR_InputTracking_InvokeTrackingEvent(int32_t eventType, int32_t nodeType, int64_t uniqueID, bool tracked, const MethodInfo* imethod) 
 {
-	const int index = 56;
+	const int index = 55;
 	typedef void (* THUNK_METHOD EventMethod) (int32_t eventType, int32_t nodeType, int64_t uniqueID, bool tracked, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -677,7 +666,7 @@ void UnityEngine_XR_InputTracking_InvokeTrackingEvent(int32_t eventType, int32_t
 }
 void UnityEngine_Experimental_XR_XRCameraSubsystem_InvokeFrameReceivedEvent(Il2CppObject* thiz, const MethodInfo* imethod) 
 {
-	const int index = 57;
+	const int index = 56;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* thiz, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -689,7 +678,7 @@ void UnityEngine_Experimental_XR_XRCameraSubsystem_InvokeFrameReceivedEvent(Il2C
 }
 void UnityEngine_Experimental_XR_XRDepthSubsystem_InvokePointCloudUpdatedEvent(Il2CppObject* thiz, const MethodInfo* imethod) 
 {
-	const int index = 58;
+	const int index = 57;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* thiz, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -701,7 +690,7 @@ void UnityEngine_Experimental_XR_XRDepthSubsystem_InvokePointCloudUpdatedEvent(I
 }
 void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneAddedEvent(Il2CppObject* thiz, void * plane, const MethodInfo* imethod) 
 {
-	const int index = 59;
+	const int index = 58;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* thiz, void * plane, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -713,7 +702,7 @@ void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneAddedEvent(Il2CppOb
 }
 void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneUpdatedEvent(Il2CppObject* thiz, void * plane, const MethodInfo* imethod) 
 {
-	const int index = 60;
+	const int index = 59;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* thiz, void * plane, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -725,7 +714,7 @@ void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneUpdatedEvent(Il2Cpp
 }
 void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneRemovedEvent(Il2CppObject* thiz, void * removedPlane, const MethodInfo* imethod) 
 {
-	const int index = 61;
+	const int index = 60;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* thiz, void * removedPlane, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -737,7 +726,7 @@ void UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneRemovedEvent(Il2Cpp
 }
 void UnityEngine_Experimental_XR_XRReferencePointSubsystem_InvokeReferencePointUpdatedEvent(Il2CppObject* thiz, void * updatedReferencePoint, int32_t previousTrackingState, void * previousPose, const MethodInfo* imethod) 
 {
-	const int index = 62;
+	const int index = 61;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* thiz, void * updatedReferencePoint, int32_t previousTrackingState, void * previousPose, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -749,7 +738,7 @@ void UnityEngine_Experimental_XR_XRReferencePointSubsystem_InvokeReferencePointU
 }
 void UnityEngine_Experimental_XR_XRSessionSubsystem_InvokeTrackingStateChangedEvent(Il2CppObject* thiz, int32_t newState, const MethodInfo* imethod) 
 {
-	const int index = 63;
+	const int index = 62;
 	typedef void (* THUNK_METHOD EventMethod) (MonoObject* thiz, int32_t newState, MonoException** exc);
 	static EventMethod thunk;
 	if(!thunk)
@@ -782,13 +771,13 @@ void init_event_gen()
 	init_event_method(&methods[18],mono_get_class_UnityEngine_SceneManagement_SceneManager(),il2cpp_get_class_UnityEngine_SceneManagement_SceneManager(),"Internal_SceneLoaded",2,(Il2CppMethodPointer) UnityEngine_SceneManagement_SceneManager_Internal_SceneLoaded);
 	init_event_method(&methods[19],mono_get_class_UnityEngine_SceneManagement_SceneManager(),il2cpp_get_class_UnityEngine_SceneManagement_SceneManager(),"Internal_SceneUnloaded",1,(Il2CppMethodPointer) UnityEngine_SceneManagement_SceneManager_Internal_SceneUnloaded);
 	init_event_method(&methods[20],mono_get_class_UnityEngine_SceneManagement_SceneManager(),il2cpp_get_class_UnityEngine_SceneManagement_SceneManager(),"Internal_ActiveSceneChanged",2,(Il2CppMethodPointer) UnityEngine_SceneManagement_SceneManager_Internal_ActiveSceneChanged);
-	//init_event_method(&methods[21],mono_get_class_UnityEngine_Windows_Speech_PhraseRecognitionSystem(),il2cpp_get_class_UnityEngine_Windows_Speech_PhraseRecognitionSystem(),"PhraseRecognitionSystem_InvokeErrorEvent",1,(Il2CppMethodPointer) UnityEngine_Windows_Speech_PhraseRecognitionSystem_PhraseRecognitionSystem_InvokeErrorEvent);
-	//init_event_method(&methods[22],mono_get_class_UnityEngine_Windows_Speech_PhraseRecognitionSystem(),il2cpp_get_class_UnityEngine_Windows_Speech_PhraseRecognitionSystem(),"PhraseRecognitionSystem_InvokeStatusChangedEvent",1,(Il2CppMethodPointer) UnityEngine_Windows_Speech_PhraseRecognitionSystem_PhraseRecognitionSystem_InvokeStatusChangedEvent);
-	//init_event_method(&methods[23],mono_get_class_UnityEngine_Windows_Speech_PhraseRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_PhraseRecognizer(),"InvokePhraseRecognizedEvent",5,(Il2CppMethodPointer) UnityEngine_Windows_Speech_PhraseRecognizer_InvokePhraseRecognizedEvent);
-	//init_event_method(&methods[24],mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),"DictationRecognizer_InvokeHypothesisGeneratedEvent",1,(Il2CppMethodPointer) UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeHypothesisGeneratedEvent);
-	//init_event_method(&methods[25],mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),"DictationRecognizer_InvokeResultGeneratedEvent",2,(Il2CppMethodPointer) UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeResultGeneratedEvent);
-	//init_event_method(&methods[26],mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),"DictationRecognizer_InvokeCompletedEvent",1,(Il2CppMethodPointer) UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeCompletedEvent);
-	//init_event_method(&methods[27],mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),"DictationRecognizer_InvokeErrorEvent",2,(Il2CppMethodPointer) UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeErrorEvent);
+	init_event_method(&methods[21],mono_get_class_UnityEngine_Windows_Speech_PhraseRecognitionSystem(),il2cpp_get_class_UnityEngine_Windows_Speech_PhraseRecognitionSystem(),"PhraseRecognitionSystem_InvokeErrorEvent",1,(Il2CppMethodPointer) UnityEngine_Windows_Speech_PhraseRecognitionSystem_PhraseRecognitionSystem_InvokeErrorEvent);
+	init_event_method(&methods[22],mono_get_class_UnityEngine_Windows_Speech_PhraseRecognitionSystem(),il2cpp_get_class_UnityEngine_Windows_Speech_PhraseRecognitionSystem(),"PhraseRecognitionSystem_InvokeStatusChangedEvent",1,(Il2CppMethodPointer) UnityEngine_Windows_Speech_PhraseRecognitionSystem_PhraseRecognitionSystem_InvokeStatusChangedEvent);
+	init_event_method(&methods[23],mono_get_class_UnityEngine_Windows_Speech_PhraseRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_PhraseRecognizer(),"InvokePhraseRecognizedEvent",5,(Il2CppMethodPointer) UnityEngine_Windows_Speech_PhraseRecognizer_InvokePhraseRecognizedEvent);
+	init_event_method(&methods[24],mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),"DictationRecognizer_InvokeHypothesisGeneratedEvent",1,(Il2CppMethodPointer) UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeHypothesisGeneratedEvent);
+	init_event_method(&methods[25],mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),"DictationRecognizer_InvokeResultGeneratedEvent",2,(Il2CppMethodPointer) UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeResultGeneratedEvent);
+	init_event_method(&methods[26],mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),"DictationRecognizer_InvokeCompletedEvent",1,(Il2CppMethodPointer) UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeCompletedEvent);
+	init_event_method(&methods[27],mono_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),il2cpp_get_class_UnityEngine_Windows_Speech_DictationRecognizer(),"DictationRecognizer_InvokeErrorEvent",2,(Il2CppMethodPointer) UnityEngine_Windows_Speech_DictationRecognizer_DictationRecognizer_InvokeErrorEvent);
 	init_event_method(&methods[28],mono_get_class_UnityEngine_Profiling_Memory_Experimental_MemoryProfiler(),il2cpp_get_class_UnityEngine_Profiling_Memory_Experimental_MemoryProfiler(),"PrepareMetadata",0,(Il2CppMethodPointer) UnityEngine_Profiling_Memory_Experimental_MemoryProfiler_PrepareMetadata);
 	init_event_method(&methods[29],mono_get_class_UnityEngine_Profiling_Memory_Experimental_MemoryProfiler(),il2cpp_get_class_UnityEngine_Profiling_Memory_Experimental_MemoryProfiler(),"FinalizeSnapshot",2,(Il2CppMethodPointer) UnityEngine_Profiling_Memory_Experimental_MemoryProfiler_FinalizeSnapshot);
 	init_event_method(&methods[30],mono_get_class_UnityEngine_RectTransform(),il2cpp_get_class_UnityEngine_RectTransform(),"SendReapplyDrivenProperties",1,(Il2CppMethodPointer) UnityEngine_RectTransform_SendReapplyDrivenProperties);
@@ -807,23 +796,22 @@ void init_event_gen()
 	init_event_method(&methods[43],mono_get_class_UnityEngineInternal_Input_NativeInputSystem(),il2cpp_get_class_UnityEngineInternal_Input_NativeInputSystem(),"NotifyDeviceDiscovered",2,(Il2CppMethodPointer) UnityEngineInternal_Input_NativeInputSystem_NotifyDeviceDiscovered);
 	init_event_method(&methods[44],mono_get_class_UnityEngine_Font(),il2cpp_get_class_UnityEngine_Font(),"InvokeTextureRebuilt_Internal",1,(Il2CppMethodPointer) UnityEngine_Font_InvokeTextureRebuilt_Internal);
 	init_event_method(&methods[45],mono_get_class_UnityEngine_Canvas(),il2cpp_get_class_UnityEngine_Canvas(),"SendWillRenderCanvases",0,(Il2CppMethodPointer) UnityEngine_Canvas_SendWillRenderCanvases);
-	init_event_method(&methods[46],mono_get_class_UnityEngine_CanvasRenderer(),il2cpp_get_class_UnityEngine_CanvasRenderer(),"RequestRefresh",0,(Il2CppMethodPointer) UnityEngine_CanvasRenderer_RequestRefresh);
-	init_event_method(&methods[47],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokePrepareCompletedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokePrepareCompletedCallback_Internal);
-	init_event_method(&methods[48],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeFrameReadyCallback_Internal",2,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeFrameReadyCallback_Internal);
-	init_event_method(&methods[49],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeLoopPointReachedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeLoopPointReachedCallback_Internal);
-	init_event_method(&methods[50],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeStartedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeStartedCallback_Internal);
-	init_event_method(&methods[51],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeFrameDroppedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeFrameDroppedCallback_Internal);
-	init_event_method(&methods[52],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeErrorReceivedCallback_Internal",2,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeErrorReceivedCallback_Internal);
-	init_event_method(&methods[53],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeSeekCompletedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeSeekCompletedCallback_Internal);
-	init_event_method(&methods[54],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeClockResyncOccurredCallback_Internal",2,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeClockResyncOccurredCallback_Internal);
-	init_event_method(&methods[55],mono_get_class_UnityEngine_XR_XRDevice(),il2cpp_get_class_UnityEngine_XR_XRDevice(),"InvokeDeviceLoaded",1,(Il2CppMethodPointer) UnityEngine_XR_XRDevice_InvokeDeviceLoaded);
-	init_event_method(&methods[56],mono_get_class_UnityEngine_XR_InputTracking(),il2cpp_get_class_UnityEngine_XR_InputTracking(),"InvokeTrackingEvent",4,(Il2CppMethodPointer) UnityEngine_XR_InputTracking_InvokeTrackingEvent);
-	init_event_method(&methods[57],mono_get_class_UnityEngine_Experimental_XR_XRCameraSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRCameraSubsystem(),"InvokeFrameReceivedEvent",0,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRCameraSubsystem_InvokeFrameReceivedEvent);
-	init_event_method(&methods[58],mono_get_class_UnityEngine_Experimental_XR_XRDepthSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRDepthSubsystem(),"InvokePointCloudUpdatedEvent",0,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRDepthSubsystem_InvokePointCloudUpdatedEvent);
-	init_event_method(&methods[59],mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),"InvokePlaneAddedEvent",1,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneAddedEvent);
-	init_event_method(&methods[60],mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),"InvokePlaneUpdatedEvent",1,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneUpdatedEvent);
-	init_event_method(&methods[61],mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),"InvokePlaneRemovedEvent",1,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneRemovedEvent);
-	init_event_method(&methods[62],mono_get_class_UnityEngine_Experimental_XR_XRReferencePointSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRReferencePointSubsystem(),"InvokeReferencePointUpdatedEvent",3,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRReferencePointSubsystem_InvokeReferencePointUpdatedEvent);
-	init_event_method(&methods[63],mono_get_class_UnityEngine_Experimental_XR_XRSessionSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRSessionSubsystem(),"InvokeTrackingStateChangedEvent",1,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRSessionSubsystem_InvokeTrackingStateChangedEvent);
+	init_event_method(&methods[46],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokePrepareCompletedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokePrepareCompletedCallback_Internal);
+	init_event_method(&methods[47],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeFrameReadyCallback_Internal",2,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeFrameReadyCallback_Internal);
+	init_event_method(&methods[48],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeLoopPointReachedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeLoopPointReachedCallback_Internal);
+	init_event_method(&methods[49],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeStartedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeStartedCallback_Internal);
+	init_event_method(&methods[50],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeFrameDroppedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeFrameDroppedCallback_Internal);
+	init_event_method(&methods[51],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeErrorReceivedCallback_Internal",2,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeErrorReceivedCallback_Internal);
+	init_event_method(&methods[52],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeSeekCompletedCallback_Internal",1,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeSeekCompletedCallback_Internal);
+	init_event_method(&methods[53],mono_get_class_UnityEngine_Video_VideoPlayer(),il2cpp_get_class_UnityEngine_Video_VideoPlayer(),"InvokeClockResyncOccurredCallback_Internal",2,(Il2CppMethodPointer) UnityEngine_Video_VideoPlayer_InvokeClockResyncOccurredCallback_Internal);
+	init_event_method(&methods[54],mono_get_class_UnityEngine_XR_XRDevice(),il2cpp_get_class_UnityEngine_XR_XRDevice(),"InvokeDeviceLoaded",1,(Il2CppMethodPointer) UnityEngine_XR_XRDevice_InvokeDeviceLoaded);
+	init_event_method(&methods[55],mono_get_class_UnityEngine_XR_InputTracking(),il2cpp_get_class_UnityEngine_XR_InputTracking(),"InvokeTrackingEvent",4,(Il2CppMethodPointer) UnityEngine_XR_InputTracking_InvokeTrackingEvent);
+	init_event_method(&methods[56],mono_get_class_UnityEngine_Experimental_XR_XRCameraSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRCameraSubsystem(),"InvokeFrameReceivedEvent",0,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRCameraSubsystem_InvokeFrameReceivedEvent);
+	init_event_method(&methods[57],mono_get_class_UnityEngine_Experimental_XR_XRDepthSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRDepthSubsystem(),"InvokePointCloudUpdatedEvent",0,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRDepthSubsystem_InvokePointCloudUpdatedEvent);
+	init_event_method(&methods[58],mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),"InvokePlaneAddedEvent",1,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneAddedEvent);
+	init_event_method(&methods[59],mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),"InvokePlaneUpdatedEvent",1,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneUpdatedEvent);
+	init_event_method(&methods[60],mono_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRPlaneSubsystem(),"InvokePlaneRemovedEvent",1,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRPlaneSubsystem_InvokePlaneRemovedEvent);
+	init_event_method(&methods[61],mono_get_class_UnityEngine_Experimental_XR_XRReferencePointSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRReferencePointSubsystem(),"InvokeReferencePointUpdatedEvent",3,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRReferencePointSubsystem_InvokeReferencePointUpdatedEvent);
+	init_event_method(&methods[62],mono_get_class_UnityEngine_Experimental_XR_XRSessionSubsystem(),il2cpp_get_class_UnityEngine_Experimental_XR_XRSessionSubsystem(),"InvokeTrackingStateChangedEvent",1,(Il2CppMethodPointer) UnityEngine_Experimental_XR_XRSessionSubsystem_InvokeTrackingStateChangedEvent);
 }
 

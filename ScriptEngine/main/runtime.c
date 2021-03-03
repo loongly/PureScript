@@ -23,10 +23,12 @@ typedef char bool;
 #define false 0
 #define true 1
 
-extern char* mono_runtime_bundle_path;
 
-void* g_manageFuncPtr;
+
 MonoDomain *g_domain;
+
+char* mono_runtime_bundle_path;
+char* mono_runtime_reload_path;
 
 bool
 file_exists(const char *path)
@@ -48,46 +50,53 @@ strdup_printf(const char *msg, ...)
 	return formatted;
 }
 
-const char *
-get_bundle_path (void);
+extern const char *ios_bundle_path(void);
 
-const char *
-get_documents_path (void);
-
-const char *
-runtime_bundle_path(void)
+const char * runtime_bundle_path(void)
 {
     if(mono_runtime_bundle_path != NULL)
         return mono_runtime_bundle_path;
-    
-	return get_bundle_path();
+ 
+#if RUNTIME_IOS
+	mono_runtime_bundle_path = ios_bundle_path();
+#else
+	if ((mono_runtime_bundle_path = _getcwd(NULL, 0)) == NULL)
+		perror("getcwd error");
+	else
+		printf("doc_path=%s\n", mono_runtime_bundle_path);
+#endif
+
+	return mono_runtime_bundle_path;
 }
 
 
 MonoAssembly*
 load_assembly(const char *name, const char *culture)
 {
-	const char *bundle = runtime_bundle_path();
+	char *load_dir = mono_runtime_reload_path;
 	char path[1024];
 	int res;
     const char *post = name + strlen(name) -4;
 
-	printf("load_assembly: %s %s %s\n", name, culture, bundle);
 	if (culture && strcmp(culture, ""))
-		res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s/%s", bundle, culture, name);
+		res = snprintf(path, sizeof(path) - 1, "%s/%s/%s", load_dir, culture, name);
     else if(strcmp(post, ".dll") == 0 || strcmp(post, ".exe") == 0)
-        res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s", bundle, name);
+        res = snprintf(path, sizeof(path) - 1, "%s/%s", load_dir, name);
 	else
-		res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s.dll", bundle, name);
+		res = snprintf(path, sizeof(path) - 1, "%s/%s.dll", load_dir, name);
 	assert(res > 0);
 
-	/*if (!file_exists(path))
+	if (!file_exists(path))
 	{
-		const char *documents = get_documents_path();
-		res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s", documents, name);
+		load_dir = runtime_bundle_path();
+		if (culture && strcmp(culture, ""))
+			res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s/%s", load_dir, culture, name);
+		else if (strcmp(post, ".dll") == 0 || strcmp(post, ".exe") == 0)
+			res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s", load_dir, name);
+		else
+			res = snprintf(path, sizeof(path) - 1, "%s/Managed/%s.dll", load_dir, name);
 		assert(res > 0);
-	}*/
-
+	}
 
 	printf("load_assembly load path: %s \n", path);
 	if (file_exists(path)) {
@@ -98,30 +107,53 @@ load_assembly(const char *name, const char *culture)
 	return NULL;
 }
 
-
+void check_mono_exception(MonoException* mono);
 static void main_function (MonoDomain *domain, const char *file, int argc, char** argv)
 {
 
-	//assembly = mono_domain_assembly_open (domain, file);
-
-    load_assembly("AdapterWrapper.dll", NULL);
-	MonoAssembly *assembly = load_assembly(file, NULL);
+	MonoAssembly *assembly = load_assembly("Adapter.wrapper.dll", NULL);
 
 	if (!assembly)
-		exit (2);
+		return;
+
+	MonoImage* img = mono_assembly_get_image(assembly);
+	MonoClass* klass = mono_class_from_name(img, "PureScript.Mono", "ScriptEngine");
+	MonoMethod* main = mono_class_get_method_from_name(klass, "Main", 1);
+
 	/*
 	 * mono_jit_exec() will run the Main() method in the assembly.
 	 * The return value needs to be looked up from
 	 * System.Environment.ExitCode.
 	 */
-	mono_jit_exec (domain, assembly, argc, argv);
+	 //mono_jit_exec(domain, assembly, argc, argv);
+
+	MonoObject *exc = NULL;
+	int res = mono_runtime_run_main(main, argc, argv, &exc);
+	check_mono_exception(exc);
+	
+	
+	/*if (exc != NULL)
+		return;
+
+	assembly = load_assembly(file, NULL);
+	if (!assembly)
+		return;
+
+	img = mono_assembly_get_image(assembly);
+	klass = mono_class_from_name(img, "", "MonoEntry");
+	main = mono_class_get_method_from_name(klass, "Main", 1);
+
+	int res = mono_runtime_run_main(main, argc, argv, &exc);
+	//mono_runtime_invoke(main, 0, NULL, &exc);
+
+	check_mono_exception(exc);*/
 }
 
-
+const char* resolve_assembly(const char* request);
 static MonoAssembly*
 assembly_preload_hook(MonoAssemblyName *aname, char **assemblies_path, void* user_data)
 {
-	const char *name = mono_assembly_name_get_name(aname);
+	const char *name = resolve_assembly(mono_assembly_name_get_name(aname));
 	const char *culture = mono_assembly_name_get_culture(aname);
 
 	return load_assembly(name, culture);
@@ -202,6 +234,7 @@ static void* custom_malloc(size_t bytes)
 
 /* Implemented by generated code */
 void mono_register_icall(void);
+void register_assembly_map();
 
 #if RUNTIME_IOS
 void mono_ios_runtime_init(void);
@@ -219,11 +252,9 @@ void mono_debug() {
 }
 
 int 
-mono_setup(char* bundleDir, const char* file) {
+mono_setup(char* reloadDir, const char* file) {
 
-    mono_runtime_bundle_path = NULL;
-    //mono_runtime_bundle_path = strdup(bundleDir);
-
+	mono_runtime_reload_path = _strdup(reloadDir);
 
 	int retval = 0;
 
@@ -238,6 +269,16 @@ mono_setup(char* bundleDir, const char* file) {
 	mono_set_crash_chaining(true);
 
 	mono_debug();
+
+	
+#if RUNTIME_IOS
+	const char* rootdir = runtime_bundle_path();
+#else
+	const char* rootdir = mono_runtime_reload_path;
+#endif
+
+	mono_set_dirs(rootdir, rootdir);
+
 	/*
 	 * Load the default Mono configuration file, this is needed
 	 * if you are planning on using the dllmaps defined on the
@@ -253,6 +294,9 @@ mono_setup(char* bundleDir, const char* file) {
 	mono_ios_runtime_init();
 #endif
 	g_domain = mono_jit_init (file);
+	mono_domain_set(g_domain, false);
+
+	register_assembly_map();
 	/*
 	 * We add our special internal call, so that C# code
 	 * can call us back.

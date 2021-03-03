@@ -16,20 +16,26 @@ namespace Generater.C
         }
 
         static HashSet<MethodDefinition> methodSet = new HashSet<MethodDefinition>();
+        static HashSet<string> wrapperAssemblySet = new HashSet<string>();
         public static void AddMethod(MethodDefinition method)
         {
             if(!CUtils.IsCustomICall(CUtils.GetICallDescName(method)))
                 methodSet.Add(method);
         }
 
+        public static void AddWrapperAssembly(string name)
+        {
+            wrapperAssemblySet.Add(name);
+        }
+
         public static void Gen()
         {
             using (new CS(IcallWriter))
             {
-                CS.Writer.WriteLine("#include \"../main/runtime.h\"",false);
-                CS.Writer.WriteLine("#include \"../main/il2cpp_support.h\"", false);
-                CS.Writer.WriteLine("#include \"../main/Mediator.h\"", false);
+                CS.Writer.WriteLine("#include \"engine_include.h\"", false);
                 CS.Writer.WriteLine("#include \"class_cache_gen.h\"", false);
+
+                RegisterAssemblyMap();
 
                 foreach (var m in methodSet)
                 {
@@ -84,6 +90,20 @@ namespace Generater.C
                 var monoRes = CTypeResolver.Resolve(method.ReturnType).Box("i2res");
                 CS.Writer.WriteLine($"return {monoRes}");
             }
+        }
+
+        /*
+         void register_assembly_map()
+            {
+                insert_assembly_map("AdapterTest", "Adapter.wrapper");
+            }
+            */
+        private static void RegisterAssemblyMap()
+        {
+            CS.Writer.Start("register_assembly_map()");
+            foreach(var assembly in wrapperAssemblySet)
+                CS.Writer.WriteLine($"insert_assembly_map(\"{assembly}\", \"Adapter.wrapper\")");
+            CS.Writer.End();
         }
     }
 }

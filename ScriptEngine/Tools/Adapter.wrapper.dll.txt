@@ -1,0 +1,17 @@
+-out:F:\Project\UnityBind\PureScript\ScriptEngine\Managed\Adapter.wrapper.dll
+-t:library
+-unsafe
+-r:..\Managed\mscorlib.dll
+-r:..\Managed\PureScript.dll
+-r:..\Managed\netstandard.dll
+-r:..\Managed\netstandard.dll
+-r:..\Managed\UnityEngine.CoreModule.dll
+-define:WRAPPER_SIDE
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\glue\Binder.define.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\glue\Binder.funcdeser.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\Tools\CustomBinder.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\Tools\ObjectStore.wrapper.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\Tools\ScriptEngine.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\Tools\StringStore.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\glue\Binder.PureScript.ExceptionTest.cs
+F:\Project\UnityBind\PureScript\ScriptEngine\Adapter\glue\Binder.PureScript.StartInfo.cs

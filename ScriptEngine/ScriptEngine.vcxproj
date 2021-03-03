@@ -79,9 +79,9 @@
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>F:\Work\Project\mono\msvc\include;E:\Program Files\Unity2018.4.7f\Editor\Data\il2cpp\libil2cpp;$(IncludePath)</IncludePath>
+    <IncludePath>F:\Work\Project\mono\msvc\include;E:\Program Files\Unity2018.4.7f\Editor\Data\il2cpp\libil2cpp;$(ProjectDir)\lib\include;$(IncludePath)</IncludePath>
     <LibraryPath>F:\Work\Project\mono\msvc\build\sgen\x64\lib\Debug;$(LibraryPath)</LibraryPath>
-    <OutDir>F:\Project\UnityBind\PureScript\DemoProject\Export\build\bin\DemoProject_Data\Plugins\</OutDir>
+    <OutDir>F:\Project\UnityBind\PureScript\DemoProject\Export3\build\bin\DemoProject_Data\Plugins\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -168,32 +168,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="custom\event_binding.h" />
-    <ClInclude Include="custom\wrapper.h" />
-    <ClInclude Include="generated\class_cache_gen.h" />
-    <ClInclude Include="main\glib.h" />
-    <ClInclude Include="main\il2cpp_support.h" />
-    <ClInclude Include="main\runtime.h" />
-    <ClInclude Include="main\Mediator.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="custom\event_binding.c" />
+    <ClCompile Include="generated\aot_module_register.c" />
     <ClCompile Include="generated\class_cache_gen.c" />
     <ClCompile Include="generated\event_binding_gen.c" />
     <ClCompile Include="generated\icall_binding_gen.c" />
     <ClCompile Include="main\glib.c" />
     <ClCompile Include="custom\icall_binding.c" />
     <ClCompile Include="main\il2cpp_support.c" />
-    <ClCompile Include="main\ios\aot_module_register.c" />
     <ClCompile Include="main\runtime.c" />
     <ClCompile Include="ScriptEngine.c" />
     <ClCompile Include="main\Mediator.cpp" />
     <ClCompile Include="custom\wrapper.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="main\ios\ios_setup.m">
-      <FileType>CppCode</FileType>
-    </None>
+    <ClInclude Include="custom\wrapper.h" />
+    <ClInclude Include="generated\class_cache_gen.h" />
+    <ClInclude Include="lib\include\engine_include.h" />
+    <ClInclude Include="lib\include\event_binding.h" />
+    <ClInclude Include="lib\include\glib.h" />
+    <ClInclude Include="lib\include\il2cpp_support.h" />
+    <ClInclude Include="lib\include\Mediator.h" />
+    <ClInclude Include="lib\include\runtime.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

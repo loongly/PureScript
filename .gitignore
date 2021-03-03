@@ -11,3 +11,10 @@
 /back
 .vs
 DemoProject/Bin
+ScriptEngine/aot/*.a
+ScriptEngine/Managed/*.dll
+ScriptEngine/Managed/*.exe
+ScriptEngine/Managed/*.aotdata
+ScriptEngine/generated/*.c
+ScriptEngine/generated/*.h
+/BindGenerater/BindGenerater.csproj.user

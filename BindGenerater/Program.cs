@@ -1,5 +1,6 @@
 ﻿using Generater;
 using Mono.Cecil;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,47 +13,144 @@ namespace BindGenerater
 {
     class Program
     {
+        public enum Platform
+        {
+            iOS,
+            Windows,
+        }
+
+        class BindOptions
+        {
+            public Platform Platform;
+            public string ScriptEngineDir;
+            public HashSet<string> AdapterSet;
+            public HashSet<string> InterpSet;
+        }
+
+        static BindOptions options;
+
         private static HashSet<string> IgnoreAssemblySet = new HashSet<string>
         {
-            // "UnityEngine.UI.dll", "UnityEngine.Networking.dll" ,"UnityEngine.Timeline.dll" ,"UnityEditor.VR.dll",//UnityExtensions
-            "UnityEngine.UnityAnalyticsModule.dll",
+            "PureScript.dll","Adapter.gen.dll","UnityEngine.UnityAnalyticsModule.dll",
         };
+        public static string ToolsetPath;
 
-        private static HashSet<string> AdapterSet = new HashSet<string>
-        {
-            "EngineAdapter.dll",
-        };
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            Utils.Log("Hello world.");
             //TestWriter();
             //return;
+      
+            try
+            {
+                StartBinder(args);
+                Utils.Log("Binder All Done..");
+            }
+            catch(Exception e)
+            {
+                Console.Error.WriteLine(e.ToString());
+                return 2;
+            }
+            return 0;
+        }
 
-            string fileDir = @"..\..\EngineLib\full\";
-            Binder.Init(@"..\..\glue\");
-            CBinder.Init(@"..\..\..\ScriptEngine\generated\");
-            TestBinder.Init(@"test\");
+        static void StartBinder(string[] args)
+        {
+            if (args.Length < 2)
+                return;
+            var configFile = args[0];
+            ToolsetPath = args[1];
 
-            foreach (var filePath in Directory.GetFiles(fileDir))
+
+            Console.WriteLine("start binder..");
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(configFile));
+
+            var json = File.ReadAllText(configFile);
+            options = JsonConvert.DeserializeObject<BindOptions>(json);
+
+            string managedDir = Path.Combine(options.ScriptEngineDir, "Managed");
+            string adapterDir = Path.Combine(options.ScriptEngineDir, "Adapter");
+            ReplaceMscorlib("lib", managedDir);
+
+            Binder.Init(Path.Combine(adapterDir, "glue"));
+            CBinder.Init(Path.Combine(options.ScriptEngineDir, "generated"));
+            AOTGenerater.Init(options.ScriptEngineDir);
+            CSCGenerater.Init(ToolsetPath, adapterDir, managedDir, options.AdapterSet);
+
+            foreach (var filePath in Directory.GetFiles(managedDir))
             {
                 var file = Path.GetFileName(filePath);
-                if(file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file))
-                {
-                    TestBinder.TestBind(filePath);
 
-                    if (AdapterSet.Contains(file))
+                if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file))
+                {
+                    if (options.AdapterSet.Contains(file))
+                    {
                         Binder.Bind(filePath);
-                    else if (file.StartsWith("UnityEngine."))
-                        CBinder.Bind(filePath);
+                    }
+                    else
+                    {
+                        if (!options.InterpSet.Contains(file))
+                        {
+                            Console.WriteLine("aot: " + file);
+                            AOTGenerater.AddAOTAssembly(filePath);
+                        }
+
+                        if (file.StartsWith("UnityEngine."))
+                        {
+                            Console.WriteLine("bind icall: " + file);
+                            CBinder.Bind(filePath);
+                        }
+                        else
+                        {
+                            if (options.InterpSet.Contains(file))
+                                Console.WriteLine("Interpreter runtime: " + file);
+                        }
+                    }
                 }
             }
             CBinder.End();
             Binder.End();
-            TestBinder.End();
+            CSCGenerater.End();
+            AOTGenerater.End();
 
-            Utils.Log("All Done..");
-            Console.ReadLine();
+            foreach(var file in options.AdapterSet)
+            {
+                var path = Path.Combine(managedDir, file);
+                if (File.Exists(path))
+                    File.Delete(path);
+            }
+        }
+
+        public static void ReplaceMscorlib(string libDir,string outDir)
+        {
+            OperatingSystem os = Environment.OSVersion;
+            var srcDir = Path.Combine(libDir, os.Platform == PlatformID.MacOSX ? "iOS" : "win32");
+
+            DirectoryInfo dir = new DirectoryInfo(srcDir);
+
+            foreach (var fi in dir.GetFiles())
+            {
+                File.Copy(Path.Combine(srcDir, fi.Name), Path.Combine(outDir, fi.Name), true);
+            }
+        }
+
+
+        static void StartTestBinder()
+        {
+            string managedDir = "Managed";
+
+            TestBinder.Init(@"test\");
+
+            foreach (var filePath in Directory.GetFiles(managedDir))
+            {
+                var file = Path.GetFileName(filePath);
+
+                if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file))
+                {
+                    TestBinder.TestBind(filePath);
+                }
+            }
+            TestBinder.End();
         }
 
         //Try to modify
