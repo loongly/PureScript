@@ -69,6 +69,8 @@ extern "C"
 	const char* debug_mono_method(MonoMethod* method);
 	const char* debug_il2cpp_obj(Il2CppObject* obj);
 
+	void insert_assembly_map(const char* src, const char* tar);
+
 #if defined(__cplusplus)
 }
 #endif // __cplusplus

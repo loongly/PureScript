@@ -15,29 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="main\runtime.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="main\il2cpp_support.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="main\glib.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="custom\wrapper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="generated\class_cache_gen.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="custom\event_binding.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="main\Mediator.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="main\runtime.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -71,11 +48,34 @@
     <ClCompile Include="main\Mediator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main\ios\aot_module_register.c">
+    <ClCompile Include="generated\aot_module_register.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="main\ios\ios_setup.m" />
+    <ClInclude Include="lib\include\engine_include.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\include\event_binding.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\include\glib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\include\il2cpp_support.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\include\Mediator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\include\runtime.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="generated\class_cache_gen.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="custom\wrapper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

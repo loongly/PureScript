@@ -25,7 +25,7 @@ namespace Generater.C
         {
             using (new CS(EventWriter))
             {
-                CS.Writer.WriteLine("#include \"../custom/event_binding.h\"", false);
+                CS.Writer.WriteLine("#include \"event_binding.h\"", false);
                 CS.Writer.WriteLine("#include \"class_cache_gen.h\"", false);
 
                 CS.Writer.WriteLine($"EventMethodDesc methods[{methodSet.Count}]");

@@ -509,6 +509,26 @@ Il2CppReflectionType* get_monobehaviour_wrapper_rtype()
 }
 #pragma endregion
 
+#pragma region assembly map
+
+static std::map<std::string , const char* > assembly_map;
+
+void insert_assembly_map(const char* src, const char* tar) 
+{
+	assembly_map[std::string(src)] = tar;
+}
+
+extern "C" const char* resolve_assembly(const char* request)
+{
+	std::map<std::string, const char*>::iterator res = assembly_map.find(std::string(request));
+	if (res != assembly_map.end())
+		return res->second;
+
+	return request;
+}
+
+#pragma endregion
+
 
 const char* debug_mono_obj(MonoObject* obj)
 {

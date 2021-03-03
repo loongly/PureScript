@@ -1,8 +1,628 @@
 
-#include "../lib/include/runtime.h"
-#include "../lib/include/il2cpp_support.h"
-#include "../lib/include/Mediator.h"
+#include "engine_include.h"
 #include "class_cache_gen.h"
+register_assembly_map()
+{
+	insert_assembly_map("AdapterTest", "Adapter.wrapper");
+}
+void UnityEngine_Experimental_AI_NavMeshWorld_GetDefaultWorld_Injected(void * ret)
+{
+	typedef void (* ICallMethod) (void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshWorld::GetDefaultWorld_Injected");
+	icall(ret);
+}
+void UnityEngine_Experimental_AI_NavMeshWorld_AddDependencyInternal_Injected(void * navmesh, void * handle)
+{
+	typedef void (* ICallMethod) (void * navmesh, void * handle);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshWorld::AddDependencyInternal_Injected");
+	icall(navmesh,handle);
+}
+void UnityEngine_Experimental_AI_NavMeshQuery_Destroy(void * navMeshQuery)
+{
+	typedef void (* ICallMethod) (void * navMeshQuery);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::Destroy");
+	icall(navMeshQuery);
+}
+int32_t UnityEngine_Experimental_AI_NavMeshQuery_UpdateFindPath(void * navMeshQuery, int32_t iterations, void * iterationsPerformed)
+{
+	typedef int32_t (* ICallMethod) (void * navMeshQuery, int32_t iterations, void * iterationsPerformed);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::UpdateFindPath");
+	int32_t i2res = icall(navMeshQuery,iterations,iterationsPerformed);
+	return i2res;
+}
+int32_t UnityEngine_Experimental_AI_NavMeshQuery_EndFindPath(void * navMeshQuery, void * pathSize)
+{
+	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * pathSize);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::EndFindPath");
+	int32_t i2res = icall(navMeshQuery,pathSize);
+	return i2res;
+}
+int32_t UnityEngine_Experimental_AI_NavMeshQuery_GetPathResult(void * navMeshQuery, void * path, int32_t maxPath)
+{
+	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * path, int32_t maxPath);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetPathResult");
+	int32_t i2res = icall(navMeshQuery,path,maxPath);
+	return i2res;
+}
+void UnityEngine_Experimental_AI_NavMeshQuery_MoveLocations(void * navMeshQuery, void * locations, void * targets, void * areaMasks, int32_t count)
+{
+	typedef void (* ICallMethod) (void * navMeshQuery, void * locations, void * targets, void * areaMasks, int32_t count);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocations");
+	icall(navMeshQuery,locations,targets,areaMasks,count);
+}
+void UnityEngine_Experimental_AI_NavMeshQuery_MoveLocationsInSameAreas(void * navMeshQuery, void * locations, void * targets, int32_t count, int32_t areaMask)
+{
+	typedef void (* ICallMethod) (void * navMeshQuery, void * locations, void * targets, int32_t count, int32_t areaMask);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocationsInSameAreas");
+	icall(navMeshQuery,locations,targets,count,areaMask);
+}
+void * UnityEngine_Experimental_AI_NavMeshQuery_Create_Injected(void * world, int32_t nodePoolSize)
+{
+	typedef void * (* ICallMethod) (void * world, int32_t nodePoolSize);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::Create_Injected");
+	void * i2res = icall(world,nodePoolSize);
+	return i2res;
+}
+int32_t UnityEngine_Experimental_AI_NavMeshQuery_BeginFindPath_Injected(void * navMeshQuery, void * start, void * end, int32_t areaMask, void * costs)
+{
+	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * start, void * end, int32_t areaMask, void * costs);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::BeginFindPath_Injected");
+	int32_t i2res = icall(navMeshQuery,start,end,areaMask,costs);
+	return i2res;
+}
+bool UnityEngine_Experimental_AI_NavMeshQuery_IsValidPolygon_Injected(void * navMeshQuery, void * polygon)
+{
+	typedef bool (* ICallMethod) (void * navMeshQuery, void * polygon);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::IsValidPolygon_Injected");
+	bool i2res = icall(navMeshQuery,polygon);
+	return i2res;
+}
+int32_t UnityEngine_Experimental_AI_NavMeshQuery_GetAgentTypeIdForPolygon_Injected(void * navMeshQuery, void * polygon)
+{
+	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * polygon);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetAgentTypeIdForPolygon_Injected");
+	int32_t i2res = icall(navMeshQuery,polygon);
+	return i2res;
+}
+bool UnityEngine_Experimental_AI_NavMeshQuery_IsPositionInPolygon_Injected(void * navMeshQuery, void * position, void * polygon)
+{
+	typedef bool (* ICallMethod) (void * navMeshQuery, void * position, void * polygon);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::IsPositionInPolygon_Injected");
+	bool i2res = icall(navMeshQuery,position,polygon);
+	return i2res;
+}
+int32_t UnityEngine_Experimental_AI_NavMeshQuery_GetClosestPointOnPoly_Injected(void * navMeshQuery, void * polygon, void * position, void * nearest)
+{
+	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * polygon, void * position, void * nearest);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetClosestPointOnPoly_Injected");
+	int32_t i2res = icall(navMeshQuery,polygon,position,nearest);
+	return i2res;
+}
+void UnityEngine_Experimental_AI_NavMeshQuery_MapLocation_Injected(void * navMeshQuery, void * position, void * extents, int32_t agentTypeID, int32_t areaMask, void * ret)
+{
+	typedef void (* ICallMethod) (void * navMeshQuery, void * position, void * extents, int32_t agentTypeID, int32_t areaMask, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::MapLocation_Injected");
+	icall(navMeshQuery,position,extents,agentTypeID,areaMask,ret);
+}
+void UnityEngine_Experimental_AI_NavMeshQuery_MoveLocation_Injected(void * navMeshQuery, void * location, void * target, int32_t areaMask, void * ret)
+{
+	typedef void (* ICallMethod) (void * navMeshQuery, void * location, void * target, int32_t areaMask, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocation_Injected");
+	icall(navMeshQuery,location,target,areaMask,ret);
+}
+bool UnityEngine_Experimental_AI_NavMeshQuery_GetPortalPoints_Injected(void * navMeshQuery, void * polygon, void * neighbourPolygon, void * left, void * right)
+{
+	typedef bool (* ICallMethod) (void * navMeshQuery, void * polygon, void * neighbourPolygon, void * left, void * right);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetPortalPoints_Injected");
+	bool i2res = icall(navMeshQuery,polygon,neighbourPolygon,left,right);
+	return i2res;
+}
+void UnityEngine_Experimental_AI_NavMeshQuery_PolygonLocalToWorldMatrix_Injected(void * navMeshQuery, void * polygon, void * ret)
+{
+	typedef void (* ICallMethod) (void * navMeshQuery, void * polygon, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::PolygonLocalToWorldMatrix_Injected");
+	icall(navMeshQuery,polygon,ret);
+}
+void UnityEngine_Experimental_AI_NavMeshQuery_PolygonWorldToLocalMatrix_Injected(void * navMeshQuery, void * polygon, void * ret)
+{
+	typedef void (* ICallMethod) (void * navMeshQuery, void * polygon, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::PolygonWorldToLocalMatrix_Injected");
+	icall(navMeshQuery,polygon,ret);
+}
+int32_t UnityEngine_Experimental_AI_NavMeshQuery_GetPolygonType_Injected(void * navMeshQuery, void * polygon)
+{
+	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * polygon);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetPolygonType_Injected");
+	int32_t i2res = icall(navMeshQuery,polygon);
+	return i2res;
+}
+int32_t UnityEngine_Experimental_AI_NavMeshQuery_Raycast_Injected(void * navMeshQuery, void * start, void * targetPosition, int32_t areaMask, void * costs, void * hit, void * path, void * pathCount, int32_t maxPath)
+{
+	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * start, void * targetPosition, int32_t areaMask, void * costs, void * hit, void * path, void * pathCount, int32_t maxPath);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::Raycast_Injected");
+	int32_t i2res = icall(navMeshQuery,start,targetPosition,areaMask,costs,hit,path,pathCount,maxPath);
+	return i2res;
+}
+void UnityEngine_AI_NavMeshBuilder_Cancel(MonoObject* data)
+{
+	typedef void (* ICallMethod) (Il2CppObject* data);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuilder::Cancel");
+	Il2CppObject* i2data = get_il2cpp_object(data,il2cpp_get_class_UnityEngine_AI_NavMeshData());
+	icall(i2data);
+}
+void* UnityEngine_AI_NavMeshBuilder_CollectSourcesInternal_Injected(int32_t includedLayerMask, void * includedWorldBounds, MonoObject* root, bool useBounds, int32_t geometry, int32_t defaultArea, void* markups)
+{
+	typedef void* (* ICallMethod) (int32_t includedLayerMask, void * includedWorldBounds, Il2CppObject* root, bool useBounds, int32_t geometry, int32_t defaultArea, void* markups);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuilder::CollectSourcesInternal_Injected");
+	Il2CppObject* i2root = get_il2cpp_object(root,il2cpp_get_class_UnityEngine_Transform());
+	void* i2res = icall(includedLayerMask,includedWorldBounds,i2root,useBounds,geometry,defaultArea,markups);
+	return i2res;
+}
+bool UnityEngine_AI_NavMeshBuilder_UpdateNavMeshDataListInternal_Injected(MonoObject* data, void * buildSettings, MonoObject* sources, void * localBounds)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* data, void * buildSettings, Il2CppObject* sources, void * localBounds);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuilder::UpdateNavMeshDataListInternal_Injected");
+	Il2CppObject* i2data = get_il2cpp_object(data,il2cpp_get_class_UnityEngine_AI_NavMeshData());
+	Il2CppObject* i2sources = get_il2cpp_object(sources,NULL);
+	bool i2res = icall(i2data,buildSettings,i2sources,localBounds);
+	return i2res;
+}
+MonoObject* UnityEngine_AI_NavMeshBuilder_UpdateNavMeshDataAsyncListInternal_Injected(MonoObject* data, void * buildSettings, MonoObject* sources, void * localBounds)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* data, void * buildSettings, Il2CppObject* sources, void * localBounds);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuilder::UpdateNavMeshDataAsyncListInternal_Injected");
+	Il2CppObject* i2data = get_il2cpp_object(data,il2cpp_get_class_UnityEngine_AI_NavMeshData());
+	Il2CppObject* i2sources = get_il2cpp_object(sources,NULL);
+	Il2CppObject* i2res = icall(i2data,buildSettings,i2sources,localBounds);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AsyncOperation());
+	return monoi2res;
+}
+void UnityEngine_AI_NavMesh_RemoveAllNavMeshData()
+{
+	typedef void (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RemoveAllNavMeshData");
+	icall();
+}
+bool UnityEngine_AI_NavMesh_INTERNAL_CALL_Raycast(void * sourcePosition, void * targetPosition, void * hit, int32_t areaMask)
+{
+	typedef bool (* ICallMethod) (void * sourcePosition, void * targetPosition, void * hit, int32_t areaMask);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_Raycast");
+	bool i2res = icall(sourcePosition,targetPosition,hit,areaMask);
+	return i2res;
+}
+bool UnityEngine_AI_NavMesh_INTERNAL_CALL_CalculatePathInternal(void * sourcePosition, void * targetPosition, int32_t areaMask, MonoObject* path)
+{
+	typedef bool (* ICallMethod) (void * sourcePosition, void * targetPosition, int32_t areaMask, Il2CppObject* path);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_CalculatePathInternal");
+	Il2CppObject* i2path = get_il2cpp_object(path,il2cpp_get_class_UnityEngine_AI_NavMeshPath());
+	bool i2res = icall(sourcePosition,targetPosition,areaMask,i2path);
+	return i2res;
+}
+bool UnityEngine_AI_NavMesh_INTERNAL_CALL_FindClosestEdge(void * sourcePosition, void * hit, int32_t areaMask)
+{
+	typedef bool (* ICallMethod) (void * sourcePosition, void * hit, int32_t areaMask);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_FindClosestEdge");
+	bool i2res = icall(sourcePosition,hit,areaMask);
+	return i2res;
+}
+bool UnityEngine_AI_NavMesh_INTERNAL_CALL_SamplePosition(void * sourcePosition, void * hit, float maxDistance, int32_t areaMask)
+{
+	typedef bool (* ICallMethod) (void * sourcePosition, void * hit, float maxDistance, int32_t areaMask);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_SamplePosition");
+	bool i2res = icall(sourcePosition,hit,maxDistance,areaMask);
+	return i2res;
+}
+void UnityEngine_AI_NavMesh_SetLayerCost(int32_t layer, float cost)
+{
+	typedef void (* ICallMethod) (int32_t layer, float cost);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::SetLayerCost");
+	icall(layer,cost);
+}
+float UnityEngine_AI_NavMesh_GetLayerCost(int32_t layer)
+{
+	typedef float (* ICallMethod) (int32_t layer);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetLayerCost");
+	float i2res = icall(layer);
+	return i2res;
+}
+int32_t UnityEngine_AI_NavMesh_GetNavMeshLayerFromName(MonoString* layerName)
+{
+	typedef int32_t (* ICallMethod) (Il2CppString* layerName);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetNavMeshLayerFromName");
+	Il2CppString* i2layerName = get_il2cpp_string(layerName);
+	int32_t i2res = icall(i2layerName);
+	return i2res;
+}
+void UnityEngine_AI_NavMesh_SetAreaCost(int32_t areaIndex, float cost)
+{
+	typedef void (* ICallMethod) (int32_t areaIndex, float cost);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::SetAreaCost");
+	icall(areaIndex,cost);
+}
+float UnityEngine_AI_NavMesh_GetAreaCost(int32_t areaIndex)
+{
+	typedef float (* ICallMethod) (int32_t areaIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetAreaCost");
+	float i2res = icall(areaIndex);
+	return i2res;
+}
+int32_t UnityEngine_AI_NavMesh_GetAreaFromName(MonoString* areaName)
+{
+	typedef int32_t (* ICallMethod) (Il2CppString* areaName);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetAreaFromName");
+	Il2CppString* i2areaName = get_il2cpp_string(areaName);
+	int32_t i2res = icall(i2areaName);
+	return i2res;
+}
+MonoObject* UnityEngine_AI_NavMesh_TriangulateInternal()
+{
+	typedef Il2CppObject* (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::TriangulateInternal");
+	Il2CppObject* i2res = icall();
+	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
+	return monoi2res;
+}
+void UnityEngine_AI_NavMesh_Triangulate(void * vertices, void * indices)
+{
+	typedef void (* ICallMethod) (void * vertices, void * indices);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::Triangulate");
+	icall(vertices,indices);
+}
+void UnityEngine_AI_NavMesh_AddOffMeshLinks()
+{
+	typedef void (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::AddOffMeshLinks");
+	icall();
+}
+void UnityEngine_AI_NavMesh_RestoreNavMesh()
+{
+	typedef void (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RestoreNavMesh");
+	icall();
+}
+void UnityEngine_AI_NavMesh_SetAvoidancePredictionTime(float t)
+{
+	typedef void (* ICallMethod) (float t);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::SetAvoidancePredictionTime");
+	icall(t);
+}
+float UnityEngine_AI_NavMesh_GetAvoidancePredictionTime()
+{
+	typedef float (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetAvoidancePredictionTime");
+	float i2res = icall();
+	return i2res;
+}
+void UnityEngine_AI_NavMesh_SetPathfindingIterationsPerFrame(int32_t iter)
+{
+	typedef void (* ICallMethod) (int32_t iter);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::SetPathfindingIterationsPerFrame");
+	icall(iter);
+}
+int32_t UnityEngine_AI_NavMesh_GetPathfindingIterationsPerFrame()
+{
+	typedef int32_t (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetPathfindingIterationsPerFrame");
+	int32_t i2res = icall();
+	return i2res;
+}
+bool UnityEngine_AI_NavMesh_IsValidNavMeshDataHandle(int32_t handle)
+{
+	typedef bool (* ICallMethod) (int32_t handle);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::IsValidNavMeshDataHandle");
+	bool i2res = icall(handle);
+	return i2res;
+}
+bool UnityEngine_AI_NavMesh_IsValidLinkHandle(int32_t handle)
+{
+	typedef bool (* ICallMethod) (int32_t handle);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::IsValidLinkHandle");
+	bool i2res = icall(handle);
+	return i2res;
+}
+MonoObject* UnityEngine_AI_NavMesh_InternalGetOwner(int32_t dataID)
+{
+	typedef Il2CppObject* (* ICallMethod) (int32_t dataID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::InternalGetOwner");
+	Il2CppObject* i2res = icall(dataID);
+	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
+	return monoi2res;
+}
+bool UnityEngine_AI_NavMesh_InternalSetOwner(int32_t dataID, int32_t ownerID)
+{
+	typedef bool (* ICallMethod) (int32_t dataID, int32_t ownerID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::InternalSetOwner");
+	bool i2res = icall(dataID,ownerID);
+	return i2res;
+}
+MonoObject* UnityEngine_AI_NavMesh_InternalGetLinkOwner(int32_t linkID)
+{
+	typedef Il2CppObject* (* ICallMethod) (int32_t linkID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::InternalGetLinkOwner");
+	Il2CppObject* i2res = icall(linkID);
+	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
+	return monoi2res;
+}
+bool UnityEngine_AI_NavMesh_InternalSetLinkOwner(int32_t linkID, int32_t ownerID)
+{
+	typedef bool (* ICallMethod) (int32_t linkID, int32_t ownerID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::InternalSetLinkOwner");
+	bool i2res = icall(linkID,ownerID);
+	return i2res;
+}
+int32_t UnityEngine_AI_NavMesh_AddNavMeshDataInternal(MonoObject* navMeshData)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* navMeshData);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::AddNavMeshDataInternal");
+	Il2CppObject* i2navMeshData = get_il2cpp_object(navMeshData,il2cpp_get_class_UnityEngine_AI_NavMeshData());
+	int32_t i2res = icall(i2navMeshData);
+	return i2res;
+}
+int32_t UnityEngine_AI_NavMesh_INTERNAL_CALL_AddNavMeshDataTransformedInternal(MonoObject* navMeshData, void * position, void * rotation)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* navMeshData, void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_AddNavMeshDataTransformedInternal");
+	Il2CppObject* i2navMeshData = get_il2cpp_object(navMeshData,il2cpp_get_class_UnityEngine_AI_NavMeshData());
+	int32_t i2res = icall(i2navMeshData,position,rotation);
+	return i2res;
+}
+void UnityEngine_AI_NavMesh_RemoveNavMeshDataInternal(int32_t handle)
+{
+	typedef void (* ICallMethod) (int32_t handle);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RemoveNavMeshDataInternal");
+	icall(handle);
+}
+int32_t UnityEngine_AI_NavMesh_INTERNAL_CALL_AddLinkInternal(void * link, void * position, void * rotation)
+{
+	typedef int32_t (* ICallMethod) (void * link, void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_AddLinkInternal");
+	int32_t i2res = icall(link,position,rotation);
+	return i2res;
+}
+void UnityEngine_AI_NavMesh_RemoveLinkInternal(int32_t handle)
+{
+	typedef void (* ICallMethod) (int32_t handle);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RemoveLinkInternal");
+	icall(handle);
+}
+bool UnityEngine_AI_NavMesh_INTERNAL_CALL_SamplePositionFilter(void * sourcePosition, void * hit, float maxDistance, int32_t type, int32_t mask)
+{
+	typedef bool (* ICallMethod) (void * sourcePosition, void * hit, float maxDistance, int32_t type, int32_t mask);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_SamplePositionFilter");
+	bool i2res = icall(sourcePosition,hit,maxDistance,type,mask);
+	return i2res;
+}
+bool UnityEngine_AI_NavMesh_INTERNAL_CALL_FindClosestEdgeFilter(void * sourcePosition, void * hit, int32_t type, int32_t mask)
+{
+	typedef bool (* ICallMethod) (void * sourcePosition, void * hit, int32_t type, int32_t mask);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_FindClosestEdgeFilter");
+	bool i2res = icall(sourcePosition,hit,type,mask);
+	return i2res;
+}
+bool UnityEngine_AI_NavMesh_INTERNAL_CALL_RaycastFilter(void * sourcePosition, void * targetPosition, void * hit, int32_t type, int32_t mask)
+{
+	typedef bool (* ICallMethod) (void * sourcePosition, void * targetPosition, void * hit, int32_t type, int32_t mask);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_RaycastFilter");
+	bool i2res = icall(sourcePosition,targetPosition,hit,type,mask);
+	return i2res;
+}
+bool UnityEngine_AI_NavMesh_INTERNAL_CALL_CalculatePathFilterInternal(void * sourcePosition, void * targetPosition, MonoObject* path, int32_t type, int32_t mask, void* costs)
+{
+	typedef bool (* ICallMethod) (void * sourcePosition, void * targetPosition, Il2CppObject* path, int32_t type, int32_t mask, void* costs);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_CalculatePathFilterInternal");
+	Il2CppObject* i2path = get_il2cpp_object(path,il2cpp_get_class_UnityEngine_AI_NavMeshPath());
+	bool i2res = icall(sourcePosition,targetPosition,i2path,type,mask,costs);
+	return i2res;
+}
+void UnityEngine_AI_NavMesh_INTERNAL_CALL_CreateSettings(void * value)
+{
+	typedef void (* ICallMethod) (void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_CreateSettings");
+	icall(value);
+}
+void UnityEngine_AI_NavMesh_RemoveSettings(int32_t agentTypeID)
+{
+	typedef void (* ICallMethod) (int32_t agentTypeID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RemoveSettings");
+	icall(agentTypeID);
+}
+void UnityEngine_AI_NavMesh_INTERNAL_CALL_GetSettingsByID(int32_t agentTypeID, void * value)
+{
+	typedef void (* ICallMethod) (int32_t agentTypeID, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_GetSettingsByID");
+	icall(agentTypeID,value);
+}
+int32_t UnityEngine_AI_NavMesh_GetSettingsCount()
+{
+	typedef int32_t (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetSettingsCount");
+	int32_t i2res = icall();
+	return i2res;
+}
+void UnityEngine_AI_NavMesh_INTERNAL_CALL_GetSettingsByIndex(int32_t index, void * value)
+{
+	typedef void (* ICallMethod) (int32_t index, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_GetSettingsByIndex");
+	icall(index,value);
+}
+MonoString* UnityEngine_AI_NavMesh_GetSettingsNameFromID(int32_t agentTypeID)
+{
+	typedef Il2CppString* (* ICallMethod) (int32_t agentTypeID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetSettingsNameFromID");
+	Il2CppString* i2res = icall(agentTypeID);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+MonoObject* UnityEngine_AI_NavMeshBuildSource_InternalGetComponent(int32_t instanceID)
+{
+	typedef Il2CppObject* (* ICallMethod) (int32_t instanceID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuildSource::InternalGetComponent");
+	Il2CppObject* i2res = icall(instanceID);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Component());
+	return monoi2res;
+}
+MonoObject* UnityEngine_AI_NavMeshBuildSource_InternalGetObject(int32_t instanceID)
+{
+	typedef Il2CppObject* (* ICallMethod) (int32_t instanceID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuildSource::InternalGetObject");
+	Il2CppObject* i2res = icall(instanceID);
+	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
+	return monoi2res;
+}
+MonoObject* UnityEngine_AI_NavMeshBuildMarkup_InternalGetRootGO(int32_t instanceID)
+{
+	typedef Il2CppObject* (* ICallMethod) (int32_t instanceID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuildMarkup::InternalGetRootGO");
+	Il2CppObject* i2res = icall(instanceID);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
+	return monoi2res;
+}
+MonoArray* UnityEngine_AI_NavMeshBuildSettings_InternalValidationReport_Injected(void * buildSettings, void * buildBounds)
+{
+	typedef Il2CppArray* (* ICallMethod) (void * buildSettings, void * buildBounds);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuildSettings::InternalValidationReport_Injected");
+	Il2CppArray* i2res = icall(buildSettings,buildBounds);
+	MonoArray* monoi2res = get_mono_array(i2res);
+	return monoi2res;
+}
 void UnityEngine_AI_NavMeshPath__ctor(MonoObject* thiz)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz);
@@ -440,7 +1060,7 @@ bool UnityEngine_AI_NavMeshAgent_FindClosestEdge(MonoObject* thiz, void * hit)
 	bool i2res = icall(i2thiz,hit);
 	return i2res;
 }
-bool UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_Raycast(MonoObject* self, void * targetPosition, void * hit)
+bool UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_Raycast_1(MonoObject* self, void * targetPosition, void * hit)
 {
 	typedef bool (* ICallMethod) (Il2CppObject* self, void * targetPosition, void * hit);
 	static ICallMethod icall;
@@ -450,7 +1070,7 @@ bool UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_Raycast(MonoObject* self, void * 
 	bool i2res = icall(i2self,targetPosition,hit);
 	return i2res;
 }
-bool UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_CalculatePathInternal(MonoObject* self, void * targetPosition, MonoObject* path)
+bool UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_CalculatePathInternal_1(MonoObject* self, void * targetPosition, MonoObject* path)
 {
 	typedef bool (* ICallMethod) (Il2CppObject* self, void * targetPosition, Il2CppObject* path);
 	static ICallMethod icall;
@@ -471,7 +1091,7 @@ bool UnityEngine_AI_NavMeshAgent_SamplePathPosition(MonoObject* thiz, int32_t ar
 	bool i2res = icall(i2thiz,areaMask,maxDistance,hit);
 	return i2res;
 }
-void UnityEngine_AI_NavMeshAgent_SetLayerCost(MonoObject* thiz, int32_t layer, float cost)
+void UnityEngine_AI_NavMeshAgent_SetLayerCost_1(MonoObject* thiz, int32_t layer, float cost)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layer, float cost);
 	static ICallMethod icall;
@@ -480,7 +1100,7 @@ void UnityEngine_AI_NavMeshAgent_SetLayerCost(MonoObject* thiz, int32_t layer, f
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AI_NavMeshAgent());
 	icall(i2thiz,layer,cost);
 }
-float UnityEngine_AI_NavMeshAgent_GetLayerCost(MonoObject* thiz, int32_t layer)
+float UnityEngine_AI_NavMeshAgent_GetLayerCost_1(MonoObject* thiz, int32_t layer)
 {
 	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t layer);
 	static ICallMethod icall;
@@ -490,7 +1110,7 @@ float UnityEngine_AI_NavMeshAgent_GetLayerCost(MonoObject* thiz, int32_t layer)
 	float i2res = icall(i2thiz,layer);
 	return i2res;
 }
-void UnityEngine_AI_NavMeshAgent_SetAreaCost(MonoObject* thiz, int32_t areaIndex, float areaCost)
+void UnityEngine_AI_NavMeshAgent_SetAreaCost_1(MonoObject* thiz, int32_t areaIndex, float areaCost)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t areaIndex, float areaCost);
 	static ICallMethod icall;
@@ -499,7 +1119,7 @@ void UnityEngine_AI_NavMeshAgent_SetAreaCost(MonoObject* thiz, int32_t areaIndex
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AI_NavMeshAgent());
 	icall(i2thiz,areaIndex,areaCost);
 }
-float UnityEngine_AI_NavMeshAgent_GetAreaCost(MonoObject* thiz, int32_t areaIndex)
+float UnityEngine_AI_NavMeshAgent_GetAreaCost_1(MonoObject* thiz, int32_t areaIndex)
 {
 	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t areaIndex);
 	static ICallMethod icall;
@@ -1212,679 +1832,287 @@ void UnityEngine_AI_NavMeshData_INTERNAL_set_rotation(MonoObject* thiz, void * v
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AI_NavMeshData());
 	icall(i2thiz,value);
 }
-bool UnityEngine_AI_NavMesh_INTERNAL_CALL_Raycast_1(void * sourcePosition, void * targetPosition, void * hit, int32_t areaMask)
+void UnityEngine_Animations_AimConstraint_Internal_Create_1(MonoObject* self)
 {
-	typedef bool (* ICallMethod) (void * sourcePosition, void * targetPosition, void * hit, int32_t areaMask);
+	typedef void (* ICallMethod) (Il2CppObject* self);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_Raycast");
-	bool i2res = icall(sourcePosition,targetPosition,hit,areaMask);
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::Internal_Create");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2self);
+}
+float UnityEngine_Animations_AimConstraint_get_weight(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_weight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	float i2res = icall(i2thiz);
 	return i2res;
 }
-bool UnityEngine_AI_NavMesh_INTERNAL_CALL_CalculatePathInternal_1(void * sourcePosition, void * targetPosition, int32_t areaMask, MonoObject* path)
+void UnityEngine_Animations_AimConstraint_set_weight(MonoObject* thiz, float value)
 {
-	typedef bool (* ICallMethod) (void * sourcePosition, void * targetPosition, int32_t areaMask, Il2CppObject* path);
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_CalculatePathInternal");
-	Il2CppObject* i2path = get_il2cpp_object(path,il2cpp_get_class_UnityEngine_AI_NavMeshPath());
-	bool i2res = icall(sourcePosition,targetPosition,areaMask,i2path);
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_weight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Animations_AimConstraint_get_constraintActive(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_constraintActive");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	bool i2res = icall(i2thiz);
 	return i2res;
 }
-bool UnityEngine_AI_NavMesh_INTERNAL_CALL_FindClosestEdge(void * sourcePosition, void * hit, int32_t areaMask)
+void UnityEngine_Animations_AimConstraint_set_constraintActive(MonoObject* thiz, bool value)
 {
-	typedef bool (* ICallMethod) (void * sourcePosition, void * hit, int32_t areaMask);
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_FindClosestEdge");
-	bool i2res = icall(sourcePosition,hit,areaMask);
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_constraintActive");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Animations_AimConstraint_get_locked(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_locked");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	bool i2res = icall(i2thiz);
 	return i2res;
 }
-bool UnityEngine_AI_NavMesh_INTERNAL_CALL_SamplePosition(void * sourcePosition, void * hit, float maxDistance, int32_t areaMask)
+void UnityEngine_Animations_AimConstraint_set_locked(MonoObject* thiz, bool value)
 {
-	typedef bool (* ICallMethod) (void * sourcePosition, void * hit, float maxDistance, int32_t areaMask);
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_SamplePosition");
-	bool i2res = icall(sourcePosition,hit,maxDistance,areaMask);
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_locked");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Animations_AimConstraint_get_rotationAxis(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_rotationAxis");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	int32_t i2res = icall(i2thiz);
 	return i2res;
 }
-void UnityEngine_AI_NavMesh_SetLayerCost_1(int32_t layer, float cost)
+void UnityEngine_Animations_AimConstraint_set_rotationAxis(MonoObject* thiz, int32_t value)
 {
-	typedef void (* ICallMethod) (int32_t layer, float cost);
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::SetLayerCost");
-	icall(layer,cost);
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_rotationAxis");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
 }
-float UnityEngine_AI_NavMesh_GetLayerCost_1(int32_t layer)
-{
-	typedef float (* ICallMethod) (int32_t layer);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetLayerCost");
-	float i2res = icall(layer);
-	return i2res;
-}
-int32_t UnityEngine_AI_NavMesh_GetNavMeshLayerFromName(MonoString* layerName)
-{
-	typedef int32_t (* ICallMethod) (Il2CppString* layerName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetNavMeshLayerFromName");
-	Il2CppString* i2layerName = get_il2cpp_string(layerName);
-	int32_t i2res = icall(i2layerName);
-	return i2res;
-}
-void UnityEngine_AI_NavMesh_SetAreaCost_1(int32_t areaIndex, float cost)
-{
-	typedef void (* ICallMethod) (int32_t areaIndex, float cost);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::SetAreaCost");
-	icall(areaIndex,cost);
-}
-float UnityEngine_AI_NavMesh_GetAreaCost_1(int32_t areaIndex)
-{
-	typedef float (* ICallMethod) (int32_t areaIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetAreaCost");
-	float i2res = icall(areaIndex);
-	return i2res;
-}
-int32_t UnityEngine_AI_NavMesh_GetAreaFromName(MonoString* areaName)
-{
-	typedef int32_t (* ICallMethod) (Il2CppString* areaName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetAreaFromName");
-	Il2CppString* i2areaName = get_il2cpp_string(areaName);
-	int32_t i2res = icall(i2areaName);
-	return i2res;
-}
-MonoObject* UnityEngine_AI_NavMesh_TriangulateInternal()
-{
-	typedef Il2CppObject* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::TriangulateInternal");
-	Il2CppObject* i2res = icall();
-	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
-	return monoi2res;
-}
-void UnityEngine_AI_NavMesh_Triangulate(void * vertices, void * indices)
-{
-	typedef void (* ICallMethod) (void * vertices, void * indices);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::Triangulate");
-	icall(vertices,indices);
-}
-void UnityEngine_AI_NavMesh_AddOffMeshLinks()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::AddOffMeshLinks");
-	icall();
-}
-void UnityEngine_AI_NavMesh_RestoreNavMesh()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RestoreNavMesh");
-	icall();
-}
-void UnityEngine_AI_NavMesh_SetAvoidancePredictionTime(float t)
-{
-	typedef void (* ICallMethod) (float t);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::SetAvoidancePredictionTime");
-	icall(t);
-}
-float UnityEngine_AI_NavMesh_GetAvoidancePredictionTime()
-{
-	typedef float (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetAvoidancePredictionTime");
-	float i2res = icall();
-	return i2res;
-}
-void UnityEngine_AI_NavMesh_SetPathfindingIterationsPerFrame(int32_t iter)
-{
-	typedef void (* ICallMethod) (int32_t iter);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::SetPathfindingIterationsPerFrame");
-	icall(iter);
-}
-int32_t UnityEngine_AI_NavMesh_GetPathfindingIterationsPerFrame()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetPathfindingIterationsPerFrame");
-	int32_t i2res = icall();
-	return i2res;
-}
-bool UnityEngine_AI_NavMesh_IsValidNavMeshDataHandle(int32_t handle)
-{
-	typedef bool (* ICallMethod) (int32_t handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::IsValidNavMeshDataHandle");
-	bool i2res = icall(handle);
-	return i2res;
-}
-bool UnityEngine_AI_NavMesh_IsValidLinkHandle(int32_t handle)
-{
-	typedef bool (* ICallMethod) (int32_t handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::IsValidLinkHandle");
-	bool i2res = icall(handle);
-	return i2res;
-}
-MonoObject* UnityEngine_AI_NavMesh_InternalGetOwner(int32_t dataID)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t dataID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::InternalGetOwner");
-	Il2CppObject* i2res = icall(dataID);
-	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
-	return monoi2res;
-}
-bool UnityEngine_AI_NavMesh_InternalSetOwner(int32_t dataID, int32_t ownerID)
-{
-	typedef bool (* ICallMethod) (int32_t dataID, int32_t ownerID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::InternalSetOwner");
-	bool i2res = icall(dataID,ownerID);
-	return i2res;
-}
-MonoObject* UnityEngine_AI_NavMesh_InternalGetLinkOwner(int32_t linkID)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t linkID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::InternalGetLinkOwner");
-	Il2CppObject* i2res = icall(linkID);
-	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
-	return monoi2res;
-}
-bool UnityEngine_AI_NavMesh_InternalSetLinkOwner(int32_t linkID, int32_t ownerID)
-{
-	typedef bool (* ICallMethod) (int32_t linkID, int32_t ownerID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::InternalSetLinkOwner");
-	bool i2res = icall(linkID,ownerID);
-	return i2res;
-}
-int32_t UnityEngine_AI_NavMesh_AddNavMeshDataInternal(MonoObject* navMeshData)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* navMeshData);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::AddNavMeshDataInternal");
-	Il2CppObject* i2navMeshData = get_il2cpp_object(navMeshData,il2cpp_get_class_UnityEngine_AI_NavMeshData());
-	int32_t i2res = icall(i2navMeshData);
-	return i2res;
-}
-int32_t UnityEngine_AI_NavMesh_INTERNAL_CALL_AddNavMeshDataTransformedInternal(MonoObject* navMeshData, void * position, void * rotation)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* navMeshData, void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_AddNavMeshDataTransformedInternal");
-	Il2CppObject* i2navMeshData = get_il2cpp_object(navMeshData,il2cpp_get_class_UnityEngine_AI_NavMeshData());
-	int32_t i2res = icall(i2navMeshData,position,rotation);
-	return i2res;
-}
-void UnityEngine_AI_NavMesh_RemoveNavMeshDataInternal(int32_t handle)
-{
-	typedef void (* ICallMethod) (int32_t handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RemoveNavMeshDataInternal");
-	icall(handle);
-}
-int32_t UnityEngine_AI_NavMesh_INTERNAL_CALL_AddLinkInternal(void * link, void * position, void * rotation)
-{
-	typedef int32_t (* ICallMethod) (void * link, void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_AddLinkInternal");
-	int32_t i2res = icall(link,position,rotation);
-	return i2res;
-}
-void UnityEngine_AI_NavMesh_RemoveLinkInternal(int32_t handle)
-{
-	typedef void (* ICallMethod) (int32_t handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RemoveLinkInternal");
-	icall(handle);
-}
-bool UnityEngine_AI_NavMesh_INTERNAL_CALL_SamplePositionFilter(void * sourcePosition, void * hit, float maxDistance, int32_t type, int32_t mask)
-{
-	typedef bool (* ICallMethod) (void * sourcePosition, void * hit, float maxDistance, int32_t type, int32_t mask);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_SamplePositionFilter");
-	bool i2res = icall(sourcePosition,hit,maxDistance,type,mask);
-	return i2res;
-}
-bool UnityEngine_AI_NavMesh_INTERNAL_CALL_FindClosestEdgeFilter(void * sourcePosition, void * hit, int32_t type, int32_t mask)
-{
-	typedef bool (* ICallMethod) (void * sourcePosition, void * hit, int32_t type, int32_t mask);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_FindClosestEdgeFilter");
-	bool i2res = icall(sourcePosition,hit,type,mask);
-	return i2res;
-}
-bool UnityEngine_AI_NavMesh_INTERNAL_CALL_RaycastFilter(void * sourcePosition, void * targetPosition, void * hit, int32_t type, int32_t mask)
-{
-	typedef bool (* ICallMethod) (void * sourcePosition, void * targetPosition, void * hit, int32_t type, int32_t mask);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_RaycastFilter");
-	bool i2res = icall(sourcePosition,targetPosition,hit,type,mask);
-	return i2res;
-}
-bool UnityEngine_AI_NavMesh_INTERNAL_CALL_CalculatePathFilterInternal(void * sourcePosition, void * targetPosition, MonoObject* path, int32_t type, int32_t mask, void* costs)
-{
-	typedef bool (* ICallMethod) (void * sourcePosition, void * targetPosition, Il2CppObject* path, int32_t type, int32_t mask, void* costs);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_CalculatePathFilterInternal");
-	Il2CppObject* i2path = get_il2cpp_object(path,il2cpp_get_class_UnityEngine_AI_NavMeshPath());
-	bool i2res = icall(sourcePosition,targetPosition,i2path,type,mask,costs);
-	return i2res;
-}
-void UnityEngine_AI_NavMesh_INTERNAL_CALL_CreateSettings(void * value)
-{
-	typedef void (* ICallMethod) (void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_CreateSettings");
-	icall(value);
-}
-void UnityEngine_AI_NavMesh_RemoveSettings(int32_t agentTypeID)
-{
-	typedef void (* ICallMethod) (int32_t agentTypeID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RemoveSettings");
-	icall(agentTypeID);
-}
-void UnityEngine_AI_NavMesh_INTERNAL_CALL_GetSettingsByID(int32_t agentTypeID, void * value)
-{
-	typedef void (* ICallMethod) (int32_t agentTypeID, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_GetSettingsByID");
-	icall(agentTypeID,value);
-}
-int32_t UnityEngine_AI_NavMesh_GetSettingsCount()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetSettingsCount");
-	int32_t i2res = icall();
-	return i2res;
-}
-void UnityEngine_AI_NavMesh_INTERNAL_CALL_GetSettingsByIndex(int32_t index, void * value)
-{
-	typedef void (* ICallMethod) (int32_t index, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::INTERNAL_CALL_GetSettingsByIndex");
-	icall(index,value);
-}
-MonoString* UnityEngine_AI_NavMesh_GetSettingsNameFromID(int32_t agentTypeID)
-{
-	typedef Il2CppString* (* ICallMethod) (int32_t agentTypeID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::GetSettingsNameFromID");
-	Il2CppString* i2res = icall(agentTypeID);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_AI_NavMesh_RemoveAllNavMeshData()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMesh::RemoveAllNavMeshData");
-	icall();
-}
-void UnityEngine_Experimental_AI_NavMeshWorld_GetDefaultWorld_Injected(void * ret)
-{
-	typedef void (* ICallMethod) (void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshWorld::GetDefaultWorld_Injected");
-	icall(ret);
-}
-void UnityEngine_Experimental_AI_NavMeshWorld_AddDependencyInternal_Injected(void * navmesh, void * handle)
-{
-	typedef void (* ICallMethod) (void * navmesh, void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshWorld::AddDependencyInternal_Injected");
-	icall(navmesh,handle);
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_Destroy(void * navMeshQuery)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::Destroy");
-	icall(navMeshQuery);
-}
-bool UnityEngine_Experimental_AI_NavMeshQuery_HasNodePool(void * navMeshQuery)
-{
-	typedef bool (* ICallMethod) (void * navMeshQuery);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::HasNodePool");
-	bool i2res = icall(navMeshQuery);
-	return i2res;
-}
-int32_t UnityEngine_Experimental_AI_NavMeshQuery_UpdateFindPath(void * navMeshQuery, int32_t iterations, void * iterationsPerformed)
-{
-	typedef int32_t (* ICallMethod) (void * navMeshQuery, int32_t iterations, void * iterationsPerformed);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::UpdateFindPath");
-	int32_t i2res = icall(navMeshQuery,iterations,iterationsPerformed);
-	return i2res;
-}
-int32_t UnityEngine_Experimental_AI_NavMeshQuery_EndFindPath(void * navMeshQuery, void * pathSize)
-{
-	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * pathSize);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::EndFindPath");
-	int32_t i2res = icall(navMeshQuery,pathSize);
-	return i2res;
-}
-int32_t UnityEngine_Experimental_AI_NavMeshQuery_GetPathResult(void * navMeshQuery, void * path, int32_t maxPath)
-{
-	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * path, int32_t maxPath);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetPathResult");
-	int32_t i2res = icall(navMeshQuery,path,maxPath);
-	return i2res;
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_MoveLocations(void * navMeshQuery, void * locations, void * targets, void * areaMasks, int32_t count)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery, void * locations, void * targets, void * areaMasks, int32_t count);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocations");
-	icall(navMeshQuery,locations,targets,areaMasks,count);
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_MoveLocationsInSameAreas(void * navMeshQuery, void * locations, void * targets, int32_t count, int32_t areaMask)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery, void * locations, void * targets, int32_t count, int32_t areaMask);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocationsInSameAreas");
-	icall(navMeshQuery,locations,targets,count,areaMask);
-}
-void * UnityEngine_Experimental_AI_NavMeshQuery_Create_Injected(void * world, int32_t nodePoolSize)
-{
-	typedef void * (* ICallMethod) (void * world, int32_t nodePoolSize);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::Create_Injected");
-	void * i2res = icall(world,nodePoolSize);
-	return i2res;
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_AddQuerySafety_Injected(void * navMeshQuery, void * handle)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery, void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::AddQuerySafety_Injected");
-	icall(navMeshQuery,handle);
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_RemoveQuerySafety_Injected(void * navMeshQuery, void * handle)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery, void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::RemoveQuerySafety_Injected");
-	icall(navMeshQuery,handle);
-}
-int32_t UnityEngine_Experimental_AI_NavMeshQuery_BeginFindPath_Injected(void * navMeshQuery, void * start, void * end, int32_t areaMask, void * costs)
-{
-	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * start, void * end, int32_t areaMask, void * costs);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::BeginFindPath_Injected");
-	int32_t i2res = icall(navMeshQuery,start,end,areaMask,costs);
-	return i2res;
-}
-bool UnityEngine_Experimental_AI_NavMeshQuery_IsValidPolygon_Injected(void * navMeshQuery, void * polygon)
-{
-	typedef bool (* ICallMethod) (void * navMeshQuery, void * polygon);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::IsValidPolygon_Injected");
-	bool i2res = icall(navMeshQuery,polygon);
-	return i2res;
-}
-int32_t UnityEngine_Experimental_AI_NavMeshQuery_GetAgentTypeIdForPolygon_Injected(void * navMeshQuery, void * polygon)
-{
-	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * polygon);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetAgentTypeIdForPolygon_Injected");
-	int32_t i2res = icall(navMeshQuery,polygon);
-	return i2res;
-}
-bool UnityEngine_Experimental_AI_NavMeshQuery_IsPositionInPolygon_Injected(void * navMeshQuery, void * position, void * polygon)
-{
-	typedef bool (* ICallMethod) (void * navMeshQuery, void * position, void * polygon);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::IsPositionInPolygon_Injected");
-	bool i2res = icall(navMeshQuery,position,polygon);
-	return i2res;
-}
-int32_t UnityEngine_Experimental_AI_NavMeshQuery_GetClosestPointOnPoly_Injected(void * navMeshQuery, void * polygon, void * position, void * nearest)
-{
-	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * polygon, void * position, void * nearest);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetClosestPointOnPoly_Injected");
-	int32_t i2res = icall(navMeshQuery,polygon,position,nearest);
-	return i2res;
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_MapLocation_Injected(void * navMeshQuery, void * position, void * extents, int32_t agentTypeID, int32_t areaMask, void * ret)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery, void * position, void * extents, int32_t agentTypeID, int32_t areaMask, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::MapLocation_Injected");
-	icall(navMeshQuery,position,extents,agentTypeID,areaMask,ret);
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_MoveLocation_Injected(void * navMeshQuery, void * location, void * target, int32_t areaMask, void * ret)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery, void * location, void * target, int32_t areaMask, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocation_Injected");
-	icall(navMeshQuery,location,target,areaMask,ret);
-}
-bool UnityEngine_Experimental_AI_NavMeshQuery_GetPortalPoints_Injected(void * navMeshQuery, void * polygon, void * neighbourPolygon, void * left, void * right)
-{
-	typedef bool (* ICallMethod) (void * navMeshQuery, void * polygon, void * neighbourPolygon, void * left, void * right);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetPortalPoints_Injected");
-	bool i2res = icall(navMeshQuery,polygon,neighbourPolygon,left,right);
-	return i2res;
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_PolygonLocalToWorldMatrix_Injected(void * navMeshQuery, void * polygon, void * ret)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery, void * polygon, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::PolygonLocalToWorldMatrix_Injected");
-	icall(navMeshQuery,polygon,ret);
-}
-void UnityEngine_Experimental_AI_NavMeshQuery_PolygonWorldToLocalMatrix_Injected(void * navMeshQuery, void * polygon, void * ret)
-{
-	typedef void (* ICallMethod) (void * navMeshQuery, void * polygon, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::PolygonWorldToLocalMatrix_Injected");
-	icall(navMeshQuery,polygon,ret);
-}
-int32_t UnityEngine_Experimental_AI_NavMeshQuery_GetPolygonType_Injected(void * navMeshQuery, void * polygon)
-{
-	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * polygon);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::GetPolygonType_Injected");
-	int32_t i2res = icall(navMeshQuery,polygon);
-	return i2res;
-}
-int32_t UnityEngine_Experimental_AI_NavMeshQuery_Raycast_Injected(void * navMeshQuery, void * start, void * targetPosition, int32_t areaMask, void * costs, void * hit, void * path, void * pathCount, int32_t maxPath)
-{
-	typedef int32_t (* ICallMethod) (void * navMeshQuery, void * start, void * targetPosition, int32_t areaMask, void * costs, void * hit, void * path, void * pathCount, int32_t maxPath);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.AI.NavMeshQuery::Raycast_Injected");
-	int32_t i2res = icall(navMeshQuery,start,targetPosition,areaMask,costs,hit,path,pathCount,maxPath);
-	return i2res;
-}
-void UnityEngine_AI_NavMeshBuilder_Cancel(MonoObject* data)
-{
-	typedef void (* ICallMethod) (Il2CppObject* data);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuilder::Cancel");
-	Il2CppObject* i2data = get_il2cpp_object(data,il2cpp_get_class_UnityEngine_AI_NavMeshData());
-	icall(i2data);
-}
-void* UnityEngine_AI_NavMeshBuilder_CollectSourcesInternal_Injected(int32_t includedLayerMask, void * includedWorldBounds, MonoObject* root, bool useBounds, int32_t geometry, int32_t defaultArea, void* markups)
-{
-	typedef void* (* ICallMethod) (int32_t includedLayerMask, void * includedWorldBounds, Il2CppObject* root, bool useBounds, int32_t geometry, int32_t defaultArea, void* markups);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuilder::CollectSourcesInternal_Injected");
-	Il2CppObject* i2root = get_il2cpp_object(root,il2cpp_get_class_UnityEngine_Transform());
-	void* i2res = icall(includedLayerMask,includedWorldBounds,i2root,useBounds,geometry,defaultArea,markups);
-	return i2res;
-}
-bool UnityEngine_AI_NavMeshBuilder_UpdateNavMeshDataListInternal_Injected(MonoObject* data, void * buildSettings, MonoObject* sources, void * localBounds)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* data, void * buildSettings, Il2CppObject* sources, void * localBounds);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuilder::UpdateNavMeshDataListInternal_Injected");
-	Il2CppObject* i2data = get_il2cpp_object(data,il2cpp_get_class_UnityEngine_AI_NavMeshData());
-	Il2CppObject* i2sources = get_il2cpp_object(sources,NULL);
-	bool i2res = icall(i2data,buildSettings,i2sources,localBounds);
-	return i2res;
-}
-MonoObject* UnityEngine_AI_NavMeshBuilder_UpdateNavMeshDataAsyncListInternal_Injected(MonoObject* data, void * buildSettings, MonoObject* sources, void * localBounds)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* data, void * buildSettings, Il2CppObject* sources, void * localBounds);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuilder::UpdateNavMeshDataAsyncListInternal_Injected");
-	Il2CppObject* i2data = get_il2cpp_object(data,il2cpp_get_class_UnityEngine_AI_NavMeshData());
-	Il2CppObject* i2sources = get_il2cpp_object(sources,NULL);
-	Il2CppObject* i2res = icall(i2data,buildSettings,i2sources,localBounds);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AsyncOperation());
-	return monoi2res;
-}
-MonoObject* UnityEngine_AI_NavMeshBuildSource_InternalGetComponent(int32_t instanceID)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t instanceID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuildSource::InternalGetComponent");
-	Il2CppObject* i2res = icall(instanceID);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Component());
-	return monoi2res;
-}
-MonoObject* UnityEngine_AI_NavMeshBuildSource_InternalGetObject(int32_t instanceID)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t instanceID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuildSource::InternalGetObject");
-	Il2CppObject* i2res = icall(instanceID);
-	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
-	return monoi2res;
-}
-MonoObject* UnityEngine_AI_NavMeshBuildMarkup_InternalGetRootGO(int32_t instanceID)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t instanceID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuildMarkup::InternalGetRootGO");
-	Il2CppObject* i2res = icall(instanceID);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
-	return monoi2res;
-}
-MonoArray* UnityEngine_AI_NavMeshBuildSettings_InternalValidationReport_Injected(void * buildSettings, void * buildBounds)
-{
-	typedef Il2CppArray* (* ICallMethod) (void * buildSettings, void * buildBounds);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AI.NavMeshBuildSettings::InternalValidationReport_Injected");
-	Il2CppArray* i2res = icall(buildSettings,buildBounds);
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
-void UnityEngine_AnimationClip_AddEventInternal(MonoObject* thiz, MonoObject* evt)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* evt);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationClip::AddEventInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationClip());
-	Il2CppObject* i2evt = get_il2cpp_object(evt,NULL);
-	icall(i2thiz,i2evt);
-}
-void UnityEngine_AnimationClip_SetEventsInternal(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationClip::SetEventsInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationClip());
-	Il2CppObject* i2value = get_il2cpp_object(value,NULL);
-	icall(i2thiz,i2value);
-}
-MonoObject* UnityEngine_AnimationClip_GetEventsInternal(MonoObject* thiz)
+MonoObject* UnityEngine_Animations_AimConstraint_get_worldUpObject(MonoObject* thiz)
 {
 	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationClip::GetEventsInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationClip());
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_worldUpObject");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
 	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_System_Array());
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
 	return monoi2res;
+}
+void UnityEngine_Animations_AimConstraint_set_worldUpObject(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_worldUpObject");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Transform());
+	icall(i2thiz,i2value);
+}
+int32_t UnityEngine_Animations_AimConstraint_get_worldUpType(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_worldUpType");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animations_AimConstraint_set_worldUpType(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_worldUpType");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Animations_AimConstraint_GetSourceCountInternal(MonoObject* self)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* self);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::GetSourceCountInternal");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	int32_t i2res = icall(i2self);
+	return i2res;
+}
+void UnityEngine_Animations_AimConstraint_GetSources(MonoObject* thiz, MonoObject* sources)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* sources);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::GetSources");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	Il2CppObject* i2sources = get_il2cpp_object(sources,NULL);
+	icall(i2thiz,i2sources);
+}
+void UnityEngine_Animations_AimConstraint_SetSourcesInternal(MonoObject* self, MonoObject* sources)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self, Il2CppObject* sources);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::SetSourcesInternal");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	Il2CppObject* i2sources = get_il2cpp_object(sources,NULL);
+	icall(i2self,i2sources);
+}
+void UnityEngine_Animations_AimConstraint_RemoveSourceInternal(MonoObject* thiz, int32_t index)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t index);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::RemoveSourceInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,index);
+}
+void UnityEngine_Animations_AimConstraint_get_rotationAtRest_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_rotationAtRest_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animations_AimConstraint_set_rotationAtRest_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_rotationAtRest_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animations_AimConstraint_get_rotationOffset_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_rotationOffset_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animations_AimConstraint_set_rotationOffset_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_rotationOffset_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animations_AimConstraint_get_aimVector_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_aimVector_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animations_AimConstraint_set_aimVector_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_aimVector_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animations_AimConstraint_get_upVector_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_upVector_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animations_AimConstraint_set_upVector_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_upVector_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animations_AimConstraint_get_worldUpVector_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_worldUpVector_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animations_AimConstraint_set_worldUpVector_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_worldUpVector_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Animations_AimConstraint_AddSource_Injected(MonoObject* thiz, void * source)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, void * source);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::AddSource_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	int32_t i2res = icall(i2thiz,source);
+	return i2res;
+}
+void UnityEngine_Animations_AimConstraint_GetSourceInternal_Injected(MonoObject* thiz, int32_t index, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t index, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::GetSourceInternal_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,index,ret);
+}
+void UnityEngine_Animations_AimConstraint_SetSourceInternal_Injected(MonoObject* thiz, int32_t index, void * source)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t index, void * source);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::SetSourceInternal_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
+	icall(i2thiz,index,source);
 }
 void UnityEngine_AnimationClip_Internal_CreateAnimationClip(MonoObject* self)
 {
@@ -2093,6 +2321,37 @@ bool UnityEngine_AnimationClip_get_hasRootMotion(MonoObject* thiz)
 	bool i2res = icall(i2thiz);
 	return i2res;
 }
+void UnityEngine_AnimationClip_AddEventInternal(MonoObject* thiz, MonoObject* evt)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* evt);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationClip::AddEventInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationClip());
+	Il2CppObject* i2evt = get_il2cpp_object(evt,NULL);
+	icall(i2thiz,i2evt);
+}
+void UnityEngine_AnimationClip_SetEventsInternal(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationClip::SetEventsInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationClip());
+	Il2CppObject* i2value = get_il2cpp_object(value,NULL);
+	icall(i2thiz,i2value);
+}
+MonoObject* UnityEngine_AnimationClip_GetEventsInternal(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationClip::GetEventsInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationClip());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_System_Array());
+	return monoi2res;
+}
 void UnityEngine_AnimationClip_get_localBounds_Injected(MonoObject* thiz, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
@@ -2110,2299 +2369,6 @@ void UnityEngine_AnimationClip_set_localBounds_Injected(MonoObject* thiz, void *
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationClip::set_localBounds_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationClip());
 	icall(i2thiz,value);
-}
-MonoObject* UnityEngine_Animation_get_clip(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_clip");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationClip());
-	return monoi2res;
-}
-void UnityEngine_Animation_set_clip(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_clip");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_AnimationClip());
-	icall(i2thiz,i2value);
-}
-bool UnityEngine_Animation_get_playAutomatically(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_playAutomatically");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animation_set_playAutomatically(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_playAutomatically");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Animation_get_wrapMode_1(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_wrapMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animation_set_wrapMode_1(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_wrapMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animation_INTERNAL_CALL_Stop(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_CALL_Stop");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2self);
-}
-void UnityEngine_Animation_Internal_StopByName(MonoObject* thiz, MonoString* name)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::Internal_StopByName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2thiz,i2name);
-}
-void UnityEngine_Animation_Internal_RewindByName(MonoObject* thiz, MonoString* name)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::Internal_RewindByName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2thiz,i2name);
-}
-void UnityEngine_Animation_INTERNAL_CALL_Rewind(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_CALL_Rewind");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2self);
-}
-void UnityEngine_Animation_INTERNAL_CALL_Sample(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_CALL_Sample");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2self);
-}
-bool UnityEngine_Animation_get_isPlaying(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_isPlaying");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animation_IsPlaying(MonoObject* thiz, MonoString* name)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::IsPlaying");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	bool i2res = icall(i2thiz,i2name);
-	return i2res;
-}
-bool UnityEngine_Animation_Play(MonoObject* thiz, MonoString* animation, int32_t mode)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, int32_t mode);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::Play");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2animation = get_il2cpp_string(animation);
-	bool i2res = icall(i2thiz,i2animation,mode);
-	return i2res;
-}
-void UnityEngine_Animation_CrossFade(MonoObject* thiz, MonoString* animation, float fadeLength, int32_t mode)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, float fadeLength, int32_t mode);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::CrossFade");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2animation = get_il2cpp_string(animation);
-	icall(i2thiz,i2animation,fadeLength,mode);
-}
-void UnityEngine_Animation_Blend(MonoObject* thiz, MonoString* animation, float targetWeight, float fadeLength)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, float targetWeight, float fadeLength);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::Blend");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2animation = get_il2cpp_string(animation);
-	icall(i2thiz,i2animation,targetWeight,fadeLength);
-}
-MonoObject* UnityEngine_Animation_CrossFadeQueued(MonoObject* thiz, MonoString* animation, float fadeLength, int32_t queue, int32_t mode)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, float fadeLength, int32_t queue, int32_t mode);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::CrossFadeQueued");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2animation = get_il2cpp_string(animation);
-	Il2CppObject* i2res = icall(i2thiz,i2animation,fadeLength,queue,mode);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationState());
-	return monoi2res;
-}
-MonoObject* UnityEngine_Animation_PlayQueued(MonoObject* thiz, MonoString* animation, int32_t queue, int32_t mode)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, int32_t queue, int32_t mode);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::PlayQueued");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2animation = get_il2cpp_string(animation);
-	Il2CppObject* i2res = icall(i2thiz,i2animation,queue,mode);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationState());
-	return monoi2res;
-}
-void UnityEngine_Animation_AddClip(MonoObject* thiz, MonoObject* clip, MonoString* newName, int32_t firstFrame, int32_t lastFrame, bool addLoopFrame)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* clip, Il2CppString* newName, int32_t firstFrame, int32_t lastFrame, bool addLoopFrame);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::AddClip");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppObject* i2clip = get_il2cpp_object(clip,il2cpp_get_class_UnityEngine_AnimationClip());
-	Il2CppString* i2newName = get_il2cpp_string(newName);
-	icall(i2thiz,i2clip,i2newName,firstFrame,lastFrame,addLoopFrame);
-}
-void UnityEngine_Animation_RemoveClip(MonoObject* thiz, MonoObject* clip)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* clip);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::RemoveClip");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppObject* i2clip = get_il2cpp_object(clip,il2cpp_get_class_UnityEngine_AnimationClip());
-	icall(i2thiz,i2clip);
-}
-int32_t UnityEngine_Animation_GetClipCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::GetClipCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animation_RemoveClip2(MonoObject* thiz, MonoString* clipName)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* clipName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::RemoveClip2");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2clipName = get_il2cpp_string(clipName);
-	icall(i2thiz,i2clipName);
-}
-bool UnityEngine_Animation_PlayDefaultAnimation(MonoObject* thiz, int32_t mode)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t mode);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::PlayDefaultAnimation");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	bool i2res = icall(i2thiz,mode);
-	return i2res;
-}
-void UnityEngine_Animation_INTERNAL_CALL_SyncLayer(MonoObject* self, int32_t layer)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self, int32_t layer);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_CALL_SyncLayer");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2self,layer);
-}
-MonoObject* UnityEngine_Animation_GetState(MonoObject* thiz, MonoString* name)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::GetState");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	Il2CppObject* i2res = icall(i2thiz,i2name);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationState());
-	return monoi2res;
-}
-MonoObject* UnityEngine_Animation_GetStateAtIndex(MonoObject* thiz, int32_t index)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, int32_t index);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::GetStateAtIndex");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	Il2CppObject* i2res = icall(i2thiz,index);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationState());
-	return monoi2res;
-}
-int32_t UnityEngine_Animation_GetStateCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::GetStateCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animation_get_animatePhysics(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_animatePhysics");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animation_set_animatePhysics(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_animatePhysics");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Animation_get_animateOnlyIfVisible(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_animateOnlyIfVisible");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animation_set_animateOnlyIfVisible(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_animateOnlyIfVisible");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Animation_get_cullingType(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_cullingType");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animation_set_cullingType(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_cullingType");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animation_INTERNAL_get_localBounds(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_get_localBounds");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animation_INTERNAL_set_localBounds(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_set_localBounds");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
-	icall(i2thiz,value);
-}
-bool UnityEngine_AnimationState_get_enabled(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_enabled");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_enabled(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_enabled");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-float UnityEngine_AnimationState_get_weight(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_weight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_weight(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_weight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_AnimationState_get_wrapMode_2(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_wrapMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_wrapMode_2(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_wrapMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-float UnityEngine_AnimationState_get_time(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_time");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_time(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_time");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-float UnityEngine_AnimationState_get_normalizedTime(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_normalizedTime");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_normalizedTime(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_normalizedTime");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-float UnityEngine_AnimationState_get_speed_1(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_speed");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_speed_1(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_speed");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-float UnityEngine_AnimationState_get_normalizedSpeed(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_normalizedSpeed");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_normalizedSpeed(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_normalizedSpeed");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-float UnityEngine_AnimationState_get_length_1(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_length");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_AnimationState_get_layer(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_layer");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_layer(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_layer");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-MonoObject* UnityEngine_AnimationState_get_clip_1(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_clip");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationClip());
-	return monoi2res;
-}
-void UnityEngine_AnimationState_AddMixingTransform(MonoObject* thiz, MonoObject* mix, bool recursive)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* mix, bool recursive);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::AddMixingTransform");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	Il2CppObject* i2mix = get_il2cpp_object(mix,il2cpp_get_class_UnityEngine_Transform());
-	icall(i2thiz,i2mix,recursive);
-}
-void UnityEngine_AnimationState_RemoveMixingTransform(MonoObject* thiz, MonoObject* mix)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* mix);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::RemoveMixingTransform");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	Il2CppObject* i2mix = get_il2cpp_object(mix,il2cpp_get_class_UnityEngine_Transform());
-	icall(i2thiz,i2mix);
-}
-MonoString* UnityEngine_AnimationState_get_name(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_name");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_AnimationState_set_name(MonoObject* thiz, MonoString* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_name");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	Il2CppString* i2value = get_il2cpp_string(value);
-	icall(i2thiz,i2value);
-}
-int32_t UnityEngine_AnimationState_get_blendMode(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_blendMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AnimationState_set_blendMode(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_blendMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Animator_get_isOptimizable(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isOptimizable");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animator_get_isHuman(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isHuman");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animator_get_hasRootMotion_1(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_hasRootMotion");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animator_get_isRootPositionOrRotationControlledByCurves(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isRootPositionOrRotationControlledByCurves");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-float UnityEngine_Animator_get_humanScale(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_humanScale");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animator_get_isInitialized(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isInitialized");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animator_get_applyRootMotion(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_applyRootMotion");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_applyRootMotion(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_applyRootMotion");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Animator_get_linearVelocityBlending(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_linearVelocityBlending");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_linearVelocityBlending(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_linearVelocityBlending");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Animator_get_updateMode(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_updateMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_updateMode(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_updateMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Animator_get_hasTransformHierarchy(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_hasTransformHierarchy");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animator_get_allowConstantClipSamplingOptimization(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_allowConstantClipSamplingOptimization");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_allowConstantClipSamplingOptimization(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_allowConstantClipSamplingOptimization");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-float UnityEngine_Animator_get_gravityWeight(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_gravityWeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-float UnityEngine_Animator_GetGoalWeightPosition(MonoObject* thiz, int32_t goal)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t goal);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetGoalWeightPosition");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz,goal);
-	return i2res;
-}
-void UnityEngine_Animator_SetGoalWeightPosition(MonoObject* thiz, int32_t goal, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetGoalWeightPosition");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,goal,value);
-}
-float UnityEngine_Animator_GetGoalWeightRotation(MonoObject* thiz, int32_t goal)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t goal);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetGoalWeightRotation");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz,goal);
-	return i2res;
-}
-void UnityEngine_Animator_SetGoalWeightRotation(MonoObject* thiz, int32_t goal, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetGoalWeightRotation");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,goal,value);
-}
-float UnityEngine_Animator_GetHintWeightPosition(MonoObject* thiz, int32_t hint)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t hint);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetHintWeightPosition");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz,hint);
-	return i2res;
-}
-void UnityEngine_Animator_SetHintWeightPosition(MonoObject* thiz, int32_t hint, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t hint, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetHintWeightPosition");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,hint,value);
-}
-void UnityEngine_Animator_SetLookAtWeightInternal(MonoObject* thiz, float weight, float bodyWeight, float headWeight, float eyesWeight, float clampWeight)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float weight, float bodyWeight, float headWeight, float eyesWeight, float clampWeight);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetLookAtWeightInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,weight,bodyWeight,headWeight,eyesWeight,clampWeight);
-}
-MonoObject* UnityEngine_Animator_GetBehaviour(MonoObject* thiz, MonoReflectionType* type)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, Il2CppReflectionType* type);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetBehaviour");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppReflectionType* i2type = get_il2cpp_reflection_type(type);
-	Il2CppObject* i2res = icall(i2thiz,i2type);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_ScriptableObject());
-	return monoi2res;
-}
-MonoArray* UnityEngine_Animator_InternalGetBehaviours(MonoObject* thiz, MonoReflectionType* type)
-{
-	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz, Il2CppReflectionType* type);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::InternalGetBehaviours");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppReflectionType* i2type = get_il2cpp_reflection_type(type);
-	Il2CppArray* i2res = icall(i2thiz,i2type);
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
-MonoArray* UnityEngine_Animator_InternalGetBehavioursByKey(MonoObject* thiz, int32_t fullPathHash, int32_t layerIndex, MonoReflectionType* type)
-{
-	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz, int32_t fullPathHash, int32_t layerIndex, Il2CppReflectionType* type);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::InternalGetBehavioursByKey");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppReflectionType* i2type = get_il2cpp_reflection_type(type);
-	Il2CppArray* i2res = icall(i2thiz,fullPathHash,layerIndex,i2type);
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
-bool UnityEngine_Animator_get_stabilizeFeet(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_stabilizeFeet");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_stabilizeFeet(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_stabilizeFeet");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Animator_get_layerCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_layerCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-MonoString* UnityEngine_Animator_GetLayerName(MonoObject* thiz, int32_t layerIndex)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetLayerName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2res = icall(i2thiz,layerIndex);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-int32_t UnityEngine_Animator_GetLayerIndex(MonoObject* thiz, MonoString* layerName)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppString* layerName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetLayerIndex");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2layerName = get_il2cpp_string(layerName);
-	int32_t i2res = icall(i2thiz,i2layerName);
-	return i2res;
-}
-float UnityEngine_Animator_GetLayerWeight(MonoObject* thiz, int32_t layerIndex)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetLayerWeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz,layerIndex);
-	return i2res;
-}
-void UnityEngine_Animator_SetLayerWeight(MonoObject* thiz, int32_t layerIndex, float weight)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, float weight);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetLayerWeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,layerIndex,weight);
-}
-void UnityEngine_Animator_GetAnimatorStateInfo(MonoObject* thiz, int32_t layerIndex, int32_t stateInfoIndex, void * info)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, int32_t stateInfoIndex, void * info);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorStateInfo");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,layerIndex,stateInfoIndex,info);
-}
-void UnityEngine_Animator_GetAnimatorTransitionInfo(MonoObject* thiz, int32_t layerIndex, void * info)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, void * info);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorTransitionInfo");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,layerIndex,info);
-}
-int32_t UnityEngine_Animator_GetAnimatorClipInfoCount(MonoObject* thiz, int32_t layerIndex, bool current)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, bool current);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorClipInfoCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	int32_t i2res = icall(i2thiz,layerIndex,current);
-	return i2res;
-}
-void* UnityEngine_Animator_GetCurrentAnimatorClipInfo(MonoObject* thiz, int32_t layerIndex)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetCurrentAnimatorClipInfo");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	void* i2res = icall(i2thiz,layerIndex);
-	return i2res;
-}
-void* UnityEngine_Animator_GetNextAnimatorClipInfo(MonoObject* thiz, int32_t layerIndex)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetNextAnimatorClipInfo");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	void* i2res = icall(i2thiz,layerIndex);
-	return i2res;
-}
-void UnityEngine_Animator_GetAnimatorClipInfoInternal(MonoObject* thiz, int32_t layerIndex, bool isCurrent, MonoObject* clips)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, bool isCurrent, Il2CppObject* clips);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorClipInfoInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppObject* i2clips = get_il2cpp_object(clips,NULL);
-	icall(i2thiz,layerIndex,isCurrent,i2clips);
-}
-void* UnityEngine_Animator_GetAnimatorClipInfoInternalWinRT(MonoObject* thiz, int32_t layerIndex, bool isCurrent)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, bool isCurrent);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorClipInfoInternalWinRT");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	void* i2res = icall(i2thiz,layerIndex,isCurrent);
-	return i2res;
-}
-bool UnityEngine_Animator_IsInTransition(MonoObject* thiz, int32_t layerIndex)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsInTransition");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz,layerIndex);
-	return i2res;
-}
-MonoArray* UnityEngine_Animator_get_parameters(MonoObject* thiz)
-{
-	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_parameters");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppArray* i2res = icall(i2thiz);
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
-int32_t UnityEngine_Animator_get_parameterCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_parameterCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-float UnityEngine_Animator_get_feetPivotActive(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_feetPivotActive");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_feetPivotActive(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_feetPivotActive");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-float UnityEngine_Animator_get_pivotWeight(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_pivotWeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_InterruptMatchTarget(MonoObject* thiz, bool completeMatch)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool completeMatch);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::InterruptMatchTarget");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,completeMatch);
-}
-bool UnityEngine_Animator_get_isMatchingTarget(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isMatchingTarget");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-float UnityEngine_Animator_get_speed_2(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_speed");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_speed_2(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_speed");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animator_CrossFadeInFixedTime(MonoObject* thiz, int32_t stateHashName, float fixedTransitionDuration, int32_t layer, float fixedTimeOffset, float normalizedTransitionTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t stateHashName, float fixedTransitionDuration, int32_t layer, float fixedTimeOffset, float normalizedTransitionTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::CrossFadeInFixedTime");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,stateHashName,fixedTransitionDuration,layer,fixedTimeOffset,normalizedTransitionTime);
-}
-void UnityEngine_Animator_WriteDefaultValues(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::WriteDefaultValues");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-void UnityEngine_Animator_CrossFade_1(MonoObject* thiz, int32_t stateHashName, float normalizedTransitionDuration, int32_t layer, float normalizedTimeOffset, float normalizedTransitionTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t stateHashName, float normalizedTransitionDuration, int32_t layer, float normalizedTimeOffset, float normalizedTransitionTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::CrossFade");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,stateHashName,normalizedTransitionDuration,layer,normalizedTimeOffset,normalizedTransitionTime);
-}
-void UnityEngine_Animator_PlayInFixedTime(MonoObject* thiz, int32_t stateNameHash, int32_t layer, float fixedTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t stateNameHash, int32_t layer, float fixedTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::PlayInFixedTime");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,stateNameHash,layer,fixedTime);
-}
-void UnityEngine_Animator_Play_1(MonoObject* thiz, int32_t stateNameHash, int32_t layer, float normalizedTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t stateNameHash, int32_t layer, float normalizedTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::Play");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,stateNameHash,layer,normalizedTime);
-}
-void UnityEngine_Animator_SetTarget(MonoObject* thiz, int32_t targetIndex, float targetNormalizedTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t targetIndex, float targetNormalizedTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetTarget");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,targetIndex,targetNormalizedTime);
-}
-bool UnityEngine_Animator_IsBoneTransform(MonoObject* thiz, MonoObject* transform)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* transform);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsBoneTransform");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppObject* i2transform = get_il2cpp_object(transform,il2cpp_get_class_UnityEngine_Transform());
-	bool i2res = icall(i2thiz,i2transform);
-	return i2res;
-}
-MonoObject* UnityEngine_Animator_get_avatarRoot(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_avatarRoot");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
-	return monoi2res;
-}
-MonoObject* UnityEngine_Animator_GetBoneTransformInternal(MonoObject* thiz, int32_t humanBoneId)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, int32_t humanBoneId);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetBoneTransformInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppObject* i2res = icall(i2thiz,humanBoneId);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
-	return monoi2res;
-}
-int32_t UnityEngine_Animator_get_cullingMode(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_cullingMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_cullingMode(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_cullingMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animator_StartPlayback(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StartPlayback");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-void UnityEngine_Animator_StopPlayback(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StopPlayback");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-float UnityEngine_Animator_get_playbackTime(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_playbackTime");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_playbackTime(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_playbackTime");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animator_StartRecording(MonoObject* thiz, int32_t frameCount)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t frameCount);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StartRecording");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,frameCount);
-}
-void UnityEngine_Animator_StopRecording(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StopRecording");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-float UnityEngine_Animator_GetRecorderStartTime(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetRecorderStartTime");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-float UnityEngine_Animator_GetRecorderStopTime(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetRecorderStopTime");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_Animator_get_recorderMode(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_recorderMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-MonoObject* UnityEngine_Animator_get_runtimeAnimatorController(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_runtimeAnimatorController");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_RuntimeAnimatorController());
-	return monoi2res;
-}
-void UnityEngine_Animator_set_runtimeAnimatorController(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_runtimeAnimatorController");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_RuntimeAnimatorController());
-	icall(i2thiz,i2value);
-}
-bool UnityEngine_Animator_get_hasBoundPlayables(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_hasBoundPlayables");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_ClearInternalControllerPlayable(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ClearInternalControllerPlayable");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-bool UnityEngine_Animator_HasState(MonoObject* thiz, int32_t layerIndex, int32_t stateID)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, int32_t stateID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::HasState");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz,layerIndex,stateID);
-	return i2res;
-}
-int32_t UnityEngine_Animator_StringToHash(MonoString* name)
-{
-	typedef int32_t (* ICallMethod) (Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StringToHash");
-	Il2CppString* i2name = get_il2cpp_string(name);
-	int32_t i2res = icall(i2name);
-	return i2res;
-}
-MonoObject* UnityEngine_Animator_get_avatar(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_avatar");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Avatar());
-	return monoi2res;
-}
-void UnityEngine_Animator_set_avatar(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_avatar");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Avatar());
-	icall(i2thiz,i2value);
-}
-MonoString* UnityEngine_Animator_GetStats(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetStats");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_Animator_GetCurrentGraph(MonoObject* thiz, void * graph)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * graph);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetCurrentGraph");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,graph);
-}
-bool UnityEngine_Animator_IsInIKPass(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsInIKPass");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_SetFloatString(MonoObject* thiz, MonoString* name, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetFloatString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2thiz,i2name,value);
-}
-void UnityEngine_Animator_SetFloatID(MonoObject* thiz, int32_t id, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetFloatID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,id,value);
-}
-float UnityEngine_Animator_GetFloatString(MonoObject* thiz, MonoString* name)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetFloatString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	float i2res = icall(i2thiz,i2name);
-	return i2res;
-}
-float UnityEngine_Animator_GetFloatID(MonoObject* thiz, int32_t id)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t id);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetFloatID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz,id);
-	return i2res;
-}
-void UnityEngine_Animator_SetBoolString(MonoObject* thiz, MonoString* name, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetBoolString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2thiz,i2name,value);
-}
-void UnityEngine_Animator_SetBoolID(MonoObject* thiz, int32_t id, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetBoolID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,id,value);
-}
-bool UnityEngine_Animator_GetBoolString(MonoObject* thiz, MonoString* name)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetBoolString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	bool i2res = icall(i2thiz,i2name);
-	return i2res;
-}
-bool UnityEngine_Animator_GetBoolID(MonoObject* thiz, int32_t id)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t id);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetBoolID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz,id);
-	return i2res;
-}
-void UnityEngine_Animator_SetIntegerString(MonoObject* thiz, MonoString* name, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetIntegerString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2thiz,i2name,value);
-}
-void UnityEngine_Animator_SetIntegerID(MonoObject* thiz, int32_t id, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetIntegerID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,id,value);
-}
-int32_t UnityEngine_Animator_GetIntegerString(MonoObject* thiz, MonoString* name)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetIntegerString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	int32_t i2res = icall(i2thiz,i2name);
-	return i2res;
-}
-int32_t UnityEngine_Animator_GetIntegerID(MonoObject* thiz, int32_t id)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t id);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetIntegerID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	int32_t i2res = icall(i2thiz,id);
-	return i2res;
-}
-void UnityEngine_Animator_SetTriggerString(MonoObject* thiz, MonoString* name)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetTriggerString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2thiz,i2name);
-}
-void UnityEngine_Animator_SetTriggerID(MonoObject* thiz, int32_t id)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetTriggerID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,id);
-}
-void UnityEngine_Animator_ResetTriggerString(MonoObject* thiz, MonoString* name)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ResetTriggerString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2thiz,i2name);
-}
-void UnityEngine_Animator_ResetTriggerID(MonoObject* thiz, int32_t id)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ResetTriggerID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,id);
-}
-bool UnityEngine_Animator_IsParameterControlledByCurveString(MonoObject* thiz, MonoString* name)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsParameterControlledByCurveString");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	bool i2res = icall(i2thiz,i2name);
-	return i2res;
-}
-bool UnityEngine_Animator_IsParameterControlledByCurveID(MonoObject* thiz, int32_t id)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t id);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsParameterControlledByCurveID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz,id);
-	return i2res;
-}
-void UnityEngine_Animator_SetFloatStringDamp(MonoObject* thiz, MonoString* name, float value, float dampTime, float deltaTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name, float value, float dampTime, float deltaTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetFloatStringDamp");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2thiz,i2name,value,dampTime,deltaTime);
-}
-void UnityEngine_Animator_SetFloatIDDamp(MonoObject* thiz, int32_t id, float value, float dampTime, float deltaTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id, float value, float dampTime, float deltaTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetFloatIDDamp");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,id,value,dampTime,deltaTime);
-}
-bool UnityEngine_Animator_get_layersAffectMassCenter(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_layersAffectMassCenter");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_layersAffectMassCenter(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_layersAffectMassCenter");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-float UnityEngine_Animator_get_leftFeetBottomHeight(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_leftFeetBottomHeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-float UnityEngine_Animator_get_rightFeetBottomHeight(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_rightFeetBottomHeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Animator_get_supportsOnAnimatorMove(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_supportsOnAnimatorMove");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_OnUpdateModeChanged(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::OnUpdateModeChanged");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-void UnityEngine_Animator_OnCullingModeChanged(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::OnCullingModeChanged");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-void UnityEngine_Animator_WriteDefaultPose(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::WriteDefaultPose");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-void UnityEngine_Animator_Update(MonoObject* thiz, float deltaTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float deltaTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::Update");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,deltaTime);
-}
-void UnityEngine_Animator_Rebind(MonoObject* thiz, bool writeDefaultValues)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool writeDefaultValues);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::Rebind");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,writeDefaultValues);
-}
-void UnityEngine_Animator_ApplyBuiltinRootMotion(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ApplyBuiltinRootMotion");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz);
-}
-void UnityEngine_Animator_EvaluateController(MonoObject* thiz, float deltaTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float deltaTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::EvaluateController");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,deltaTime);
-}
-MonoString* UnityEngine_Animator_GetAnimatorStateName(MonoObject* thiz, int32_t layerIndex, bool current)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, bool current);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorStateName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2res = icall(i2thiz,layerIndex,current);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* UnityEngine_Animator_ResolveHash(MonoObject* thiz, int32_t hash)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, int32_t hash);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ResolveHash");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	Il2CppString* i2res = icall(i2thiz,hash);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-bool UnityEngine_Animator_get_logWarnings(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_logWarnings");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_logWarnings(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_logWarnings");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Animator_get_fireEvents(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_fireEvents");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_fireEvents(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_fireEvents");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Animator_get_keepAnimatorControllerStateOnDisable(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_keepAnimatorControllerStateOnDisable");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animator_set_keepAnimatorControllerStateOnDisable(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_keepAnimatorControllerStateOnDisable");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animator_get_deltaPosition_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_deltaPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_get_deltaRotation_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_deltaRotation_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_get_velocity_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_velocity_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_get_angularVelocity_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_angularVelocity_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_get_rootPosition_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_rootPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_set_rootPosition_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_rootPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animator_get_rootRotation_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_rootRotation_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_set_rootRotation_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_rootRotation_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animator_get_bodyPositionInternal_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_bodyPositionInternal_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_set_bodyPositionInternal_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_bodyPositionInternal_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animator_get_bodyRotationInternal_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_bodyRotationInternal_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_set_bodyRotationInternal_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_bodyRotationInternal_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animator_GetGoalPosition_Injected(MonoObject* thiz, int32_t goal, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetGoalPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,goal,ret);
-}
-void UnityEngine_Animator_SetGoalPosition_Injected(MonoObject* thiz, int32_t goal, void * goalPosition)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, void * goalPosition);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetGoalPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,goal,goalPosition);
-}
-void UnityEngine_Animator_GetGoalRotation_Injected(MonoObject* thiz, int32_t goal, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetGoalRotation_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,goal,ret);
-}
-void UnityEngine_Animator_SetGoalRotation_Injected(MonoObject* thiz, int32_t goal, void * goalRotation)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, void * goalRotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetGoalRotation_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,goal,goalRotation);
-}
-void UnityEngine_Animator_GetHintPosition_Injected(MonoObject* thiz, int32_t hint, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t hint, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetHintPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,hint,ret);
-}
-void UnityEngine_Animator_SetHintPosition_Injected(MonoObject* thiz, int32_t hint, void * hintPosition)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t hint, void * hintPosition);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetHintPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,hint,hintPosition);
-}
-void UnityEngine_Animator_SetLookAtPositionInternal_Injected(MonoObject* thiz, void * lookAtPosition)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * lookAtPosition);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetLookAtPositionInternal_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,lookAtPosition);
-}
-void UnityEngine_Animator_SetBoneLocalRotationInternal_Injected(MonoObject* thiz, int32_t humanBoneId, void * rotation)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t humanBoneId, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetBoneLocalRotationInternal_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,humanBoneId,rotation);
-}
-void UnityEngine_Animator_get_pivotPosition_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_pivotPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_MatchTarget_Injected(MonoObject* thiz, void * matchPosition, void * matchRotation, int32_t targetBodyPart, void * weightMask, float startNormalizedTime, float targetNormalizedTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * matchPosition, void * matchRotation, int32_t targetBodyPart, void * weightMask, float startNormalizedTime, float targetNormalizedTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::MatchTarget_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,matchPosition,matchRotation,targetBodyPart,weightMask,startNormalizedTime,targetNormalizedTime);
-}
-void UnityEngine_Animator_get_targetPosition_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_targetPosition_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animator_get_targetRotation_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_targetRotation_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animations_AimConstraint_Internal_Create_1(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::Internal_Create");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2self);
-}
-float UnityEngine_Animations_AimConstraint_get_weight_1(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_weight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animations_AimConstraint_set_weight_1(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_weight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Animations_AimConstraint_get_constraintActive(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_constraintActive");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animations_AimConstraint_set_constraintActive(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_constraintActive");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Animations_AimConstraint_get_locked(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_locked");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animations_AimConstraint_set_locked(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_locked");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Animations_AimConstraint_get_rotationAxis(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_rotationAxis");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animations_AimConstraint_set_rotationAxis(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_rotationAxis");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-MonoObject* UnityEngine_Animations_AimConstraint_get_worldUpObject(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_worldUpObject");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
-	return monoi2res;
-}
-void UnityEngine_Animations_AimConstraint_set_worldUpObject(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_worldUpObject");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Transform());
-	icall(i2thiz,i2value);
-}
-int32_t UnityEngine_Animations_AimConstraint_get_worldUpType(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_worldUpType");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Animations_AimConstraint_set_worldUpType(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_worldUpType");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Animations_AimConstraint_GetSourceCountInternal(MonoObject* self)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::GetSourceCountInternal");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	int32_t i2res = icall(i2self);
-	return i2res;
-}
-void UnityEngine_Animations_AimConstraint_GetSources(MonoObject* thiz, MonoObject* sources)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* sources);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::GetSources");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	Il2CppObject* i2sources = get_il2cpp_object(sources,NULL);
-	icall(i2thiz,i2sources);
-}
-void UnityEngine_Animations_AimConstraint_SetSourcesInternal(MonoObject* self, MonoObject* sources)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self, Il2CppObject* sources);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::SetSourcesInternal");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	Il2CppObject* i2sources = get_il2cpp_object(sources,NULL);
-	icall(i2self,i2sources);
-}
-void UnityEngine_Animations_AimConstraint_RemoveSourceInternal(MonoObject* thiz, int32_t index)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t index);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::RemoveSourceInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,index);
-}
-void UnityEngine_Animations_AimConstraint_ActivateAndPreserveOffset(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::ActivateAndPreserveOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_AimConstraint_ActivateWithZeroOffset(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::ActivateWithZeroOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_AimConstraint_UserUpdateOffset(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::UserUpdateOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_AimConstraint_get_rotationAtRest_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_rotationAtRest_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animations_AimConstraint_set_rotationAtRest_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_rotationAtRest_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animations_AimConstraint_get_rotationOffset_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_rotationOffset_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animations_AimConstraint_set_rotationOffset_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_rotationOffset_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animations_AimConstraint_get_aimVector_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_aimVector_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animations_AimConstraint_set_aimVector_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_aimVector_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animations_AimConstraint_get_upVector_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_upVector_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animations_AimConstraint_set_upVector_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_upVector_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-void UnityEngine_Animations_AimConstraint_get_worldUpVector_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::get_worldUpVector_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Animations_AimConstraint_set_worldUpVector_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::set_worldUpVector_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Animations_AimConstraint_AddSource_Injected(MonoObject* thiz, void * source)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, void * source);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::AddSource_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	int32_t i2res = icall(i2thiz,source);
-	return i2res;
-}
-void UnityEngine_Animations_AimConstraint_GetSourceInternal_Injected(MonoObject* thiz, int32_t index, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t index, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::GetSourceInternal_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,index,ret);
-}
-void UnityEngine_Animations_AimConstraint_SetSourceInternal_Injected(MonoObject* thiz, int32_t index, void * source)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t index, void * source);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.AimConstraint::SetSourceInternal_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_AimConstraint());
-	icall(i2thiz,index,source);
 }
 MonoObject* UnityEngine_Animations_AnimationClipPlayable_GetAnimationClipInternal(void * handle)
 {
@@ -5502,6 +3468,1407 @@ MonoObject* UnityEngine_AnimatorClipInfo_InstanceIDToAnimationClipPPtr(int32_t i
 	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationClip());
 	return monoi2res;
 }
+bool UnityEngine_Animator_get_isOptimizable(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isOptimizable");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animator_get_isHuman(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isHuman");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animator_get_hasRootMotion_1(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_hasRootMotion");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animator_get_isRootPositionOrRotationControlledByCurves(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isRootPositionOrRotationControlledByCurves");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+float UnityEngine_Animator_get_humanScale(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_humanScale");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animator_get_isInitialized(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isInitialized");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animator_get_applyRootMotion(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_applyRootMotion");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_applyRootMotion(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_applyRootMotion");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Animator_get_linearVelocityBlending(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_linearVelocityBlending");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_linearVelocityBlending(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_linearVelocityBlending");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Animator_get_updateMode(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_updateMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_updateMode(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_updateMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Animator_get_hasTransformHierarchy(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_hasTransformHierarchy");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animator_get_allowConstantClipSamplingOptimization(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_allowConstantClipSamplingOptimization");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_allowConstantClipSamplingOptimization(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_allowConstantClipSamplingOptimization");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+float UnityEngine_Animator_get_gravityWeight(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_gravityWeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+float UnityEngine_Animator_GetGoalWeightPosition(MonoObject* thiz, int32_t goal)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t goal);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetGoalWeightPosition");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz,goal);
+	return i2res;
+}
+void UnityEngine_Animator_SetGoalWeightPosition(MonoObject* thiz, int32_t goal, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetGoalWeightPosition");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,goal,value);
+}
+float UnityEngine_Animator_GetGoalWeightRotation(MonoObject* thiz, int32_t goal)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t goal);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetGoalWeightRotation");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz,goal);
+	return i2res;
+}
+void UnityEngine_Animator_SetGoalWeightRotation(MonoObject* thiz, int32_t goal, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetGoalWeightRotation");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,goal,value);
+}
+float UnityEngine_Animator_GetHintWeightPosition(MonoObject* thiz, int32_t hint)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t hint);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetHintWeightPosition");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz,hint);
+	return i2res;
+}
+void UnityEngine_Animator_SetHintWeightPosition(MonoObject* thiz, int32_t hint, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t hint, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetHintWeightPosition");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,hint,value);
+}
+void UnityEngine_Animator_SetLookAtWeightInternal(MonoObject* thiz, float weight, float bodyWeight, float headWeight, float eyesWeight, float clampWeight)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float weight, float bodyWeight, float headWeight, float eyesWeight, float clampWeight);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetLookAtWeightInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,weight,bodyWeight,headWeight,eyesWeight,clampWeight);
+}
+MonoObject* UnityEngine_Animator_GetBehaviour(MonoObject* thiz, MonoReflectionType* type)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, Il2CppReflectionType* type);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetBehaviour");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppReflectionType* i2type = get_il2cpp_reflection_type(type);
+	Il2CppObject* i2res = icall(i2thiz,i2type);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_ScriptableObject());
+	return monoi2res;
+}
+MonoArray* UnityEngine_Animator_InternalGetBehaviours(MonoObject* thiz, MonoReflectionType* type)
+{
+	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz, Il2CppReflectionType* type);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::InternalGetBehaviours");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppReflectionType* i2type = get_il2cpp_reflection_type(type);
+	Il2CppArray* i2res = icall(i2thiz,i2type);
+	MonoArray* monoi2res = get_mono_array(i2res);
+	return monoi2res;
+}
+MonoArray* UnityEngine_Animator_InternalGetBehavioursByKey(MonoObject* thiz, int32_t fullPathHash, int32_t layerIndex, MonoReflectionType* type)
+{
+	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz, int32_t fullPathHash, int32_t layerIndex, Il2CppReflectionType* type);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::InternalGetBehavioursByKey");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppReflectionType* i2type = get_il2cpp_reflection_type(type);
+	Il2CppArray* i2res = icall(i2thiz,fullPathHash,layerIndex,i2type);
+	MonoArray* monoi2res = get_mono_array(i2res);
+	return monoi2res;
+}
+bool UnityEngine_Animator_get_stabilizeFeet(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_stabilizeFeet");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_stabilizeFeet(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_stabilizeFeet");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Animator_get_layerCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_layerCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+MonoString* UnityEngine_Animator_GetLayerName(MonoObject* thiz, int32_t layerIndex)
+{
+	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetLayerName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2res = icall(i2thiz,layerIndex);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+int32_t UnityEngine_Animator_GetLayerIndex(MonoObject* thiz, MonoString* layerName)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppString* layerName);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetLayerIndex");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2layerName = get_il2cpp_string(layerName);
+	int32_t i2res = icall(i2thiz,i2layerName);
+	return i2res;
+}
+float UnityEngine_Animator_GetLayerWeight(MonoObject* thiz, int32_t layerIndex)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetLayerWeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz,layerIndex);
+	return i2res;
+}
+void UnityEngine_Animator_SetLayerWeight(MonoObject* thiz, int32_t layerIndex, float weight)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, float weight);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetLayerWeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,layerIndex,weight);
+}
+void UnityEngine_Animator_GetAnimatorStateInfo(MonoObject* thiz, int32_t layerIndex, int32_t stateInfoIndex, void * info)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, int32_t stateInfoIndex, void * info);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorStateInfo");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,layerIndex,stateInfoIndex,info);
+}
+void UnityEngine_Animator_GetAnimatorTransitionInfo(MonoObject* thiz, int32_t layerIndex, void * info)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, void * info);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorTransitionInfo");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,layerIndex,info);
+}
+int32_t UnityEngine_Animator_GetAnimatorClipInfoCount(MonoObject* thiz, int32_t layerIndex, bool current)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, bool current);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorClipInfoCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	int32_t i2res = icall(i2thiz,layerIndex,current);
+	return i2res;
+}
+void* UnityEngine_Animator_GetCurrentAnimatorClipInfo(MonoObject* thiz, int32_t layerIndex)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetCurrentAnimatorClipInfo");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	void* i2res = icall(i2thiz,layerIndex);
+	return i2res;
+}
+void* UnityEngine_Animator_GetNextAnimatorClipInfo(MonoObject* thiz, int32_t layerIndex)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetNextAnimatorClipInfo");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	void* i2res = icall(i2thiz,layerIndex);
+	return i2res;
+}
+void UnityEngine_Animator_GetAnimatorClipInfoInternal(MonoObject* thiz, int32_t layerIndex, bool isCurrent, MonoObject* clips)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, bool isCurrent, Il2CppObject* clips);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorClipInfoInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppObject* i2clips = get_il2cpp_object(clips,NULL);
+	icall(i2thiz,layerIndex,isCurrent,i2clips);
+}
+void* UnityEngine_Animator_GetAnimatorClipInfoInternalWinRT(MonoObject* thiz, int32_t layerIndex, bool isCurrent)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, bool isCurrent);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorClipInfoInternalWinRT");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	void* i2res = icall(i2thiz,layerIndex,isCurrent);
+	return i2res;
+}
+bool UnityEngine_Animator_IsInTransition(MonoObject* thiz, int32_t layerIndex)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsInTransition");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz,layerIndex);
+	return i2res;
+}
+MonoArray* UnityEngine_Animator_get_parameters(MonoObject* thiz)
+{
+	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_parameters");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppArray* i2res = icall(i2thiz);
+	MonoArray* monoi2res = get_mono_array(i2res);
+	return monoi2res;
+}
+int32_t UnityEngine_Animator_get_parameterCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_parameterCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+float UnityEngine_Animator_get_feetPivotActive(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_feetPivotActive");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_feetPivotActive(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_feetPivotActive");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+float UnityEngine_Animator_get_pivotWeight(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_pivotWeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_InterruptMatchTarget(MonoObject* thiz, bool completeMatch)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool completeMatch);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::InterruptMatchTarget");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,completeMatch);
+}
+bool UnityEngine_Animator_get_isMatchingTarget(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_isMatchingTarget");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+float UnityEngine_Animator_get_speed_1(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_speed");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_speed_1(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_speed");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animator_CrossFadeInFixedTime(MonoObject* thiz, int32_t stateHashName, float fixedTransitionDuration, int32_t layer, float fixedTimeOffset, float normalizedTransitionTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t stateHashName, float fixedTransitionDuration, int32_t layer, float fixedTimeOffset, float normalizedTransitionTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::CrossFadeInFixedTime");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,stateHashName,fixedTransitionDuration,layer,fixedTimeOffset,normalizedTransitionTime);
+}
+void UnityEngine_Animator_WriteDefaultValues(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::WriteDefaultValues");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+void UnityEngine_Animator_CrossFade(MonoObject* thiz, int32_t stateHashName, float normalizedTransitionDuration, int32_t layer, float normalizedTimeOffset, float normalizedTransitionTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t stateHashName, float normalizedTransitionDuration, int32_t layer, float normalizedTimeOffset, float normalizedTransitionTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::CrossFade");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,stateHashName,normalizedTransitionDuration,layer,normalizedTimeOffset,normalizedTransitionTime);
+}
+void UnityEngine_Animator_PlayInFixedTime(MonoObject* thiz, int32_t stateNameHash, int32_t layer, float fixedTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t stateNameHash, int32_t layer, float fixedTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::PlayInFixedTime");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,stateNameHash,layer,fixedTime);
+}
+void UnityEngine_Animator_Play(MonoObject* thiz, int32_t stateNameHash, int32_t layer, float normalizedTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t stateNameHash, int32_t layer, float normalizedTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::Play");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,stateNameHash,layer,normalizedTime);
+}
+void UnityEngine_Animator_SetTarget(MonoObject* thiz, int32_t targetIndex, float targetNormalizedTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t targetIndex, float targetNormalizedTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetTarget");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,targetIndex,targetNormalizedTime);
+}
+bool UnityEngine_Animator_IsBoneTransform(MonoObject* thiz, MonoObject* transform)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* transform);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsBoneTransform");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppObject* i2transform = get_il2cpp_object(transform,il2cpp_get_class_UnityEngine_Transform());
+	bool i2res = icall(i2thiz,i2transform);
+	return i2res;
+}
+MonoObject* UnityEngine_Animator_get_avatarRoot(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_avatarRoot");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
+	return monoi2res;
+}
+MonoObject* UnityEngine_Animator_GetBoneTransformInternal(MonoObject* thiz, int32_t humanBoneId)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, int32_t humanBoneId);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetBoneTransformInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppObject* i2res = icall(i2thiz,humanBoneId);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
+	return monoi2res;
+}
+int32_t UnityEngine_Animator_get_cullingMode(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_cullingMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_cullingMode(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_cullingMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animator_StartPlayback(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StartPlayback");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+void UnityEngine_Animator_StopPlayback(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StopPlayback");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+float UnityEngine_Animator_get_playbackTime(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_playbackTime");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_playbackTime(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_playbackTime");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animator_StartRecording(MonoObject* thiz, int32_t frameCount)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t frameCount);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StartRecording");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,frameCount);
+}
+void UnityEngine_Animator_StopRecording(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StopRecording");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+float UnityEngine_Animator_GetRecorderStartTime(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetRecorderStartTime");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+float UnityEngine_Animator_GetRecorderStopTime(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetRecorderStopTime");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+int32_t UnityEngine_Animator_get_recorderMode(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_recorderMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+MonoObject* UnityEngine_Animator_get_runtimeAnimatorController(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_runtimeAnimatorController");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_RuntimeAnimatorController());
+	return monoi2res;
+}
+void UnityEngine_Animator_set_runtimeAnimatorController(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_runtimeAnimatorController");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_RuntimeAnimatorController());
+	icall(i2thiz,i2value);
+}
+bool UnityEngine_Animator_get_hasBoundPlayables(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_hasBoundPlayables");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_ClearInternalControllerPlayable(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ClearInternalControllerPlayable");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+bool UnityEngine_Animator_HasState(MonoObject* thiz, int32_t layerIndex, int32_t stateID)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, int32_t stateID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::HasState");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz,layerIndex,stateID);
+	return i2res;
+}
+int32_t UnityEngine_Animator_StringToHash(MonoString* name)
+{
+	typedef int32_t (* ICallMethod) (Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::StringToHash");
+	Il2CppString* i2name = get_il2cpp_string(name);
+	int32_t i2res = icall(i2name);
+	return i2res;
+}
+MonoObject* UnityEngine_Animator_get_avatar(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_avatar");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Avatar());
+	return monoi2res;
+}
+void UnityEngine_Animator_set_avatar(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_avatar");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Avatar());
+	icall(i2thiz,i2value);
+}
+MonoString* UnityEngine_Animator_GetStats(MonoObject* thiz)
+{
+	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetStats");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2res = icall(i2thiz);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+void UnityEngine_Animator_GetCurrentGraph(MonoObject* thiz, void * graph)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * graph);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetCurrentGraph");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,graph);
+}
+bool UnityEngine_Animator_IsInIKPass(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsInIKPass");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_SetFloatString(MonoObject* thiz, MonoString* name, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetFloatString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	icall(i2thiz,i2name,value);
+}
+void UnityEngine_Animator_SetFloatID(MonoObject* thiz, int32_t id, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetFloatID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,id,value);
+}
+float UnityEngine_Animator_GetFloatString(MonoObject* thiz, MonoString* name)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetFloatString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	float i2res = icall(i2thiz,i2name);
+	return i2res;
+}
+float UnityEngine_Animator_GetFloatID(MonoObject* thiz, int32_t id)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t id);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetFloatID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz,id);
+	return i2res;
+}
+void UnityEngine_Animator_SetBoolString(MonoObject* thiz, MonoString* name, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetBoolString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	icall(i2thiz,i2name,value);
+}
+void UnityEngine_Animator_SetBoolID(MonoObject* thiz, int32_t id, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetBoolID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,id,value);
+}
+bool UnityEngine_Animator_GetBoolString(MonoObject* thiz, MonoString* name)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetBoolString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	bool i2res = icall(i2thiz,i2name);
+	return i2res;
+}
+bool UnityEngine_Animator_GetBoolID(MonoObject* thiz, int32_t id)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t id);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetBoolID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz,id);
+	return i2res;
+}
+void UnityEngine_Animator_SetIntegerString(MonoObject* thiz, MonoString* name, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetIntegerString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	icall(i2thiz,i2name,value);
+}
+void UnityEngine_Animator_SetIntegerID(MonoObject* thiz, int32_t id, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetIntegerID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,id,value);
+}
+int32_t UnityEngine_Animator_GetIntegerString(MonoObject* thiz, MonoString* name)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetIntegerString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	int32_t i2res = icall(i2thiz,i2name);
+	return i2res;
+}
+int32_t UnityEngine_Animator_GetIntegerID(MonoObject* thiz, int32_t id)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t id);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetIntegerID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	int32_t i2res = icall(i2thiz,id);
+	return i2res;
+}
+void UnityEngine_Animator_SetTriggerString(MonoObject* thiz, MonoString* name)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetTriggerString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	icall(i2thiz,i2name);
+}
+void UnityEngine_Animator_SetTriggerID(MonoObject* thiz, int32_t id)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetTriggerID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,id);
+}
+void UnityEngine_Animator_ResetTriggerString(MonoObject* thiz, MonoString* name)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ResetTriggerString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	icall(i2thiz,i2name);
+}
+void UnityEngine_Animator_ResetTriggerID(MonoObject* thiz, int32_t id)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ResetTriggerID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,id);
+}
+bool UnityEngine_Animator_IsParameterControlledByCurveString(MonoObject* thiz, MonoString* name)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsParameterControlledByCurveString");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	bool i2res = icall(i2thiz,i2name);
+	return i2res;
+}
+bool UnityEngine_Animator_IsParameterControlledByCurveID(MonoObject* thiz, int32_t id)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t id);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::IsParameterControlledByCurveID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz,id);
+	return i2res;
+}
+void UnityEngine_Animator_SetFloatStringDamp(MonoObject* thiz, MonoString* name, float value, float dampTime, float deltaTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name, float value, float dampTime, float deltaTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetFloatStringDamp");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	icall(i2thiz,i2name,value,dampTime,deltaTime);
+}
+void UnityEngine_Animator_SetFloatIDDamp(MonoObject* thiz, int32_t id, float value, float dampTime, float deltaTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t id, float value, float dampTime, float deltaTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetFloatIDDamp");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,id,value,dampTime,deltaTime);
+}
+bool UnityEngine_Animator_get_layersAffectMassCenter(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_layersAffectMassCenter");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_layersAffectMassCenter(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_layersAffectMassCenter");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+float UnityEngine_Animator_get_leftFeetBottomHeight(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_leftFeetBottomHeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+float UnityEngine_Animator_get_rightFeetBottomHeight(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_rightFeetBottomHeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animator_get_supportsOnAnimatorMove(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_supportsOnAnimatorMove");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_OnUpdateModeChanged(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::OnUpdateModeChanged");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+void UnityEngine_Animator_OnCullingModeChanged(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::OnCullingModeChanged");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+void UnityEngine_Animator_WriteDefaultPose(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::WriteDefaultPose");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+void UnityEngine_Animator_Update(MonoObject* thiz, float deltaTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float deltaTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::Update");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,deltaTime);
+}
+void UnityEngine_Animator_Rebind(MonoObject* thiz, bool writeDefaultValues)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool writeDefaultValues);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::Rebind");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,writeDefaultValues);
+}
+void UnityEngine_Animator_ApplyBuiltinRootMotion(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ApplyBuiltinRootMotion");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz);
+}
+void UnityEngine_Animator_EvaluateController(MonoObject* thiz, float deltaTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float deltaTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::EvaluateController");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,deltaTime);
+}
+MonoString* UnityEngine_Animator_GetAnimatorStateName(MonoObject* thiz, int32_t layerIndex, bool current)
+{
+	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, int32_t layerIndex, bool current);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetAnimatorStateName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2res = icall(i2thiz,layerIndex,current);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+MonoString* UnityEngine_Animator_ResolveHash(MonoObject* thiz, int32_t hash)
+{
+	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, int32_t hash);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::ResolveHash");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	Il2CppString* i2res = icall(i2thiz,hash);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+bool UnityEngine_Animator_get_logWarnings(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_logWarnings");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_logWarnings(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_logWarnings");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Animator_get_fireEvents(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_fireEvents");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_fireEvents(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_fireEvents");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Animator_get_keepAnimatorControllerStateOnDisable(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_keepAnimatorControllerStateOnDisable");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animator_set_keepAnimatorControllerStateOnDisable(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_keepAnimatorControllerStateOnDisable");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animator_get_deltaPosition_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_deltaPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_get_deltaRotation_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_deltaRotation_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_get_velocity_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_velocity_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_get_angularVelocity_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_angularVelocity_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_get_rootPosition_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_rootPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_set_rootPosition_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_rootPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animator_get_rootRotation_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_rootRotation_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_set_rootRotation_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_rootRotation_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animator_get_bodyPositionInternal_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_bodyPositionInternal_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_set_bodyPositionInternal_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_bodyPositionInternal_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animator_get_bodyRotationInternal_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_bodyRotationInternal_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_set_bodyRotationInternal_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::set_bodyRotationInternal_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animator_GetGoalPosition_Injected(MonoObject* thiz, int32_t goal, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetGoalPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,goal,ret);
+}
+void UnityEngine_Animator_SetGoalPosition_Injected(MonoObject* thiz, int32_t goal, void * goalPosition)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, void * goalPosition);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetGoalPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,goal,goalPosition);
+}
+void UnityEngine_Animator_GetGoalRotation_Injected(MonoObject* thiz, int32_t goal, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetGoalRotation_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,goal,ret);
+}
+void UnityEngine_Animator_SetGoalRotation_Injected(MonoObject* thiz, int32_t goal, void * goalRotation)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t goal, void * goalRotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetGoalRotation_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,goal,goalRotation);
+}
+void UnityEngine_Animator_GetHintPosition_Injected(MonoObject* thiz, int32_t hint, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t hint, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::GetHintPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,hint,ret);
+}
+void UnityEngine_Animator_SetHintPosition_Injected(MonoObject* thiz, int32_t hint, void * hintPosition)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t hint, void * hintPosition);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetHintPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,hint,hintPosition);
+}
+void UnityEngine_Animator_SetLookAtPositionInternal_Injected(MonoObject* thiz, void * lookAtPosition)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * lookAtPosition);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetLookAtPositionInternal_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,lookAtPosition);
+}
+void UnityEngine_Animator_SetBoneLocalRotationInternal_Injected(MonoObject* thiz, int32_t humanBoneId, void * rotation)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t humanBoneId, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::SetBoneLocalRotationInternal_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,humanBoneId,rotation);
+}
+void UnityEngine_Animator_get_pivotPosition_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_pivotPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_MatchTarget_Injected(MonoObject* thiz, void * matchPosition, void * matchRotation, int32_t targetBodyPart, void * weightMask, float startNormalizedTime, float targetNormalizedTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * matchPosition, void * matchRotation, int32_t targetBodyPart, void * weightMask, float startNormalizedTime, float targetNormalizedTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::MatchTarget_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,matchPosition,matchRotation,targetBodyPart,weightMask,startNormalizedTime,targetNormalizedTime);
+}
+void UnityEngine_Animator_get_targetPosition_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_targetPosition_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Animator_get_targetRotation_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animator::get_targetRotation_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animator());
+	icall(i2thiz,ret);
+}
 void UnityEngine_Animations_AnimatorControllerPlayable_GetAnimatorClipInfoInternal_1(void * handle, int32_t layerIndex, bool isCurrent, MonoObject* clips)
 {
 	typedef void (* ICallMethod) (void * handle, int32_t layerIndex, bool isCurrent, Il2CppObject* clips);
@@ -6348,7 +5715,7 @@ void UnityEngine_Animations_PositionConstraint_Internal_Create_4(MonoObject* sel
 	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_PositionConstraint());
 	icall(i2self);
 }
-float UnityEngine_Animations_PositionConstraint_get_weight_2(MonoObject* thiz)
+float UnityEngine_Animations_PositionConstraint_get_weight_1(MonoObject* thiz)
 {
 	typedef float (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -6358,7 +5725,7 @@ float UnityEngine_Animations_PositionConstraint_get_weight_2(MonoObject* thiz)
 	float i2res = icall(i2thiz);
 	return i2res;
 }
-void UnityEngine_Animations_PositionConstraint_set_weight_2(MonoObject* thiz, float value)
+void UnityEngine_Animations_PositionConstraint_set_weight_1(MonoObject* thiz, float value)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
 	static ICallMethod icall;
@@ -6463,33 +5830,6 @@ void UnityEngine_Animations_PositionConstraint_RemoveSourceInternal_1(MonoObject
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_PositionConstraint());
 	icall(i2thiz,index);
 }
-void UnityEngine_Animations_PositionConstraint_ActivateAndPreserveOffset_1(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.PositionConstraint::ActivateAndPreserveOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_PositionConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_PositionConstraint_ActivateWithZeroOffset_1(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.PositionConstraint::ActivateWithZeroOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_PositionConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_PositionConstraint_UserUpdateOffset_1(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.PositionConstraint::UserUpdateOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_PositionConstraint());
-	icall(i2thiz);
-}
 void UnityEngine_Animations_PositionConstraint_get_translationAtRest_Injected(MonoObject* thiz, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
@@ -6563,7 +5903,7 @@ void UnityEngine_Animations_RotationConstraint_Internal_Create_5(MonoObject* sel
 	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_RotationConstraint());
 	icall(i2self);
 }
-float UnityEngine_Animations_RotationConstraint_get_weight_3(MonoObject* thiz)
+float UnityEngine_Animations_RotationConstraint_get_weight_2(MonoObject* thiz)
 {
 	typedef float (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -6573,7 +5913,7 @@ float UnityEngine_Animations_RotationConstraint_get_weight_3(MonoObject* thiz)
 	float i2res = icall(i2thiz);
 	return i2res;
 }
-void UnityEngine_Animations_RotationConstraint_set_weight_3(MonoObject* thiz, float value)
+void UnityEngine_Animations_RotationConstraint_set_weight_2(MonoObject* thiz, float value)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
 	static ICallMethod icall;
@@ -6678,33 +6018,6 @@ void UnityEngine_Animations_RotationConstraint_RemoveSourceInternal_2(MonoObject
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_RotationConstraint());
 	icall(i2thiz,index);
 }
-void UnityEngine_Animations_RotationConstraint_ActivateAndPreserveOffset_2(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.RotationConstraint::ActivateAndPreserveOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_RotationConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_RotationConstraint_ActivateWithZeroOffset_2(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.RotationConstraint::ActivateWithZeroOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_RotationConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_RotationConstraint_UserUpdateOffset_2(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.RotationConstraint::UserUpdateOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_RotationConstraint());
-	icall(i2thiz);
-}
 void UnityEngine_Animations_RotationConstraint_get_rotationAtRest_Injected_1(MonoObject* thiz, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
@@ -6778,7 +6091,7 @@ void UnityEngine_Animations_ScaleConstraint_Internal_Create_6(MonoObject* self)
 	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_ScaleConstraint());
 	icall(i2self);
 }
-float UnityEngine_Animations_ScaleConstraint_get_weight_4(MonoObject* thiz)
+float UnityEngine_Animations_ScaleConstraint_get_weight_3(MonoObject* thiz)
 {
 	typedef float (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -6788,7 +6101,7 @@ float UnityEngine_Animations_ScaleConstraint_get_weight_4(MonoObject* thiz)
 	float i2res = icall(i2thiz);
 	return i2res;
 }
-void UnityEngine_Animations_ScaleConstraint_set_weight_4(MonoObject* thiz, float value)
+void UnityEngine_Animations_ScaleConstraint_set_weight_3(MonoObject* thiz, float value)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
 	static ICallMethod icall;
@@ -6892,33 +6205,6 @@ void UnityEngine_Animations_ScaleConstraint_RemoveSourceInternal_3(MonoObject* t
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.ScaleConstraint::RemoveSourceInternal");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_ScaleConstraint());
 	icall(i2thiz,index);
-}
-void UnityEngine_Animations_ScaleConstraint_ActivateAndPreserveOffset_3(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.ScaleConstraint::ActivateAndPreserveOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_ScaleConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_ScaleConstraint_ActivateWithZeroOffset_3(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.ScaleConstraint::ActivateWithZeroOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_ScaleConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_ScaleConstraint_UserUpdateOffset_3(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.ScaleConstraint::UserUpdateOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_ScaleConstraint());
-	icall(i2thiz);
 }
 void UnityEngine_Animations_ScaleConstraint_get_scaleAtRest_Injected(MonoObject* thiz, void * ret)
 {
@@ -7158,7 +6444,7 @@ void UnityEngine_Animations_LookAtConstraint_Internal_Create_8(MonoObject* self)
 	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_LookAtConstraint());
 	icall(i2self);
 }
-float UnityEngine_Animations_LookAtConstraint_get_weight_5(MonoObject* thiz)
+float UnityEngine_Animations_LookAtConstraint_get_weight_4(MonoObject* thiz)
 {
 	typedef float (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -7168,7 +6454,7 @@ float UnityEngine_Animations_LookAtConstraint_get_weight_5(MonoObject* thiz)
 	float i2res = icall(i2thiz);
 	return i2res;
 }
-void UnityEngine_Animations_LookAtConstraint_set_weight_5(MonoObject* thiz, float value)
+void UnityEngine_Animations_LookAtConstraint_set_weight_4(MonoObject* thiz, float value)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
 	static ICallMethod icall;
@@ -7312,33 +6598,6 @@ void UnityEngine_Animations_LookAtConstraint_RemoveSourceInternal_4(MonoObject* 
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.LookAtConstraint::RemoveSourceInternal");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_LookAtConstraint());
 	icall(i2thiz,index);
-}
-void UnityEngine_Animations_LookAtConstraint_ActivateAndPreserveOffset_4(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.LookAtConstraint::ActivateAndPreserveOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_LookAtConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_LookAtConstraint_ActivateWithZeroOffset_4(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.LookAtConstraint::ActivateWithZeroOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_LookAtConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_LookAtConstraint_UserUpdateOffset_4(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.LookAtConstraint::UserUpdateOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_LookAtConstraint());
-	icall(i2thiz);
 }
 void UnityEngine_Animations_LookAtConstraint_get_rotationAtRest_Injected_2(MonoObject* thiz, void * ret)
 {
@@ -7509,7 +6768,7 @@ void UnityEngine_Animations_ParentConstraint_Internal_Create_9(MonoObject* self)
 	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animations_ParentConstraint());
 	icall(i2self);
 }
-float UnityEngine_Animations_ParentConstraint_get_weight_6(MonoObject* thiz)
+float UnityEngine_Animations_ParentConstraint_get_weight_5(MonoObject* thiz)
 {
 	typedef float (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -7519,7 +6778,7 @@ float UnityEngine_Animations_ParentConstraint_get_weight_6(MonoObject* thiz)
 	float i2res = icall(i2thiz);
 	return i2res;
 }
-void UnityEngine_Animations_ParentConstraint_set_weight_6(MonoObject* thiz, float value)
+void UnityEngine_Animations_ParentConstraint_set_weight_5(MonoObject* thiz, float value)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
 	static ICallMethod icall;
@@ -7681,33 +6940,6 @@ void UnityEngine_Animations_ParentConstraint_RemoveSourceInternal_5(MonoObject* 
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_ParentConstraint());
 	icall(i2thiz,index);
 }
-void UnityEngine_Animations_ParentConstraint_ActivateAndPreserveOffset_5(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.ParentConstraint::ActivateAndPreserveOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_ParentConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_ParentConstraint_ActivateWithZeroOffset_5(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.ParentConstraint::ActivateWithZeroOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_ParentConstraint());
-	icall(i2thiz);
-}
-void UnityEngine_Animations_ParentConstraint_UserUpdateOffset_5(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animations.ParentConstraint::UserUpdateOffset");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animations_ParentConstraint());
-	icall(i2thiz);
-}
 void UnityEngine_Animations_ParentConstraint_get_translationAtRest_Injected_1(MonoObject* thiz, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
@@ -7818,6 +7050,589 @@ MonoArray* UnityEngine_RuntimeAnimatorController_get_animationClips(MonoObject* 
 	Il2CppArray* i2res = icall(i2thiz);
 	MonoArray* monoi2res = get_mono_array(i2res);
 	return monoi2res;
+}
+MonoObject* UnityEngine_Animation_get_clip(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_clip");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationClip());
+	return monoi2res;
+}
+void UnityEngine_Animation_set_clip(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_clip");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_AnimationClip());
+	icall(i2thiz,i2value);
+}
+bool UnityEngine_Animation_get_playAutomatically(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_playAutomatically");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animation_set_playAutomatically(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_playAutomatically");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Animation_get_wrapMode_1(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_wrapMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animation_set_wrapMode_1(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_wrapMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animation_INTERNAL_CALL_Stop(MonoObject* self)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_CALL_Stop");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2self);
+}
+void UnityEngine_Animation_Internal_StopByName(MonoObject* thiz, MonoString* name)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::Internal_StopByName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	icall(i2thiz,i2name);
+}
+void UnityEngine_Animation_Internal_RewindByName(MonoObject* thiz, MonoString* name)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::Internal_RewindByName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	icall(i2thiz,i2name);
+}
+void UnityEngine_Animation_INTERNAL_CALL_Rewind(MonoObject* self)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_CALL_Rewind");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2self);
+}
+void UnityEngine_Animation_INTERNAL_CALL_Sample(MonoObject* self)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_CALL_Sample");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2self);
+}
+bool UnityEngine_Animation_get_isPlaying(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_isPlaying");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animation_IsPlaying(MonoObject* thiz, MonoString* name)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::IsPlaying");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	bool i2res = icall(i2thiz,i2name);
+	return i2res;
+}
+bool UnityEngine_Animation_Play_1(MonoObject* thiz, MonoString* animation, int32_t mode)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, int32_t mode);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::Play");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2animation = get_il2cpp_string(animation);
+	bool i2res = icall(i2thiz,i2animation,mode);
+	return i2res;
+}
+void UnityEngine_Animation_CrossFade_1(MonoObject* thiz, MonoString* animation, float fadeLength, int32_t mode)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, float fadeLength, int32_t mode);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::CrossFade");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2animation = get_il2cpp_string(animation);
+	icall(i2thiz,i2animation,fadeLength,mode);
+}
+void UnityEngine_Animation_Blend(MonoObject* thiz, MonoString* animation, float targetWeight, float fadeLength)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, float targetWeight, float fadeLength);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::Blend");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2animation = get_il2cpp_string(animation);
+	icall(i2thiz,i2animation,targetWeight,fadeLength);
+}
+MonoObject* UnityEngine_Animation_CrossFadeQueued(MonoObject* thiz, MonoString* animation, float fadeLength, int32_t queue, int32_t mode)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, float fadeLength, int32_t queue, int32_t mode);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::CrossFadeQueued");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2animation = get_il2cpp_string(animation);
+	Il2CppObject* i2res = icall(i2thiz,i2animation,fadeLength,queue,mode);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationState());
+	return monoi2res;
+}
+MonoObject* UnityEngine_Animation_PlayQueued(MonoObject* thiz, MonoString* animation, int32_t queue, int32_t mode)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, Il2CppString* animation, int32_t queue, int32_t mode);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::PlayQueued");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2animation = get_il2cpp_string(animation);
+	Il2CppObject* i2res = icall(i2thiz,i2animation,queue,mode);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationState());
+	return monoi2res;
+}
+void UnityEngine_Animation_AddClip(MonoObject* thiz, MonoObject* clip, MonoString* newName, int32_t firstFrame, int32_t lastFrame, bool addLoopFrame)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* clip, Il2CppString* newName, int32_t firstFrame, int32_t lastFrame, bool addLoopFrame);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::AddClip");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppObject* i2clip = get_il2cpp_object(clip,il2cpp_get_class_UnityEngine_AnimationClip());
+	Il2CppString* i2newName = get_il2cpp_string(newName);
+	icall(i2thiz,i2clip,i2newName,firstFrame,lastFrame,addLoopFrame);
+}
+void UnityEngine_Animation_RemoveClip(MonoObject* thiz, MonoObject* clip)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* clip);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::RemoveClip");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppObject* i2clip = get_il2cpp_object(clip,il2cpp_get_class_UnityEngine_AnimationClip());
+	icall(i2thiz,i2clip);
+}
+int32_t UnityEngine_Animation_GetClipCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::GetClipCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animation_RemoveClip2(MonoObject* thiz, MonoString* clipName)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* clipName);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::RemoveClip2");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2clipName = get_il2cpp_string(clipName);
+	icall(i2thiz,i2clipName);
+}
+bool UnityEngine_Animation_PlayDefaultAnimation(MonoObject* thiz, int32_t mode)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t mode);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::PlayDefaultAnimation");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	bool i2res = icall(i2thiz,mode);
+	return i2res;
+}
+void UnityEngine_Animation_INTERNAL_CALL_SyncLayer(MonoObject* self, int32_t layer)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self, int32_t layer);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_CALL_SyncLayer");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2self,layer);
+}
+MonoObject* UnityEngine_Animation_GetState(MonoObject* thiz, MonoString* name)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::GetState");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppString* i2name = get_il2cpp_string(name);
+	Il2CppObject* i2res = icall(i2thiz,i2name);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationState());
+	return monoi2res;
+}
+MonoObject* UnityEngine_Animation_GetStateAtIndex(MonoObject* thiz, int32_t index)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, int32_t index);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::GetStateAtIndex");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	Il2CppObject* i2res = icall(i2thiz,index);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationState());
+	return monoi2res;
+}
+int32_t UnityEngine_Animation_GetStateCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::GetStateCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Animation_get_animatePhysics(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_animatePhysics");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animation_set_animatePhysics(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_animatePhysics");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Animation_get_animateOnlyIfVisible(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_animateOnlyIfVisible");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animation_set_animateOnlyIfVisible(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_animateOnlyIfVisible");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Animation_get_cullingType(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::get_cullingType");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Animation_set_cullingType(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::set_cullingType");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animation_INTERNAL_get_localBounds(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_get_localBounds");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2thiz,value);
+}
+void UnityEngine_Animation_INTERNAL_set_localBounds(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Animation::INTERNAL_set_localBounds");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Animation());
+	icall(i2thiz,value);
+}
+bool UnityEngine_AnimationState_get_enabled(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_enabled");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_enabled(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_enabled");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
+}
+float UnityEngine_AnimationState_get_weight_6(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_weight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_weight_6(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_weight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_AnimationState_get_wrapMode_2(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_wrapMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_wrapMode_2(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_wrapMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
+}
+float UnityEngine_AnimationState_get_time(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_time");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_time(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_time");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
+}
+float UnityEngine_AnimationState_get_normalizedTime(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_normalizedTime");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_normalizedTime(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_normalizedTime");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
+}
+float UnityEngine_AnimationState_get_speed_2(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_speed");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_speed_2(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_speed");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
+}
+float UnityEngine_AnimationState_get_normalizedSpeed(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_normalizedSpeed");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_normalizedSpeed(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_normalizedSpeed");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
+}
+float UnityEngine_AnimationState_get_length_1(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_length");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+int32_t UnityEngine_AnimationState_get_layer(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_layer");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_layer(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_layer");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
+}
+MonoObject* UnityEngine_AnimationState_get_clip_1(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_clip");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AnimationClip());
+	return monoi2res;
+}
+void UnityEngine_AnimationState_AddMixingTransform(MonoObject* thiz, MonoObject* mix, bool recursive)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* mix, bool recursive);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::AddMixingTransform");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	Il2CppObject* i2mix = get_il2cpp_object(mix,il2cpp_get_class_UnityEngine_Transform());
+	icall(i2thiz,i2mix,recursive);
+}
+void UnityEngine_AnimationState_RemoveMixingTransform(MonoObject* thiz, MonoObject* mix)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* mix);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::RemoveMixingTransform");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	Il2CppObject* i2mix = get_il2cpp_object(mix,il2cpp_get_class_UnityEngine_Transform());
+	icall(i2thiz,i2mix);
+}
+MonoString* UnityEngine_AnimationState_get_name(MonoObject* thiz)
+{
+	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_name");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	Il2CppString* i2res = icall(i2thiz);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+void UnityEngine_AnimationState_set_name(MonoObject* thiz, MonoString* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_name");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	Il2CppString* i2value = get_il2cpp_string(value);
+	icall(i2thiz,i2value);
+}
+int32_t UnityEngine_AnimationState_get_blendMode(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::get_blendMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_AnimationState_set_blendMode(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AnimationState::set_blendMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AnimationState());
+	icall(i2thiz,value);
 }
 bool UnityEngine_XR_Tango_TangoInputTracking_Internal_TryGetPoseAtTime(void * pose)
 {
@@ -8198,6 +8013,436 @@ void UnityEngine_Experimental_AssetBundlePatching_AssetBundleUtility_PatchAssetB
 	Il2CppArray* i2filenames = get_il2cpp_array(filenames);
 	icall(i2bundles,i2filenames);
 }
+MonoObject* UnityEngine_AudioExtensionManager_GetAudioListener()
+{
+	typedef Il2CppObject* (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioExtensionManager::GetAudioListener");
+	Il2CppObject* i2res = icall();
+	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
+	return monoi2res;
+}
+MonoObject* UnityEngine_Audio_AudioPlayableOutput_InternalGetTarget_1(void * output)
+{
+	typedef Il2CppObject* (* ICallMethod) (void * output);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableOutput::InternalGetTarget");
+	Il2CppObject* i2res = icall(output);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AudioSource());
+	return monoi2res;
+}
+void UnityEngine_Audio_AudioPlayableOutput_InternalSetTarget_1(void * output, MonoObject* target)
+{
+	typedef void (* ICallMethod) (void * output, Il2CppObject* target);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableOutput::InternalSetTarget");
+	Il2CppObject* i2target = get_il2cpp_object(target,il2cpp_get_class_UnityEngine_AudioSource());
+	icall(output,i2target);
+}
+bool UnityEngine_Audio_AudioPlayableOutput_InternalGetEvaluateOnSeek(void * output)
+{
+	typedef bool (* ICallMethod) (void * output);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableOutput::InternalGetEvaluateOnSeek");
+	bool i2res = icall(output);
+	return i2res;
+}
+void UnityEngine_Audio_AudioPlayableOutput_InternalSetEvaluateOnSeek(void * output, bool value)
+{
+	typedef void (* ICallMethod) (void * output, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableOutput::InternalSetEvaluateOnSeek");
+	icall(output,value);
+}
+MonoObject* UnityEngine_Audio_AudioClipPlayable_GetClipInternal(void * hdl)
+{
+	typedef Il2CppObject* (* ICallMethod) (void * hdl);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetClipInternal");
+	Il2CppObject* i2res = icall(hdl);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AudioClip());
+	return monoi2res;
+}
+void UnityEngine_Audio_AudioClipPlayable_SetClipInternal(void * hdl, MonoObject* clip)
+{
+	typedef void (* ICallMethod) (void * hdl, Il2CppObject* clip);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::SetClipInternal");
+	Il2CppObject* i2clip = get_il2cpp_object(clip,il2cpp_get_class_UnityEngine_AudioClip());
+	icall(hdl,i2clip);
+}
+bool UnityEngine_Audio_AudioClipPlayable_GetLoopedInternal(void * hdl)
+{
+	typedef bool (* ICallMethod) (void * hdl);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetLoopedInternal");
+	bool i2res = icall(hdl);
+	return i2res;
+}
+void UnityEngine_Audio_AudioClipPlayable_SetLoopedInternal(void * hdl, bool looped)
+{
+	typedef void (* ICallMethod) (void * hdl, bool looped);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::SetLoopedInternal");
+	icall(hdl,looped);
+}
+bool UnityEngine_Audio_AudioClipPlayable_GetIsChannelPlayingInternal(void * hdl)
+{
+	typedef bool (* ICallMethod) (void * hdl);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetIsChannelPlayingInternal");
+	bool i2res = icall(hdl);
+	return i2res;
+}
+double UnityEngine_Audio_AudioClipPlayable_GetStartDelayInternal(void * hdl)
+{
+	typedef double (* ICallMethod) (void * hdl);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetStartDelayInternal");
+	double i2res = icall(hdl);
+	return i2res;
+}
+void UnityEngine_Audio_AudioClipPlayable_SetStartDelayInternal(void * hdl, double delay)
+{
+	typedef void (* ICallMethod) (void * hdl, double delay);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::SetStartDelayInternal");
+	icall(hdl,delay);
+}
+double UnityEngine_Audio_AudioClipPlayable_GetPauseDelayInternal(void * hdl)
+{
+	typedef double (* ICallMethod) (void * hdl);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetPauseDelayInternal");
+	double i2res = icall(hdl);
+	return i2res;
+}
+void UnityEngine_Audio_AudioClipPlayable_SetPauseDelayInternal(void * hdl, double delay)
+{
+	typedef void (* ICallMethod) (void * hdl, double delay);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::SetPauseDelayInternal");
+	icall(hdl,delay);
+}
+bool UnityEngine_Audio_AudioClipPlayable_InternalCreateAudioClipPlayable(void * graph, MonoObject* clip, bool looping, void * handle)
+{
+	typedef bool (* ICallMethod) (void * graph, Il2CppObject* clip, bool looping, void * handle);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::InternalCreateAudioClipPlayable");
+	Il2CppObject* i2clip = get_il2cpp_object(clip,il2cpp_get_class_UnityEngine_AudioClip());
+	bool i2res = icall(graph,i2clip,looping,handle);
+	return i2res;
+}
+bool UnityEngine_Audio_AudioClipPlayable_ValidateType(void * hdl)
+{
+	typedef bool (* ICallMethod) (void * hdl);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::ValidateType");
+	bool i2res = icall(hdl);
+	return i2res;
+}
+bool UnityEngine_Audio_AudioMixerPlayable_CreateAudioMixerPlayableInternal(void * graph, int32_t inputCount, bool normalizeInputVolumes, void * handle)
+{
+	typedef bool (* ICallMethod) (void * graph, int32_t inputCount, bool normalizeInputVolumes, void * handle);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioMixerPlayable::CreateAudioMixerPlayableInternal");
+	bool i2res = icall(graph,inputCount,normalizeInputVolumes,handle);
+	return i2res;
+}
+bool UnityEngine_Audio_AudioPlayableGraphExtensions_InternalCreateAudioOutput(void * graph, MonoString* name, void * handle)
+{
+	typedef bool (* ICallMethod) (void * graph, Il2CppString* name, void * handle);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableGraphExtensions::InternalCreateAudioOutput");
+	Il2CppString* i2name = get_il2cpp_string(name);
+	bool i2res = icall(graph,i2name,handle);
+	return i2res;
+}
+bool UnityEngine_AudioRenderer_Internal_AudioRenderer_Start()
+{
+	typedef bool (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_Start");
+	bool i2res = icall();
+	return i2res;
+}
+bool UnityEngine_AudioRenderer_Internal_AudioRenderer_Stop()
+{
+	typedef bool (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_Stop");
+	bool i2res = icall();
+	return i2res;
+}
+int32_t UnityEngine_AudioRenderer_Internal_AudioRenderer_GetSampleCountForCaptureFrame()
+{
+	typedef int32_t (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_GetSampleCountForCaptureFrame");
+	int32_t i2res = icall();
+	return i2res;
+}
+bool UnityEngine_AudioRenderer_Internal_AudioRenderer_AddMixerGroupSink(MonoObject* mixerGroup, void * ptr, int32_t length, bool excludeFromMix)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* mixerGroup, void * ptr, int32_t length, bool excludeFromMix);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_AddMixerGroupSink");
+	Il2CppObject* i2mixerGroup = get_il2cpp_object(mixerGroup,il2cpp_get_class_UnityEngine_Audio_AudioMixerGroup());
+	bool i2res = icall(i2mixerGroup,ptr,length,excludeFromMix);
+	return i2res;
+}
+bool UnityEngine_AudioRenderer_Internal_AudioRenderer_Render(void * ptr, int32_t length)
+{
+	typedef bool (* ICallMethod) (void * ptr, int32_t length);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_Render");
+	bool i2res = icall(ptr,length);
+	return i2res;
+}
+bool UnityEngine_WebCamTexture_get_isDepth(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_isDepth");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_WebCamTexture_Internal_CreateWebCamTexture(MonoObject* self, MonoString* scriptingDevice, int32_t requestedWidth, int32_t requestedHeight, int32_t maxFramerate)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self, Il2CppString* scriptingDevice, int32_t requestedWidth, int32_t requestedHeight, int32_t maxFramerate);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::Internal_CreateWebCamTexture");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
+	Il2CppString* i2scriptingDevice = get_il2cpp_string(scriptingDevice);
+	icall(i2self,i2scriptingDevice,requestedWidth,requestedHeight,maxFramerate);
+}
+void UnityEngine_WebCamTexture_INTERNAL_CALL_Play(MonoObject* self)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::INTERNAL_CALL_Play");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2self);
+}
+void UnityEngine_WebCamTexture_INTERNAL_CALL_Pause(MonoObject* self)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::INTERNAL_CALL_Pause");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2self);
+}
+void UnityEngine_WebCamTexture_INTERNAL_CALL_Stop_1(MonoObject* self)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::INTERNAL_CALL_Stop");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2self);
+}
+bool UnityEngine_WebCamTexture_get_isPlaying_1(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_isPlaying");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+MonoString* UnityEngine_WebCamTexture_get_deviceName(MonoObject* thiz)
+{
+	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_deviceName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	Il2CppString* i2res = icall(i2thiz);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+void UnityEngine_WebCamTexture_set_deviceName(MonoObject* thiz, MonoString* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_deviceName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	Il2CppString* i2value = get_il2cpp_string(value);
+	icall(i2thiz,i2value);
+}
+float UnityEngine_WebCamTexture_get_requestedFPS(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_requestedFPS");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_WebCamTexture_set_requestedFPS(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_requestedFPS");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_WebCamTexture_get_requestedWidth(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_requestedWidth");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_WebCamTexture_set_requestedWidth(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_requestedWidth");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_WebCamTexture_get_requestedHeight(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_requestedHeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_WebCamTexture_set_requestedHeight(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_requestedHeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2thiz,value);
+}
+void* UnityEngine_WebCamTexture_get_devices()
+{
+	typedef void* (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_devices");
+	void* i2res = icall();
+	return i2res;
+}
+void UnityEngine_WebCamTexture_INTERNAL_CALL_GetPixel(MonoObject* self, int32_t x, int32_t y, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self, int32_t x, int32_t y, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::INTERNAL_CALL_GetPixel");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2self,x,y,value);
+}
+void* UnityEngine_WebCamTexture_GetPixels(MonoObject* thiz, int32_t x, int32_t y, int32_t blockWidth, int32_t blockHeight)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t x, int32_t y, int32_t blockWidth, int32_t blockHeight);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::GetPixels");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	void* i2res = icall(i2thiz,x,y,blockWidth,blockHeight);
+	return i2res;
+}
+void* UnityEngine_WebCamTexture_GetPixels32(MonoObject* thiz, void* colors)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz, void* colors);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::GetPixels32");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	void* i2res = icall(i2thiz,colors);
+	return i2res;
+}
+int32_t UnityEngine_WebCamTexture_get_videoRotationAngle(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_videoRotationAngle");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_WebCamTexture_get_videoVerticallyMirrored(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_videoVerticallyMirrored");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_WebCamTexture_get_didUpdateThisFrame(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_didUpdateThisFrame");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_WebCamTexture_get_internalAutoFocusPoint_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_internalAutoFocusPoint_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2thiz,ret);
+}
+void UnityEngine_WebCamTexture_set_internalAutoFocusPoint_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_internalAutoFocusPoint_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
+	icall(i2thiz,value);
+}
 int32_t UnityEngine_AudioSettings_get_driverCapabilities()
 {
 	typedef int32_t (* ICallMethod) ();
@@ -8275,33 +8520,6 @@ void UnityEngine_AudioSettings_SetDSPBufferSize(int32_t bufferLength, int32_t nu
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioSettings::SetDSPBufferSize");
 	icall(bufferLength,numBuffers);
 }
-bool UnityEngine_AudioSettings_get_editingInPlaymode()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioSettings::get_editingInPlaymode");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_AudioSettings_set_editingInPlaymode(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioSettings::set_editingInPlaymode");
-	icall(value);
-}
-MonoArray* UnityEngine_AudioSettings_GetSpatializerPluginNames()
-{
-	typedef Il2CppArray* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioSettings::GetSpatializerPluginNames");
-	Il2CppArray* i2res = icall();
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
 MonoString* UnityEngine_AudioSettings_GetSpatializerPluginName()
 {
 	typedef Il2CppString* (* ICallMethod) ();
@@ -8311,16 +8529,6 @@ MonoString* UnityEngine_AudioSettings_GetSpatializerPluginName()
 	Il2CppString* i2res = icall();
 	MonoString* monoi2res = get_mono_string(i2res);
 	return monoi2res;
-}
-bool UnityEngine_AudioSettings_SetSpatializerPluginName_Internal(MonoString* pluginName)
-{
-	typedef bool (* ICallMethod) (Il2CppString* pluginName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioSettings::SetSpatializerPluginName_Internal");
-	Il2CppString* i2pluginName = get_il2cpp_string(pluginName);
-	bool i2res = icall(i2pluginName);
-	return i2res;
 }
 void UnityEngine_AudioSettings_INTERNAL_CALL_GetConfiguration(void * value)
 {
@@ -8356,25 +8564,6 @@ MonoString* UnityEngine_AudioSettings_GetAmbisonicDecoderPluginName()
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioSettings::GetAmbisonicDecoderPluginName");
 	Il2CppString* i2res = icall();
 	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_AudioSettings_SetAmbisonicDecoderPluginName(MonoString* name)
-{
-	typedef void (* ICallMethod) (Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioSettings::SetAmbisonicDecoderPluginName");
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2name);
-}
-MonoObject* UnityEngine_AudioExtensionManager_GetAudioListener()
-{
-	typedef Il2CppObject* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioExtensionManager::GetAudioListener");
-	Il2CppObject* i2res = icall();
-	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
 	return monoi2res;
 }
 float UnityEngine_AudioClip_get_length_2(MonoObject* thiz)
@@ -8664,15 +8853,6 @@ bool UnityEngine_AudioListener_INTERNAL_CALL_ReadExtensionProperty(MonoObject* s
 	bool i2res = icall(i2self,extensionName,propertyName,propertyValue);
 	return i2res;
 }
-void UnityEngine_AudioListener_INTERNAL_CALL_WriteExtensionProperty(MonoObject* self, void * pluginName, void * extensionName, void * propertyName, float propertyValue)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self, void * pluginName, void * extensionName, void * propertyName, float propertyValue);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioListener::INTERNAL_CALL_WriteExtensionProperty");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_AudioListener());
-	icall(i2self,pluginName,extensionName,propertyName,propertyValue);
-}
 void UnityEngine_AudioListener_INTERNAL_CALL_ClearExtensionProperties(MonoObject* self, void * extensionName)
 {
 	typedef void (* ICallMethod) (Il2CppObject* self, void * extensionName);
@@ -8854,7 +9034,7 @@ void UnityEngine_AudioSource_Stop(MonoObject* thiz)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AudioSource());
 	icall(i2thiz);
 }
-void UnityEngine_AudioSource_INTERNAL_CALL_Pause(MonoObject* self)
+void UnityEngine_AudioSource_INTERNAL_CALL_Pause_1(MonoObject* self)
 {
 	typedef void (* ICallMethod) (Il2CppObject* self);
 	static ICallMethod icall;
@@ -8872,7 +9052,7 @@ void UnityEngine_AudioSource_INTERNAL_CALL_UnPause(MonoObject* self)
 	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_AudioSource());
 	icall(i2self);
 }
-bool UnityEngine_AudioSource_get_isPlaying_1(MonoObject* thiz)
+bool UnityEngine_AudioSource_get_isPlaying_2(MonoObject* thiz)
 {
 	typedef bool (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -9379,15 +9559,6 @@ bool UnityEngine_AudioSource_INTERNAL_CALL_ReadExtensionProperty_1(MonoObject* s
 	bool i2res = icall(i2self,extensionName,propertyName,propertyValue);
 	return i2res;
 }
-void UnityEngine_AudioSource_INTERNAL_CALL_WriteExtensionProperty_1(MonoObject* self, void * pluginName, void * extensionName, void * propertyName, float propertyValue)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self, void * pluginName, void * extensionName, void * propertyName, float propertyValue);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioSource::INTERNAL_CALL_WriteExtensionProperty");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_AudioSource());
-	icall(i2self,pluginName,extensionName,propertyName,propertyValue);
-}
 void UnityEngine_AudioSource_INTERNAL_CALL_ClearExtensionProperties_1(MonoObject* self, void * extensionName)
 {
 	typedef void (* ICallMethod) (Il2CppObject* self, void * extensionName);
@@ -9795,25 +9966,6 @@ void UnityEngine_AudioReverbZone_set_density(MonoObject* thiz, float value)
 	static ICallMethod icall;
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioReverbZone::set_density");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AudioReverbZone());
-	icall(i2thiz,value);
-}
-bool UnityEngine_AudioReverbZone_get_active(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioReverbZone::get_active");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AudioReverbZone());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_AudioReverbZone_set_active(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioReverbZone::set_active");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_AudioReverbZone());
 	icall(i2thiz,value);
 }
@@ -10466,7 +10618,7 @@ void UnityEngine_Microphone_End(MonoString* deviceName)
 	Il2CppString* i2deviceName = get_il2cpp_string(deviceName);
 	icall(i2deviceName);
 }
-MonoArray* UnityEngine_Microphone_get_devices()
+MonoArray* UnityEngine_Microphone_get_devices_1()
 {
 	typedef Il2CppArray* (* ICallMethod) ();
 	static ICallMethod icall;
@@ -10643,7 +10795,7 @@ MonoObject* UnityEngine_Audio_AudioMixerGroup_get_audioMixer_1(MonoObject* thiz)
 	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Audio_AudioMixer());
 	return monoi2res;
 }
-void UnityEngine_MovieTexture_INTERNAL_CALL_Play(MonoObject* self)
+void UnityEngine_MovieTexture_INTERNAL_CALL_Play_1(MonoObject* self)
 {
 	typedef void (* ICallMethod) (Il2CppObject* self);
 	static ICallMethod icall;
@@ -10652,7 +10804,7 @@ void UnityEngine_MovieTexture_INTERNAL_CALL_Play(MonoObject* self)
 	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_MovieTexture());
 	icall(i2self);
 }
-void UnityEngine_MovieTexture_INTERNAL_CALL_Stop_1(MonoObject* self)
+void UnityEngine_MovieTexture_INTERNAL_CALL_Stop_2(MonoObject* self)
 {
 	typedef void (* ICallMethod) (Il2CppObject* self);
 	static ICallMethod icall;
@@ -10661,7 +10813,7 @@ void UnityEngine_MovieTexture_INTERNAL_CALL_Stop_1(MonoObject* self)
 	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_MovieTexture());
 	icall(i2self);
 }
-void UnityEngine_MovieTexture_INTERNAL_CALL_Pause_1(MonoObject* self)
+void UnityEngine_MovieTexture_INTERNAL_CALL_Pause_2(MonoObject* self)
 {
 	typedef void (* ICallMethod) (Il2CppObject* self);
 	static ICallMethod icall;
@@ -10700,7 +10852,7 @@ void UnityEngine_MovieTexture_set_loop_1(MonoObject* thiz, bool value)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_MovieTexture());
 	icall(i2thiz,value);
 }
-bool UnityEngine_MovieTexture_get_isPlaying_2(MonoObject* thiz)
+bool UnityEngine_MovieTexture_get_isPlaying_3(MonoObject* thiz)
 {
 	typedef bool (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -10729,621 +10881,6 @@ float UnityEngine_MovieTexture_get_duration(MonoObject* thiz)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_MovieTexture());
 	float i2res = icall(i2thiz);
 	return i2res;
-}
-void UnityEngine_WebCamTexture_Internal_CreateWebCamTexture(MonoObject* self, MonoString* scriptingDevice, int32_t requestedWidth, int32_t requestedHeight, int32_t maxFramerate)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self, Il2CppString* scriptingDevice, int32_t requestedWidth, int32_t requestedHeight, int32_t maxFramerate);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::Internal_CreateWebCamTexture");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
-	Il2CppString* i2scriptingDevice = get_il2cpp_string(scriptingDevice);
-	icall(i2self,i2scriptingDevice,requestedWidth,requestedHeight,maxFramerate);
-}
-void UnityEngine_WebCamTexture_INTERNAL_CALL_Play_1(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::INTERNAL_CALL_Play");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2self);
-}
-void UnityEngine_WebCamTexture_INTERNAL_CALL_Pause_2(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::INTERNAL_CALL_Pause");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2self);
-}
-void UnityEngine_WebCamTexture_INTERNAL_CALL_Stop_2(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::INTERNAL_CALL_Stop");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2self);
-}
-bool UnityEngine_WebCamTexture_get_isPlaying_3(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_isPlaying");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-MonoString* UnityEngine_WebCamTexture_get_deviceName(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_deviceName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_WebCamTexture_set_deviceName(MonoObject* thiz, MonoString* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_deviceName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	Il2CppString* i2value = get_il2cpp_string(value);
-	icall(i2thiz,i2value);
-}
-float UnityEngine_WebCamTexture_get_requestedFPS(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_requestedFPS");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_WebCamTexture_set_requestedFPS(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_requestedFPS");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_WebCamTexture_get_requestedWidth(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_requestedWidth");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_WebCamTexture_set_requestedWidth(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_requestedWidth");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_WebCamTexture_get_requestedHeight(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_requestedHeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_WebCamTexture_set_requestedHeight(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_requestedHeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2thiz,value);
-}
-void* UnityEngine_WebCamTexture_get_devices_1()
-{
-	typedef void* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_devices");
-	void* i2res = icall();
-	return i2res;
-}
-void UnityEngine_WebCamTexture_INTERNAL_CALL_GetPixel(MonoObject* self, int32_t x, int32_t y, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self, int32_t x, int32_t y, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::INTERNAL_CALL_GetPixel");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2self,x,y,value);
-}
-void* UnityEngine_WebCamTexture_GetPixels(MonoObject* thiz, int32_t x, int32_t y, int32_t blockWidth, int32_t blockHeight)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t x, int32_t y, int32_t blockWidth, int32_t blockHeight);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::GetPixels");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	void* i2res = icall(i2thiz,x,y,blockWidth,blockHeight);
-	return i2res;
-}
-void* UnityEngine_WebCamTexture_GetPixels32(MonoObject* thiz, void* colors)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz, void* colors);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::GetPixels32");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	void* i2res = icall(i2thiz,colors);
-	return i2res;
-}
-int32_t UnityEngine_WebCamTexture_get_videoRotationAngle(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_videoRotationAngle");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_WebCamTexture_get_videoVerticallyMirrored(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_videoVerticallyMirrored");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_WebCamTexture_get_didUpdateThisFrame(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_didUpdateThisFrame");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_WebCamTexture_get_isDepth(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_isDepth");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_WebCamTexture_get_internalAutoFocusPoint_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::get_internalAutoFocusPoint_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2thiz,ret);
-}
-void UnityEngine_WebCamTexture_set_internalAutoFocusPoint_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.WebCamTexture::set_internalAutoFocusPoint_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WebCamTexture());
-	icall(i2thiz,value);
-}
-MonoObject* UnityEngine_Audio_AudioPlayableOutput_InternalGetTarget_1(void * output)
-{
-	typedef Il2CppObject* (* ICallMethod) (void * output);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableOutput::InternalGetTarget");
-	Il2CppObject* i2res = icall(output);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AudioSource());
-	return monoi2res;
-}
-void UnityEngine_Audio_AudioPlayableOutput_InternalSetTarget_1(void * output, MonoObject* target)
-{
-	typedef void (* ICallMethod) (void * output, Il2CppObject* target);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableOutput::InternalSetTarget");
-	Il2CppObject* i2target = get_il2cpp_object(target,il2cpp_get_class_UnityEngine_AudioSource());
-	icall(output,i2target);
-}
-bool UnityEngine_Audio_AudioPlayableOutput_InternalGetEvaluateOnSeek(void * output)
-{
-	typedef bool (* ICallMethod) (void * output);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableOutput::InternalGetEvaluateOnSeek");
-	bool i2res = icall(output);
-	return i2res;
-}
-void UnityEngine_Audio_AudioPlayableOutput_InternalSetEvaluateOnSeek(void * output, bool value)
-{
-	typedef void (* ICallMethod) (void * output, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableOutput::InternalSetEvaluateOnSeek");
-	icall(output,value);
-}
-MonoObject* UnityEngine_Audio_AudioClipPlayable_GetClipInternal(void * hdl)
-{
-	typedef Il2CppObject* (* ICallMethod) (void * hdl);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetClipInternal");
-	Il2CppObject* i2res = icall(hdl);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AudioClip());
-	return monoi2res;
-}
-void UnityEngine_Audio_AudioClipPlayable_SetClipInternal(void * hdl, MonoObject* clip)
-{
-	typedef void (* ICallMethod) (void * hdl, Il2CppObject* clip);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::SetClipInternal");
-	Il2CppObject* i2clip = get_il2cpp_object(clip,il2cpp_get_class_UnityEngine_AudioClip());
-	icall(hdl,i2clip);
-}
-bool UnityEngine_Audio_AudioClipPlayable_GetLoopedInternal(void * hdl)
-{
-	typedef bool (* ICallMethod) (void * hdl);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetLoopedInternal");
-	bool i2res = icall(hdl);
-	return i2res;
-}
-void UnityEngine_Audio_AudioClipPlayable_SetLoopedInternal(void * hdl, bool looped)
-{
-	typedef void (* ICallMethod) (void * hdl, bool looped);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::SetLoopedInternal");
-	icall(hdl,looped);
-}
-bool UnityEngine_Audio_AudioClipPlayable_GetIsChannelPlayingInternal(void * hdl)
-{
-	typedef bool (* ICallMethod) (void * hdl);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetIsChannelPlayingInternal");
-	bool i2res = icall(hdl);
-	return i2res;
-}
-double UnityEngine_Audio_AudioClipPlayable_GetStartDelayInternal(void * hdl)
-{
-	typedef double (* ICallMethod) (void * hdl);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetStartDelayInternal");
-	double i2res = icall(hdl);
-	return i2res;
-}
-void UnityEngine_Audio_AudioClipPlayable_SetStartDelayInternal(void * hdl, double delay)
-{
-	typedef void (* ICallMethod) (void * hdl, double delay);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::SetStartDelayInternal");
-	icall(hdl,delay);
-}
-double UnityEngine_Audio_AudioClipPlayable_GetPauseDelayInternal(void * hdl)
-{
-	typedef double (* ICallMethod) (void * hdl);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::GetPauseDelayInternal");
-	double i2res = icall(hdl);
-	return i2res;
-}
-void UnityEngine_Audio_AudioClipPlayable_SetPauseDelayInternal(void * hdl, double delay)
-{
-	typedef void (* ICallMethod) (void * hdl, double delay);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::SetPauseDelayInternal");
-	icall(hdl,delay);
-}
-bool UnityEngine_Audio_AudioClipPlayable_InternalCreateAudioClipPlayable(void * graph, MonoObject* clip, bool looping, void * handle)
-{
-	typedef bool (* ICallMethod) (void * graph, Il2CppObject* clip, bool looping, void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::InternalCreateAudioClipPlayable");
-	Il2CppObject* i2clip = get_il2cpp_object(clip,il2cpp_get_class_UnityEngine_AudioClip());
-	bool i2res = icall(graph,i2clip,looping,handle);
-	return i2res;
-}
-bool UnityEngine_Audio_AudioClipPlayable_ValidateType(void * hdl)
-{
-	typedef bool (* ICallMethod) (void * hdl);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioClipPlayable::ValidateType");
-	bool i2res = icall(hdl);
-	return i2res;
-}
-bool UnityEngine_Audio_AudioMixerPlayable_CreateAudioMixerPlayableInternal(void * graph, int32_t inputCount, bool normalizeInputVolumes, void * handle)
-{
-	typedef bool (* ICallMethod) (void * graph, int32_t inputCount, bool normalizeInputVolumes, void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioMixerPlayable::CreateAudioMixerPlayableInternal");
-	bool i2res = icall(graph,inputCount,normalizeInputVolumes,handle);
-	return i2res;
-}
-bool UnityEngine_Audio_AudioPlayableGraphExtensions_InternalCreateAudioOutput(void * graph, MonoString* name, void * handle)
-{
-	typedef bool (* ICallMethod) (void * graph, Il2CppString* name, void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Audio.AudioPlayableGraphExtensions::InternalCreateAudioOutput");
-	Il2CppString* i2name = get_il2cpp_string(name);
-	bool i2res = icall(graph,i2name,handle);
-	return i2res;
-}
-bool UnityEngine_AudioRenderer_Internal_AudioRenderer_Start()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_Start");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_AudioRenderer_Internal_AudioRenderer_Stop()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_Stop");
-	bool i2res = icall();
-	return i2res;
-}
-int32_t UnityEngine_AudioRenderer_Internal_AudioRenderer_GetSampleCountForCaptureFrame()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_GetSampleCountForCaptureFrame");
-	int32_t i2res = icall();
-	return i2res;
-}
-bool UnityEngine_AudioRenderer_Internal_AudioRenderer_AddMixerGroupSink(MonoObject* mixerGroup, void * ptr, int32_t length, bool excludeFromMix)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* mixerGroup, void * ptr, int32_t length, bool excludeFromMix);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_AddMixerGroupSink");
-	Il2CppObject* i2mixerGroup = get_il2cpp_object(mixerGroup,il2cpp_get_class_UnityEngine_Audio_AudioMixerGroup());
-	bool i2res = icall(i2mixerGroup,ptr,length,excludeFromMix);
-	return i2res;
-}
-bool UnityEngine_AudioRenderer_Internal_AudioRenderer_Render(void * ptr, int32_t length)
-{
-	typedef bool (* ICallMethod) (void * ptr, int32_t length);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AudioRenderer::Internal_AudioRenderer_Render");
-	bool i2res = icall(ptr,length);
-	return i2res;
-}
-bool UnityEngine_Cloth_get_selfCollision(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_selfCollision");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Cloth_set_selfCollision(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_selfCollision");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	icall(i2thiz,value);
-}
-void* UnityEngine_Cloth_get_vertices(MonoObject* thiz)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_vertices");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	void* i2res = icall(i2thiz);
-	return i2res;
-}
-void* UnityEngine_Cloth_get_normals(MonoObject* thiz)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_normals");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	void* i2res = icall(i2thiz);
-	return i2res;
-}
-float UnityEngine_Cloth_get_useContinuousCollision(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_useContinuousCollision");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Cloth_set_useContinuousCollision(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_useContinuousCollision");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	icall(i2thiz,value);
-}
-void UnityEngine_Cloth_INTERNAL_CALL_ClearTransformMotion(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::INTERNAL_CALL_ClearTransformMotion");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Cloth());
-	icall(i2self);
-}
-void* UnityEngine_Cloth_get_coefficients(MonoObject* thiz)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_coefficients");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	void* i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Cloth_set_coefficients(MonoObject* thiz, void* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_coefficients");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	icall(i2thiz,value);
-}
-void UnityEngine_Cloth_SetEnabledFading(MonoObject* thiz, bool enabled, float interpolationTime)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool enabled, float interpolationTime);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::SetEnabledFading");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	icall(i2thiz,enabled,interpolationTime);
-}
-MonoArray* UnityEngine_Cloth_get_capsuleColliders(MonoObject* thiz)
-{
-	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_capsuleColliders");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	Il2CppArray* i2res = icall(i2thiz);
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
-void UnityEngine_Cloth_set_capsuleColliders(MonoObject* thiz, MonoArray* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_capsuleColliders");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	Il2CppArray* i2value = get_il2cpp_array(value);
-	icall(i2thiz,i2value);
-}
-void* UnityEngine_Cloth_get_sphereColliders(MonoObject* thiz)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_sphereColliders");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	void* i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Cloth_set_sphereColliders(MonoObject* thiz, void* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_sphereColliders");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	icall(i2thiz,value);
-}
-void UnityEngine_Cloth_GetVirtualParticleIndicesMono(MonoObject* thiz, MonoObject* indicesOutList)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* indicesOutList);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::GetVirtualParticleIndicesMono");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	Il2CppObject* i2indicesOutList = get_il2cpp_object(indicesOutList,NULL);
-	icall(i2thiz,i2indicesOutList);
-}
-void UnityEngine_Cloth_SetVirtualParticleIndicesMono(MonoObject* thiz, MonoObject* indicesInList)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* indicesInList);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::SetVirtualParticleIndicesMono");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	Il2CppObject* i2indicesInList = get_il2cpp_object(indicesInList,NULL);
-	icall(i2thiz,i2indicesInList);
-}
-void UnityEngine_Cloth_GetVirtualParticleWeightsMono(MonoObject* thiz, MonoObject* weightsOutList)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* weightsOutList);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::GetVirtualParticleWeightsMono");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	Il2CppObject* i2weightsOutList = get_il2cpp_object(weightsOutList,NULL);
-	icall(i2thiz,i2weightsOutList);
-}
-void UnityEngine_Cloth_SetVirtualParticleWeightsMono(MonoObject* thiz, MonoObject* weightsInList)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* weightsInList);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::SetVirtualParticleWeightsMono");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	Il2CppObject* i2weightsInList = get_il2cpp_object(weightsInList,NULL);
-	icall(i2thiz,i2weightsInList);
-}
-void UnityEngine_Cloth_GetSelfAndInterCollisionIndicesMono(MonoObject* thiz, MonoObject* indicesOutList)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* indicesOutList);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::GetSelfAndInterCollisionIndicesMono");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	Il2CppObject* i2indicesOutList = get_il2cpp_object(indicesOutList,NULL);
-	icall(i2thiz,i2indicesOutList);
-}
-void UnityEngine_Cloth_SetSelfAndInterCollisionIndicesMono(MonoObject* thiz, MonoObject* indicesInList)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* indicesInList);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::SetSelfAndInterCollisionIndicesMono");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
-	Il2CppObject* i2indicesInList = get_il2cpp_object(indicesInList,NULL);
-	icall(i2thiz,i2indicesInList);
 }
 float UnityEngine_Cloth_get_sleepThreshold(MonoObject* thiz)
 {
@@ -11668,6 +11205,201 @@ void UnityEngine_Cloth_set_selfCollisionStiffness(MonoObject* thiz, float value)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
 	icall(i2thiz,value);
 }
+bool UnityEngine_Cloth_get_selfCollision(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_selfCollision");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Cloth_set_selfCollision(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_selfCollision");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	icall(i2thiz,value);
+}
+void* UnityEngine_Cloth_get_vertices(MonoObject* thiz)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_vertices");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	void* i2res = icall(i2thiz);
+	return i2res;
+}
+void* UnityEngine_Cloth_get_normals(MonoObject* thiz)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_normals");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	void* i2res = icall(i2thiz);
+	return i2res;
+}
+float UnityEngine_Cloth_get_useContinuousCollision(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_useContinuousCollision");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Cloth_set_useContinuousCollision(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_useContinuousCollision");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	icall(i2thiz,value);
+}
+void UnityEngine_Cloth_INTERNAL_CALL_ClearTransformMotion(MonoObject* self)
+{
+	typedef void (* ICallMethod) (Il2CppObject* self);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::INTERNAL_CALL_ClearTransformMotion");
+	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Cloth());
+	icall(i2self);
+}
+void* UnityEngine_Cloth_get_coefficients(MonoObject* thiz)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_coefficients");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	void* i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Cloth_set_coefficients(MonoObject* thiz, void* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_coefficients");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	icall(i2thiz,value);
+}
+void UnityEngine_Cloth_SetEnabledFading(MonoObject* thiz, bool enabled, float interpolationTime)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool enabled, float interpolationTime);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::SetEnabledFading");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	icall(i2thiz,enabled,interpolationTime);
+}
+MonoArray* UnityEngine_Cloth_get_capsuleColliders(MonoObject* thiz)
+{
+	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_capsuleColliders");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	Il2CppArray* i2res = icall(i2thiz);
+	MonoArray* monoi2res = get_mono_array(i2res);
+	return monoi2res;
+}
+void UnityEngine_Cloth_set_capsuleColliders(MonoObject* thiz, MonoArray* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_capsuleColliders");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	Il2CppArray* i2value = get_il2cpp_array(value);
+	icall(i2thiz,i2value);
+}
+void* UnityEngine_Cloth_get_sphereColliders(MonoObject* thiz)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::get_sphereColliders");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	void* i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Cloth_set_sphereColliders(MonoObject* thiz, void* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::set_sphereColliders");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	icall(i2thiz,value);
+}
+void UnityEngine_Cloth_GetVirtualParticleIndicesMono(MonoObject* thiz, MonoObject* indicesOutList)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* indicesOutList);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::GetVirtualParticleIndicesMono");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	Il2CppObject* i2indicesOutList = get_il2cpp_object(indicesOutList,NULL);
+	icall(i2thiz,i2indicesOutList);
+}
+void UnityEngine_Cloth_SetVirtualParticleIndicesMono(MonoObject* thiz, MonoObject* indicesInList)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* indicesInList);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::SetVirtualParticleIndicesMono");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	Il2CppObject* i2indicesInList = get_il2cpp_object(indicesInList,NULL);
+	icall(i2thiz,i2indicesInList);
+}
+void UnityEngine_Cloth_GetVirtualParticleWeightsMono(MonoObject* thiz, MonoObject* weightsOutList)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* weightsOutList);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::GetVirtualParticleWeightsMono");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	Il2CppObject* i2weightsOutList = get_il2cpp_object(weightsOutList,NULL);
+	icall(i2thiz,i2weightsOutList);
+}
+void UnityEngine_Cloth_SetVirtualParticleWeightsMono(MonoObject* thiz, MonoObject* weightsInList)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* weightsInList);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::SetVirtualParticleWeightsMono");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	Il2CppObject* i2weightsInList = get_il2cpp_object(weightsInList,NULL);
+	icall(i2thiz,i2weightsInList);
+}
+void UnityEngine_Cloth_GetSelfAndInterCollisionIndicesMono(MonoObject* thiz, MonoObject* indicesOutList)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* indicesOutList);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::GetSelfAndInterCollisionIndicesMono");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	Il2CppObject* i2indicesOutList = get_il2cpp_object(indicesOutList,NULL);
+	icall(i2thiz,i2indicesOutList);
+}
+void UnityEngine_Cloth_SetSelfAndInterCollisionIndicesMono(MonoObject* thiz, MonoObject* indicesInList)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* indicesInList);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Cloth::SetSelfAndInterCollisionIndicesMono");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Cloth());
+	Il2CppObject* i2indicesInList = get_il2cpp_object(indicesInList,NULL);
+	icall(i2thiz,i2indicesInList);
+}
 void UnityEngine_Cloth_get_externalAcceleration_Injected(MonoObject* thiz, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
@@ -11846,42 +11578,6 @@ void UnityEngine_ClusterNetwork_set_nodeIndex(int32_t value)
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ClusterNetwork::set_nodeIndex");
 	icall(value);
-}
-int32_t UnityEngine_AndroidInput_GetTouchCount_Bindings()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AndroidInput::GetTouchCount_Bindings");
-	int32_t i2res = icall();
-	return i2res;
-}
-bool UnityEngine_AndroidInput_IsInputDeviceEnabled_Bindings()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AndroidInput::IsInputDeviceEnabled_Bindings");
-	bool i2res = icall();
-	return i2res;
-}
-int32_t UnityEngine_AndroidInput_GetTouchpadWidth()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AndroidInput::GetTouchpadWidth");
-	int32_t i2res = icall();
-	return i2res;
-}
-int32_t UnityEngine_AndroidInput_GetTouchpadHeight()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.AndroidInput::GetTouchpadHeight");
-	int32_t i2res = icall();
-	return i2res;
 }
 bool UnityEngine_Android_Permission_HasUserAuthorizedPermission(MonoString* permission)
 {
@@ -12641,22 +12337,6 @@ int32_t UnityEngine_Rendering_AsyncGPUReadbackRequest_GetDepth_Injected(void * _
 	int32_t i2res = icall(_unity_self);
 	return i2res;
 }
-void UnityEngine_Rendering_AsyncGPUReadbackRequest_CreateSafetyHandle_Injected(void * _unity_self)
-{
-	typedef void (* ICallMethod) (void * _unity_self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Rendering.AsyncGPUReadbackRequest::CreateSafetyHandle_Injected");
-	icall(_unity_self);
-}
-void UnityEngine_Rendering_AsyncGPUReadbackRequest_GetSafetyHandle_Injected(void * _unity_self, void * ret)
-{
-	typedef void (* ICallMethod) (void * _unity_self, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Rendering.AsyncGPUReadbackRequest::GetSafetyHandle_Injected");
-	icall(_unity_self,ret);
-}
 void UnityEngine_Rendering_AsyncGPUReadbackRequest_SetScriptingCallback_Injected(void * _unity_self, MonoObject* callback)
 {
 	typedef void (* ICallMethod) (void * _unity_self, Il2CppObject* callback);
@@ -12819,192 +12499,6 @@ void Unity_IO_LowLevel_Unsafe_AsyncReadManager_ReadInternal_Injected(MonoString*
 		icall = (ICallMethod)il2cpp_resolve_icall("Unity.IO.LowLevel.Unsafe.AsyncReadManager::ReadInternal_Injected");
 	Il2CppString* i2filename = get_il2cpp_string(filename);
 	icall(i2filename,cmds,cmdCount,ret);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_PrepareUndisposable(void * handle)
-{
-	typedef void (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::PrepareUndisposable");
-	icall(handle);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_UseSecondaryVersion(void * handle)
-{
-	typedef void (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::UseSecondaryVersion");
-	icall(handle);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_Create_Injected_1(void * ret)
-{
-	typedef void (* ICallMethod) (void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::Create_Injected");
-	icall(ret);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetTempUnsafePtrSliceHandle_Injected(void * ret)
-{
-	typedef void (* ICallMethod) (void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetTempUnsafePtrSliceHandle_Injected");
-	icall(ret);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetTempMemoryHandle_Injected(void * ret)
-{
-	typedef void (* ICallMethod) (void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetTempMemoryHandle_Injected");
-	icall(ret);
-}
-bool Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_IsTempMemoryHandle_Injected(void * handle)
-{
-	typedef bool (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::IsTempMemoryHandle_Injected");
-	bool i2res = icall(handle);
-	return i2res;
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_Release_Injected(void * handle)
-{
-	typedef void (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::Release_Injected");
-	icall(handle);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_SetAllowSecondaryVersionWriting_Injected(void * handle, bool allowWriting)
-{
-	typedef void (* ICallMethod) (void * handle, bool allowWriting);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::SetAllowSecondaryVersionWriting_Injected");
-	icall(handle,allowWriting);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_SetAllowReadOrWriteAccess_Injected(void * handle, bool allowReadWriteAccess)
-{
-	typedef void (* ICallMethod) (void * handle, bool allowReadWriteAccess);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::SetAllowReadOrWriteAccess_Injected");
-	icall(handle,allowReadWriteAccess);
-}
-bool Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetAllowReadOrWriteAccess_Injected(void * handle)
-{
-	typedef bool (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetAllowReadOrWriteAccess_Injected");
-	bool i2res = icall(handle);
-	return i2res;
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckWriteAndBumpSecondaryVersion_Injected(void * handle)
-{
-	typedef void (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckWriteAndBumpSecondaryVersion_Injected");
-	icall(handle);
-}
-int32_t Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_EnforceAllBufferJobsHaveCompleted_Injected(void * handle)
-{
-	typedef int32_t (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::EnforceAllBufferJobsHaveCompleted_Injected");
-	int32_t i2res = icall(handle);
-	return i2res;
-}
-int32_t Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_EnforceAllBufferJobsHaveCompletedAndRelease_Injected(void * handle)
-{
-	typedef int32_t (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::EnforceAllBufferJobsHaveCompletedAndRelease_Injected");
-	int32_t i2res = icall(handle);
-	return i2res;
-}
-int32_t Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_EnforceAllBufferJobsHaveCompletedAndDisableReadWrite_Injected(void * handle)
-{
-	typedef int32_t (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::EnforceAllBufferJobsHaveCompletedAndDisableReadWrite_Injected");
-	int32_t i2res = icall(handle);
-	return i2res;
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckReadAndThrowNoEarlyOut_Injected(void * handle)
-{
-	typedef void (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckReadAndThrowNoEarlyOut_Injected");
-	icall(handle);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckWriteAndThrowNoEarlyOut_Injected(void * handle)
-{
-	typedef void (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckWriteAndThrowNoEarlyOut_Injected");
-	icall(handle);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckDeallocateAndThrow_Injected(void * handle)
-{
-	typedef void (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckDeallocateAndThrow_Injected");
-	icall(handle);
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckGetSecondaryDataPointerAndThrow_Injected(void * handle)
-{
-	typedef void (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckGetSecondaryDataPointerAndThrow_Injected");
-	icall(handle);
-}
-int32_t Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetReaderArray_Injected(void * handle, int32_t maxCount, void * output)
-{
-	typedef int32_t (* ICallMethod) (void * handle, int32_t maxCount, void * output);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetReaderArray_Injected");
-	int32_t i2res = icall(handle,maxCount,output);
-	return i2res;
-}
-void Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetWriter_Injected(void * handle, void * ret)
-{
-	typedef void (* ICallMethod) (void * handle, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetWriter_Injected");
-	icall(handle,ret);
-}
-MonoString* Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetReaderName_Injected(void * handle, int32_t readerIndex)
-{
-	typedef Il2CppString* (* ICallMethod) (void * handle, int32_t readerIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetReaderName_Injected");
-	Il2CppString* i2res = icall(handle,readerIndex);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetWriterName_Injected(void * handle)
-{
-	typedef Il2CppString* (* ICallMethod) (void * handle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetWriterName_Injected");
-	Il2CppString* i2res = icall(handle);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
 }
 bool UnityEngine_Behaviour_get_enabled_2(MonoObject* thiz)
 {
@@ -13642,16 +13136,6 @@ bool UnityEngine_Caching_MarkAsUsed_Injected(MonoString* url, MonoString* assetB
 	Il2CppString* i2assetBundleName = get_il2cpp_string(assetBundleName);
 	bool i2res = icall(i2url,i2assetBundleName,hash);
 	return i2res;
-}
-void UnityEngine_Caching_SetNoBackupFlag_Injected(MonoString* url, MonoString* assetBundleName, void * hash, bool enabled)
-{
-	typedef void (* ICallMethod) (Il2CppString* url, Il2CppString* assetBundleName, void * hash, bool enabled);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Caching::SetNoBackupFlag_Injected");
-	Il2CppString* i2url = get_il2cpp_string(url);
-	Il2CppString* i2assetBundleName = get_il2cpp_string(assetBundleName);
-	icall(i2url,i2assetBundleName,hash,enabled);
 }
 void UnityEngine_Caching_AddCache_Injected(MonoString* cachePath, bool isReadonly, void * ret)
 {
@@ -15499,17 +14983,13 @@ void UnityEngine_Cursor_SetCursor_Injected(MonoObject* texture, void * hotspot, 
 }
 void UnityEngine_DebugLogHandler_Internal_Log(int32_t level, MonoString* msg, MonoObject* obj)
 {
-   
 	typedef void (* ICallMethod) (int32_t level, Il2CppString* msg, Il2CppObject* obj);
 	static ICallMethod icall;
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.DebugLogHandler::Internal_Log");
-    char* chars = mono_string_to_utf8(msg);
-    
-    
 	Il2CppString* i2msg = get_il2cpp_string(msg);
 	Il2CppObject* i2obj = get_il2cpp_object(obj,il2cpp_get_class_UnityEngine_Object());
-	//icall(level,i2msg,i2obj);
+	icall(level,i2msg,i2obj);
 }
 void UnityEngine_DebugLogHandler_Internal_LogException(MonoObject* exception, MonoObject* obj)
 {
@@ -15561,16 +15041,6 @@ void UnityEngine_Debug_set_developerConsoleVisible(bool value)
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Debug::set_developerConsoleVisible");
 	icall(value);
-}
-void UnityEngine_Debug_LogPlayerBuildError(MonoString* message, MonoString* file, int32_t line, int32_t column)
-{
-	typedef void (* ICallMethod) (Il2CppString* message, Il2CppString* file, int32_t line, int32_t column);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Debug::LogPlayerBuildError");
-	Il2CppString* i2message = get_il2cpp_string(message);
-	Il2CppString* i2file = get_il2cpp_string(file);
-	icall(i2message,i2file,line,column);
 }
 bool UnityEngine_Debug_get_isDebugBuild()
 {
@@ -15724,15 +15194,6 @@ void UnityEngine_DrivenPropertyManager_UnregisterPropertyPartial(MonoObject* dri
 	Il2CppString* i2propertyPath = get_il2cpp_string(propertyPath);
 	icall(i2driver,i2target,i2propertyPath);
 }
-void UnityEngine_EventProvider_WriteCustomEvent(int32_t value, MonoString* text)
-{
-	typedef void (* ICallMethod) (int32_t value, Il2CppString* text);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.EventProvider::WriteCustomEvent");
-	Il2CppString* i2text = get_il2cpp_string(text);
-	icall(value,i2text);
-}
 MonoObject* UnityEngine_ExposedPropertyResolver_ResolveReferenceBindingsInternal_Injected(void * ptr, void * name, void * isValid)
 {
 	typedef Il2CppObject* (* ICallMethod) (void * ptr, void * name, void * isValid);
@@ -15843,7 +15304,7 @@ void UnityEngine_GameObject_set_layer_1(MonoObject* thiz, int32_t value)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GameObject());
 	icall(i2thiz,value);
 }
-bool UnityEngine_GameObject_get_active_1(MonoObject* thiz)
+bool UnityEngine_GameObject_get_active(MonoObject* thiz)
 {
 	typedef bool (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -15853,7 +15314,7 @@ bool UnityEngine_GameObject_get_active_1(MonoObject* thiz)
 	bool i2res = icall(i2thiz);
 	return i2res;
 }
-void UnityEngine_GameObject_set_active_1(MonoObject* thiz, bool value)
+void UnityEngine_GameObject_set_active(MonoObject* thiz, bool value)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
 	static ICallMethod icall;
@@ -16043,15 +15504,6 @@ void UnityEngine_GameObject_get_scene_Injected_1(MonoObject* thiz, void * ret)
 	static ICallMethod icall;
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GameObject::get_scene_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GameObject());
-	icall(i2thiz,ret);
-}
-void UnityEngine_GameObject_CalculateBounds_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GameObject::CalculateBounds_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GameObject());
 	icall(i2thiz,ret);
 }
@@ -16317,24 +15769,6 @@ void UnityEngine_Gradient_Evaluate_Injected(MonoObject* thiz, float time, void *
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Gradient::Evaluate_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Gradient());
 	icall(i2thiz,time,ret);
-}
-void UnityEngine_Gradient_get_constantColor_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Gradient::get_constantColor_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Gradient());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Gradient_set_constantColor_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Gradient::set_constantColor_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Gradient());
-	icall(i2thiz,value);
 }
 int32_t UnityEngine_Screen_get_width_1()
 {
@@ -17812,14 +17246,6 @@ int32_t UnityEngine_QualitySettings_get_streamingMipmapsRenderersPerFrame()
 	int32_t i2res = icall();
 	return i2res;
 }
-void UnityEngine_QualitySettings_set_streamingMipmapsRenderersPerFrame(int32_t value)
-{
-	typedef void (* ICallMethod) (int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.QualitySettings::set_streamingMipmapsRenderersPerFrame");
-	icall(value);
-}
 int32_t UnityEngine_QualitySettings_get_streamingMipmapsMaxLevelReduction()
 {
 	typedef int32_t (* ICallMethod) ();
@@ -17957,1623 +17383,6 @@ void UnityEngine_RendererExtensions_UpdateGIMaterialsForRenderer(MonoObject* ren
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.RendererExtensions::UpdateGIMaterialsForRenderer");
 	Il2CppObject* i2renderer = get_il2cpp_object(renderer,il2cpp_get_class_UnityEngine_Renderer());
 	icall(i2renderer);
-}
-void UnityEngine_Mesh_Internal_Create_12(MonoObject* mono)
-{
-	typedef void (* ICallMethod) (Il2CppObject* mono);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::Internal_Create");
-	Il2CppObject* i2mono = get_il2cpp_object(mono,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2mono);
-}
-MonoObject* UnityEngine_Mesh_FromInstanceID(int32_t id)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t id);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::FromInstanceID");
-	Il2CppObject* i2res = icall(id);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Mesh());
-	return monoi2res;
-}
-int32_t UnityEngine_Mesh_get_indexFormat(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_indexFormat");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Mesh_set_indexFormat(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_indexFormat");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,value);
-}
-uint32_t UnityEngine_Mesh_GetIndexStartImpl(MonoObject* thiz, int32_t submesh)
-{
-	typedef uint32_t (* ICallMethod) (Il2CppObject* thiz, int32_t submesh);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetIndexStartImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	uint32_t i2res = icall(i2thiz,submesh);
-	return i2res;
-}
-uint32_t UnityEngine_Mesh_GetIndexCountImpl(MonoObject* thiz, int32_t submesh)
-{
-	typedef uint32_t (* ICallMethod) (Il2CppObject* thiz, int32_t submesh);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetIndexCountImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	uint32_t i2res = icall(i2thiz,submesh);
-	return i2res;
-}
-uint32_t UnityEngine_Mesh_GetBaseVertexImpl(MonoObject* thiz, int32_t submesh)
-{
-	typedef uint32_t (* ICallMethod) (Il2CppObject* thiz, int32_t submesh);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBaseVertexImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	uint32_t i2res = icall(i2thiz,submesh);
-	return i2res;
-}
-void* UnityEngine_Mesh_GetTrianglesImpl(MonoObject* thiz, int32_t submesh, bool applyBaseVertex)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t submesh, bool applyBaseVertex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetTrianglesImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	void* i2res = icall(i2thiz,submesh,applyBaseVertex);
-	return i2res;
-}
-void* UnityEngine_Mesh_GetIndicesImpl(MonoObject* thiz, int32_t submesh, bool applyBaseVertex)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t submesh, bool applyBaseVertex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetIndicesImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	void* i2res = icall(i2thiz,submesh,applyBaseVertex);
-	return i2res;
-}
-void UnityEngine_Mesh_SetIndicesImpl(MonoObject* thiz, int32_t submesh, int32_t topology, MonoObject* indices, int32_t arraySize, bool calculateBounds, int32_t baseVertex)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t submesh, int32_t topology, Il2CppObject* indices, int32_t arraySize, bool calculateBounds, int32_t baseVertex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::SetIndicesImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	Il2CppObject* i2indices = get_il2cpp_object(indices,NULL);
-	icall(i2thiz,submesh,topology,i2indices,arraySize,calculateBounds,baseVertex);
-}
-void UnityEngine_Mesh_GetTrianglesNonAllocImpl(MonoObject* thiz, void* values, int32_t submesh, bool applyBaseVertex)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* values, int32_t submesh, bool applyBaseVertex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetTrianglesNonAllocImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,values,submesh,applyBaseVertex);
-}
-void UnityEngine_Mesh_GetIndicesNonAllocImpl(MonoObject* thiz, void* values, int32_t submesh, bool applyBaseVertex)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* values, int32_t submesh, bool applyBaseVertex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetIndicesNonAllocImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,values,submesh,applyBaseVertex);
-}
-void UnityEngine_Mesh_PrintErrorCantAccessChannel(MonoObject* thiz, int32_t ch)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t ch);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::PrintErrorCantAccessChannel");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,ch);
-}
-bool UnityEngine_Mesh_HasChannel(MonoObject* thiz, int32_t ch)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t ch);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::HasChannel");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	bool i2res = icall(i2thiz,ch);
-	return i2res;
-}
-void UnityEngine_Mesh_SetArrayForChannelImpl(MonoObject* thiz, int32_t channel, int32_t format, int32_t dim, MonoObject* values, int32_t arraySize)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t channel, int32_t format, int32_t dim, Il2CppObject* values, int32_t arraySize);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::SetArrayForChannelImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	Il2CppObject* i2values = get_il2cpp_object(values,NULL);
-	icall(i2thiz,channel,format,dim,i2values,arraySize);
-}
-MonoObject* UnityEngine_Mesh_GetAllocArrayFromChannelImpl(MonoObject* thiz, int32_t channel, int32_t format, int32_t dim)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, int32_t channel, int32_t format, int32_t dim);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetAllocArrayFromChannelImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	Il2CppObject* i2res = icall(i2thiz,channel,format,dim);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_System_Array());
-	return monoi2res;
-}
-void UnityEngine_Mesh_GetArrayFromChannelImpl(MonoObject* thiz, int32_t channel, int32_t format, int32_t dim, MonoObject* values)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t channel, int32_t format, int32_t dim, Il2CppObject* values);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetArrayFromChannelImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	Il2CppObject* i2values = get_il2cpp_object(values,NULL);
-	icall(i2thiz,channel,format,dim,i2values);
-}
-int32_t UnityEngine_Mesh_get_vertexBufferCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_vertexBufferCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void * UnityEngine_Mesh_GetNativeVertexBufferPtr(MonoObject* thiz, int32_t index)
-{
-	typedef void * (* ICallMethod) (Il2CppObject* thiz, int32_t index);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetNativeVertexBufferPtr");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	void * i2res = icall(i2thiz,index);
-	return i2res;
-}
-void * UnityEngine_Mesh_GetNativeIndexBufferPtr(MonoObject* thiz)
-{
-	typedef void * (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetNativeIndexBufferPtr");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	void * i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_Mesh_get_blendShapeCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_blendShapeCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Mesh_ClearBlendShapes(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::ClearBlendShapes");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz);
-}
-MonoString* UnityEngine_Mesh_GetBlendShapeName(MonoObject* thiz, int32_t shapeIndex)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, int32_t shapeIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	Il2CppString* i2res = icall(i2thiz,shapeIndex);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-int32_t UnityEngine_Mesh_GetBlendShapeIndex(MonoObject* thiz, MonoString* blendShapeName)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppString* blendShapeName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeIndex");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	Il2CppString* i2blendShapeName = get_il2cpp_string(blendShapeName);
-	int32_t i2res = icall(i2thiz,i2blendShapeName);
-	return i2res;
-}
-int32_t UnityEngine_Mesh_GetBlendShapeFrameCount(MonoObject* thiz, int32_t shapeIndex)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t shapeIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeFrameCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz,shapeIndex);
-	return i2res;
-}
-float UnityEngine_Mesh_GetBlendShapeFrameWeight(MonoObject* thiz, int32_t shapeIndex, int32_t frameIndex)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t shapeIndex, int32_t frameIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeFrameWeight");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	float i2res = icall(i2thiz,shapeIndex,frameIndex);
-	return i2res;
-}
-void UnityEngine_Mesh_GetBlendShapeFrameVertices(MonoObject* thiz, int32_t shapeIndex, int32_t frameIndex, void* deltaVertices, void* deltaNormals, void* deltaTangents)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t shapeIndex, int32_t frameIndex, void* deltaVertices, void* deltaNormals, void* deltaTangents);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeFrameVertices");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,shapeIndex,frameIndex,deltaVertices,deltaNormals,deltaTangents);
-}
-void UnityEngine_Mesh_AddBlendShapeFrame(MonoObject* thiz, MonoString* shapeName, float frameWeight, void* deltaVertices, void* deltaNormals, void* deltaTangents)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* shapeName, float frameWeight, void* deltaVertices, void* deltaNormals, void* deltaTangents);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::AddBlendShapeFrame");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	Il2CppString* i2shapeName = get_il2cpp_string(shapeName);
-	icall(i2thiz,i2shapeName,frameWeight,deltaVertices,deltaNormals,deltaTangents);
-}
-int32_t UnityEngine_Mesh_GetBoneWeightCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBoneWeightCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void* UnityEngine_Mesh_get_boneWeights(MonoObject* thiz)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_boneWeights");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	void* i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Mesh_set_boneWeights(MonoObject* thiz, void* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_boneWeights");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Mesh_GetBindposeCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBindposeCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void* UnityEngine_Mesh_get_bindposes(MonoObject* thiz)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_bindposes");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	void* i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Mesh_set_bindposes(MonoObject* thiz, void* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_bindposes");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,value);
-}
-void UnityEngine_Mesh_GetBoneWeightsNonAllocImpl(MonoObject* thiz, void* values)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* values);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBoneWeightsNonAllocImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,values);
-}
-void UnityEngine_Mesh_GetBindposesNonAllocImpl(MonoObject* thiz, void* values)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* values);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBindposesNonAllocImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,values);
-}
-bool UnityEngine_Mesh_get_isReadable(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_isReadable");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_Mesh_get_canAccess(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_canAccess");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_Mesh_get_vertexCount_1(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_vertexCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_Mesh_get_subMeshCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_subMeshCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Mesh_set_subMeshCount(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_subMeshCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,value);
-}
-void UnityEngine_Mesh_ClearImpl(MonoObject* thiz, bool keepVertexLayout)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool keepVertexLayout);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::ClearImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,keepVertexLayout);
-}
-void UnityEngine_Mesh_RecalculateBoundsImpl(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::RecalculateBoundsImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz);
-}
-void UnityEngine_Mesh_RecalculateNormalsImpl(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::RecalculateNormalsImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz);
-}
-void UnityEngine_Mesh_RecalculateTangentsImpl(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::RecalculateTangentsImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz);
-}
-void UnityEngine_Mesh_MarkDynamicImpl(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::MarkDynamicImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz);
-}
-void UnityEngine_Mesh_UploadMeshDataImpl(MonoObject* thiz, bool markNoLongerReadable)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool markNoLongerReadable);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::UploadMeshDataImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,markNoLongerReadable);
-}
-int32_t UnityEngine_Mesh_GetTopologyImpl(MonoObject* thiz, int32_t submesh)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t submesh);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetTopologyImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	int32_t i2res = icall(i2thiz,submesh);
-	return i2res;
-}
-float UnityEngine_Mesh_GetUVDistributionMetric(MonoObject* thiz, int32_t uvSetIndex)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t uvSetIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetUVDistributionMetric");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	float i2res = icall(i2thiz,uvSetIndex);
-	return i2res;
-}
-void UnityEngine_Mesh_CombineMeshesImpl(MonoObject* thiz, void* combine, bool mergeSubMeshes, bool useMatrices, bool hasLightmapData)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* combine, bool mergeSubMeshes, bool useMatrices, bool hasLightmapData);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::CombineMeshesImpl");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,combine,mergeSubMeshes,useMatrices,hasLightmapData);
-}
-void UnityEngine_Mesh_get_bounds_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_bounds_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Mesh_set_bounds_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_bounds_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,value);
-}
-MonoObject* UnityEngine_Renderer_GetMaterial(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetMaterial");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Material());
-	return monoi2res;
-}
-MonoObject* UnityEngine_Renderer_GetSharedMaterial(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetSharedMaterial");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Material());
-	return monoi2res;
-}
-void UnityEngine_Renderer_SetMaterial(MonoObject* thiz, MonoObject* m)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* m);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetMaterial");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2m = get_il2cpp_object(m,il2cpp_get_class_UnityEngine_Material());
-	icall(i2thiz,i2m);
-}
-MonoArray* UnityEngine_Renderer_GetMaterialArray(MonoObject* thiz)
-{
-	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetMaterialArray");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppArray* i2res = icall(i2thiz);
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
-void UnityEngine_Renderer_CopyMaterialArray(MonoObject* thiz, MonoArray* m)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* m);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::CopyMaterialArray");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppArray* i2m = get_il2cpp_array(m);
-	icall(i2thiz,i2m);
-}
-void UnityEngine_Renderer_CopySharedMaterialArray(MonoObject* thiz, MonoArray* m)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* m);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::CopySharedMaterialArray");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppArray* i2m = get_il2cpp_array(m);
-	icall(i2thiz,i2m);
-}
-void UnityEngine_Renderer_SetMaterialArray(MonoObject* thiz, MonoArray* m)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* m);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetMaterialArray");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppArray* i2m = get_il2cpp_array(m);
-	icall(i2thiz,i2m);
-}
-void UnityEngine_Renderer_Internal_SetPropertyBlock(MonoObject* thiz, MonoObject* properties)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* properties);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::Internal_SetPropertyBlock");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2properties = get_il2cpp_object(properties,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
-	icall(i2thiz,i2properties);
-}
-void UnityEngine_Renderer_Internal_GetPropertyBlock(MonoObject* thiz, MonoObject* dest)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* dest);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::Internal_GetPropertyBlock");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2dest = get_il2cpp_object(dest,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
-	icall(i2thiz,i2dest);
-}
-void UnityEngine_Renderer_Internal_SetPropertyBlockMaterialIndex(MonoObject* thiz, MonoObject* properties, int32_t materialIndex)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* properties, int32_t materialIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::Internal_SetPropertyBlockMaterialIndex");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2properties = get_il2cpp_object(properties,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
-	icall(i2thiz,i2properties,materialIndex);
-}
-void UnityEngine_Renderer_Internal_GetPropertyBlockMaterialIndex(MonoObject* thiz, MonoObject* dest, int32_t materialIndex)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* dest, int32_t materialIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::Internal_GetPropertyBlockMaterialIndex");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2dest = get_il2cpp_object(dest,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
-	icall(i2thiz,i2dest,materialIndex);
-}
-bool UnityEngine_Renderer_HasPropertyBlock(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::HasPropertyBlock");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_GetClosestReflectionProbesInternal(MonoObject* thiz, MonoObject* result)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* result);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetClosestReflectionProbesInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2result = get_il2cpp_object(result,NULL);
-	icall(i2thiz,i2result);
-}
-bool UnityEngine_Renderer_get_enabled_4(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_enabled");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_enabled_4(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_enabled");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Renderer_get_isVisible(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_isVisible");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_Renderer_get_shadowCastingMode(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_shadowCastingMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_shadowCastingMode(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_shadowCastingMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Renderer_get_receiveShadows(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_receiveShadows");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_receiveShadows(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_receiveShadows");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Renderer_get_motionVectorGenerationMode(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_motionVectorGenerationMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_motionVectorGenerationMode(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_motionVectorGenerationMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Renderer_get_lightProbeUsage(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_lightProbeUsage");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_lightProbeUsage(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_lightProbeUsage");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Renderer_get_reflectionProbeUsage(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_reflectionProbeUsage");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_reflectionProbeUsage(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_reflectionProbeUsage");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-uint32_t UnityEngine_Renderer_get_renderingLayerMask(MonoObject* thiz)
-{
-	typedef uint32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_renderingLayerMask");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	uint32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_renderingLayerMask(MonoObject* thiz, uint32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, uint32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_renderingLayerMask");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Renderer_get_rendererPriority(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_rendererPriority");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_rendererPriority(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_rendererPriority");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-MonoString* UnityEngine_Renderer_get_sortingLayerName(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingLayerName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_Renderer_set_sortingLayerName(MonoObject* thiz, MonoString* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingLayerName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppString* i2value = get_il2cpp_string(value);
-	icall(i2thiz,i2value);
-}
-int32_t UnityEngine_Renderer_get_sortingLayerID(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingLayerID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_sortingLayerID(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingLayerID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Renderer_get_sortingOrder(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingOrder");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_sortingOrder(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingOrder");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Renderer_get_sortingGroupID(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingGroupID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_sortingGroupID(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingGroupID");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Renderer_get_sortingGroupOrder(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingGroupOrder");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_sortingGroupOrder(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingGroupOrder");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Renderer_get_allowOcclusionWhenDynamic(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_allowOcclusionWhenDynamic");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_set_allowOcclusionWhenDynamic(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_allowOcclusionWhenDynamic");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,value);
-}
-MonoObject* UnityEngine_Renderer_get_staticBatchRootTransform(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_staticBatchRootTransform");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
-	return monoi2res;
-}
-void UnityEngine_Renderer_set_staticBatchRootTransform(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_staticBatchRootTransform");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Transform());
-	icall(i2thiz,i2value);
-}
-int32_t UnityEngine_Renderer_get_staticBatchIndex(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_staticBatchIndex");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_SetStaticBatchInfo(MonoObject* thiz, int32_t firstSubMesh, int32_t subMeshCount)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t firstSubMesh, int32_t subMeshCount);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetStaticBatchInfo");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,firstSubMesh,subMeshCount);
-}
-bool UnityEngine_Renderer_get_isPartOfStaticBatch(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_isPartOfStaticBatch");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-MonoObject* UnityEngine_Renderer_get_lightProbeProxyVolumeOverride(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_lightProbeProxyVolumeOverride");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_GameObject());
-	return monoi2res;
-}
-void UnityEngine_Renderer_set_lightProbeProxyVolumeOverride(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_lightProbeProxyVolumeOverride");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_GameObject());
-	icall(i2thiz,i2value);
-}
-MonoObject* UnityEngine_Renderer_get_probeAnchor(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_probeAnchor");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
-	return monoi2res;
-}
-void UnityEngine_Renderer_set_probeAnchor(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_probeAnchor");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Transform());
-	icall(i2thiz,i2value);
-}
-int32_t UnityEngine_Renderer_GetLightmapIndex(MonoObject* thiz, int32_t lt)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t lt);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetLightmapIndex");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz,lt);
-	return i2res;
-}
-void UnityEngine_Renderer_SetLightmapIndex(MonoObject* thiz, int32_t index, int32_t lt)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t index, int32_t lt);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetLightmapIndex");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,index,lt);
-}
-int32_t UnityEngine_Renderer_GetMaterialCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetMaterialCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-MonoArray* UnityEngine_Renderer_GetSharedMaterialArray(MonoObject* thiz)
-{
-	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetSharedMaterialArray");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	Il2CppArray* i2res = icall(i2thiz);
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
-bool UnityEngine_Renderer_IsPersistent(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::IsPersistent");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Renderer_get_bounds_Injected_1(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_bounds_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Renderer_SetStaticLightmapST_Injected(MonoObject* thiz, void * st)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * st);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetStaticLightmapST_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,st);
-}
-void UnityEngine_Renderer_get_worldToLocalMatrix_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_worldToLocalMatrix_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Renderer_get_localToWorldMatrix_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_localToWorldMatrix_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Renderer_GetLightmapST_Injected(MonoObject* thiz, int32_t lt, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t lt, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetLightmapST_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,lt,ret);
-}
-void UnityEngine_Renderer_SetLightmapST_Injected(MonoObject* thiz, void * st, int32_t lt)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * st, int32_t lt);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetLightmapST_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
-	icall(i2thiz,st,lt);
-}
-float UnityEngine_Projector_get_nearClipPlane_1(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_nearClipPlane");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Projector_set_nearClipPlane_1(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_nearClipPlane");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	icall(i2thiz,value);
-}
-float UnityEngine_Projector_get_farClipPlane_1(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_farClipPlane");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Projector_set_farClipPlane_1(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_farClipPlane");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	icall(i2thiz,value);
-}
-float UnityEngine_Projector_get_fieldOfView_1(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_fieldOfView");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Projector_set_fieldOfView_1(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_fieldOfView");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	icall(i2thiz,value);
-}
-float UnityEngine_Projector_get_aspectRatio(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_aspectRatio");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Projector_set_aspectRatio(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_aspectRatio");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Projector_get_orthographic_1(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_orthographic");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Projector_set_orthographic_1(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_orthographic");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	icall(i2thiz,value);
-}
-float UnityEngine_Projector_get_orthographicSize_1(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_orthographicSize");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Projector_set_orthographicSize_1(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_orthographicSize");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Projector_get_ignoreLayers(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_ignoreLayers");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Projector_set_ignoreLayers(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_ignoreLayers");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	icall(i2thiz,value);
-}
-MonoObject* UnityEngine_Projector_get_material_1(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_material");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Material());
-	return monoi2res;
-}
-void UnityEngine_Projector_set_material_1(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_material");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Material());
-	icall(i2thiz,i2value);
-}
-MonoObject* UnityEngine_Shader_Find_1(MonoString* name)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::Find");
-	Il2CppString* i2name = get_il2cpp_string(name);
-	Il2CppObject* i2res = icall(i2name);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Shader());
-	return monoi2res;
-}
-MonoObject* UnityEngine_Shader_FindBuiltin(MonoString* name)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::FindBuiltin");
-	Il2CppString* i2name = get_il2cpp_string(name);
-	Il2CppObject* i2res = icall(i2name);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Shader());
-	return monoi2res;
-}
-int32_t UnityEngine_Shader_get_maximumLOD(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_maximumLOD");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Shader_set_maximumLOD(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::set_maximumLOD");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
-	icall(i2thiz,value);
-}
-int32_t UnityEngine_Shader_get_globalMaximumLOD()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_globalMaximumLOD");
-	int32_t i2res = icall();
-	return i2res;
-}
-void UnityEngine_Shader_set_globalMaximumLOD(int32_t value)
-{
-	typedef void (* ICallMethod) (int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::set_globalMaximumLOD");
-	icall(value);
-}
-bool UnityEngine_Shader_get_isSupported(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_isSupported");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-MonoString* UnityEngine_Shader_get_globalRenderPipeline()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_globalRenderPipeline");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_Shader_set_globalRenderPipeline(MonoString* value)
-{
-	typedef void (* ICallMethod) (Il2CppString* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::set_globalRenderPipeline");
-	Il2CppString* i2value = get_il2cpp_string(value);
-	icall(i2value);
-}
-void UnityEngine_Shader_EnableKeyword(MonoString* keyword)
-{
-	typedef void (* ICallMethod) (Il2CppString* keyword);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::EnableKeyword");
-	Il2CppString* i2keyword = get_il2cpp_string(keyword);
-	icall(i2keyword);
-}
-void UnityEngine_Shader_DisableKeyword(MonoString* keyword)
-{
-	typedef void (* ICallMethod) (Il2CppString* keyword);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::DisableKeyword");
-	Il2CppString* i2keyword = get_il2cpp_string(keyword);
-	icall(i2keyword);
-}
-bool UnityEngine_Shader_IsKeywordEnabled(MonoString* keyword)
-{
-	typedef bool (* ICallMethod) (Il2CppString* keyword);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::IsKeywordEnabled");
-	Il2CppString* i2keyword = get_il2cpp_string(keyword);
-	bool i2res = icall(i2keyword);
-	return i2res;
-}
-int32_t UnityEngine_Shader_get_renderQueue(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_renderQueue");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_Shader_get_disableBatching(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_disableBatching");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Shader_WarmupAllShaders()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::WarmupAllShaders");
-	icall();
-}
-int32_t UnityEngine_Shader_TagToID(MonoString* name)
-{
-	typedef int32_t (* ICallMethod) (Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::TagToID");
-	Il2CppString* i2name = get_il2cpp_string(name);
-	int32_t i2res = icall(i2name);
-	return i2res;
-}
-MonoString* UnityEngine_Shader_IDToTag(int32_t name)
-{
-	typedef Il2CppString* (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::IDToTag");
-	Il2CppString* i2res = icall(name);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-int32_t UnityEngine_Shader_PropertyToID(MonoString* name)
-{
-	typedef int32_t (* ICallMethod) (Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::PropertyToID");
-	Il2CppString* i2name = get_il2cpp_string(name);
-	int32_t i2res = icall(i2name);
-	return i2res;
-}
-MonoString* UnityEngine_Shader_get_customEditor(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_customEditor");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_Shader_SetGlobalFloatImpl(int32_t name, float value)
-{
-	typedef void (* ICallMethod) (int32_t name, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalFloatImpl");
-	icall(name,value);
-}
-void UnityEngine_Shader_SetGlobalTextureImpl(int32_t name, MonoObject* value)
-{
-	typedef void (* ICallMethod) (int32_t name, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalTextureImpl");
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Texture());
-	icall(name,i2value);
-}
-float UnityEngine_Shader_GetGlobalFloatImpl(int32_t name)
-{
-	typedef float (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalFloatImpl");
-	float i2res = icall(name);
-	return i2res;
-}
-MonoObject* UnityEngine_Shader_GetGlobalTextureImpl(int32_t name)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalTextureImpl");
-	Il2CppObject* i2res = icall(name);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Texture());
-	return monoi2res;
-}
-void UnityEngine_Shader_SetGlobalFloatArrayImpl(int32_t name, void* values, int32_t count)
-{
-	typedef void (* ICallMethod) (int32_t name, void* values, int32_t count);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalFloatArrayImpl");
-	icall(name,values,count);
-}
-void UnityEngine_Shader_SetGlobalVectorArrayImpl(int32_t name, void* values, int32_t count)
-{
-	typedef void (* ICallMethod) (int32_t name, void* values, int32_t count);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalVectorArrayImpl");
-	icall(name,values,count);
-}
-void UnityEngine_Shader_SetGlobalMatrixArrayImpl(int32_t name, void* values, int32_t count)
-{
-	typedef void (* ICallMethod) (int32_t name, void* values, int32_t count);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalMatrixArrayImpl");
-	icall(name,values,count);
-}
-void* UnityEngine_Shader_GetGlobalFloatArrayImpl(int32_t name)
-{
-	typedef void* (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalFloatArrayImpl");
-	void* i2res = icall(name);
-	return i2res;
-}
-void* UnityEngine_Shader_GetGlobalVectorArrayImpl(int32_t name)
-{
-	typedef void* (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalVectorArrayImpl");
-	void* i2res = icall(name);
-	return i2res;
-}
-void* UnityEngine_Shader_GetGlobalMatrixArrayImpl(int32_t name)
-{
-	typedef void* (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalMatrixArrayImpl");
-	void* i2res = icall(name);
-	return i2res;
-}
-int32_t UnityEngine_Shader_GetGlobalFloatArrayCountImpl(int32_t name)
-{
-	typedef int32_t (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalFloatArrayCountImpl");
-	int32_t i2res = icall(name);
-	return i2res;
-}
-int32_t UnityEngine_Shader_GetGlobalVectorArrayCountImpl(int32_t name)
-{
-	typedef int32_t (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalVectorArrayCountImpl");
-	int32_t i2res = icall(name);
-	return i2res;
-}
-int32_t UnityEngine_Shader_GetGlobalMatrixArrayCountImpl(int32_t name)
-{
-	typedef int32_t (* ICallMethod) (int32_t name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalMatrixArrayCountImpl");
-	int32_t i2res = icall(name);
-	return i2res;
-}
-void UnityEngine_Shader_ExtractGlobalFloatArrayImpl(int32_t name, void* val)
-{
-	typedef void (* ICallMethod) (int32_t name, void* val);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::ExtractGlobalFloatArrayImpl");
-	icall(name,val);
-}
-void UnityEngine_Shader_ExtractGlobalVectorArrayImpl(int32_t name, void* val)
-{
-	typedef void (* ICallMethod) (int32_t name, void* val);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::ExtractGlobalVectorArrayImpl");
-	icall(name,val);
-}
-void UnityEngine_Shader_ExtractGlobalMatrixArrayImpl(int32_t name, void* val)
-{
-	typedef void (* ICallMethod) (int32_t name, void* val);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::ExtractGlobalMatrixArrayImpl");
-	icall(name,val);
-}
-void UnityEngine_Shader_SetGlobalVectorImpl_Injected(int32_t name, void * value)
-{
-	typedef void (* ICallMethod) (int32_t name, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalVectorImpl_Injected");
-	icall(name,value);
-}
-void UnityEngine_Shader_SetGlobalMatrixImpl_Injected(int32_t name, void * value)
-{
-	typedef void (* ICallMethod) (int32_t name, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalMatrixImpl_Injected");
-	icall(name,value);
-}
-void UnityEngine_Shader_GetGlobalVectorImpl_Injected(int32_t name, void * ret)
-{
-	typedef void (* ICallMethod) (int32_t name, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalVectorImpl_Injected");
-	icall(name,ret);
-}
-void UnityEngine_Shader_GetGlobalMatrixImpl_Injected(int32_t name, void * ret)
-{
-	typedef void (* ICallMethod) (int32_t name, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalMatrixImpl_Injected");
-	icall(name,ret);
 }
 float UnityEngine_TrailRenderer_get_time_2(MonoObject* thiz)
 {
@@ -20610,6 +18419,603 @@ void UnityEngine_MaterialPropertyBlock_SetMatrixImpl_Injected(MonoObject* thiz, 
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
 	icall(i2thiz,name,value);
 }
+MonoObject* UnityEngine_Renderer_GetMaterial(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetMaterial");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Material());
+	return monoi2res;
+}
+MonoObject* UnityEngine_Renderer_GetSharedMaterial(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetSharedMaterial");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Material());
+	return monoi2res;
+}
+void UnityEngine_Renderer_SetMaterial(MonoObject* thiz, MonoObject* m)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* m);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetMaterial");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2m = get_il2cpp_object(m,il2cpp_get_class_UnityEngine_Material());
+	icall(i2thiz,i2m);
+}
+MonoArray* UnityEngine_Renderer_GetMaterialArray(MonoObject* thiz)
+{
+	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetMaterialArray");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppArray* i2res = icall(i2thiz);
+	MonoArray* monoi2res = get_mono_array(i2res);
+	return monoi2res;
+}
+void UnityEngine_Renderer_CopyMaterialArray(MonoObject* thiz, MonoArray* m)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* m);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::CopyMaterialArray");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppArray* i2m = get_il2cpp_array(m);
+	icall(i2thiz,i2m);
+}
+void UnityEngine_Renderer_CopySharedMaterialArray(MonoObject* thiz, MonoArray* m)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* m);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::CopySharedMaterialArray");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppArray* i2m = get_il2cpp_array(m);
+	icall(i2thiz,i2m);
+}
+void UnityEngine_Renderer_SetMaterialArray(MonoObject* thiz, MonoArray* m)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* m);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetMaterialArray");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppArray* i2m = get_il2cpp_array(m);
+	icall(i2thiz,i2m);
+}
+void UnityEngine_Renderer_Internal_SetPropertyBlock(MonoObject* thiz, MonoObject* properties)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* properties);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::Internal_SetPropertyBlock");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2properties = get_il2cpp_object(properties,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
+	icall(i2thiz,i2properties);
+}
+void UnityEngine_Renderer_Internal_GetPropertyBlock(MonoObject* thiz, MonoObject* dest)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* dest);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::Internal_GetPropertyBlock");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2dest = get_il2cpp_object(dest,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
+	icall(i2thiz,i2dest);
+}
+void UnityEngine_Renderer_Internal_SetPropertyBlockMaterialIndex(MonoObject* thiz, MonoObject* properties, int32_t materialIndex)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* properties, int32_t materialIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::Internal_SetPropertyBlockMaterialIndex");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2properties = get_il2cpp_object(properties,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
+	icall(i2thiz,i2properties,materialIndex);
+}
+void UnityEngine_Renderer_Internal_GetPropertyBlockMaterialIndex(MonoObject* thiz, MonoObject* dest, int32_t materialIndex)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* dest, int32_t materialIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::Internal_GetPropertyBlockMaterialIndex");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2dest = get_il2cpp_object(dest,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
+	icall(i2thiz,i2dest,materialIndex);
+}
+bool UnityEngine_Renderer_HasPropertyBlock(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::HasPropertyBlock");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_GetClosestReflectionProbesInternal(MonoObject* thiz, MonoObject* result)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* result);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetClosestReflectionProbesInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2result = get_il2cpp_object(result,NULL);
+	icall(i2thiz,i2result);
+}
+bool UnityEngine_Renderer_get_enabled_4(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_enabled");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_enabled_4(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_enabled");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Renderer_get_isVisible(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_isVisible");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+int32_t UnityEngine_Renderer_get_shadowCastingMode(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_shadowCastingMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_shadowCastingMode(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_shadowCastingMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Renderer_get_receiveShadows(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_receiveShadows");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_receiveShadows(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_receiveShadows");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Renderer_get_motionVectorGenerationMode(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_motionVectorGenerationMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_motionVectorGenerationMode(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_motionVectorGenerationMode");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Renderer_get_lightProbeUsage(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_lightProbeUsage");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_lightProbeUsage(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_lightProbeUsage");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Renderer_get_reflectionProbeUsage(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_reflectionProbeUsage");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_reflectionProbeUsage(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_reflectionProbeUsage");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+uint32_t UnityEngine_Renderer_get_renderingLayerMask(MonoObject* thiz)
+{
+	typedef uint32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_renderingLayerMask");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	uint32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_renderingLayerMask(MonoObject* thiz, uint32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, uint32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_renderingLayerMask");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Renderer_get_rendererPriority(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_rendererPriority");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_rendererPriority(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_rendererPriority");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+MonoString* UnityEngine_Renderer_get_sortingLayerName(MonoObject* thiz)
+{
+	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingLayerName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppString* i2res = icall(i2thiz);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+void UnityEngine_Renderer_set_sortingLayerName(MonoObject* thiz, MonoString* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingLayerName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppString* i2value = get_il2cpp_string(value);
+	icall(i2thiz,i2value);
+}
+int32_t UnityEngine_Renderer_get_sortingLayerID(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingLayerID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_sortingLayerID(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingLayerID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Renderer_get_sortingOrder(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingOrder");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_sortingOrder(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingOrder");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Renderer_get_sortingGroupID(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingGroupID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_sortingGroupID(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingGroupID");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Renderer_get_sortingGroupOrder(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_sortingGroupOrder");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_sortingGroupOrder(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_sortingGroupOrder");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Renderer_get_allowOcclusionWhenDynamic(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_allowOcclusionWhenDynamic");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_set_allowOcclusionWhenDynamic(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_allowOcclusionWhenDynamic");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,value);
+}
+MonoObject* UnityEngine_Renderer_get_staticBatchRootTransform(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_staticBatchRootTransform");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
+	return monoi2res;
+}
+void UnityEngine_Renderer_set_staticBatchRootTransform(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_staticBatchRootTransform");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Transform());
+	icall(i2thiz,i2value);
+}
+int32_t UnityEngine_Renderer_get_staticBatchIndex(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_staticBatchIndex");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Renderer_SetStaticBatchInfo(MonoObject* thiz, int32_t firstSubMesh, int32_t subMeshCount)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t firstSubMesh, int32_t subMeshCount);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetStaticBatchInfo");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,firstSubMesh,subMeshCount);
+}
+bool UnityEngine_Renderer_get_isPartOfStaticBatch(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_isPartOfStaticBatch");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+MonoObject* UnityEngine_Renderer_get_lightProbeProxyVolumeOverride(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_lightProbeProxyVolumeOverride");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_GameObject());
+	return monoi2res;
+}
+void UnityEngine_Renderer_set_lightProbeProxyVolumeOverride(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_lightProbeProxyVolumeOverride");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_GameObject());
+	icall(i2thiz,i2value);
+}
+MonoObject* UnityEngine_Renderer_get_probeAnchor(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_probeAnchor");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
+	return monoi2res;
+}
+void UnityEngine_Renderer_set_probeAnchor(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::set_probeAnchor");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Transform());
+	icall(i2thiz,i2value);
+}
+int32_t UnityEngine_Renderer_GetLightmapIndex(MonoObject* thiz, int32_t lt)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t lt);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetLightmapIndex");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz,lt);
+	return i2res;
+}
+void UnityEngine_Renderer_SetLightmapIndex(MonoObject* thiz, int32_t index, int32_t lt)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t index, int32_t lt);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetLightmapIndex");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,index,lt);
+}
+int32_t UnityEngine_Renderer_GetMaterialCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetMaterialCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+MonoArray* UnityEngine_Renderer_GetSharedMaterialArray(MonoObject* thiz)
+{
+	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetSharedMaterialArray");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	Il2CppArray* i2res = icall(i2thiz);
+	MonoArray* monoi2res = get_mono_array(i2res);
+	return monoi2res;
+}
+void UnityEngine_Renderer_get_bounds_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_bounds_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Renderer_SetStaticLightmapST_Injected(MonoObject* thiz, void * st)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * st);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetStaticLightmapST_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,st);
+}
+void UnityEngine_Renderer_get_worldToLocalMatrix_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_worldToLocalMatrix_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Renderer_get_localToWorldMatrix_Injected(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::get_localToWorldMatrix_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Renderer_GetLightmapST_Injected(MonoObject* thiz, int32_t lt, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t lt, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::GetLightmapST_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,lt,ret);
+}
+void UnityEngine_Renderer_SetLightmapST_Injected(MonoObject* thiz, void * st, int32_t lt)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * st, int32_t lt);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Renderer::SetLightmapST_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Renderer());
+	icall(i2thiz,st,lt);
+}
 bool UnityEngine_RenderSettings_get_fog()
 {
 	typedef bool (* ICallMethod) ();
@@ -21034,6 +19440,349 @@ void UnityEngine_RenderSettings_set_ambientProbe_Injected(void * value)
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.RenderSettings::set_ambientProbe_Injected");
 	icall(value);
+}
+MonoObject* UnityEngine_Shader_Find_1(MonoString* name)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::Find");
+	Il2CppString* i2name = get_il2cpp_string(name);
+	Il2CppObject* i2res = icall(i2name);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Shader());
+	return monoi2res;
+}
+MonoObject* UnityEngine_Shader_FindBuiltin(MonoString* name)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::FindBuiltin");
+	Il2CppString* i2name = get_il2cpp_string(name);
+	Il2CppObject* i2res = icall(i2name);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Shader());
+	return monoi2res;
+}
+int32_t UnityEngine_Shader_get_maximumLOD(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_maximumLOD");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Shader_set_maximumLOD(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::set_maximumLOD");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Shader_get_globalMaximumLOD()
+{
+	typedef int32_t (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_globalMaximumLOD");
+	int32_t i2res = icall();
+	return i2res;
+}
+void UnityEngine_Shader_set_globalMaximumLOD(int32_t value)
+{
+	typedef void (* ICallMethod) (int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::set_globalMaximumLOD");
+	icall(value);
+}
+bool UnityEngine_Shader_get_isSupported(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_isSupported");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+MonoString* UnityEngine_Shader_get_globalRenderPipeline()
+{
+	typedef Il2CppString* (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_globalRenderPipeline");
+	Il2CppString* i2res = icall();
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+void UnityEngine_Shader_set_globalRenderPipeline(MonoString* value)
+{
+	typedef void (* ICallMethod) (Il2CppString* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::set_globalRenderPipeline");
+	Il2CppString* i2value = get_il2cpp_string(value);
+	icall(i2value);
+}
+void UnityEngine_Shader_EnableKeyword(MonoString* keyword)
+{
+	typedef void (* ICallMethod) (Il2CppString* keyword);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::EnableKeyword");
+	Il2CppString* i2keyword = get_il2cpp_string(keyword);
+	icall(i2keyword);
+}
+void UnityEngine_Shader_DisableKeyword(MonoString* keyword)
+{
+	typedef void (* ICallMethod) (Il2CppString* keyword);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::DisableKeyword");
+	Il2CppString* i2keyword = get_il2cpp_string(keyword);
+	icall(i2keyword);
+}
+bool UnityEngine_Shader_IsKeywordEnabled(MonoString* keyword)
+{
+	typedef bool (* ICallMethod) (Il2CppString* keyword);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::IsKeywordEnabled");
+	Il2CppString* i2keyword = get_il2cpp_string(keyword);
+	bool i2res = icall(i2keyword);
+	return i2res;
+}
+int32_t UnityEngine_Shader_get_renderQueue(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_renderQueue");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+int32_t UnityEngine_Shader_get_disableBatching(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::get_disableBatching");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Shader());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Shader_WarmupAllShaders()
+{
+	typedef void (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::WarmupAllShaders");
+	icall();
+}
+int32_t UnityEngine_Shader_TagToID(MonoString* name)
+{
+	typedef int32_t (* ICallMethod) (Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::TagToID");
+	Il2CppString* i2name = get_il2cpp_string(name);
+	int32_t i2res = icall(i2name);
+	return i2res;
+}
+MonoString* UnityEngine_Shader_IDToTag(int32_t name)
+{
+	typedef Il2CppString* (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::IDToTag");
+	Il2CppString* i2res = icall(name);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+int32_t UnityEngine_Shader_PropertyToID(MonoString* name)
+{
+	typedef int32_t (* ICallMethod) (Il2CppString* name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::PropertyToID");
+	Il2CppString* i2name = get_il2cpp_string(name);
+	int32_t i2res = icall(i2name);
+	return i2res;
+}
+void UnityEngine_Shader_SetGlobalFloatImpl(int32_t name, float value)
+{
+	typedef void (* ICallMethod) (int32_t name, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalFloatImpl");
+	icall(name,value);
+}
+void UnityEngine_Shader_SetGlobalTextureImpl(int32_t name, MonoObject* value)
+{
+	typedef void (* ICallMethod) (int32_t name, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalTextureImpl");
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Texture());
+	icall(name,i2value);
+}
+float UnityEngine_Shader_GetGlobalFloatImpl(int32_t name)
+{
+	typedef float (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalFloatImpl");
+	float i2res = icall(name);
+	return i2res;
+}
+MonoObject* UnityEngine_Shader_GetGlobalTextureImpl(int32_t name)
+{
+	typedef Il2CppObject* (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalTextureImpl");
+	Il2CppObject* i2res = icall(name);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Texture());
+	return monoi2res;
+}
+void UnityEngine_Shader_SetGlobalFloatArrayImpl(int32_t name, void* values, int32_t count)
+{
+	typedef void (* ICallMethod) (int32_t name, void* values, int32_t count);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalFloatArrayImpl");
+	icall(name,values,count);
+}
+void UnityEngine_Shader_SetGlobalVectorArrayImpl(int32_t name, void* values, int32_t count)
+{
+	typedef void (* ICallMethod) (int32_t name, void* values, int32_t count);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalVectorArrayImpl");
+	icall(name,values,count);
+}
+void UnityEngine_Shader_SetGlobalMatrixArrayImpl(int32_t name, void* values, int32_t count)
+{
+	typedef void (* ICallMethod) (int32_t name, void* values, int32_t count);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalMatrixArrayImpl");
+	icall(name,values,count);
+}
+void* UnityEngine_Shader_GetGlobalFloatArrayImpl(int32_t name)
+{
+	typedef void* (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalFloatArrayImpl");
+	void* i2res = icall(name);
+	return i2res;
+}
+void* UnityEngine_Shader_GetGlobalVectorArrayImpl(int32_t name)
+{
+	typedef void* (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalVectorArrayImpl");
+	void* i2res = icall(name);
+	return i2res;
+}
+void* UnityEngine_Shader_GetGlobalMatrixArrayImpl(int32_t name)
+{
+	typedef void* (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalMatrixArrayImpl");
+	void* i2res = icall(name);
+	return i2res;
+}
+int32_t UnityEngine_Shader_GetGlobalFloatArrayCountImpl(int32_t name)
+{
+	typedef int32_t (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalFloatArrayCountImpl");
+	int32_t i2res = icall(name);
+	return i2res;
+}
+int32_t UnityEngine_Shader_GetGlobalVectorArrayCountImpl(int32_t name)
+{
+	typedef int32_t (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalVectorArrayCountImpl");
+	int32_t i2res = icall(name);
+	return i2res;
+}
+int32_t UnityEngine_Shader_GetGlobalMatrixArrayCountImpl(int32_t name)
+{
+	typedef int32_t (* ICallMethod) (int32_t name);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalMatrixArrayCountImpl");
+	int32_t i2res = icall(name);
+	return i2res;
+}
+void UnityEngine_Shader_ExtractGlobalFloatArrayImpl(int32_t name, void* val)
+{
+	typedef void (* ICallMethod) (int32_t name, void* val);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::ExtractGlobalFloatArrayImpl");
+	icall(name,val);
+}
+void UnityEngine_Shader_ExtractGlobalVectorArrayImpl(int32_t name, void* val)
+{
+	typedef void (* ICallMethod) (int32_t name, void* val);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::ExtractGlobalVectorArrayImpl");
+	icall(name,val);
+}
+void UnityEngine_Shader_ExtractGlobalMatrixArrayImpl(int32_t name, void* val)
+{
+	typedef void (* ICallMethod) (int32_t name, void* val);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::ExtractGlobalMatrixArrayImpl");
+	icall(name,val);
+}
+void UnityEngine_Shader_SetGlobalVectorImpl_Injected(int32_t name, void * value)
+{
+	typedef void (* ICallMethod) (int32_t name, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalVectorImpl_Injected");
+	icall(name,value);
+}
+void UnityEngine_Shader_SetGlobalMatrixImpl_Injected(int32_t name, void * value)
+{
+	typedef void (* ICallMethod) (int32_t name, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::SetGlobalMatrixImpl_Injected");
+	icall(name,value);
+}
+void UnityEngine_Shader_GetGlobalVectorImpl_Injected(int32_t name, void * ret)
+{
+	typedef void (* ICallMethod) (int32_t name, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalVectorImpl_Injected");
+	icall(name,ret);
+}
+void UnityEngine_Shader_GetGlobalMatrixImpl_Injected(int32_t name, void * ret)
+{
+	typedef void (* ICallMethod) (int32_t name, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Shader::GetGlobalMatrixImpl_Injected");
+	icall(name,ret);
 }
 void UnityEngine_Material_CreateWithShader(MonoObject* self, MonoObject* shader)
 {
@@ -21722,7 +20471,7 @@ void UnityEngine_OcclusionArea_set_size_Injected(MonoObject* thiz, void * value)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_OcclusionArea());
 	icall(i2thiz,value);
 }
-void UnityEngine_Flare_Internal_Create_13(MonoObject* self)
+void UnityEngine_Flare_Internal_Create_12(MonoObject* self)
 {
 	typedef void (* ICallMethod) (Il2CppObject* self);
 	static ICallMethod icall;
@@ -21807,6 +20556,160 @@ void UnityEngine_LensFlare_set_color_Injected_1(MonoObject* thiz, void * value)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.LensFlare::set_color_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_LensFlare());
 	icall(i2thiz,value);
+}
+float UnityEngine_Projector_get_nearClipPlane_1(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_nearClipPlane");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Projector_set_nearClipPlane_1(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_nearClipPlane");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	icall(i2thiz,value);
+}
+float UnityEngine_Projector_get_farClipPlane_1(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_farClipPlane");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Projector_set_farClipPlane_1(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_farClipPlane");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	icall(i2thiz,value);
+}
+float UnityEngine_Projector_get_fieldOfView_1(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_fieldOfView");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Projector_set_fieldOfView_1(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_fieldOfView");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	icall(i2thiz,value);
+}
+float UnityEngine_Projector_get_aspectRatio(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_aspectRatio");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Projector_set_aspectRatio(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_aspectRatio");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	icall(i2thiz,value);
+}
+bool UnityEngine_Projector_get_orthographic_1(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_orthographic");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Projector_set_orthographic_1(MonoObject* thiz, bool value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_orthographic");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	icall(i2thiz,value);
+}
+float UnityEngine_Projector_get_orthographicSize_1(MonoObject* thiz)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_orthographicSize");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	float i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Projector_set_orthographicSize_1(MonoObject* thiz, float value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_orthographicSize");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Projector_get_ignoreLayers(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_ignoreLayers");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Projector_set_ignoreLayers(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_ignoreLayers");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	icall(i2thiz,value);
+}
+MonoObject* UnityEngine_Projector_get_material_1(MonoObject* thiz)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::get_material");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Material());
+	return monoi2res;
+}
+void UnityEngine_Projector_set_material_1(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Projector::set_material");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Projector());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Material());
+	icall(i2thiz,i2value);
 }
 int32_t UnityEngine_Light_get_type(MonoObject* thiz)
 {
@@ -22057,44 +20960,6 @@ void UnityEngine_Light_set_lightShadowCasterMode(MonoObject* thiz, int32_t value
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
 	icall(i2thiz,value);
 }
-float UnityEngine_Light_get_shadowRadius(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::get_shadowRadius");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Light_set_shadowRadius(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::set_shadowRadius");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	icall(i2thiz,value);
-}
-float UnityEngine_Light_get_shadowAngle(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::get_shadowAngle");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Light_set_shadowAngle(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::set_shadowAngle");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	icall(i2thiz,value);
-}
 void UnityEngine_Light_Reset_3(MonoObject* thiz)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz);
@@ -22264,34 +21129,6 @@ void UnityEngine_Light_SetAllLightsFalloffToUnityLegacy()
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::SetAllLightsFalloffToUnityLegacy");
 	icall();
 }
-int32_t UnityEngine_Light_get_lightmapBakeType(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::get_lightmapBakeType");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Light_set_lightmapBakeType(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::set_lightmapBakeType");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	icall(i2thiz,value);
-}
-void UnityEngine_Light_SetLightDirty(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::SetLightDirty");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	icall(i2thiz);
-}
 void UnityEngine_Light_AddCommandBuffer(MonoObject* thiz, int32_t evt, MonoObject* buffer, int32_t shadowPassMask)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t evt, Il2CppObject* buffer, int32_t shadowPassMask);
@@ -22404,24 +21241,6 @@ void UnityEngine_Light_set_bakingOutput_Injected(MonoObject* thiz, void * value)
 	static ICallMethod icall;
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::set_bakingOutput_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	icall(i2thiz,value);
-}
-void UnityEngine_Light_get_areaSize_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::get_areaSize_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Light_set_areaSize_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Light::set_areaSize_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Light());
 	icall(i2thiz,value);
 }
@@ -23177,17 +21996,6 @@ void UnityEngine_SkinnedMeshRenderer_set_rootBone(MonoObject* thiz, MonoObject* 
 	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Transform());
 	icall(i2thiz,i2value);
 }
-MonoObject* UnityEngine_SkinnedMeshRenderer_get_actualRootBone(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.SkinnedMeshRenderer::get_actualRootBone");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_SkinnedMeshRenderer());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Transform());
-	return monoi2res;
-}
 MonoArray* UnityEngine_SkinnedMeshRenderer_get_bones(MonoObject* thiz)
 {
 	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
@@ -23741,230 +22549,6 @@ MonoObject* UnityEngine_GUILayer_HitTest_Injected_1(MonoObject* thiz, void * scr
 	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_GUIElement());
 	return monoi2res;
 }
-void UnityEngine_Handheld_Vibrate()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Handheld::Vibrate");
-	icall();
-}
-bool UnityEngine_Handheld_GetUse32BitDisplayBuffer_Bindings()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Handheld::GetUse32BitDisplayBuffer_Bindings");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_Handheld_SetActivityIndicatorStyleImpl_Bindings(int32_t style)
-{
-	typedef void (* ICallMethod) (int32_t style);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Handheld::SetActivityIndicatorStyleImpl_Bindings");
-	icall(style);
-}
-int32_t UnityEngine_Handheld_GetActivityIndicatorStyle()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Handheld::GetActivityIndicatorStyle");
-	int32_t i2res = icall();
-	return i2res;
-}
-void UnityEngine_Handheld_StartActivityIndicator()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Handheld::StartActivityIndicator");
-	icall();
-}
-void UnityEngine_Handheld_StopActivityIndicator()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Handheld::StopActivityIndicator");
-	icall();
-}
-void UnityEngine_Handheld_ClearShaderCache()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Handheld::ClearShaderCache");
-	icall();
-}
-bool UnityEngine_Handheld_PlayFullScreenMovie_Bindings_Injected(MonoString* path, void * bgColor, int32_t controlMode, int32_t scalingMode)
-{
-	typedef bool (* ICallMethod) (Il2CppString* path, void * bgColor, int32_t controlMode, int32_t scalingMode);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Handheld::PlayFullScreenMovie_Bindings_Injected");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	bool i2res = icall(i2path,bgColor,controlMode,scalingMode);
-	return i2res;
-}
-void UnityEngine_TouchScreenKeyboard_Internal_Destroy_2(void * ptr)
-{
-	typedef void (* ICallMethod) (void * ptr);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::Internal_Destroy");
-	icall(ptr);
-}
-void * UnityEngine_TouchScreenKeyboard_TouchScreenKeyboard_InternalConstructorHelper(void * arguments, MonoString* text, MonoString* textPlaceholder)
-{
-	typedef void * (* ICallMethod) (void * arguments, Il2CppString* text, Il2CppString* textPlaceholder);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::TouchScreenKeyboard_InternalConstructorHelper");
-	Il2CppString* i2text = get_il2cpp_string(text);
-	Il2CppString* i2textPlaceholder = get_il2cpp_string(textPlaceholder);
-	void * i2res = icall(arguments,i2text,i2textPlaceholder);
-	return i2res;
-}
-MonoString* UnityEngine_TouchScreenKeyboard_get_text(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::get_text");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_TouchScreenKeyboard());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_TouchScreenKeyboard_set_text(MonoObject* thiz, MonoString* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::set_text");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_TouchScreenKeyboard());
-	Il2CppString* i2value = get_il2cpp_string(value);
-	icall(i2thiz,i2value);
-}
-bool UnityEngine_TouchScreenKeyboard_get_hideInput()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::get_hideInput");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_TouchScreenKeyboard_set_hideInput(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::set_hideInput");
-	icall(value);
-}
-bool UnityEngine_TouchScreenKeyboard_get_active_2(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::get_active");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_TouchScreenKeyboard());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_TouchScreenKeyboard_set_active_2(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::set_active");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_TouchScreenKeyboard());
-	icall(i2thiz,value);
-}
-bool UnityEngine_TouchScreenKeyboard_GetDone(void * ptr)
-{
-	typedef bool (* ICallMethod) (void * ptr);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::GetDone");
-	bool i2res = icall(ptr);
-	return i2res;
-}
-bool UnityEngine_TouchScreenKeyboard_GetWasCanceled(void * ptr)
-{
-	typedef bool (* ICallMethod) (void * ptr);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::GetWasCanceled");
-	bool i2res = icall(ptr);
-	return i2res;
-}
-int32_t UnityEngine_TouchScreenKeyboard_get_status_1(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::get_status");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_TouchScreenKeyboard());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_TouchScreenKeyboard_get_characterLimit(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::get_characterLimit");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_TouchScreenKeyboard());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_TouchScreenKeyboard_set_characterLimit(MonoObject* thiz, int32_t value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::set_characterLimit");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_TouchScreenKeyboard());
-	icall(i2thiz,value);
-}
-void UnityEngine_TouchScreenKeyboard_GetSelection(void * start, void * length)
-{
-	typedef void (* ICallMethod) (void * start, void * length);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::GetSelection");
-	icall(start,length);
-}
-void UnityEngine_TouchScreenKeyboard_SetSelection(int32_t start, int32_t length)
-{
-	typedef void (* ICallMethod) (int32_t start, int32_t length);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::SetSelection");
-	icall(start,length);
-}
-bool UnityEngine_TouchScreenKeyboard_get_visible_1()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::get_visible");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_TouchScreenKeyboard_get_area_Injected(void * ret)
-{
-	typedef void (* ICallMethod) (void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.TouchScreenKeyboard::get_area_Injected");
-	icall(ret);
-}
 void UnityEngine_Hash128_Parse_Injected(MonoString* hashString, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppString* hashString, void * ret);
@@ -24292,16 +22876,6 @@ void UnityEngine_Input_ResetInputAxes()
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Input::ResetInputAxes");
 	icall();
 }
-bool UnityEngine_Input_IsJoystickPreconfigured(MonoString* joystickName)
-{
-	typedef bool (* ICallMethod) (Il2CppString* joystickName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Input::IsJoystickPreconfigured");
-	Il2CppString* i2joystickName = get_il2cpp_string(joystickName);
-	bool i2res = icall(i2joystickName);
-	return i2res;
-}
 MonoArray* UnityEngine_Input_GetJoystickNames()
 {
 	typedef Il2CppArray* (* ICallMethod) ();
@@ -24617,44 +23191,6 @@ int32_t UnityEngine_LayerMask_NameToLayer(MonoString* layerName)
 	Il2CppString* i2layerName = get_il2cpp_string(layerName);
 	int32_t i2res = icall(i2layerName);
 	return i2res;
-}
-void* UnityEngine_LightProbeGroup_get_probePositions(MonoObject* thiz)
-{
-	typedef void* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.LightProbeGroup::get_probePositions");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_LightProbeGroup());
-	void* i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_LightProbeGroup_set_probePositions(MonoObject* thiz, void* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.LightProbeGroup::set_probePositions");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_LightProbeGroup());
-	icall(i2thiz,value);
-}
-bool UnityEngine_LightProbeGroup_get_dering(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.LightProbeGroup::get_dering");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_LightProbeGroup());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_LightProbeGroup_set_dering(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.LightProbeGroup::set_dering");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_LightProbeGroup());
-	icall(i2thiz,value);
 }
 void UnityEngine_LineUtility_GeneratePointsToKeep3D(MonoObject* pointsList, float tolerance, MonoObject* pointsToKeepList)
 {
@@ -25169,6 +23705,508 @@ void UnityEngine_Mathf_CorrelatedColorTemperatureToRGB_Injected(float kelvin, vo
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mathf::CorrelatedColorTemperatureToRGB_Injected");
 	icall(kelvin,ret);
 }
+void UnityEngine_Mesh_Internal_Create_13(MonoObject* mono)
+{
+	typedef void (* ICallMethod) (Il2CppObject* mono);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::Internal_Create");
+	Il2CppObject* i2mono = get_il2cpp_object(mono,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2mono);
+}
+MonoObject* UnityEngine_Mesh_FromInstanceID(int32_t id)
+{
+	typedef Il2CppObject* (* ICallMethod) (int32_t id);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::FromInstanceID");
+	Il2CppObject* i2res = icall(id);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Mesh());
+	return monoi2res;
+}
+int32_t UnityEngine_Mesh_get_indexFormat(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_indexFormat");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Mesh_set_indexFormat(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_indexFormat");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,value);
+}
+uint32_t UnityEngine_Mesh_GetIndexStartImpl(MonoObject* thiz, int32_t submesh)
+{
+	typedef uint32_t (* ICallMethod) (Il2CppObject* thiz, int32_t submesh);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetIndexStartImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	uint32_t i2res = icall(i2thiz,submesh);
+	return i2res;
+}
+uint32_t UnityEngine_Mesh_GetIndexCountImpl(MonoObject* thiz, int32_t submesh)
+{
+	typedef uint32_t (* ICallMethod) (Il2CppObject* thiz, int32_t submesh);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetIndexCountImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	uint32_t i2res = icall(i2thiz,submesh);
+	return i2res;
+}
+uint32_t UnityEngine_Mesh_GetBaseVertexImpl(MonoObject* thiz, int32_t submesh)
+{
+	typedef uint32_t (* ICallMethod) (Il2CppObject* thiz, int32_t submesh);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBaseVertexImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	uint32_t i2res = icall(i2thiz,submesh);
+	return i2res;
+}
+void* UnityEngine_Mesh_GetTrianglesImpl(MonoObject* thiz, int32_t submesh, bool applyBaseVertex)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t submesh, bool applyBaseVertex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetTrianglesImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	void* i2res = icall(i2thiz,submesh,applyBaseVertex);
+	return i2res;
+}
+void* UnityEngine_Mesh_GetIndicesImpl(MonoObject* thiz, int32_t submesh, bool applyBaseVertex)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz, int32_t submesh, bool applyBaseVertex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetIndicesImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	void* i2res = icall(i2thiz,submesh,applyBaseVertex);
+	return i2res;
+}
+void UnityEngine_Mesh_SetIndicesImpl(MonoObject* thiz, int32_t submesh, int32_t topology, MonoObject* indices, int32_t arraySize, bool calculateBounds, int32_t baseVertex)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t submesh, int32_t topology, Il2CppObject* indices, int32_t arraySize, bool calculateBounds, int32_t baseVertex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::SetIndicesImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	Il2CppObject* i2indices = get_il2cpp_object(indices,NULL);
+	icall(i2thiz,submesh,topology,i2indices,arraySize,calculateBounds,baseVertex);
+}
+void UnityEngine_Mesh_GetTrianglesNonAllocImpl(MonoObject* thiz, void* values, int32_t submesh, bool applyBaseVertex)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* values, int32_t submesh, bool applyBaseVertex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetTrianglesNonAllocImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,values,submesh,applyBaseVertex);
+}
+void UnityEngine_Mesh_GetIndicesNonAllocImpl(MonoObject* thiz, void* values, int32_t submesh, bool applyBaseVertex)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* values, int32_t submesh, bool applyBaseVertex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetIndicesNonAllocImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,values,submesh,applyBaseVertex);
+}
+void UnityEngine_Mesh_PrintErrorCantAccessChannel(MonoObject* thiz, int32_t ch)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t ch);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::PrintErrorCantAccessChannel");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,ch);
+}
+bool UnityEngine_Mesh_HasChannel(MonoObject* thiz, int32_t ch)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz, int32_t ch);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::HasChannel");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	bool i2res = icall(i2thiz,ch);
+	return i2res;
+}
+void UnityEngine_Mesh_SetArrayForChannelImpl(MonoObject* thiz, int32_t channel, int32_t format, int32_t dim, MonoObject* values, int32_t arraySize)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t channel, int32_t format, int32_t dim, Il2CppObject* values, int32_t arraySize);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::SetArrayForChannelImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	Il2CppObject* i2values = get_il2cpp_object(values,NULL);
+	icall(i2thiz,channel,format,dim,i2values,arraySize);
+}
+MonoObject* UnityEngine_Mesh_GetAllocArrayFromChannelImpl(MonoObject* thiz, int32_t channel, int32_t format, int32_t dim)
+{
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, int32_t channel, int32_t format, int32_t dim);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetAllocArrayFromChannelImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	Il2CppObject* i2res = icall(i2thiz,channel,format,dim);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_System_Array());
+	return monoi2res;
+}
+void UnityEngine_Mesh_GetArrayFromChannelImpl(MonoObject* thiz, int32_t channel, int32_t format, int32_t dim, MonoObject* values)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t channel, int32_t format, int32_t dim, Il2CppObject* values);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetArrayFromChannelImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	Il2CppObject* i2values = get_il2cpp_object(values,NULL);
+	icall(i2thiz,channel,format,dim,i2values);
+}
+int32_t UnityEngine_Mesh_get_vertexBufferCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_vertexBufferCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void * UnityEngine_Mesh_GetNativeVertexBufferPtr(MonoObject* thiz, int32_t index)
+{
+	typedef void * (* ICallMethod) (Il2CppObject* thiz, int32_t index);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetNativeVertexBufferPtr");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	void * i2res = icall(i2thiz,index);
+	return i2res;
+}
+void * UnityEngine_Mesh_GetNativeIndexBufferPtr(MonoObject* thiz)
+{
+	typedef void * (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetNativeIndexBufferPtr");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	void * i2res = icall(i2thiz);
+	return i2res;
+}
+int32_t UnityEngine_Mesh_get_blendShapeCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_blendShapeCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Mesh_ClearBlendShapes(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::ClearBlendShapes");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz);
+}
+MonoString* UnityEngine_Mesh_GetBlendShapeName(MonoObject* thiz, int32_t shapeIndex)
+{
+	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, int32_t shapeIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeName");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	Il2CppString* i2res = icall(i2thiz,shapeIndex);
+	MonoString* monoi2res = get_mono_string(i2res);
+	return monoi2res;
+}
+int32_t UnityEngine_Mesh_GetBlendShapeIndex(MonoObject* thiz, MonoString* blendShapeName)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppString* blendShapeName);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeIndex");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	Il2CppString* i2blendShapeName = get_il2cpp_string(blendShapeName);
+	int32_t i2res = icall(i2thiz,i2blendShapeName);
+	return i2res;
+}
+int32_t UnityEngine_Mesh_GetBlendShapeFrameCount(MonoObject* thiz, int32_t shapeIndex)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t shapeIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeFrameCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz,shapeIndex);
+	return i2res;
+}
+float UnityEngine_Mesh_GetBlendShapeFrameWeight(MonoObject* thiz, int32_t shapeIndex, int32_t frameIndex)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t shapeIndex, int32_t frameIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeFrameWeight");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	float i2res = icall(i2thiz,shapeIndex,frameIndex);
+	return i2res;
+}
+void UnityEngine_Mesh_GetBlendShapeFrameVertices(MonoObject* thiz, int32_t shapeIndex, int32_t frameIndex, void* deltaVertices, void* deltaNormals, void* deltaTangents)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t shapeIndex, int32_t frameIndex, void* deltaVertices, void* deltaNormals, void* deltaTangents);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBlendShapeFrameVertices");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,shapeIndex,frameIndex,deltaVertices,deltaNormals,deltaTangents);
+}
+void UnityEngine_Mesh_AddBlendShapeFrame(MonoObject* thiz, MonoString* shapeName, float frameWeight, void* deltaVertices, void* deltaNormals, void* deltaTangents)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* shapeName, float frameWeight, void* deltaVertices, void* deltaNormals, void* deltaTangents);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::AddBlendShapeFrame");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	Il2CppString* i2shapeName = get_il2cpp_string(shapeName);
+	icall(i2thiz,i2shapeName,frameWeight,deltaVertices,deltaNormals,deltaTangents);
+}
+int32_t UnityEngine_Mesh_GetBoneWeightCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBoneWeightCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void* UnityEngine_Mesh_get_boneWeights(MonoObject* thiz)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_boneWeights");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	void* i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Mesh_set_boneWeights(MonoObject* thiz, void* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_boneWeights");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,value);
+}
+int32_t UnityEngine_Mesh_GetBindposeCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBindposeCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void* UnityEngine_Mesh_get_bindposes(MonoObject* thiz)
+{
+	typedef void* (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_bindposes");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	void* i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Mesh_set_bindposes(MonoObject* thiz, void* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_bindposes");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,value);
+}
+void UnityEngine_Mesh_GetBoneWeightsNonAllocImpl(MonoObject* thiz, void* values)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* values);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBoneWeightsNonAllocImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,values);
+}
+void UnityEngine_Mesh_GetBindposesNonAllocImpl(MonoObject* thiz, void* values)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* values);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetBindposesNonAllocImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,values);
+}
+bool UnityEngine_Mesh_get_isReadable(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_isReadable");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+bool UnityEngine_Mesh_get_canAccess(MonoObject* thiz)
+{
+	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_canAccess");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	bool i2res = icall(i2thiz);
+	return i2res;
+}
+int32_t UnityEngine_Mesh_get_vertexCount_1(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_vertexCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+int32_t UnityEngine_Mesh_get_subMeshCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_subMeshCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_Mesh_set_subMeshCount(MonoObject* thiz, int32_t value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_subMeshCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,value);
+}
+void UnityEngine_Mesh_ClearImpl(MonoObject* thiz, bool keepVertexLayout)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool keepVertexLayout);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::ClearImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,keepVertexLayout);
+}
+void UnityEngine_Mesh_RecalculateBoundsImpl(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::RecalculateBoundsImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz);
+}
+void UnityEngine_Mesh_RecalculateNormalsImpl(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::RecalculateNormalsImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz);
+}
+void UnityEngine_Mesh_RecalculateTangentsImpl(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::RecalculateTangentsImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz);
+}
+void UnityEngine_Mesh_MarkDynamicImpl(MonoObject* thiz)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::MarkDynamicImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz);
+}
+void UnityEngine_Mesh_UploadMeshDataImpl(MonoObject* thiz, bool markNoLongerReadable)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, bool markNoLongerReadable);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::UploadMeshDataImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,markNoLongerReadable);
+}
+int32_t UnityEngine_Mesh_GetTopologyImpl(MonoObject* thiz, int32_t submesh)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, int32_t submesh);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetTopologyImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	int32_t i2res = icall(i2thiz,submesh);
+	return i2res;
+}
+float UnityEngine_Mesh_GetUVDistributionMetric(MonoObject* thiz, int32_t uvSetIndex)
+{
+	typedef float (* ICallMethod) (Il2CppObject* thiz, int32_t uvSetIndex);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::GetUVDistributionMetric");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	float i2res = icall(i2thiz,uvSetIndex);
+	return i2res;
+}
+void UnityEngine_Mesh_CombineMeshesImpl(MonoObject* thiz, void* combine, bool mergeSubMeshes, bool useMatrices, bool hasLightmapData)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void* combine, bool mergeSubMeshes, bool useMatrices, bool hasLightmapData);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::CombineMeshesImpl");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,combine,mergeSubMeshes,useMatrices,hasLightmapData);
+}
+void UnityEngine_Mesh_get_bounds_Injected_1(MonoObject* thiz, void * ret)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::get_bounds_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,ret);
+}
+void UnityEngine_Mesh_set_bounds_Injected(MonoObject* thiz, void * value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Mesh::set_bounds_Injected");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,value);
+}
 MonoObject* UnityEngine_StaticBatchingHelper_InternalCombineVertices(void* meshes, MonoString* meshName)
 {
 	typedef Il2CppObject* (* ICallMethod) (void* meshes, Il2CppString* meshName);
@@ -25226,44 +24264,6 @@ void UnityEngine_MonoBehaviour_set_useGUILayout(MonoObject* thiz, bool value)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.MonoBehaviour::set_useGUILayout");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_MonoBehaviour());
 	icall(i2thiz,value);
-}
-bool UnityEngine_MonoBehaviour_get_runInEditMode(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.MonoBehaviour::get_runInEditMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_MonoBehaviour());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_MonoBehaviour_set_runInEditMode(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.MonoBehaviour::set_runInEditMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_MonoBehaviour());
-	icall(i2thiz,value);
-}
-bool UnityEngine_MonoBehaviour_get_allowPrefabModeInPlayMode(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.MonoBehaviour::get_allowPrefabModeInPlayMode");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_MonoBehaviour());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_MonoBehaviour_ConstructorCheck(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.MonoBehaviour::ConstructorCheck");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_Object());
-	icall(i2self);
 }
 void UnityEngine_MonoBehaviour_Internal_CancelInvokeAll(MonoObject* self)
 {
@@ -25389,7 +24389,7 @@ MonoObject* UnityEngine_NoAllocHelpers_ExtractArrayFromList(MonoObject* list)
 	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_System_Array());
 	return monoi2res;
 }
-void UnityEngine_Ping_Internal_Destroy_3(void * ptr)
+void UnityEngine_Ping_Internal_Destroy_2(void * ptr)
 {
 	typedef void (* ICallMethod) (void * ptr);
 	static ICallMethod icall;
@@ -25613,15 +24613,6 @@ void UnityEngine_PlayerPrefs_Save()
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.PlayerPrefs::Save");
 	icall();
 }
-int32_t UnityEngine_PropertyNameUtils_ConflictCountForID(int32_t id)
-{
-	typedef int32_t (* ICallMethod) (int32_t id);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.PropertyNameUtils::ConflictCountForID");
-	int32_t i2res = icall(id);
-	return i2res;
-}
 void UnityEngine_PropertyNameUtils_PropertyNameFromString_Injected(MonoString* name, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppString* name, void * ret);
@@ -25630,16 +24621,6 @@ void UnityEngine_PropertyNameUtils_PropertyNameFromString_Injected(MonoString* n
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.PropertyNameUtils::PropertyNameFromString_Injected");
 	Il2CppString* i2name = get_il2cpp_string(name);
 	icall(i2name,ret);
-}
-MonoString* UnityEngine_PropertyNameUtils_StringFromPropertyName_Injected(void * propertyName)
-{
-	typedef Il2CppString* (* ICallMethod) (void * propertyName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.PropertyNameUtils::StringFromPropertyName_Injected");
-	Il2CppString* i2res = icall(propertyName);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
 }
 int32_t UnityEngine_Random_get_seed()
 {
@@ -27033,37 +26014,6 @@ MonoObject* UnityEngine_Resources_UnloadUnusedAssets()
 	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_AsyncOperation());
 	return monoi2res;
 }
-void UnityEngine_RuntimeUndo_SetTransformParent(MonoObject* transform, MonoObject* newParent, MonoString* name)
-{
-	typedef void (* ICallMethod) (Il2CppObject* transform, Il2CppObject* newParent, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.RuntimeUndo::SetTransformParent");
-	Il2CppObject* i2transform = get_il2cpp_object(transform,il2cpp_get_class_UnityEngine_Transform());
-	Il2CppObject* i2newParent = get_il2cpp_object(newParent,il2cpp_get_class_UnityEngine_Transform());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2transform,i2newParent,i2name);
-}
-void UnityEngine_RuntimeUndo_RecordObject(MonoObject* objectToUndo, MonoString* name)
-{
-	typedef void (* ICallMethod) (Il2CppObject* objectToUndo, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.RuntimeUndo::RecordObject");
-	Il2CppObject* i2objectToUndo = get_il2cpp_object(objectToUndo,il2cpp_get_class_UnityEngine_Object());
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2objectToUndo,i2name);
-}
-void UnityEngine_RuntimeUndo_RecordObjects(MonoArray* objectsToUndo, MonoString* name)
-{
-	typedef void (* ICallMethod) (Il2CppArray* objectsToUndo, Il2CppString* name);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.RuntimeUndo::RecordObjects");
-	Il2CppArray* i2objectsToUndo = get_il2cpp_array(objectsToUndo);
-	Il2CppString* i2name = get_il2cpp_string(name);
-	icall(i2objectsToUndo,i2name);
-}
 void UnityEngine_ScriptableObject_SetDirty(MonoObject* thiz)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz);
@@ -27131,15 +26081,6 @@ void UnityEngine_Experimental_Rendering_ScriptableRenderContext_EndRenderPassInt
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.Rendering.ScriptableRenderContext::EndRenderPassInternal");
 	icall(_self);
-}
-void UnityEngine_Experimental_Rendering_ScriptableRenderContext_EmitWorldGeometryForSceneView(MonoObject* cullingCamera)
-{
-	typedef void (* ICallMethod) (Il2CppObject* cullingCamera);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.Rendering.ScriptableRenderContext::EmitWorldGeometryForSceneView");
-	Il2CppObject* i2cullingCamera = get_il2cpp_object(cullingCamera,il2cpp_get_class_UnityEngine_Camera());
-	icall(i2cullingCamera);
 }
 void UnityEngine_Experimental_Rendering_ScriptableRenderContext_Submit_Internal_Injected(void * _unity_self)
 {
@@ -28187,7 +27128,7 @@ bool UnityEngine_SystemInfo_IsFormatSupported(int32_t format, int32_t usage)
 	bool i2res = icall(format,usage);
 	return i2res;
 }
-MonoString* UnityEngine_TextAsset_get_text_1(MonoObject* thiz)
+MonoString* UnityEngine_TextAsset_get_text(MonoObject* thiz)
 {
 	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -28612,24 +27553,6 @@ void UnityEngine_Texture_get_texelSize_Injected(MonoObject* thiz, void * ret)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Texture());
 	icall(i2thiz,ret);
 }
-void UnityEngine_Texture_get_imageContentsHash_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Texture::get_imageContentsHash_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Texture());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Texture_set_imageContentsHash_Injected(MonoObject* thiz, void * value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Texture::set_imageContentsHash_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Texture());
-	icall(i2thiz,value);
-}
 int32_t UnityEngine_Texture2D_get_mipmapCount(MonoObject* thiz)
 {
 	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
@@ -28941,44 +27864,6 @@ void* UnityEngine_Texture2D_PackTextures(MonoObject* thiz, MonoArray* textures, 
 	void* i2res = icall(i2thiz,i2textures,padding,maximumAtlasSize,makeNoLongerReadable);
 	return i2res;
 }
-bool UnityEngine_Texture2D_get_alphaIsTransparency(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Texture2D::get_alphaIsTransparency");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Texture2D());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Texture2D_set_alphaIsTransparency(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Texture2D::set_alphaIsTransparency");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Texture2D());
-	icall(i2thiz,value);
-}
-float UnityEngine_Texture2D_get_pixelsPerPoint(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Texture2D::get_pixelsPerPoint");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Texture2D());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Texture2D_set_pixelsPerPoint(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Texture2D::set_pixelsPerPoint");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Texture2D());
-	icall(i2thiz,value);
-}
 void UnityEngine_Texture2D_SetPixelImpl_Injected(MonoObject* thiz, int32_t image, int32_t x, int32_t y, void * color)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t image, int32_t x, int32_t y, void * color);
@@ -29014,15 +27899,6 @@ void UnityEngine_Texture2D_ReadPixelsImpl_Injected(MonoObject* thiz, void * sour
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Texture2D::ReadPixelsImpl_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Texture2D());
 	icall(i2thiz,source,destX,destY,recalculateMipMaps);
-}
-void UnityEngine_Texture2D_GetSafetyHandle_Injected_1(MonoObject* tex, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* tex, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Texture2D::GetSafetyHandle_Injected");
-	Il2CppObject* i2tex = get_il2cpp_object(tex,il2cpp_get_class_UnityEngine_Texture2D());
-	icall(i2tex,ret);
 }
 int32_t UnityEngine_Cubemap_get_mipmapCount_1(MonoObject* thiz)
 {
@@ -30768,7 +29644,7 @@ bool UnityEngine_Experimental_Playables_MaterialEffectPlayable_ValidateType_2(vo
 	bool i2res = icall(hdl);
 	return i2res;
 }
-void UnityEngine_Playables_PlayableGraph_Create_Injected_2(MonoString* name, void * ret)
+void UnityEngine_Playables_PlayableGraph_Create_Injected_1(MonoString* name, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppString* name, void * ret);
 	static ICallMethod icall;
@@ -30994,16 +29870,6 @@ void UnityEngine_Playables_PlayableGraph_DestroySubgraphInternal_Injected(void *
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Playables.PlayableGraph::DestroySubgraphInternal_Injected");
 	icall(_unity_self,playable);
-}
-MonoString* UnityEngine_Playables_PlayableGraph_GetEditorName_Injected(void * _unity_self)
-{
-	typedef Il2CppString* (* ICallMethod) (void * _unity_self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Playables.PlayableGraph::GetEditorName_Injected");
-	Il2CppString* i2res = icall(_unity_self);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
 }
 bool UnityEngine_Playables_PlayableHandle_IsNull_Injected(void * _unity_self)
 {
@@ -31763,662 +30629,6 @@ void UnityEngineInternal_GIDebugVisualisation_set_texType(int32_t value)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngineInternal.GIDebugVisualisation::set_texType");
 	icall(value);
 }
-MonoString* UnityEngine_iOS_Device_get_systemVersion()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::get_systemVersion");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-int32_t UnityEngine_iOS_Device_get_generation()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::get_generation");
-	int32_t i2res = icall();
-	return i2res;
-}
-MonoString* UnityEngine_iOS_Device_get_vendorIdentifier()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::get_vendorIdentifier");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* UnityEngine_iOS_Device_GetAdvertisingIdentifier()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::GetAdvertisingIdentifier");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-bool UnityEngine_iOS_Device_get_advertisingTrackingEnabled()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::get_advertisingTrackingEnabled");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_iOS_Device_get_hideHomeButton()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::get_hideHomeButton");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_iOS_Device_set_hideHomeButton(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::set_hideHomeButton");
-	icall(value);
-}
-int32_t UnityEngine_iOS_Device_get_deferSystemGesturesModeInternal()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::get_deferSystemGesturesModeInternal");
-	int32_t i2res = icall();
-	return i2res;
-}
-void UnityEngine_iOS_Device_set_deferSystemGesturesModeInternal(int32_t value)
-{
-	typedef void (* ICallMethod) (int32_t value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::set_deferSystemGesturesModeInternal");
-	icall(value);
-}
-void UnityEngine_iOS_Device_SetNoBackupFlag(MonoString* path)
-{
-	typedef void (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::SetNoBackupFlag");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	icall(i2path);
-}
-void UnityEngine_iOS_Device_ResetNoBackupFlag(MonoString* path)
-{
-	typedef void (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::ResetNoBackupFlag");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	icall(i2path);
-}
-bool UnityEngine_iOS_Device_RequestStoreReview()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.Device::RequestStoreReview");
-	bool i2res = icall();
-	return i2res;
-}
-void * UnityEngine_iOS_NotificationHelper_CreateLocal()
-{
-	typedef void * (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationHelper::CreateLocal");
-	void * i2res = icall();
-	return i2res;
-}
-void UnityEngine_iOS_NotificationHelper_DestroyLocal(void * target)
-{
-	typedef void (* ICallMethod) (void * target);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationHelper::DestroyLocal");
-	icall(target);
-}
-void UnityEngine_iOS_NotificationHelper_DestroyRemote(void * target)
-{
-	typedef void (* ICallMethod) (void * target);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationHelper::DestroyRemote");
-	icall(target);
-}
-MonoString* UnityEngine_iOS_RemoteNotification_get_alertBody(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.RemoteNotification::get_alertBody");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_RemoteNotification());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* UnityEngine_iOS_RemoteNotification_get_alertTitle(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.RemoteNotification::get_alertTitle");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_RemoteNotification());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* UnityEngine_iOS_RemoteNotification_get_soundName(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.RemoteNotification::get_soundName");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_RemoteNotification());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-int32_t UnityEngine_iOS_RemoteNotification_get_applicationIconBadgeNumber(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.RemoteNotification::get_applicationIconBadgeNumber");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_RemoteNotification());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-bool UnityEngine_iOS_RemoteNotification_get_hasAction(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.RemoteNotification::get_hasAction");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_RemoteNotification());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_iOS_NotificationServices_get_localNotificationCount()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::get_localNotificationCount");
-	int32_t i2res = icall();
-	return i2res;
-}
-int32_t UnityEngine_iOS_NotificationServices_get_remoteNotificationCount()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::get_remoteNotificationCount");
-	int32_t i2res = icall();
-	return i2res;
-}
-void UnityEngine_iOS_NotificationServices_ClearLocalNotifications()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::ClearLocalNotifications");
-	icall();
-}
-void UnityEngine_iOS_NotificationServices_ClearRemoteNotifications()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::ClearRemoteNotifications");
-	icall();
-}
-void UnityEngine_iOS_NotificationServices_Internal_RegisterImpl(int32_t notificationTypes, bool registerForRemote)
-{
-	typedef void (* ICallMethod) (int32_t notificationTypes, bool registerForRemote);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::Internal_RegisterImpl");
-	icall(notificationTypes,registerForRemote);
-}
-int32_t UnityEngine_iOS_NotificationServices_get_enabledNotificationTypes()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::get_enabledNotificationTypes");
-	int32_t i2res = icall();
-	return i2res;
-}
-void UnityEngine_iOS_NotificationServices_CancelAllLocalNotifications()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::CancelAllLocalNotifications");
-	icall();
-}
-void UnityEngine_iOS_NotificationServices_UnregisterForRemoteNotifications()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::UnregisterForRemoteNotifications");
-	icall();
-}
-MonoString* UnityEngine_iOS_NotificationServices_get_registrationError()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::get_registrationError");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void* UnityEngine_iOS_NotificationServices_get_deviceToken()
-{
-	typedef void* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::get_deviceToken");
-	void* i2res = icall();
-	return i2res;
-}
-MonoObject* UnityEngine_iOS_NotificationServices_GetRemoteNotificationImpl(int32_t index)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t index);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.NotificationServices::GetRemoteNotificationImpl");
-	Il2CppObject* i2res = icall(index);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_iOS_RemoteNotification());
-	return monoi2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_get_APIAvailable()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_APIAvailable");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_get_broadcastingAPIAvailable()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_broadcastingAPIAvailable");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_get_recordingAvailable()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_recordingAvailable");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_get_isRecording()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_isRecording");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_get_isBroadcasting()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_isBroadcasting");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_get_cameraEnabled()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_cameraEnabled");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_Apple_ReplayKit_ReplayKit_set_cameraEnabled(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::set_cameraEnabled");
-	icall(value);
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_get_microphoneEnabled()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_microphoneEnabled");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_Apple_ReplayKit_ReplayKit_set_microphoneEnabled(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::set_microphoneEnabled");
-	icall(value);
-}
-MonoString* UnityEngine_Apple_ReplayKit_ReplayKit_get_broadcastURL()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_broadcastURL");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* UnityEngine_Apple_ReplayKit_ReplayKit_get_lastError()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::get_lastError");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_StartRecordingImpl(bool enableMicrophone, bool enableCamera)
-{
-	typedef bool (* ICallMethod) (bool enableMicrophone, bool enableCamera);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::StartRecordingImpl");
-	bool i2res = icall(enableMicrophone,enableCamera);
-	return i2res;
-}
-void UnityEngine_Apple_ReplayKit_ReplayKit_StartBroadcastingImpl(MonoObject* callback, bool enableMicrophone, bool enableCamera)
-{
-	typedef void (* ICallMethod) (Il2CppObject* callback, bool enableMicrophone, bool enableCamera);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::StartBroadcastingImpl");
-	Il2CppObject* i2callback = get_il2cpp_object(callback,NULL);
-	icall(i2callback,enableMicrophone,enableCamera);
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_StopRecording_1()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::StopRecording");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_Apple_ReplayKit_ReplayKit_StopBroadcasting()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::StopBroadcasting");
-	icall();
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_Preview()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::Preview");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_Discard()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::Discard");
-	bool i2res = icall();
-	return i2res;
-}
-bool UnityEngine_Apple_ReplayKit_ReplayKit_ShowCameraPreviewAt(float posX, float posY)
-{
-	typedef bool (* ICallMethod) (float posX, float posY);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::ShowCameraPreviewAt");
-	bool i2res = icall(posX,posY);
-	return i2res;
-}
-void UnityEngine_Apple_ReplayKit_ReplayKit_HideCameraPreview()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Apple.ReplayKit.ReplayKit::HideCameraPreview");
-	icall();
-}
-MonoString* UnityEngine_iOS_OnDemandResourcesRequest_get_error(MonoObject* thiz)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.OnDemandResourcesRequest::get_error");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_OnDemandResourcesRequest());
-	Il2CppString* i2res = icall(i2thiz);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-float UnityEngine_iOS_OnDemandResourcesRequest_get_loadingPriority(MonoObject* thiz)
-{
-	typedef float (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.OnDemandResourcesRequest::get_loadingPriority");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_OnDemandResourcesRequest());
-	float i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_iOS_OnDemandResourcesRequest_set_loadingPriority(MonoObject* thiz, float value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.OnDemandResourcesRequest::set_loadingPriority");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_OnDemandResourcesRequest());
-	icall(i2thiz,value);
-}
-MonoString* UnityEngine_iOS_OnDemandResourcesRequest_GetResourcePath(MonoObject* thiz, MonoString* resourceName)
-{
-	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz, Il2CppString* resourceName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.OnDemandResourcesRequest::GetResourcePath");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_iOS_OnDemandResourcesRequest());
-	Il2CppString* i2resourceName = get_il2cpp_string(resourceName);
-	Il2CppString* i2res = icall(i2thiz,i2resourceName);
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_iOS_OnDemandResourcesRequest_DestroyFromScript(void * ptr)
-{
-	typedef void (* ICallMethod) (void * ptr);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.OnDemandResourcesRequest::DestroyFromScript");
-	icall(ptr);
-}
-bool UnityEngine_iOS_OnDemandResources_get_enabled_6()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.OnDemandResources::get_enabled");
-	bool i2res = icall();
-	return i2res;
-}
-MonoObject* UnityEngine_iOS_OnDemandResources_PreloadAsyncImpl(MonoArray* tags)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppArray* tags);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.iOS.OnDemandResources::PreloadAsyncImpl");
-	Il2CppArray* i2tags = get_il2cpp_array(tags);
-	Il2CppObject* i2res = icall(i2tags);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_iOS_OnDemandResourcesRequest());
-	return monoi2res;
-}
-bool UnityEngine_tvOS_Remote_get_allowExitToHome()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Remote::get_allowExitToHome");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_tvOS_Remote_set_allowExitToHome(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Remote::set_allowExitToHome");
-	icall(value);
-}
-bool UnityEngine_tvOS_Remote_get_allowRemoteRotation()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Remote::get_allowRemoteRotation");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_tvOS_Remote_set_allowRemoteRotation(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Remote::set_allowRemoteRotation");
-	icall(value);
-}
-bool UnityEngine_tvOS_Remote_get_reportAbsoluteDpadValues()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Remote::get_reportAbsoluteDpadValues");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_tvOS_Remote_set_reportAbsoluteDpadValues(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Remote::set_reportAbsoluteDpadValues");
-	icall(value);
-}
-bool UnityEngine_tvOS_Remote_get_touchesEnabled()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Remote::get_touchesEnabled");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_tvOS_Remote_set_touchesEnabled(bool value)
-{
-	typedef void (* ICallMethod) (bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Remote::set_touchesEnabled");
-	icall(value);
-}
-MonoString* UnityEngine_tvOS_Device_get_tvOSsystemVersion()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Device::get_tvOSsystemVersion");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-int32_t UnityEngine_tvOS_Device_get_tvOSGeneration()
-{
-	typedef int32_t (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Device::get_tvOSGeneration");
-	int32_t i2res = icall();
-	return i2res;
-}
-MonoString* UnityEngine_tvOS_Device_get_tvOSVendorIdentifier()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Device::get_tvOSVendorIdentifier");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* UnityEngine_tvOS_Device_GettvOSAdvertisingIdentifier()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Device::GettvOSAdvertisingIdentifier");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-bool UnityEngine_tvOS_Device_get_tvOSadvertisingTrackingEnabled()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Device::get_tvOSadvertisingTrackingEnabled");
-	bool i2res = icall();
-	return i2res;
-}
-void UnityEngine_tvOS_Device_SettvOSNoBackupFlag(MonoString* path)
-{
-	typedef void (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Device::SettvOSNoBackupFlag");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	icall(i2path);
-}
-void UnityEngine_tvOS_Device_tvOSResetNoBackupFlag(MonoString* path)
-{
-	typedef void (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.tvOS.Device::tvOSResetNoBackupFlag");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	icall(i2path);
-}
 bool UnityEngine_SceneManagement_Scene_IsValidInternal(int32_t sceneHandle)
 {
 	typedef bool (* ICallMethod) (int32_t sceneHandle);
@@ -33133,25 +31343,6 @@ void Unity_Collections_LowLevel_Unsafe_UnsafeUtility_LogError(MonoString* msg, M
 	Il2CppString* i2filename = get_il2cpp_string(filename);
 	icall(i2msg,i2filename,linenumber);
 }
-bool UnityEngine_Windows_LicenseInformation_get_isOnAppTrial()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.LicenseInformation::get_isOnAppTrial");
-	bool i2res = icall();
-	return i2res;
-}
-MonoString* UnityEngine_Windows_LicenseInformation_PurchaseApp()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.LicenseInformation::PurchaseApp");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
 bool UnityEngine_Windows_Speech_PhraseRecognitionSystem_get_isSupported_1()
 {
 	typedef bool (* ICallMethod) ();
@@ -33343,120 +31534,6 @@ MonoString* UnityEngine_Windows_CrashReporting_get_crashReportFolder()
 	Il2CppString* i2res = icall();
 	MonoString* monoi2res = get_mono_string(i2res);
 	return monoi2res;
-}
-void* UnityEngine_Windows_Crypto_ComputeMD5Hash(void* buffer)
-{
-	typedef void* (* ICallMethod) (void* buffer);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.Crypto::ComputeMD5Hash");
-	void* i2res = icall(buffer);
-	return i2res;
-}
-void* UnityEngine_Windows_Crypto_ComputeSHA1Hash(void* buffer)
-{
-	typedef void* (* ICallMethod) (void* buffer);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.Crypto::ComputeSHA1Hash");
-	void* i2res = icall(buffer);
-	return i2res;
-}
-MonoString* UnityEngine_Windows_Directory_get_temporaryFolder()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.Directory::get_temporaryFolder");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* UnityEngine_Windows_Directory_get_localFolder()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.Directory::get_localFolder");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-MonoString* UnityEngine_Windows_Directory_get_roamingFolder()
-{
-	typedef Il2CppString* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.Directory::get_roamingFolder");
-	Il2CppString* i2res = icall();
-	MonoString* monoi2res = get_mono_string(i2res);
-	return monoi2res;
-}
-void UnityEngine_Windows_Directory_CreateDirectory(MonoString* path)
-{
-	typedef void (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.Directory::CreateDirectory");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	icall(i2path);
-}
-bool UnityEngine_Windows_Directory_Exists(MonoString* path)
-{
-	typedef bool (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.Directory::Exists");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	bool i2res = icall(i2path);
-	return i2res;
-}
-void UnityEngine_Windows_Directory_Delete(MonoString* path)
-{
-	typedef void (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.Directory::Delete");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	icall(i2path);
-}
-void* UnityEngine_Windows_File_ReadAllBytes(MonoString* path)
-{
-	typedef void* (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.File::ReadAllBytes");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	void* i2res = icall(i2path);
-	return i2res;
-}
-void UnityEngine_Windows_File_WriteAllBytes(MonoString* path, void* bytes)
-{
-	typedef void (* ICallMethod) (Il2CppString* path, void* bytes);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.File::WriteAllBytes");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	icall(i2path,bytes);
-}
-bool UnityEngine_Windows_File_Exists_1(MonoString* path)
-{
-	typedef bool (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.File::Exists");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	bool i2res = icall(i2path);
-	return i2res;
-}
-void UnityEngine_Windows_File_Delete_1(MonoString* path)
-{
-	typedef void (* ICallMethod) (Il2CppString* path);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Windows.File::Delete");
-	Il2CppString* i2path = get_il2cpp_string(path);
-	icall(i2path);
 }
 void Unity_Jobs_JobHandle_ScheduleBatchedJobs()
 {
@@ -33692,7 +31769,7 @@ void UnityEngine_Profiling_Profiler_set_maxUsedMemory(int32_t value)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Profiling.Profiler::set_maxUsedMemory");
 	icall(value);
 }
-bool UnityEngine_Profiling_Profiler_get_enabled_7()
+bool UnityEngine_Profiling_Profiler_get_enabled_6()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -34049,15 +32126,6 @@ void UnityEngine_Profiling_CustomSampler_End_2(MonoObject* thiz)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Profiling.CustomSampler::End");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Profiling_CustomSampler());
 	icall(i2thiz);
-}
-bool UnityEngine_DrivenRectTransformTracker_CanRecordModifications()
-{
-	typedef bool (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.DrivenRectTransformTracker::CanRecordModifications");
-	bool i2res = icall();
-	return i2res;
 }
 MonoObject* UnityEngine_RectTransform_get_drivenByObject(MonoObject* thiz)
 {
@@ -34991,15 +33059,6 @@ void UnityEngine_Experimental_U2D_SpriteDataAccessExtensions_GetBoneWeightsInfo_
 	Il2CppObject* i2sprite = get_il2cpp_object(sprite,il2cpp_get_class_UnityEngine_Sprite());
 	icall(i2sprite,ret);
 }
-void UnityEngine_Experimental_U2D_SpriteDataAccessExtensions_GetSafetyHandle_Injected_2(MonoObject* sprite, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* sprite, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.U2D.SpriteDataAccessExtensions::GetSafetyHandle_Injected");
-	Il2CppObject* i2sprite = get_il2cpp_object(sprite,il2cpp_get_class_UnityEngine_Sprite());
-	icall(i2sprite,ret);
-}
 void UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_DeactivateDeformableBuffer(MonoObject* renderer)
 {
 	typedef void (* ICallMethod) (Il2CppObject* renderer);
@@ -35026,15 +33085,6 @@ void UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_GetDeformab
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.U2D.SpriteRendererDataAccessExtensions::GetDeformableChannelInfo_Injected");
 	Il2CppObject* i2sprite = get_il2cpp_object(sprite,il2cpp_get_class_UnityEngine_SpriteRenderer());
 	icall(i2sprite,channel,ret);
-}
-void UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_GetSafetyHandle_Injected_3(MonoObject* spriteRenderer, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* spriteRenderer, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.U2D.SpriteRendererDataAccessExtensions::GetSafetyHandle_Injected");
-	Il2CppObject* i2spriteRenderer = get_il2cpp_object(spriteRenderer,il2cpp_get_class_UnityEngine_SpriteRenderer());
-	icall(i2spriteRenderer,ret);
 }
 void UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_SetLocalAABB_Injected_1(MonoObject* renderer, void * aabb)
 {
@@ -35603,15 +33653,6 @@ void UnityEngine_U2D_SpriteAtlasManager_Register(MonoObject* spriteAtlas)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.U2D.SpriteAtlasManager::Register");
 	Il2CppObject* i2spriteAtlas = get_il2cpp_object(spriteAtlas,il2cpp_get_class_UnityEngine_U2D_SpriteAtlas());
 	icall(i2spriteAtlas);
-}
-void UnityEngine_U2D_SpriteAtlas_Internal_Create_19(MonoObject* self)
-{
-	typedef void (* ICallMethod) (Il2CppObject* self);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.U2D.SpriteAtlas::Internal_Create");
-	Il2CppObject* i2self = get_il2cpp_object(self,il2cpp_get_class_UnityEngine_U2D_SpriteAtlas());
-	icall(i2self);
 }
 bool UnityEngine_U2D_SpriteAtlas_get_isVariant(MonoObject* thiz)
 {
@@ -36522,7 +34563,7 @@ void UnityEngine_Event_Internal_Use(MonoObject* thiz)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Event());
 	icall(i2thiz);
 }
-void * UnityEngine_Event_Internal_Create_20(int32_t displayIndex)
+void * UnityEngine_Event_Internal_Create_19(int32_t displayIndex)
 {
 	typedef void * (* ICallMethod) (int32_t displayIndex);
 	static ICallMethod icall;
@@ -36531,7 +34572,7 @@ void * UnityEngine_Event_Internal_Create_20(int32_t displayIndex)
 	void * i2res = icall(displayIndex);
 	return i2res;
 }
-void UnityEngine_Event_Internal_Destroy_4(void * ptr)
+void UnityEngine_Event_Internal_Destroy_3(void * ptr)
 {
 	typedef void (* ICallMethod) (void * ptr);
 	static ICallMethod icall;
@@ -36647,7 +34688,7 @@ void UnityEngine_GUI_set_changed(bool value)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUI::set_changed");
 	icall(value);
 }
-bool UnityEngine_GUI_get_enabled_8()
+bool UnityEngine_GUI_get_enabled_7()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -36950,7 +34991,7 @@ void UnityEngine_GUI_DragWindow_Injected(void * position)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUI::DragWindow_Injected");
 	icall(position);
 }
-bool UnityEngine_GUIClip_get_enabled_9()
+bool UnityEngine_GUIClip_get_enabled_8()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -37144,7 +35185,7 @@ void UnityEngine_GUIDebugger_LogEndProperty()
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUIDebugger::LogEndProperty");
 	icall();
 }
-bool UnityEngine_GUIDebugger_get_active_3()
+bool UnityEngine_GUIDebugger_get_active_1()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -37233,27 +35274,6 @@ void UnityEngine_GUIStyleState_set_background(MonoObject* thiz, MonoObject* valu
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUIStyleState::set_background");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GUIStyleState());
 	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Texture2D());
-	icall(i2thiz,i2value);
-}
-MonoArray* UnityEngine_GUIStyleState_get_scaledBackgrounds(MonoObject* thiz)
-{
-	typedef Il2CppArray* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUIStyleState::get_scaledBackgrounds");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GUIStyleState());
-	Il2CppArray* i2res = icall(i2thiz);
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
-}
-void UnityEngine_GUIStyleState_set_scaledBackgrounds(MonoObject* thiz, MonoArray* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUIStyleState::set_scaledBackgrounds");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GUIStyleState());
-	Il2CppArray* i2value = get_il2cpp_array(value);
 	icall(i2thiz,i2value);
 }
 void * UnityEngine_GUIStyleState_Init_3()
@@ -37543,7 +35563,7 @@ void UnityEngine_GUIStyle_set_richText(MonoObject* thiz, bool value)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GUIStyle());
 	icall(i2thiz,value);
 }
-void * UnityEngine_GUIStyle_Internal_Create_21(MonoObject* self)
+void * UnityEngine_GUIStyle_Internal_Create_20(MonoObject* self)
 {
 	typedef void * (* ICallMethod) (Il2CppObject* self);
 	static ICallMethod icall;
@@ -37564,7 +35584,7 @@ void * UnityEngine_GUIStyle_Internal_Copy_1(MonoObject* self, MonoObject* other)
 	void * i2res = icall(i2self,i2other);
 	return i2res;
 }
-void UnityEngine_GUIStyle_Internal_Destroy_5(void * self)
+void UnityEngine_GUIStyle_Internal_Destroy_4(void * self)
 {
 	typedef void (* ICallMethod) (void * self);
 	static ICallMethod icall;
@@ -37804,16 +35824,6 @@ void UnityEngine_GUIStyle_Internal_CalcMinMaxWidth_Injected(MonoObject* thiz, Mo
 	Il2CppObject* i2content = get_il2cpp_object(content,il2cpp_get_class_UnityEngine_GUIContent());
 	icall(i2thiz,i2content,ret);
 }
-void UnityEngine_GUIStyle_Internal_DrawPrefixLabel_Injected(MonoObject* thiz, void * position, MonoObject* content, int32_t controlID, bool on)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * position, Il2CppObject* content, int32_t controlID, bool on);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUIStyle::Internal_DrawPrefixLabel_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GUIStyle());
-	Il2CppObject* i2content = get_il2cpp_object(content,il2cpp_get_class_UnityEngine_GUIContent());
-	icall(i2thiz,position,i2content,controlID,on);
-}
 void UnityEngine_GUIStyle_SetMouseTooltip_Injected(MonoString* tooltip, void * screenRect)
 {
 	typedef void (* ICallMethod) (Il2CppString* tooltip, void * screenRect);
@@ -37832,7 +35842,7 @@ bool UnityEngine_GUIUtility_get_hasModalWindow()
 	bool i2res = icall();
 	return i2res;
 }
-float UnityEngine_GUIUtility_get_pixelsPerPoint_1()
+float UnityEngine_GUIUtility_get_pixelsPerPoint()
 {
 	typedef float (* ICallMethod) ();
 	static ICallMethod icall;
@@ -37954,14 +35964,6 @@ int32_t UnityEngine_GUIUtility_GetPermanentControlID()
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUIUtility::GetPermanentControlID");
 	int32_t i2res = icall();
 	return i2res;
-}
-void UnityEngine_GUIUtility_UpdateUndoName()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUIUtility::UpdateUndoName");
-	icall();
 }
 int32_t UnityEngine_GUIUtility_CheckForTabEvent(MonoObject* evt)
 {
@@ -38142,7 +36144,7 @@ void UnityEngine_GUIUtility_InternalScreenToWindowPoint_Injected(void * screenPo
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.GUIUtility::InternalScreenToWindowPoint_Injected");
 	icall(screenPoint,ret);
 }
-void * UnityEngine_ObjectGUIState_Internal_Create_22()
+void * UnityEngine_ObjectGUIState_Internal_Create_21()
 {
 	typedef void * (* ICallMethod) ();
 	static ICallMethod icall;
@@ -38151,7 +36153,7 @@ void * UnityEngine_ObjectGUIState_Internal_Create_22()
 	void * i2res = icall();
 	return i2res;
 }
-void UnityEngine_ObjectGUIState_Internal_Destroy_6(void * ptr)
+void UnityEngine_ObjectGUIState_Internal_Destroy_5(void * ptr)
 {
 	typedef void (* ICallMethod) (void * ptr);
 	static ICallMethod icall;
@@ -38330,55 +36332,6 @@ void UnityEngine_LocalizationAsset_set_isEditorAsset(MonoObject* thiz, bool valu
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.LocalizationAsset::set_isEditorAsset");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_LocalizationAsset());
 	icall(i2thiz,value);
-}
-void UnityEngine_ParticleSystem_SetCustomParticleDataInternal(MonoObject* thiz, MonoObject* customData, int32_t streamIndex)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* customData, int32_t streamIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::SetCustomParticleDataInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	Il2CppObject* i2customData = get_il2cpp_object(customData,NULL);
-	icall(i2thiz,i2customData,streamIndex);
-}
-int32_t UnityEngine_ParticleSystem_GetCustomParticleDataInternal(MonoObject* thiz, MonoObject* customData, int32_t streamIndex)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* customData, int32_t streamIndex);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::GetCustomParticleDataInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	Il2CppObject* i2customData = get_il2cpp_object(customData,NULL);
-	int32_t i2res = icall(i2thiz,i2customData,streamIndex);
-	return i2res;
-}
-void UnityEngine_ParticleSystem_Internal_EmitOld(MonoObject* thiz, void * particle)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * particle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::Internal_EmitOld");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	icall(i2thiz,particle);
-}
-void UnityEngine_ParticleSystem_TriggerSubEmitter(MonoObject* thiz, int32_t subEmitterIndex, void * particle)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t subEmitterIndex, void * particle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::TriggerSubEmitter");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	icall(i2thiz,subEmitterIndex,particle);
-}
-void UnityEngine_ParticleSystem_Internal_TriggerSubEmitter(MonoObject* thiz, int32_t subEmitterIndex, MonoObject* particles)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t subEmitterIndex, Il2CppObject* particles);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::Internal_TriggerSubEmitter");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	Il2CppObject* i2particles = get_il2cpp_object(particles,NULL);
-	icall(i2thiz,subEmitterIndex,i2particles);
 }
 bool UnityEngine_ParticleSystem_get_isPlaying_5(MonoObject* thiz)
 {
@@ -38598,72 +36551,54 @@ void UnityEngine_ParticleSystem_ResetPreMappedBufferMemory()
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::ResetPreMappedBufferMemory");
 	icall();
 }
-void UnityEngine_ParticleSystem_SetupDefaultType(MonoObject* thiz, int32_t type)
+void UnityEngine_ParticleSystem_SetCustomParticleDataInternal(MonoObject* thiz, MonoObject* customData, int32_t streamIndex)
 {
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t type);
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* customData, int32_t streamIndex);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::SetupDefaultType");
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::SetCustomParticleDataInternal");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	icall(i2thiz,type);
+	Il2CppObject* i2customData = get_il2cpp_object(customData,NULL);
+	icall(i2thiz,i2customData,streamIndex);
 }
-void UnityEngine_ParticleSystem_GenerateNoisePreviewTexture(MonoObject* thiz, MonoObject* dst)
+int32_t UnityEngine_ParticleSystem_GetCustomParticleDataInternal(MonoObject* thiz, MonoObject* customData, int32_t streamIndex)
 {
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* dst);
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* customData, int32_t streamIndex);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::GenerateNoisePreviewTexture");
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::GetCustomParticleDataInternal");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	Il2CppObject* i2dst = get_il2cpp_object(dst,il2cpp_get_class_UnityEngine_Texture2D());
-	icall(i2thiz,i2dst);
-}
-void UnityEngine_ParticleSystem_CalculateEffectUIData(MonoObject* thiz, void * particleCount, void * fastestParticle, void * slowestParticle)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * particleCount, void * fastestParticle, void * slowestParticle);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::CalculateEffectUIData");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	icall(i2thiz,particleCount,fastestParticle,slowestParticle);
-}
-int32_t UnityEngine_ParticleSystem_GenerateRandomSeed(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::GenerateRandomSeed");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	int32_t i2res = icall(i2thiz);
+	Il2CppObject* i2customData = get_il2cpp_object(customData,NULL);
+	int32_t i2res = icall(i2thiz,i2customData,streamIndex);
 	return i2res;
 }
-bool UnityEngine_ParticleSystem_CalculateEffectUISubEmitterData(MonoObject* thiz, void * particleCount, void * fastestParticle, void * slowestParticle)
+void UnityEngine_ParticleSystem_Internal_EmitOld(MonoObject* thiz, void * particle)
 {
-	typedef bool (* ICallMethod) (Il2CppObject* thiz, void * particleCount, void * fastestParticle, void * slowestParticle);
+	typedef void (* ICallMethod) (Il2CppObject* thiz, void * particle);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::CalculateEffectUISubEmitterData");
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::Internal_EmitOld");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	bool i2res = icall(i2thiz,particleCount,fastestParticle,slowestParticle);
-	return i2res;
+	icall(i2thiz,particle);
 }
-bool UnityEngine_ParticleSystem_CheckVertexStreamsMatchShader(bool hasTangent, bool hasColor, int32_t texCoordChannelCount, MonoObject* material, void * tangentError, void * colorError, void * uvError)
+void UnityEngine_ParticleSystem_TriggerSubEmitter(MonoObject* thiz, int32_t subEmitterIndex, void * particle)
 {
-	typedef bool (* ICallMethod) (bool hasTangent, bool hasColor, int32_t texCoordChannelCount, Il2CppObject* material, void * tangentError, void * colorError, void * uvError);
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t subEmitterIndex, void * particle);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::CheckVertexStreamsMatchShader");
-	Il2CppObject* i2material = get_il2cpp_object(material,il2cpp_get_class_UnityEngine_Material());
-	bool i2res = icall(hasTangent,hasColor,texCoordChannelCount,i2material,tangentError,colorError,uvError);
-	return i2res;
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::TriggerSubEmitter");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
+	icall(i2thiz,subEmitterIndex,particle);
 }
-int32_t UnityEngine_ParticleSystem_GetMaxTexCoordStreams()
+void UnityEngine_ParticleSystem_Internal_TriggerSubEmitter(MonoObject* thiz, int32_t subEmitterIndex, MonoObject* particles)
 {
-	typedef int32_t (* ICallMethod) ();
+	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t subEmitterIndex, Il2CppObject* particles);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::GetMaxTexCoordStreams");
-	int32_t i2res = icall();
-	return i2res;
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::Internal_TriggerSubEmitter");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
+	Il2CppObject* i2particles = get_il2cpp_object(particles,NULL);
+	icall(i2thiz,subEmitterIndex,i2particles);
 }
 void UnityEngine_ParticleSystem_GetParticleCurrentSize3D_Injected(MonoObject* thiz, void * particle, void * ret)
 {
@@ -38691,107 +36626,6 @@ void UnityEngine_ParticleSystem_Emit_Injected(MonoObject* thiz, void * emitParam
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::Emit_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
 	icall(i2thiz,emitParams,count);
-}
-void UnityEngine_ParticleSystem_get_localToWorldMatrix_Injected_2(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystem::get_localToWorldMatrix_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystem());
-	icall(i2thiz,ret);
-}
-MonoObject* UnityEngine_ParticleSystemRenderer_get_mesh_1(MonoObject* thiz)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::get_mesh");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	Il2CppObject* i2res = icall(i2thiz);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Mesh());
-	return monoi2res;
-}
-void UnityEngine_ParticleSystemRenderer_set_mesh_1(MonoObject* thiz, MonoObject* value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::set_mesh");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Mesh());
-	icall(i2thiz,i2value);
-}
-int32_t UnityEngine_ParticleSystemRenderer_Internal_GetMeshCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::Internal_GetMeshCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_ParticleSystemRenderer_GetMeshes(MonoObject* thiz, MonoArray* meshes)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* meshes);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::GetMeshes");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	Il2CppArray* i2meshes = get_il2cpp_array(meshes);
-	int32_t i2res = icall(i2thiz,i2meshes);
-	return i2res;
-}
-void UnityEngine_ParticleSystemRenderer_SetMeshes(MonoObject* thiz, MonoArray* meshes, int32_t size)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* meshes, int32_t size);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::SetMeshes");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	Il2CppArray* i2meshes = get_il2cpp_array(meshes);
-	icall(i2thiz,i2meshes,size);
-}
-int32_t UnityEngine_ParticleSystemRenderer_get_activeVertexStreamsCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::get_activeVertexStreamsCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_ParticleSystemRenderer_SetActiveVertexStreamsInternal(MonoObject* thiz, MonoObject* streams)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* streams);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::SetActiveVertexStreamsInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	Il2CppObject* i2streams = get_il2cpp_object(streams,NULL);
-	icall(i2thiz,i2streams);
-}
-void UnityEngine_ParticleSystemRenderer_GetActiveVertexStreamsInternal(MonoObject* thiz, MonoObject* streams)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* streams);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::GetActiveVertexStreamsInternal");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	Il2CppObject* i2streams = get_il2cpp_object(streams,NULL);
-	icall(i2thiz,i2streams);
-}
-bool UnityEngine_ParticleSystemRenderer_get_supportsMeshInstancing(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::get_supportsMeshInstancing");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	bool i2res = icall(i2thiz);
-	return i2res;
 }
 int32_t UnityEngine_ParticleSystemRenderer_get_alignment_3(MonoObject* thiz)
 {
@@ -39102,24 +36936,87 @@ void UnityEngine_ParticleSystemRenderer_BakeTrailsMesh(MonoObject* thiz, MonoObj
 	Il2CppObject* i2camera = get_il2cpp_object(camera,il2cpp_get_class_UnityEngine_Camera());
 	icall(i2thiz,i2mesh,i2camera,useTransform);
 }
-bool UnityEngine_ParticleSystemRenderer_get_editorEnabled(MonoObject* thiz)
+MonoObject* UnityEngine_ParticleSystemRenderer_get_mesh_1(MonoObject* thiz)
 {
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
+	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::get_editorEnabled");
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::get_mesh");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	bool i2res = icall(i2thiz);
+	Il2CppObject* i2res = icall(i2thiz);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Mesh());
+	return monoi2res;
+}
+void UnityEngine_ParticleSystemRenderer_set_mesh_1(MonoObject* thiz, MonoObject* value)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::set_mesh");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
+	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Mesh());
+	icall(i2thiz,i2value);
+}
+int32_t UnityEngine_ParticleSystemRenderer_Internal_GetMeshCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::Internal_GetMeshCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
+	int32_t i2res = icall(i2thiz);
 	return i2res;
 }
-void UnityEngine_ParticleSystemRenderer_set_editorEnabled(MonoObject* thiz, bool value)
+int32_t UnityEngine_ParticleSystemRenderer_GetMeshes(MonoObject* thiz, MonoArray* meshes)
 {
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* meshes);
 	static ICallMethod icall;
 	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::set_editorEnabled");
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::GetMeshes");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
-	icall(i2thiz,value);
+	Il2CppArray* i2meshes = get_il2cpp_array(meshes);
+	int32_t i2res = icall(i2thiz,i2meshes);
+	return i2res;
+}
+void UnityEngine_ParticleSystemRenderer_SetMeshes(MonoObject* thiz, MonoArray* meshes, int32_t size)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppArray* meshes, int32_t size);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::SetMeshes");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
+	Il2CppArray* i2meshes = get_il2cpp_array(meshes);
+	icall(i2thiz,i2meshes,size);
+}
+int32_t UnityEngine_ParticleSystemRenderer_get_activeVertexStreamsCount(MonoObject* thiz)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::get_activeVertexStreamsCount");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
+	int32_t i2res = icall(i2thiz);
+	return i2res;
+}
+void UnityEngine_ParticleSystemRenderer_SetActiveVertexStreamsInternal(MonoObject* thiz, MonoObject* streams)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* streams);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::SetActiveVertexStreamsInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
+	Il2CppObject* i2streams = get_il2cpp_object(streams,NULL);
+	icall(i2thiz,i2streams);
+}
+void UnityEngine_ParticleSystemRenderer_GetActiveVertexStreamsInternal(MonoObject* thiz, MonoObject* streams)
+{
+	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppObject* streams);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::GetActiveVertexStreamsInternal");
+	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
+	Il2CppObject* i2streams = get_il2cpp_object(streams,NULL);
+	icall(i2thiz,i2streams);
 }
 void UnityEngine_ParticleSystemRenderer_get_pivot_Injected_2(MonoObject* thiz, void * ret)
 {
@@ -39156,80 +37053,6 @@ void UnityEngine_ParticleSystemRenderer_set_flip_Injected(MonoObject* thiz, void
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemRenderer::set_flip_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemRenderer());
 	icall(i2thiz,value);
-}
-MonoObject* UnityEngine_ParticleCollisionEvent_InstanceIDToColliderComponent(int32_t instanceID)
-{
-	typedef Il2CppObject* (* ICallMethod) (int32_t instanceID);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleCollisionEvent::InstanceIDToColliderComponent");
-	Il2CppObject* i2res = icall(instanceID);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Component());
-	return monoi2res;
-}
-int32_t UnityEngine_ParticleSystemExtensionsImpl_GetSafeCollisionEventSize(MonoObject* ps)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* ps);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetSafeCollisionEventSize");
-	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
-	int32_t i2res = icall(i2ps);
-	return i2res;
-}
-int32_t UnityEngine_ParticleSystemExtensionsImpl_GetCollisionEventsDeprecated(MonoObject* ps, MonoObject* go, void* collisionEvents)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* ps, Il2CppObject* go, void* collisionEvents);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetCollisionEventsDeprecated");
-	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
-	Il2CppObject* i2go = get_il2cpp_object(go,il2cpp_get_class_UnityEngine_GameObject());
-	int32_t i2res = icall(i2ps,i2go,collisionEvents);
-	return i2res;
-}
-int32_t UnityEngine_ParticleSystemExtensionsImpl_GetSafeTriggerParticlesSize(MonoObject* ps, int32_t type)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* ps, int32_t type);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetSafeTriggerParticlesSize");
-	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
-	int32_t i2res = icall(i2ps,type);
-	return i2res;
-}
-int32_t UnityEngine_ParticleSystemExtensionsImpl_GetCollisionEvents(MonoObject* ps, MonoObject* go, MonoObject* collisionEvents)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* ps, Il2CppObject* go, Il2CppObject* collisionEvents);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetCollisionEvents");
-	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
-	Il2CppObject* i2go = get_il2cpp_object(go,il2cpp_get_class_UnityEngine_GameObject());
-	Il2CppObject* i2collisionEvents = get_il2cpp_object(collisionEvents,NULL);
-	int32_t i2res = icall(i2ps,i2go,i2collisionEvents);
-	return i2res;
-}
-int32_t UnityEngine_ParticleSystemExtensionsImpl_GetTriggerParticles(MonoObject* ps, int32_t type, MonoObject* particles)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* ps, int32_t type, Il2CppObject* particles);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetTriggerParticles");
-	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
-	Il2CppObject* i2particles = get_il2cpp_object(particles,NULL);
-	int32_t i2res = icall(i2ps,type,i2particles);
-	return i2res;
-}
-void UnityEngine_ParticleSystemExtensionsImpl_SetTriggerParticles(MonoObject* ps, int32_t type, MonoObject* particles, int32_t offset, int32_t count)
-{
-	typedef void (* ICallMethod) (Il2CppObject* ps, int32_t type, Il2CppObject* particles, int32_t offset, int32_t count);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::SetTriggerParticles");
-	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
-	Il2CppObject* i2particles = get_il2cpp_object(particles,NULL);
-	icall(i2ps,type,i2particles,offset,count);
 }
 int32_t UnityEngine_ParticleSystemForceField_get_shape_1(MonoObject* thiz)
 {
@@ -39384,16 +37207,6 @@ void UnityEngine_ParticleSystemForceField_set_vectorField(MonoObject* thiz, Mono
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemForceField());
 	Il2CppObject* i2value = get_il2cpp_object(value,il2cpp_get_class_UnityEngine_Texture3D());
 	icall(i2thiz,i2value);
-}
-MonoArray* UnityEngine_ParticleSystemForceField_FindAll()
-{
-	typedef Il2CppArray* (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemForceField::FindAll");
-	Il2CppArray* i2res = icall();
-	MonoArray* monoi2res = get_mono_array(i2res);
-	return monoi2res;
 }
 void UnityEngine_ParticleSystemForceField_get_rotationRandomness_Injected(MonoObject* thiz, void * ret)
 {
@@ -39575,7 +37388,81 @@ void UnityEngine_ParticleSystemForceField_set_vectorFieldAttraction_Injected(Mon
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_ParticleSystemForceField());
 	icall(i2thiz,value);
 }
-bool UnityEngine_Analytics_PerformanceReporting_get_enabled_10()
+MonoObject* UnityEngine_ParticleCollisionEvent_InstanceIDToColliderComponent(int32_t instanceID)
+{
+	typedef Il2CppObject* (* ICallMethod) (int32_t instanceID);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleCollisionEvent::InstanceIDToColliderComponent");
+	Il2CppObject* i2res = icall(instanceID);
+	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Component());
+	return monoi2res;
+}
+int32_t UnityEngine_ParticleSystemExtensionsImpl_GetSafeCollisionEventSize(MonoObject* ps)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* ps);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetSafeCollisionEventSize");
+	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
+	int32_t i2res = icall(i2ps);
+	return i2res;
+}
+int32_t UnityEngine_ParticleSystemExtensionsImpl_GetCollisionEventsDeprecated(MonoObject* ps, MonoObject* go, void* collisionEvents)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* ps, Il2CppObject* go, void* collisionEvents);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetCollisionEventsDeprecated");
+	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
+	Il2CppObject* i2go = get_il2cpp_object(go,il2cpp_get_class_UnityEngine_GameObject());
+	int32_t i2res = icall(i2ps,i2go,collisionEvents);
+	return i2res;
+}
+int32_t UnityEngine_ParticleSystemExtensionsImpl_GetSafeTriggerParticlesSize(MonoObject* ps, int32_t type)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* ps, int32_t type);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetSafeTriggerParticlesSize");
+	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
+	int32_t i2res = icall(i2ps,type);
+	return i2res;
+}
+int32_t UnityEngine_ParticleSystemExtensionsImpl_GetCollisionEvents(MonoObject* ps, MonoObject* go, MonoObject* collisionEvents)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* ps, Il2CppObject* go, Il2CppObject* collisionEvents);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetCollisionEvents");
+	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
+	Il2CppObject* i2go = get_il2cpp_object(go,il2cpp_get_class_UnityEngine_GameObject());
+	Il2CppObject* i2collisionEvents = get_il2cpp_object(collisionEvents,NULL);
+	int32_t i2res = icall(i2ps,i2go,i2collisionEvents);
+	return i2res;
+}
+int32_t UnityEngine_ParticleSystemExtensionsImpl_GetTriggerParticles(MonoObject* ps, int32_t type, MonoObject* particles)
+{
+	typedef int32_t (* ICallMethod) (Il2CppObject* ps, int32_t type, Il2CppObject* particles);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::GetTriggerParticles");
+	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
+	Il2CppObject* i2particles = get_il2cpp_object(particles,NULL);
+	int32_t i2res = icall(i2ps,type,i2particles);
+	return i2res;
+}
+void UnityEngine_ParticleSystemExtensionsImpl_SetTriggerParticles(MonoObject* ps, int32_t type, MonoObject* particles, int32_t offset, int32_t count)
+{
+	typedef void (* ICallMethod) (Il2CppObject* ps, int32_t type, Il2CppObject* particles, int32_t offset, int32_t count);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.ParticleSystemExtensionsImpl::SetTriggerParticles");
+	Il2CppObject* i2ps = get_il2cpp_object(ps,il2cpp_get_class_UnityEngine_ParticleSystem());
+	Il2CppObject* i2particles = get_il2cpp_object(particles,NULL);
+	icall(i2ps,type,i2particles,offset,count);
+}
+bool UnityEngine_Analytics_PerformanceReporting_get_enabled_9()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -44553,7 +42440,7 @@ void* UnityEngine_Rigidbody_Internal_SweepTestAll_Injected(MonoObject* thiz, voi
 	void* i2res = icall(i2thiz,direction,maxDistance,queryTriggerInteraction);
 	return i2res;
 }
-bool UnityEngine_Collider_get_enabled_11(MonoObject* thiz)
+bool UnityEngine_Collider_get_enabled_10(MonoObject* thiz)
 {
 	typedef bool (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -45431,15 +43318,6 @@ void UnityEngine_Joint_set_connectedAnchor_Injected_1(MonoObject* thiz, void * v
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Joint::set_connectedAnchor_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Joint());
 	icall(i2thiz,value);
-}
-void UnityEngine_Joint_GetLocalPoseMatrix_Injected(MonoObject* thiz, int32_t bodyIndex, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, int32_t bodyIndex, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Joint::GetLocalPoseMatrix_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Joint());
-	icall(i2thiz,bodyIndex,ret);
 }
 bool UnityEngine_HingeJoint_get_useMotor_3(MonoObject* thiz)
 {
@@ -47190,35 +45068,6 @@ void UnityEngine_SpriteMask_GetSpriteBounds_Injected(MonoObject* thiz, void * re
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_SpriteMask());
 	icall(i2thiz,ret);
 }
-int32_t UnityEngine_Experimental_U2D_SpriteShapeRenderer_GetVertexCount_1(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.U2D.SpriteShapeRenderer::GetVertexCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Experimental_U2D_SpriteShapeRenderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-int32_t UnityEngine_Experimental_U2D_SpriteShapeRenderer_GetIndexCount(MonoObject* thiz)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.U2D.SpriteShapeRenderer::GetIndexCount");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Experimental_U2D_SpriteShapeRenderer());
-	int32_t i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Experimental_U2D_SpriteShapeRenderer_GetLocalAABB_Injected_1(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.U2D.SpriteShapeRenderer::GetLocalAABB_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Experimental_U2D_SpriteShapeRenderer());
-	icall(i2thiz,ret);
-}
 void* UnityEngine_Experimental_U2D_SpriteShapeUtility_Generate_Injected(MonoObject* mesh, void * shapeParams, void* points, void* metaData, void* angleRange, MonoArray* sprites, MonoArray* corners)
 {
 	typedef void* (* ICallMethod) (Il2CppObject* mesh, void * shapeParams, void* points, void* metaData, void* angleRange, Il2CppArray* sprites, Il2CppArray* corners);
@@ -47860,44 +45709,6 @@ void UnityEngine_Terrain_Internal_GetSplatMaterialPropertyBlock(MonoObject* thiz
 	Il2CppObject* i2dest = get_il2cpp_object(dest,il2cpp_get_class_UnityEngine_MaterialPropertyBlock());
 	icall(i2thiz,i2dest);
 }
-bool UnityEngine_Terrain_get_bakeLightProbesForTrees(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Terrain::get_bakeLightProbesForTrees");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Terrain());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Terrain_set_bakeLightProbesForTrees(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Terrain::set_bakeLightProbesForTrees");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Terrain());
-	icall(i2thiz,value);
-}
-bool UnityEngine_Terrain_get_deringLightProbesForTrees(MonoObject* thiz)
-{
-	typedef bool (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Terrain::get_deringLightProbesForTrees");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Terrain());
-	bool i2res = icall(i2thiz);
-	return i2res;
-}
-void UnityEngine_Terrain_set_deringLightProbesForTrees(MonoObject* thiz, bool value)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, bool value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Terrain::set_deringLightProbesForTrees");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Terrain());
-	icall(i2thiz,value);
-}
 bool UnityEngine_Terrain_get_preserveTreePrototypeLayers(MonoObject* thiz)
 {
 	typedef bool (* ICallMethod) (Il2CppObject* thiz);
@@ -48175,7 +45986,7 @@ int32_t UnityEngine_TerrainData_GetBoundaryValue(int32_t type)
 	int32_t i2res = icall(type);
 	return i2res;
 }
-void UnityEngine_TerrainData_Internal_Create_23(MonoObject* terrainData)
+void UnityEngine_TerrainData_Internal_Create_22(MonoObject* terrainData)
 {
 	typedef void (* ICallMethod) (Il2CppObject* terrainData);
 	static ICallMethod icall;
@@ -48897,7 +46708,7 @@ int32_t UnityEngine_TerrainData_RemoveTrees_Injected_1(MonoObject* thiz, void * 
 	int32_t i2res = icall(i2thiz,position,radius,prototypeIndex);
 	return i2res;
 }
-void UnityEngine_TerrainLayer_Internal_Create_24(MonoObject* layer)
+void UnityEngine_TerrainLayer_Internal_Create_23(MonoObject* layer)
 {
 	typedef void (* ICallMethod) (Il2CppObject* layer);
 	static ICallMethod icall;
@@ -49499,7 +47310,7 @@ int32_t UnityEngine_TextGenerator_get_fontSizeUsedForBestFit(MonoObject* thiz)
 	int32_t i2res = icall(i2thiz);
 	return i2res;
 }
-void * UnityEngine_TextGenerator_Internal_Create_25()
+void * UnityEngine_TextGenerator_Internal_Create_24()
 {
 	typedef void * (* ICallMethod) ();
 	static ICallMethod icall;
@@ -49508,7 +47319,7 @@ void * UnityEngine_TextGenerator_Internal_Create_25()
 	void * i2res = icall();
 	return i2res;
 }
-void UnityEngine_TextGenerator_Internal_Destroy_7(void * ptr)
+void UnityEngine_TextGenerator_Internal_Destroy_6(void * ptr)
 {
 	typedef void (* ICallMethod) (void * ptr);
 	static ICallMethod icall;
@@ -49597,7 +47408,7 @@ bool UnityEngine_TextGenerator_Populate_Internal_Injected(MonoObject* thiz, Mono
 	bool i2res = icall(i2thiz,i2str,i2font,color,fontSize,scaleFactor,lineSpacing,style,richText,resizeTextForBestFit,resizeTextMinSize,resizeTextMaxSize,verticalOverFlow,horizontalOverflow,updateBounds,anchor,extentsX,extentsY,pivotX,pivotY,generateOutOfBounds,alignByGeometry,error);
 	return i2res;
 }
-MonoString* UnityEngine_GUIText_get_text_2(MonoObject* thiz)
+MonoString* UnityEngine_GUIText_get_text_1(MonoObject* thiz)
 {
 	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -49608,7 +47419,7 @@ MonoString* UnityEngine_GUIText_get_text_2(MonoObject* thiz)
 	MonoString* monoi2res = get_mono_string(i2res);
 	return monoi2res;
 }
-void UnityEngine_GUIText_set_text_1(MonoObject* thiz, MonoString* value)
+void UnityEngine_GUIText_set_text(MonoObject* thiz, MonoString* value)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
 	static ICallMethod icall;
@@ -49829,7 +47640,7 @@ void UnityEngine_GUIText_set_pixelOffset_Injected(MonoObject* thiz, void * value
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_GUIText());
 	icall(i2thiz,value);
 }
-MonoString* UnityEngine_TextMesh_get_text_3(MonoObject* thiz)
+MonoString* UnityEngine_TextMesh_get_text_2(MonoObject* thiz)
 {
 	typedef Il2CppString* (* ICallMethod) (Il2CppObject* thiz);
 	static ICallMethod icall;
@@ -49840,7 +47651,7 @@ MonoString* UnityEngine_TextMesh_get_text_3(MonoObject* thiz)
 	MonoString* monoi2res = get_mono_string(i2res);
 	return monoi2res;
 }
-void UnityEngine_TextMesh_set_text_2(MonoObject* thiz, MonoString* value)
+void UnityEngine_TextMesh_set_text_1(MonoObject* thiz, MonoString* value)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, Il2CppString* value);
 	static ICallMethod icall;
@@ -50389,15 +48200,6 @@ void UnityEngine_Tilemaps_Tilemap_CompressBounds(MonoObject* thiz)
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
 	icall(i2thiz);
 }
-void UnityEngine_Tilemaps_Tilemap_ClearAllEditorPreviewTiles(MonoObject* thiz)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::ClearAllEditorPreviewTiles");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	icall(i2thiz);
-}
 void UnityEngine_Tilemaps_Tilemap_get_localBounds_Injected_1(MonoObject* thiz, void * ret)
 {
 	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
@@ -50687,122 +48489,6 @@ void UnityEngine_Tilemaps_Tilemap_BoxFillTileAsset_Injected(MonoObject* thiz, vo
 	static ICallMethod icall;
 	if(!icall)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::BoxFillTileAsset_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	Il2CppObject* i2tile = get_il2cpp_object(tile,il2cpp_get_class_UnityEngine_Object());
-	icall(i2thiz,position,i2tile,startX,startY,endX,endY);
-}
-void UnityEngine_Tilemaps_Tilemap_get_editorPreviewOrigin_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::get_editorPreviewOrigin_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	icall(i2thiz,ret);
-}
-void UnityEngine_Tilemaps_Tilemap_get_editorPreviewSize_Injected(MonoObject* thiz, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::get_editorPreviewSize_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	icall(i2thiz,ret);
-}
-MonoObject* UnityEngine_Tilemaps_Tilemap_GetEditorPreviewTileAsset_Injected(MonoObject* thiz, void * position)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, void * position);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewTileAsset_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	Il2CppObject* i2res = icall(i2thiz,position);
-	MonoObject* monoi2res = get_mono_object(i2res,get_mono_class(il2cpp_object_get_class(i2res)));
-	return monoi2res;
-}
-void UnityEngine_Tilemaps_Tilemap_SetEditorPreviewTileAsset_Injected(MonoObject* thiz, void * position, MonoObject* tile)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * position, Il2CppObject* tile);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::SetEditorPreviewTileAsset_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	Il2CppObject* i2tile = get_il2cpp_object(tile,il2cpp_get_class_UnityEngine_Object());
-	icall(i2thiz,position,i2tile);
-}
-MonoObject* UnityEngine_Tilemaps_Tilemap_GetEditorPreviewSprite_Injected(MonoObject* thiz, void * position)
-{
-	typedef Il2CppObject* (* ICallMethod) (Il2CppObject* thiz, void * position);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewSprite_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	Il2CppObject* i2res = icall(i2thiz,position);
-	MonoObject* monoi2res = get_mono_object(i2res,mono_get_class_UnityEngine_Sprite());
-	return monoi2res;
-}
-void UnityEngine_Tilemaps_Tilemap_GetEditorPreviewTransformMatrix_Injected(MonoObject* thiz, void * position, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * position, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewTransformMatrix_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	icall(i2thiz,position,ret);
-}
-void UnityEngine_Tilemaps_Tilemap_SetEditorPreviewTransformMatrix_Injected(MonoObject* thiz, void * position, void * transform)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * position, void * transform);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::SetEditorPreviewTransformMatrix_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	icall(i2thiz,position,transform);
-}
-void UnityEngine_Tilemaps_Tilemap_GetEditorPreviewColor_Injected(MonoObject* thiz, void * position, void * ret)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * position, void * ret);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewColor_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	icall(i2thiz,position,ret);
-}
-void UnityEngine_Tilemaps_Tilemap_SetEditorPreviewColor_Injected(MonoObject* thiz, void * position, void * color)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * position, void * color);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::SetEditorPreviewColor_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	icall(i2thiz,position,color);
-}
-int32_t UnityEngine_Tilemaps_Tilemap_GetEditorPreviewTileFlags_Injected(MonoObject* thiz, void * position)
-{
-	typedef int32_t (* ICallMethod) (Il2CppObject* thiz, void * position);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewTileFlags_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	int32_t i2res = icall(i2thiz,position);
-	return i2res;
-}
-void UnityEngine_Tilemaps_Tilemap_EditorPreviewFloodFillTileAsset_Injected(MonoObject* thiz, void * position, MonoObject* tile)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * position, Il2CppObject* tile);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::EditorPreviewFloodFillTileAsset_Injected");
-	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
-	Il2CppObject* i2tile = get_il2cpp_object(tile,il2cpp_get_class_UnityEngine_Object());
-	icall(i2thiz,position,i2tile);
-}
-void UnityEngine_Tilemaps_Tilemap_EditorPreviewBoxFillTileAsset_Injected(MonoObject* thiz, void * position, MonoObject* tile, int32_t startX, int32_t startY, int32_t endX, int32_t endY)
-{
-	typedef void (* ICallMethod) (Il2CppObject* thiz, void * position, Il2CppObject* tile, int32_t startX, int32_t startY, int32_t endX, int32_t endY);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Tilemaps.Tilemap::EditorPreviewBoxFillTileAsset_Injected");
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Tilemaps_Tilemap());
 	Il2CppObject* i2tile = get_il2cpp_object(tile,il2cpp_get_class_UnityEngine_Object());
 	icall(i2thiz,position,i2tile,startX,startY,endX,endY);
@@ -53815,7 +51501,7 @@ void UnityEngine_Networking_GlobalConfigInternal_set_MaxNetSimulatorTimeout(Mono
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_Networking_GlobalConfigInternal());
 	icall(i2thiz,value);
 }
-bool UnityEngine_Connect_UnityConnectSettings_get_enabled_12()
+bool UnityEngine_Connect_UnityConnectSettings_get_enabled_11()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -53923,7 +51609,7 @@ void UnityEngine_Connect_UnityConnectSettings_set_testInitMode(int32_t value)
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Connect.UnityConnectSettings::set_testInitMode");
 	icall(value);
 }
-bool UnityEngine_Advertisements_UnityAdsSettings_get_enabled_13()
+bool UnityEngine_Advertisements_UnityAdsSettings_get_enabled_12()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -55024,7 +52710,7 @@ void UnityEngine_WheelCollider_set_sidewaysFriction_Injected(MonoObject* thiz, v
 	Il2CppObject* i2thiz = get_il2cpp_object(thiz,il2cpp_get_class_UnityEngine_WheelCollider());
 	icall(i2thiz,value);
 }
-void * UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_Create_26()
+void * UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_Create_25()
 {
 	typedef void * (* ICallMethod) ();
 	static ICallMethod icall;
@@ -55053,7 +52739,7 @@ void UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_InitFromEventAttrib
 	Il2CppObject* i2vfxEventAttribute = get_il2cpp_object(vfxEventAttribute,il2cpp_get_class_UnityEngine_Experimental_VFX_VFXEventAttribute());
 	icall(i2thiz,i2vfxEventAttribute);
 }
-void UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_Destroy_8(void * ptr)
+void UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_Destroy_7(void * ptr)
 {
 	typedef void (* ICallMethod) (void * ptr);
 	static ICallMethod icall;
@@ -55480,7 +53166,7 @@ void UnityEngine_Experimental_VFX_VFXManager_ProcessCamera(MonoObject* cam)
 	Il2CppObject* i2cam = get_il2cpp_object(cam,il2cpp_get_class_UnityEngine_Camera());
 	icall(i2cam);
 }
-void * UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Create_27()
+void * UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Create_26()
 {
 	typedef void * (* ICallMethod) ();
 	static ICallMethod icall;
@@ -55489,7 +53175,7 @@ void * UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Create_27()
 	void * i2res = icall();
 	return i2res;
 }
-void UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Destroy_9(void * ptr)
+void UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Destroy_8(void * ptr)
 {
 	typedef void (* ICallMethod) (void * ptr);
 	static ICallMethod icall;
@@ -56582,7 +54268,7 @@ bool UnityEngine_Experimental_Video_VideoClipPlayable_ValidateType_3(void * hdl)
 	bool i2res = icall(hdl);
 	return i2res;
 }
-void * UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Create_28()
+void * UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Create_27()
 {
 	typedef void * (* ICallMethod) ();
 	static ICallMethod icall;
@@ -56591,7 +54277,7 @@ void * UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Create_28()
 	void * i2res = icall();
 	return i2res;
 }
-void UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Destroy_10(void * ptr)
+void UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Destroy_9(void * ptr)
 {
 	typedef void (* ICallMethod) (void * ptr);
 	static ICallMethod icall;
@@ -57483,106 +55169,7 @@ uint32_t UnityEngine_Experimental_Video_VideoPlayerExtensions_InternalGetAudioSa
 	uint32_t i2res = icall(i2vp,trackIndex);
 	return i2res;
 }
-void UnityEngine_Internal_VR_VRTestMock_Reset_6()
-{
-	typedef void (* ICallMethod) ();
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::Reset");
-	icall();
-}
-void UnityEngine_Internal_VR_VRTestMock_AddTrackedDevice(int32_t nodeType)
-{
-	typedef void (* ICallMethod) (int32_t nodeType);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::AddTrackedDevice");
-	icall(nodeType);
-}
-void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateTrackedDevice(int32_t nodeType, void * position, void * rotation)
-{
-	typedef void (* ICallMethod) (int32_t nodeType, void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateTrackedDevice");
-	icall(nodeType,position,rotation);
-}
-void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateLeftEye(void * position, void * rotation)
-{
-	typedef void (* ICallMethod) (void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateLeftEye");
-	icall(position,rotation);
-}
-void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateRightEye(void * position, void * rotation)
-{
-	typedef void (* ICallMethod) (void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateRightEye");
-	icall(position,rotation);
-}
-void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateCenterEye(void * position, void * rotation)
-{
-	typedef void (* ICallMethod) (void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateCenterEye");
-	icall(position,rotation);
-}
-void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateHead(void * position, void * rotation)
-{
-	typedef void (* ICallMethod) (void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateHead");
-	icall(position,rotation);
-}
-void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateLeftHand(void * position, void * rotation)
-{
-	typedef void (* ICallMethod) (void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateLeftHand");
-	icall(position,rotation);
-}
-void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateRightHand(void * position, void * rotation)
-{
-	typedef void (* ICallMethod) (void * position, void * rotation);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateRightHand");
-	icall(position,rotation);
-}
-void UnityEngine_Internal_VR_VRTestMock_AddController(MonoString* controllerName)
-{
-	typedef void (* ICallMethod) (Il2CppString* controllerName);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::AddController");
-	Il2CppString* i2controllerName = get_il2cpp_string(controllerName);
-	icall(i2controllerName);
-}
-void UnityEngine_Internal_VR_VRTestMock_UpdateControllerAxis(MonoString* controllerName, int32_t axis, float value)
-{
-	typedef void (* ICallMethod) (Il2CppString* controllerName, int32_t axis, float value);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::UpdateControllerAxis");
-	Il2CppString* i2controllerName = get_il2cpp_string(controllerName);
-	icall(i2controllerName,axis,value);
-}
-void UnityEngine_Internal_VR_VRTestMock_UpdateControllerButton(MonoString* controllerName, int32_t button, bool pressed)
-{
-	typedef void (* ICallMethod) (Il2CppString* controllerName, int32_t button, bool pressed);
-	static ICallMethod icall;
-	if(!icall)
-		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::UpdateControllerButton");
-	Il2CppString* i2controllerName = get_il2cpp_string(controllerName);
-	icall(i2controllerName,button,pressed);
-}
-bool UnityEngine_XR_XRSettings_get_enabled_14()
+bool UnityEngine_XR_XRSettings_get_enabled_13()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -57953,7 +55540,7 @@ bool UnityEngine_Experimental_XR_Boundary_TryGetDimensionsInternal(void * dimens
 	bool i2res = icall(dimensionsOut,boundaryType);
 	return i2res;
 }
-bool UnityEngine_Experimental_XR_Boundary_get_visible_2()
+bool UnityEngine_Experimental_XR_Boundary_get_visible_1()
 {
 	typedef bool (* ICallMethod) ();
 	static ICallMethod icall;
@@ -57997,6 +55584,105 @@ void* UnityEngine_Experimental_XR_Boundary_TryGetGeometryArrayInternal(int32_t b
 		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Experimental.XR.Boundary::TryGetGeometryArrayInternal");
 	void* i2res = icall(boundaryType);
 	return i2res;
+}
+void UnityEngine_Internal_VR_VRTestMock_Reset_6()
+{
+	typedef void (* ICallMethod) ();
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::Reset");
+	icall();
+}
+void UnityEngine_Internal_VR_VRTestMock_AddTrackedDevice(int32_t nodeType)
+{
+	typedef void (* ICallMethod) (int32_t nodeType);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::AddTrackedDevice");
+	icall(nodeType);
+}
+void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateTrackedDevice(int32_t nodeType, void * position, void * rotation)
+{
+	typedef void (* ICallMethod) (int32_t nodeType, void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateTrackedDevice");
+	icall(nodeType,position,rotation);
+}
+void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateLeftEye(void * position, void * rotation)
+{
+	typedef void (* ICallMethod) (void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateLeftEye");
+	icall(position,rotation);
+}
+void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateRightEye(void * position, void * rotation)
+{
+	typedef void (* ICallMethod) (void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateRightEye");
+	icall(position,rotation);
+}
+void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateCenterEye(void * position, void * rotation)
+{
+	typedef void (* ICallMethod) (void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateCenterEye");
+	icall(position,rotation);
+}
+void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateHead(void * position, void * rotation)
+{
+	typedef void (* ICallMethod) (void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateHead");
+	icall(position,rotation);
+}
+void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateLeftHand(void * position, void * rotation)
+{
+	typedef void (* ICallMethod) (void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateLeftHand");
+	icall(position,rotation);
+}
+void UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateRightHand(void * position, void * rotation)
+{
+	typedef void (* ICallMethod) (void * position, void * rotation);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateRightHand");
+	icall(position,rotation);
+}
+void UnityEngine_Internal_VR_VRTestMock_AddController(MonoString* controllerName)
+{
+	typedef void (* ICallMethod) (Il2CppString* controllerName);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::AddController");
+	Il2CppString* i2controllerName = get_il2cpp_string(controllerName);
+	icall(i2controllerName);
+}
+void UnityEngine_Internal_VR_VRTestMock_UpdateControllerAxis(MonoString* controllerName, int32_t axis, float value)
+{
+	typedef void (* ICallMethod) (Il2CppString* controllerName, int32_t axis, float value);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::UpdateControllerAxis");
+	Il2CppString* i2controllerName = get_il2cpp_string(controllerName);
+	icall(i2controllerName,axis,value);
+}
+void UnityEngine_Internal_VR_VRTestMock_UpdateControllerButton(MonoString* controllerName, int32_t button, bool pressed)
+{
+	typedef void (* ICallMethod) (Il2CppString* controllerName, int32_t button, bool pressed);
+	static ICallMethod icall;
+	if(!icall)
+		icall = (ICallMethod)il2cpp_resolve_icall("UnityEngine.Internal.VR.VRTestMock::UpdateControllerButton");
+	Il2CppString* i2controllerName = get_il2cpp_string(controllerName);
+	icall(i2controllerName,button,pressed);
 }
 int32_t UnityEngine_WindZone_get_mode_3(MonoObject* thiz)
 {
@@ -58732,6 +56418,75 @@ int32_t UnityEngine_Experimental_XR_XRSessionSubsystem_get_LastUpdatedFrame_4(Mo
 }
 void regist_icall_gen()
 {
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshWorld::GetDefaultWorld_Injected",(void*) UnityEngine_Experimental_AI_NavMeshWorld_GetDefaultWorld_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshWorld::AddDependencyInternal_Injected",(void*) UnityEngine_Experimental_AI_NavMeshWorld_AddDependencyInternal_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::Destroy",(void*) UnityEngine_Experimental_AI_NavMeshQuery_Destroy);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::UpdateFindPath",(void*) UnityEngine_Experimental_AI_NavMeshQuery_UpdateFindPath);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::EndFindPath",(void*) UnityEngine_Experimental_AI_NavMeshQuery_EndFindPath);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetPathResult",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetPathResult);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocations",(void*) UnityEngine_Experimental_AI_NavMeshQuery_MoveLocations);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocationsInSameAreas",(void*) UnityEngine_Experimental_AI_NavMeshQuery_MoveLocationsInSameAreas);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::Create_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_Create_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::BeginFindPath_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_BeginFindPath_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::IsValidPolygon_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_IsValidPolygon_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetAgentTypeIdForPolygon_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetAgentTypeIdForPolygon_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::IsPositionInPolygon_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_IsPositionInPolygon_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetClosestPointOnPoly_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetClosestPointOnPoly_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::MapLocation_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_MapLocation_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocation_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_MoveLocation_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetPortalPoints_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetPortalPoints_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::PolygonLocalToWorldMatrix_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_PolygonLocalToWorldMatrix_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::PolygonWorldToLocalMatrix_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_PolygonWorldToLocalMatrix_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetPolygonType_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetPolygonType_Injected);
+	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::Raycast_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_Raycast_Injected);
+	mono_add_internal_call("UnityEngine.AI.NavMeshBuilder::Cancel",(void*) UnityEngine_AI_NavMeshBuilder_Cancel);
+	mono_add_internal_call("UnityEngine.AI.NavMeshBuilder::CollectSourcesInternal_Injected",(void*) UnityEngine_AI_NavMeshBuilder_CollectSourcesInternal_Injected);
+	mono_add_internal_call("UnityEngine.AI.NavMeshBuilder::UpdateNavMeshDataListInternal_Injected",(void*) UnityEngine_AI_NavMeshBuilder_UpdateNavMeshDataListInternal_Injected);
+	mono_add_internal_call("UnityEngine.AI.NavMeshBuilder::UpdateNavMeshDataAsyncListInternal_Injected",(void*) UnityEngine_AI_NavMeshBuilder_UpdateNavMeshDataAsyncListInternal_Injected);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::RemoveAllNavMeshData",(void*) UnityEngine_AI_NavMesh_RemoveAllNavMeshData);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_Raycast",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_Raycast);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_CalculatePathInternal",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_CalculatePathInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_FindClosestEdge",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_FindClosestEdge);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_SamplePosition",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_SamplePosition);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::SetLayerCost",(void*) UnityEngine_AI_NavMesh_SetLayerCost);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::GetLayerCost",(void*) UnityEngine_AI_NavMesh_GetLayerCost);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::GetNavMeshLayerFromName",(void*) UnityEngine_AI_NavMesh_GetNavMeshLayerFromName);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::SetAreaCost",(void*) UnityEngine_AI_NavMesh_SetAreaCost);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::GetAreaCost",(void*) UnityEngine_AI_NavMesh_GetAreaCost);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::GetAreaFromName",(void*) UnityEngine_AI_NavMesh_GetAreaFromName);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::TriangulateInternal",(void*) UnityEngine_AI_NavMesh_TriangulateInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::Triangulate",(void*) UnityEngine_AI_NavMesh_Triangulate);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::AddOffMeshLinks",(void*) UnityEngine_AI_NavMesh_AddOffMeshLinks);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::RestoreNavMesh",(void*) UnityEngine_AI_NavMesh_RestoreNavMesh);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::SetAvoidancePredictionTime",(void*) UnityEngine_AI_NavMesh_SetAvoidancePredictionTime);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::GetAvoidancePredictionTime",(void*) UnityEngine_AI_NavMesh_GetAvoidancePredictionTime);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::SetPathfindingIterationsPerFrame",(void*) UnityEngine_AI_NavMesh_SetPathfindingIterationsPerFrame);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::GetPathfindingIterationsPerFrame",(void*) UnityEngine_AI_NavMesh_GetPathfindingIterationsPerFrame);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::IsValidNavMeshDataHandle",(void*) UnityEngine_AI_NavMesh_IsValidNavMeshDataHandle);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::IsValidLinkHandle",(void*) UnityEngine_AI_NavMesh_IsValidLinkHandle);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::InternalGetOwner",(void*) UnityEngine_AI_NavMesh_InternalGetOwner);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::InternalSetOwner",(void*) UnityEngine_AI_NavMesh_InternalSetOwner);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::InternalGetLinkOwner",(void*) UnityEngine_AI_NavMesh_InternalGetLinkOwner);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::InternalSetLinkOwner",(void*) UnityEngine_AI_NavMesh_InternalSetLinkOwner);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::AddNavMeshDataInternal",(void*) UnityEngine_AI_NavMesh_AddNavMeshDataInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_AddNavMeshDataTransformedInternal",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_AddNavMeshDataTransformedInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::RemoveNavMeshDataInternal",(void*) UnityEngine_AI_NavMesh_RemoveNavMeshDataInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_AddLinkInternal",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_AddLinkInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::RemoveLinkInternal",(void*) UnityEngine_AI_NavMesh_RemoveLinkInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_SamplePositionFilter",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_SamplePositionFilter);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_FindClosestEdgeFilter",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_FindClosestEdgeFilter);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_RaycastFilter",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_RaycastFilter);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_CalculatePathFilterInternal",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_CalculatePathFilterInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_CreateSettings",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_CreateSettings);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::RemoveSettings",(void*) UnityEngine_AI_NavMesh_RemoveSettings);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_GetSettingsByID",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_GetSettingsByID);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::GetSettingsCount",(void*) UnityEngine_AI_NavMesh_GetSettingsCount);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_GetSettingsByIndex",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_GetSettingsByIndex);
+	mono_add_internal_call("UnityEngine.AI.NavMesh::GetSettingsNameFromID",(void*) UnityEngine_AI_NavMesh_GetSettingsNameFromID);
+	mono_add_internal_call("UnityEngine.AI.NavMeshBuildSource::InternalGetComponent",(void*) UnityEngine_AI_NavMeshBuildSource_InternalGetComponent);
+	mono_add_internal_call("UnityEngine.AI.NavMeshBuildSource::InternalGetObject",(void*) UnityEngine_AI_NavMeshBuildSource_InternalGetObject);
+	mono_add_internal_call("UnityEngine.AI.NavMeshBuildMarkup::InternalGetRootGO",(void*) UnityEngine_AI_NavMeshBuildMarkup_InternalGetRootGO);
+	mono_add_internal_call("UnityEngine.AI.NavMeshBuildSettings::InternalValidationReport_Injected",(void*) UnityEngine_AI_NavMeshBuildSettings_InternalValidationReport_Injected);
 	mono_add_internal_call("UnityEngine.AI.NavMeshPath::.ctor",(void*) UnityEngine_AI_NavMeshPath__ctor);
 	mono_add_internal_call("UnityEngine.AI.NavMeshPath::DestroyNavMeshPath",(void*) UnityEngine_AI_NavMeshPath_DestroyNavMeshPath);
 	mono_add_internal_call("UnityEngine.AI.NavMeshPath::GetCornersNonAlloc",(void*) UnityEngine_AI_NavMeshPath_GetCornersNonAlloc);
@@ -58778,13 +56533,13 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::SetPath",(void*) UnityEngine_AI_NavMeshAgent_SetPath);
 	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::CopyPathTo",(void*) UnityEngine_AI_NavMeshAgent_CopyPathTo);
 	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::FindClosestEdge",(void*) UnityEngine_AI_NavMeshAgent_FindClosestEdge);
-	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::INTERNAL_CALL_Raycast",(void*) UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_Raycast);
-	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::INTERNAL_CALL_CalculatePathInternal",(void*) UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_CalculatePathInternal);
+	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::INTERNAL_CALL_Raycast",(void*) UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_Raycast_1);
+	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::INTERNAL_CALL_CalculatePathInternal",(void*) UnityEngine_AI_NavMeshAgent_INTERNAL_CALL_CalculatePathInternal_1);
 	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::SamplePathPosition",(void*) UnityEngine_AI_NavMeshAgent_SamplePathPosition);
-	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::SetLayerCost",(void*) UnityEngine_AI_NavMeshAgent_SetLayerCost);
-	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::GetLayerCost",(void*) UnityEngine_AI_NavMeshAgent_GetLayerCost);
-	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::SetAreaCost",(void*) UnityEngine_AI_NavMeshAgent_SetAreaCost);
-	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::GetAreaCost",(void*) UnityEngine_AI_NavMeshAgent_GetAreaCost);
+	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::SetLayerCost",(void*) UnityEngine_AI_NavMeshAgent_SetLayerCost_1);
+	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::GetLayerCost",(void*) UnityEngine_AI_NavMeshAgent_GetLayerCost_1);
+	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::SetAreaCost",(void*) UnityEngine_AI_NavMeshAgent_SetAreaCost_1);
+	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::GetAreaCost",(void*) UnityEngine_AI_NavMeshAgent_GetAreaCost_1);
 	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::get_agentTypeID",(void*) UnityEngine_AI_NavMeshAgent_get_agentTypeID);
 	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::set_agentTypeID",(void*) UnityEngine_AI_NavMeshAgent_set_agentTypeID);
 	mono_add_internal_call("UnityEngine.AI.NavMeshAgent::GetOwnerInternal",(void*) UnityEngine_AI_NavMeshAgent_GetOwnerInternal);
@@ -58859,81 +56614,36 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AI.NavMeshData::INTERNAL_set_position",(void*) UnityEngine_AI_NavMeshData_INTERNAL_set_position);
 	mono_add_internal_call("UnityEngine.AI.NavMeshData::INTERNAL_get_rotation",(void*) UnityEngine_AI_NavMeshData_INTERNAL_get_rotation);
 	mono_add_internal_call("UnityEngine.AI.NavMeshData::INTERNAL_set_rotation",(void*) UnityEngine_AI_NavMeshData_INTERNAL_set_rotation);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_Raycast",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_Raycast_1);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_CalculatePathInternal",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_CalculatePathInternal_1);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_FindClosestEdge",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_FindClosestEdge);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_SamplePosition",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_SamplePosition);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::SetLayerCost",(void*) UnityEngine_AI_NavMesh_SetLayerCost_1);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::GetLayerCost",(void*) UnityEngine_AI_NavMesh_GetLayerCost_1);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::GetNavMeshLayerFromName",(void*) UnityEngine_AI_NavMesh_GetNavMeshLayerFromName);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::SetAreaCost",(void*) UnityEngine_AI_NavMesh_SetAreaCost_1);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::GetAreaCost",(void*) UnityEngine_AI_NavMesh_GetAreaCost_1);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::GetAreaFromName",(void*) UnityEngine_AI_NavMesh_GetAreaFromName);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::TriangulateInternal",(void*) UnityEngine_AI_NavMesh_TriangulateInternal);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::Triangulate",(void*) UnityEngine_AI_NavMesh_Triangulate);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::AddOffMeshLinks",(void*) UnityEngine_AI_NavMesh_AddOffMeshLinks);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::RestoreNavMesh",(void*) UnityEngine_AI_NavMesh_RestoreNavMesh);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::SetAvoidancePredictionTime",(void*) UnityEngine_AI_NavMesh_SetAvoidancePredictionTime);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::GetAvoidancePredictionTime",(void*) UnityEngine_AI_NavMesh_GetAvoidancePredictionTime);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::SetPathfindingIterationsPerFrame",(void*) UnityEngine_AI_NavMesh_SetPathfindingIterationsPerFrame);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::GetPathfindingIterationsPerFrame",(void*) UnityEngine_AI_NavMesh_GetPathfindingIterationsPerFrame);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::IsValidNavMeshDataHandle",(void*) UnityEngine_AI_NavMesh_IsValidNavMeshDataHandle);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::IsValidLinkHandle",(void*) UnityEngine_AI_NavMesh_IsValidLinkHandle);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::InternalGetOwner",(void*) UnityEngine_AI_NavMesh_InternalGetOwner);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::InternalSetOwner",(void*) UnityEngine_AI_NavMesh_InternalSetOwner);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::InternalGetLinkOwner",(void*) UnityEngine_AI_NavMesh_InternalGetLinkOwner);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::InternalSetLinkOwner",(void*) UnityEngine_AI_NavMesh_InternalSetLinkOwner);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::AddNavMeshDataInternal",(void*) UnityEngine_AI_NavMesh_AddNavMeshDataInternal);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_AddNavMeshDataTransformedInternal",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_AddNavMeshDataTransformedInternal);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::RemoveNavMeshDataInternal",(void*) UnityEngine_AI_NavMesh_RemoveNavMeshDataInternal);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_AddLinkInternal",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_AddLinkInternal);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::RemoveLinkInternal",(void*) UnityEngine_AI_NavMesh_RemoveLinkInternal);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_SamplePositionFilter",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_SamplePositionFilter);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_FindClosestEdgeFilter",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_FindClosestEdgeFilter);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_RaycastFilter",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_RaycastFilter);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_CalculatePathFilterInternal",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_CalculatePathFilterInternal);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_CreateSettings",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_CreateSettings);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::RemoveSettings",(void*) UnityEngine_AI_NavMesh_RemoveSettings);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_GetSettingsByID",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_GetSettingsByID);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::GetSettingsCount",(void*) UnityEngine_AI_NavMesh_GetSettingsCount);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::INTERNAL_CALL_GetSettingsByIndex",(void*) UnityEngine_AI_NavMesh_INTERNAL_CALL_GetSettingsByIndex);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::GetSettingsNameFromID",(void*) UnityEngine_AI_NavMesh_GetSettingsNameFromID);
-	mono_add_internal_call("UnityEngine.AI.NavMesh::RemoveAllNavMeshData",(void*) UnityEngine_AI_NavMesh_RemoveAllNavMeshData);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshWorld::GetDefaultWorld_Injected",(void*) UnityEngine_Experimental_AI_NavMeshWorld_GetDefaultWorld_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshWorld::AddDependencyInternal_Injected",(void*) UnityEngine_Experimental_AI_NavMeshWorld_AddDependencyInternal_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::Destroy",(void*) UnityEngine_Experimental_AI_NavMeshQuery_Destroy);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::HasNodePool",(void*) UnityEngine_Experimental_AI_NavMeshQuery_HasNodePool);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::UpdateFindPath",(void*) UnityEngine_Experimental_AI_NavMeshQuery_UpdateFindPath);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::EndFindPath",(void*) UnityEngine_Experimental_AI_NavMeshQuery_EndFindPath);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetPathResult",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetPathResult);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocations",(void*) UnityEngine_Experimental_AI_NavMeshQuery_MoveLocations);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocationsInSameAreas",(void*) UnityEngine_Experimental_AI_NavMeshQuery_MoveLocationsInSameAreas);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::Create_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_Create_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::AddQuerySafety_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_AddQuerySafety_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::RemoveQuerySafety_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_RemoveQuerySafety_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::BeginFindPath_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_BeginFindPath_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::IsValidPolygon_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_IsValidPolygon_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetAgentTypeIdForPolygon_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetAgentTypeIdForPolygon_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::IsPositionInPolygon_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_IsPositionInPolygon_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetClosestPointOnPoly_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetClosestPointOnPoly_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::MapLocation_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_MapLocation_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::MoveLocation_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_MoveLocation_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetPortalPoints_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetPortalPoints_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::PolygonLocalToWorldMatrix_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_PolygonLocalToWorldMatrix_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::PolygonWorldToLocalMatrix_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_PolygonWorldToLocalMatrix_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::GetPolygonType_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_GetPolygonType_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.AI.NavMeshQuery::Raycast_Injected",(void*) UnityEngine_Experimental_AI_NavMeshQuery_Raycast_Injected);
-	mono_add_internal_call("UnityEngine.AI.NavMeshBuilder::Cancel",(void*) UnityEngine_AI_NavMeshBuilder_Cancel);
-	mono_add_internal_call("UnityEngine.AI.NavMeshBuilder::CollectSourcesInternal_Injected",(void*) UnityEngine_AI_NavMeshBuilder_CollectSourcesInternal_Injected);
-	mono_add_internal_call("UnityEngine.AI.NavMeshBuilder::UpdateNavMeshDataListInternal_Injected",(void*) UnityEngine_AI_NavMeshBuilder_UpdateNavMeshDataListInternal_Injected);
-	mono_add_internal_call("UnityEngine.AI.NavMeshBuilder::UpdateNavMeshDataAsyncListInternal_Injected",(void*) UnityEngine_AI_NavMeshBuilder_UpdateNavMeshDataAsyncListInternal_Injected);
-	mono_add_internal_call("UnityEngine.AI.NavMeshBuildSource::InternalGetComponent",(void*) UnityEngine_AI_NavMeshBuildSource_InternalGetComponent);
-	mono_add_internal_call("UnityEngine.AI.NavMeshBuildSource::InternalGetObject",(void*) UnityEngine_AI_NavMeshBuildSource_InternalGetObject);
-	mono_add_internal_call("UnityEngine.AI.NavMeshBuildMarkup::InternalGetRootGO",(void*) UnityEngine_AI_NavMeshBuildMarkup_InternalGetRootGO);
-	mono_add_internal_call("UnityEngine.AI.NavMeshBuildSettings::InternalValidationReport_Injected",(void*) UnityEngine_AI_NavMeshBuildSettings_InternalValidationReport_Injected);
-	mono_add_internal_call("UnityEngine.AnimationClip::AddEventInternal",(void*) UnityEngine_AnimationClip_AddEventInternal);
-	mono_add_internal_call("UnityEngine.AnimationClip::SetEventsInternal",(void*) UnityEngine_AnimationClip_SetEventsInternal);
-	mono_add_internal_call("UnityEngine.AnimationClip::GetEventsInternal",(void*) UnityEngine_AnimationClip_GetEventsInternal);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::Internal_Create",(void*) UnityEngine_Animations_AimConstraint_Internal_Create_1);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_weight",(void*) UnityEngine_Animations_AimConstraint_get_weight);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_weight",(void*) UnityEngine_Animations_AimConstraint_set_weight);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_constraintActive",(void*) UnityEngine_Animations_AimConstraint_get_constraintActive);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_constraintActive",(void*) UnityEngine_Animations_AimConstraint_set_constraintActive);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_locked",(void*) UnityEngine_Animations_AimConstraint_get_locked);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_locked",(void*) UnityEngine_Animations_AimConstraint_set_locked);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_rotationAxis",(void*) UnityEngine_Animations_AimConstraint_get_rotationAxis);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_rotationAxis",(void*) UnityEngine_Animations_AimConstraint_set_rotationAxis);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_worldUpObject",(void*) UnityEngine_Animations_AimConstraint_get_worldUpObject);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_worldUpObject",(void*) UnityEngine_Animations_AimConstraint_set_worldUpObject);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_worldUpType",(void*) UnityEngine_Animations_AimConstraint_get_worldUpType);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_worldUpType",(void*) UnityEngine_Animations_AimConstraint_set_worldUpType);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::GetSourceCountInternal",(void*) UnityEngine_Animations_AimConstraint_GetSourceCountInternal);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::GetSources",(void*) UnityEngine_Animations_AimConstraint_GetSources);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::SetSourcesInternal",(void*) UnityEngine_Animations_AimConstraint_SetSourcesInternal);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::RemoveSourceInternal",(void*) UnityEngine_Animations_AimConstraint_RemoveSourceInternal);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_rotationAtRest_Injected",(void*) UnityEngine_Animations_AimConstraint_get_rotationAtRest_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_rotationAtRest_Injected",(void*) UnityEngine_Animations_AimConstraint_set_rotationAtRest_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_rotationOffset_Injected",(void*) UnityEngine_Animations_AimConstraint_get_rotationOffset_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_rotationOffset_Injected",(void*) UnityEngine_Animations_AimConstraint_set_rotationOffset_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_aimVector_Injected",(void*) UnityEngine_Animations_AimConstraint_get_aimVector_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_aimVector_Injected",(void*) UnityEngine_Animations_AimConstraint_set_aimVector_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_upVector_Injected",(void*) UnityEngine_Animations_AimConstraint_get_upVector_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_upVector_Injected",(void*) UnityEngine_Animations_AimConstraint_set_upVector_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_worldUpVector_Injected",(void*) UnityEngine_Animations_AimConstraint_get_worldUpVector_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_worldUpVector_Injected",(void*) UnityEngine_Animations_AimConstraint_set_worldUpVector_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::AddSource_Injected",(void*) UnityEngine_Animations_AimConstraint_AddSource_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::GetSourceInternal_Injected",(void*) UnityEngine_Animations_AimConstraint_GetSourceInternal_Injected);
+	mono_add_internal_call("UnityEngine.Animations.AimConstraint::SetSourceInternal_Injected",(void*) UnityEngine_Animations_AimConstraint_SetSourceInternal_Injected);
 	mono_add_internal_call("UnityEngine.AnimationClip::Internal_CreateAnimationClip",(void*) UnityEngine_AnimationClip_Internal_CreateAnimationClip);
 	mono_add_internal_call("UnityEngine.AnimationClip::SampleAnimation",(void*) UnityEngine_AnimationClip_SampleAnimation);
 	mono_add_internal_call("UnityEngine.AnimationClip::get_length",(void*) UnityEngine_AnimationClip_get_length);
@@ -58955,245 +56665,11 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AnimationClip::get_hasMotionCurves",(void*) UnityEngine_AnimationClip_get_hasMotionCurves);
 	mono_add_internal_call("UnityEngine.AnimationClip::get_hasRootCurves",(void*) UnityEngine_AnimationClip_get_hasRootCurves);
 	mono_add_internal_call("UnityEngine.AnimationClip::get_hasRootMotion",(void*) UnityEngine_AnimationClip_get_hasRootMotion);
+	mono_add_internal_call("UnityEngine.AnimationClip::AddEventInternal",(void*) UnityEngine_AnimationClip_AddEventInternal);
+	mono_add_internal_call("UnityEngine.AnimationClip::SetEventsInternal",(void*) UnityEngine_AnimationClip_SetEventsInternal);
+	mono_add_internal_call("UnityEngine.AnimationClip::GetEventsInternal",(void*) UnityEngine_AnimationClip_GetEventsInternal);
 	mono_add_internal_call("UnityEngine.AnimationClip::get_localBounds_Injected",(void*) UnityEngine_AnimationClip_get_localBounds_Injected);
 	mono_add_internal_call("UnityEngine.AnimationClip::set_localBounds_Injected",(void*) UnityEngine_AnimationClip_set_localBounds_Injected);
-	mono_add_internal_call("UnityEngine.Animation::get_clip",(void*) UnityEngine_Animation_get_clip);
-	mono_add_internal_call("UnityEngine.Animation::set_clip",(void*) UnityEngine_Animation_set_clip);
-	mono_add_internal_call("UnityEngine.Animation::get_playAutomatically",(void*) UnityEngine_Animation_get_playAutomatically);
-	mono_add_internal_call("UnityEngine.Animation::set_playAutomatically",(void*) UnityEngine_Animation_set_playAutomatically);
-	mono_add_internal_call("UnityEngine.Animation::get_wrapMode",(void*) UnityEngine_Animation_get_wrapMode_1);
-	mono_add_internal_call("UnityEngine.Animation::set_wrapMode",(void*) UnityEngine_Animation_set_wrapMode_1);
-	mono_add_internal_call("UnityEngine.Animation::INTERNAL_CALL_Stop",(void*) UnityEngine_Animation_INTERNAL_CALL_Stop);
-	mono_add_internal_call("UnityEngine.Animation::Internal_StopByName",(void*) UnityEngine_Animation_Internal_StopByName);
-	mono_add_internal_call("UnityEngine.Animation::Internal_RewindByName",(void*) UnityEngine_Animation_Internal_RewindByName);
-	mono_add_internal_call("UnityEngine.Animation::INTERNAL_CALL_Rewind",(void*) UnityEngine_Animation_INTERNAL_CALL_Rewind);
-	mono_add_internal_call("UnityEngine.Animation::INTERNAL_CALL_Sample",(void*) UnityEngine_Animation_INTERNAL_CALL_Sample);
-	mono_add_internal_call("UnityEngine.Animation::get_isPlaying",(void*) UnityEngine_Animation_get_isPlaying);
-	mono_add_internal_call("UnityEngine.Animation::IsPlaying",(void*) UnityEngine_Animation_IsPlaying);
-	mono_add_internal_call("UnityEngine.Animation::Play",(void*) UnityEngine_Animation_Play);
-	mono_add_internal_call("UnityEngine.Animation::CrossFade",(void*) UnityEngine_Animation_CrossFade);
-	mono_add_internal_call("UnityEngine.Animation::Blend",(void*) UnityEngine_Animation_Blend);
-	mono_add_internal_call("UnityEngine.Animation::CrossFadeQueued",(void*) UnityEngine_Animation_CrossFadeQueued);
-	mono_add_internal_call("UnityEngine.Animation::PlayQueued",(void*) UnityEngine_Animation_PlayQueued);
-	mono_add_internal_call("UnityEngine.Animation::AddClip",(void*) UnityEngine_Animation_AddClip);
-	mono_add_internal_call("UnityEngine.Animation::RemoveClip",(void*) UnityEngine_Animation_RemoveClip);
-	mono_add_internal_call("UnityEngine.Animation::GetClipCount",(void*) UnityEngine_Animation_GetClipCount);
-	mono_add_internal_call("UnityEngine.Animation::RemoveClip2",(void*) UnityEngine_Animation_RemoveClip2);
-	mono_add_internal_call("UnityEngine.Animation::PlayDefaultAnimation",(void*) UnityEngine_Animation_PlayDefaultAnimation);
-	mono_add_internal_call("UnityEngine.Animation::INTERNAL_CALL_SyncLayer",(void*) UnityEngine_Animation_INTERNAL_CALL_SyncLayer);
-	mono_add_internal_call("UnityEngine.Animation::GetState",(void*) UnityEngine_Animation_GetState);
-	mono_add_internal_call("UnityEngine.Animation::GetStateAtIndex",(void*) UnityEngine_Animation_GetStateAtIndex);
-	mono_add_internal_call("UnityEngine.Animation::GetStateCount",(void*) UnityEngine_Animation_GetStateCount);
-	mono_add_internal_call("UnityEngine.Animation::get_animatePhysics",(void*) UnityEngine_Animation_get_animatePhysics);
-	mono_add_internal_call("UnityEngine.Animation::set_animatePhysics",(void*) UnityEngine_Animation_set_animatePhysics);
-	mono_add_internal_call("UnityEngine.Animation::get_animateOnlyIfVisible",(void*) UnityEngine_Animation_get_animateOnlyIfVisible);
-	mono_add_internal_call("UnityEngine.Animation::set_animateOnlyIfVisible",(void*) UnityEngine_Animation_set_animateOnlyIfVisible);
-	mono_add_internal_call("UnityEngine.Animation::get_cullingType",(void*) UnityEngine_Animation_get_cullingType);
-	mono_add_internal_call("UnityEngine.Animation::set_cullingType",(void*) UnityEngine_Animation_set_cullingType);
-	mono_add_internal_call("UnityEngine.Animation::INTERNAL_get_localBounds",(void*) UnityEngine_Animation_INTERNAL_get_localBounds);
-	mono_add_internal_call("UnityEngine.Animation::INTERNAL_set_localBounds",(void*) UnityEngine_Animation_INTERNAL_set_localBounds);
-	mono_add_internal_call("UnityEngine.AnimationState::get_enabled",(void*) UnityEngine_AnimationState_get_enabled);
-	mono_add_internal_call("UnityEngine.AnimationState::set_enabled",(void*) UnityEngine_AnimationState_set_enabled);
-	mono_add_internal_call("UnityEngine.AnimationState::get_weight",(void*) UnityEngine_AnimationState_get_weight);
-	mono_add_internal_call("UnityEngine.AnimationState::set_weight",(void*) UnityEngine_AnimationState_set_weight);
-	mono_add_internal_call("UnityEngine.AnimationState::get_wrapMode",(void*) UnityEngine_AnimationState_get_wrapMode_2);
-	mono_add_internal_call("UnityEngine.AnimationState::set_wrapMode",(void*) UnityEngine_AnimationState_set_wrapMode_2);
-	mono_add_internal_call("UnityEngine.AnimationState::get_time",(void*) UnityEngine_AnimationState_get_time);
-	mono_add_internal_call("UnityEngine.AnimationState::set_time",(void*) UnityEngine_AnimationState_set_time);
-	mono_add_internal_call("UnityEngine.AnimationState::get_normalizedTime",(void*) UnityEngine_AnimationState_get_normalizedTime);
-	mono_add_internal_call("UnityEngine.AnimationState::set_normalizedTime",(void*) UnityEngine_AnimationState_set_normalizedTime);
-	mono_add_internal_call("UnityEngine.AnimationState::get_speed",(void*) UnityEngine_AnimationState_get_speed_1);
-	mono_add_internal_call("UnityEngine.AnimationState::set_speed",(void*) UnityEngine_AnimationState_set_speed_1);
-	mono_add_internal_call("UnityEngine.AnimationState::get_normalizedSpeed",(void*) UnityEngine_AnimationState_get_normalizedSpeed);
-	mono_add_internal_call("UnityEngine.AnimationState::set_normalizedSpeed",(void*) UnityEngine_AnimationState_set_normalizedSpeed);
-	mono_add_internal_call("UnityEngine.AnimationState::get_length",(void*) UnityEngine_AnimationState_get_length_1);
-	mono_add_internal_call("UnityEngine.AnimationState::get_layer",(void*) UnityEngine_AnimationState_get_layer);
-	mono_add_internal_call("UnityEngine.AnimationState::set_layer",(void*) UnityEngine_AnimationState_set_layer);
-	mono_add_internal_call("UnityEngine.AnimationState::get_clip",(void*) UnityEngine_AnimationState_get_clip_1);
-	mono_add_internal_call("UnityEngine.AnimationState::AddMixingTransform",(void*) UnityEngine_AnimationState_AddMixingTransform);
-	mono_add_internal_call("UnityEngine.AnimationState::RemoveMixingTransform",(void*) UnityEngine_AnimationState_RemoveMixingTransform);
-	mono_add_internal_call("UnityEngine.AnimationState::get_name",(void*) UnityEngine_AnimationState_get_name);
-	mono_add_internal_call("UnityEngine.AnimationState::set_name",(void*) UnityEngine_AnimationState_set_name);
-	mono_add_internal_call("UnityEngine.AnimationState::get_blendMode",(void*) UnityEngine_AnimationState_get_blendMode);
-	mono_add_internal_call("UnityEngine.AnimationState::set_blendMode",(void*) UnityEngine_AnimationState_set_blendMode);
-	mono_add_internal_call("UnityEngine.Animator::get_isOptimizable",(void*) UnityEngine_Animator_get_isOptimizable);
-	mono_add_internal_call("UnityEngine.Animator::get_isHuman",(void*) UnityEngine_Animator_get_isHuman);
-	mono_add_internal_call("UnityEngine.Animator::get_hasRootMotion",(void*) UnityEngine_Animator_get_hasRootMotion_1);
-	mono_add_internal_call("UnityEngine.Animator::get_isRootPositionOrRotationControlledByCurves",(void*) UnityEngine_Animator_get_isRootPositionOrRotationControlledByCurves);
-	mono_add_internal_call("UnityEngine.Animator::get_humanScale",(void*) UnityEngine_Animator_get_humanScale);
-	mono_add_internal_call("UnityEngine.Animator::get_isInitialized",(void*) UnityEngine_Animator_get_isInitialized);
-	mono_add_internal_call("UnityEngine.Animator::get_applyRootMotion",(void*) UnityEngine_Animator_get_applyRootMotion);
-	mono_add_internal_call("UnityEngine.Animator::set_applyRootMotion",(void*) UnityEngine_Animator_set_applyRootMotion);
-	mono_add_internal_call("UnityEngine.Animator::get_linearVelocityBlending",(void*) UnityEngine_Animator_get_linearVelocityBlending);
-	mono_add_internal_call("UnityEngine.Animator::set_linearVelocityBlending",(void*) UnityEngine_Animator_set_linearVelocityBlending);
-	mono_add_internal_call("UnityEngine.Animator::get_updateMode",(void*) UnityEngine_Animator_get_updateMode);
-	mono_add_internal_call("UnityEngine.Animator::set_updateMode",(void*) UnityEngine_Animator_set_updateMode);
-	mono_add_internal_call("UnityEngine.Animator::get_hasTransformHierarchy",(void*) UnityEngine_Animator_get_hasTransformHierarchy);
-	mono_add_internal_call("UnityEngine.Animator::get_allowConstantClipSamplingOptimization",(void*) UnityEngine_Animator_get_allowConstantClipSamplingOptimization);
-	mono_add_internal_call("UnityEngine.Animator::set_allowConstantClipSamplingOptimization",(void*) UnityEngine_Animator_set_allowConstantClipSamplingOptimization);
-	mono_add_internal_call("UnityEngine.Animator::get_gravityWeight",(void*) UnityEngine_Animator_get_gravityWeight);
-	mono_add_internal_call("UnityEngine.Animator::GetGoalWeightPosition",(void*) UnityEngine_Animator_GetGoalWeightPosition);
-	mono_add_internal_call("UnityEngine.Animator::SetGoalWeightPosition",(void*) UnityEngine_Animator_SetGoalWeightPosition);
-	mono_add_internal_call("UnityEngine.Animator::GetGoalWeightRotation",(void*) UnityEngine_Animator_GetGoalWeightRotation);
-	mono_add_internal_call("UnityEngine.Animator::SetGoalWeightRotation",(void*) UnityEngine_Animator_SetGoalWeightRotation);
-	mono_add_internal_call("UnityEngine.Animator::GetHintWeightPosition",(void*) UnityEngine_Animator_GetHintWeightPosition);
-	mono_add_internal_call("UnityEngine.Animator::SetHintWeightPosition",(void*) UnityEngine_Animator_SetHintWeightPosition);
-	mono_add_internal_call("UnityEngine.Animator::SetLookAtWeightInternal",(void*) UnityEngine_Animator_SetLookAtWeightInternal);
-	mono_add_internal_call("UnityEngine.Animator::GetBehaviour",(void*) UnityEngine_Animator_GetBehaviour);
-	mono_add_internal_call("UnityEngine.Animator::InternalGetBehaviours",(void*) UnityEngine_Animator_InternalGetBehaviours);
-	mono_add_internal_call("UnityEngine.Animator::InternalGetBehavioursByKey",(void*) UnityEngine_Animator_InternalGetBehavioursByKey);
-	mono_add_internal_call("UnityEngine.Animator::get_stabilizeFeet",(void*) UnityEngine_Animator_get_stabilizeFeet);
-	mono_add_internal_call("UnityEngine.Animator::set_stabilizeFeet",(void*) UnityEngine_Animator_set_stabilizeFeet);
-	mono_add_internal_call("UnityEngine.Animator::get_layerCount",(void*) UnityEngine_Animator_get_layerCount);
-	mono_add_internal_call("UnityEngine.Animator::GetLayerName",(void*) UnityEngine_Animator_GetLayerName);
-	mono_add_internal_call("UnityEngine.Animator::GetLayerIndex",(void*) UnityEngine_Animator_GetLayerIndex);
-	mono_add_internal_call("UnityEngine.Animator::GetLayerWeight",(void*) UnityEngine_Animator_GetLayerWeight);
-	mono_add_internal_call("UnityEngine.Animator::SetLayerWeight",(void*) UnityEngine_Animator_SetLayerWeight);
-	mono_add_internal_call("UnityEngine.Animator::GetAnimatorStateInfo",(void*) UnityEngine_Animator_GetAnimatorStateInfo);
-	mono_add_internal_call("UnityEngine.Animator::GetAnimatorTransitionInfo",(void*) UnityEngine_Animator_GetAnimatorTransitionInfo);
-	mono_add_internal_call("UnityEngine.Animator::GetAnimatorClipInfoCount",(void*) UnityEngine_Animator_GetAnimatorClipInfoCount);
-	mono_add_internal_call("UnityEngine.Animator::GetCurrentAnimatorClipInfo",(void*) UnityEngine_Animator_GetCurrentAnimatorClipInfo);
-	mono_add_internal_call("UnityEngine.Animator::GetNextAnimatorClipInfo",(void*) UnityEngine_Animator_GetNextAnimatorClipInfo);
-	mono_add_internal_call("UnityEngine.Animator::GetAnimatorClipInfoInternal",(void*) UnityEngine_Animator_GetAnimatorClipInfoInternal);
-	mono_add_internal_call("UnityEngine.Animator::GetAnimatorClipInfoInternalWinRT",(void*) UnityEngine_Animator_GetAnimatorClipInfoInternalWinRT);
-	mono_add_internal_call("UnityEngine.Animator::IsInTransition",(void*) UnityEngine_Animator_IsInTransition);
-	mono_add_internal_call("UnityEngine.Animator::get_parameters",(void*) UnityEngine_Animator_get_parameters);
-	mono_add_internal_call("UnityEngine.Animator::get_parameterCount",(void*) UnityEngine_Animator_get_parameterCount);
-	mono_add_internal_call("UnityEngine.Animator::get_feetPivotActive",(void*) UnityEngine_Animator_get_feetPivotActive);
-	mono_add_internal_call("UnityEngine.Animator::set_feetPivotActive",(void*) UnityEngine_Animator_set_feetPivotActive);
-	mono_add_internal_call("UnityEngine.Animator::get_pivotWeight",(void*) UnityEngine_Animator_get_pivotWeight);
-	mono_add_internal_call("UnityEngine.Animator::InterruptMatchTarget",(void*) UnityEngine_Animator_InterruptMatchTarget);
-	mono_add_internal_call("UnityEngine.Animator::get_isMatchingTarget",(void*) UnityEngine_Animator_get_isMatchingTarget);
-	mono_add_internal_call("UnityEngine.Animator::get_speed",(void*) UnityEngine_Animator_get_speed_2);
-	mono_add_internal_call("UnityEngine.Animator::set_speed",(void*) UnityEngine_Animator_set_speed_2);
-	mono_add_internal_call("UnityEngine.Animator::CrossFadeInFixedTime",(void*) UnityEngine_Animator_CrossFadeInFixedTime);
-	mono_add_internal_call("UnityEngine.Animator::WriteDefaultValues",(void*) UnityEngine_Animator_WriteDefaultValues);
-	mono_add_internal_call("UnityEngine.Animator::CrossFade",(void*) UnityEngine_Animator_CrossFade_1);
-	mono_add_internal_call("UnityEngine.Animator::PlayInFixedTime",(void*) UnityEngine_Animator_PlayInFixedTime);
-	mono_add_internal_call("UnityEngine.Animator::Play",(void*) UnityEngine_Animator_Play_1);
-	mono_add_internal_call("UnityEngine.Animator::SetTarget",(void*) UnityEngine_Animator_SetTarget);
-	mono_add_internal_call("UnityEngine.Animator::IsBoneTransform",(void*) UnityEngine_Animator_IsBoneTransform);
-	mono_add_internal_call("UnityEngine.Animator::get_avatarRoot",(void*) UnityEngine_Animator_get_avatarRoot);
-	mono_add_internal_call("UnityEngine.Animator::GetBoneTransformInternal",(void*) UnityEngine_Animator_GetBoneTransformInternal);
-	mono_add_internal_call("UnityEngine.Animator::get_cullingMode",(void*) UnityEngine_Animator_get_cullingMode);
-	mono_add_internal_call("UnityEngine.Animator::set_cullingMode",(void*) UnityEngine_Animator_set_cullingMode);
-	mono_add_internal_call("UnityEngine.Animator::StartPlayback",(void*) UnityEngine_Animator_StartPlayback);
-	mono_add_internal_call("UnityEngine.Animator::StopPlayback",(void*) UnityEngine_Animator_StopPlayback);
-	mono_add_internal_call("UnityEngine.Animator::get_playbackTime",(void*) UnityEngine_Animator_get_playbackTime);
-	mono_add_internal_call("UnityEngine.Animator::set_playbackTime",(void*) UnityEngine_Animator_set_playbackTime);
-	mono_add_internal_call("UnityEngine.Animator::StartRecording",(void*) UnityEngine_Animator_StartRecording);
-	mono_add_internal_call("UnityEngine.Animator::StopRecording",(void*) UnityEngine_Animator_StopRecording);
-	mono_add_internal_call("UnityEngine.Animator::GetRecorderStartTime",(void*) UnityEngine_Animator_GetRecorderStartTime);
-	mono_add_internal_call("UnityEngine.Animator::GetRecorderStopTime",(void*) UnityEngine_Animator_GetRecorderStopTime);
-	mono_add_internal_call("UnityEngine.Animator::get_recorderMode",(void*) UnityEngine_Animator_get_recorderMode);
-	mono_add_internal_call("UnityEngine.Animator::get_runtimeAnimatorController",(void*) UnityEngine_Animator_get_runtimeAnimatorController);
-	mono_add_internal_call("UnityEngine.Animator::set_runtimeAnimatorController",(void*) UnityEngine_Animator_set_runtimeAnimatorController);
-	mono_add_internal_call("UnityEngine.Animator::get_hasBoundPlayables",(void*) UnityEngine_Animator_get_hasBoundPlayables);
-	mono_add_internal_call("UnityEngine.Animator::ClearInternalControllerPlayable",(void*) UnityEngine_Animator_ClearInternalControllerPlayable);
-	mono_add_internal_call("UnityEngine.Animator::HasState",(void*) UnityEngine_Animator_HasState);
-	mono_add_internal_call("UnityEngine.Animator::StringToHash",(void*) UnityEngine_Animator_StringToHash);
-	mono_add_internal_call("UnityEngine.Animator::get_avatar",(void*) UnityEngine_Animator_get_avatar);
-	mono_add_internal_call("UnityEngine.Animator::set_avatar",(void*) UnityEngine_Animator_set_avatar);
-	mono_add_internal_call("UnityEngine.Animator::GetStats",(void*) UnityEngine_Animator_GetStats);
-	mono_add_internal_call("UnityEngine.Animator::GetCurrentGraph",(void*) UnityEngine_Animator_GetCurrentGraph);
-	mono_add_internal_call("UnityEngine.Animator::IsInIKPass",(void*) UnityEngine_Animator_IsInIKPass);
-	mono_add_internal_call("UnityEngine.Animator::SetFloatString",(void*) UnityEngine_Animator_SetFloatString);
-	mono_add_internal_call("UnityEngine.Animator::SetFloatID",(void*) UnityEngine_Animator_SetFloatID);
-	mono_add_internal_call("UnityEngine.Animator::GetFloatString",(void*) UnityEngine_Animator_GetFloatString);
-	mono_add_internal_call("UnityEngine.Animator::GetFloatID",(void*) UnityEngine_Animator_GetFloatID);
-	mono_add_internal_call("UnityEngine.Animator::SetBoolString",(void*) UnityEngine_Animator_SetBoolString);
-	mono_add_internal_call("UnityEngine.Animator::SetBoolID",(void*) UnityEngine_Animator_SetBoolID);
-	mono_add_internal_call("UnityEngine.Animator::GetBoolString",(void*) UnityEngine_Animator_GetBoolString);
-	mono_add_internal_call("UnityEngine.Animator::GetBoolID",(void*) UnityEngine_Animator_GetBoolID);
-	mono_add_internal_call("UnityEngine.Animator::SetIntegerString",(void*) UnityEngine_Animator_SetIntegerString);
-	mono_add_internal_call("UnityEngine.Animator::SetIntegerID",(void*) UnityEngine_Animator_SetIntegerID);
-	mono_add_internal_call("UnityEngine.Animator::GetIntegerString",(void*) UnityEngine_Animator_GetIntegerString);
-	mono_add_internal_call("UnityEngine.Animator::GetIntegerID",(void*) UnityEngine_Animator_GetIntegerID);
-	mono_add_internal_call("UnityEngine.Animator::SetTriggerString",(void*) UnityEngine_Animator_SetTriggerString);
-	mono_add_internal_call("UnityEngine.Animator::SetTriggerID",(void*) UnityEngine_Animator_SetTriggerID);
-	mono_add_internal_call("UnityEngine.Animator::ResetTriggerString",(void*) UnityEngine_Animator_ResetTriggerString);
-	mono_add_internal_call("UnityEngine.Animator::ResetTriggerID",(void*) UnityEngine_Animator_ResetTriggerID);
-	mono_add_internal_call("UnityEngine.Animator::IsParameterControlledByCurveString",(void*) UnityEngine_Animator_IsParameterControlledByCurveString);
-	mono_add_internal_call("UnityEngine.Animator::IsParameterControlledByCurveID",(void*) UnityEngine_Animator_IsParameterControlledByCurveID);
-	mono_add_internal_call("UnityEngine.Animator::SetFloatStringDamp",(void*) UnityEngine_Animator_SetFloatStringDamp);
-	mono_add_internal_call("UnityEngine.Animator::SetFloatIDDamp",(void*) UnityEngine_Animator_SetFloatIDDamp);
-	mono_add_internal_call("UnityEngine.Animator::get_layersAffectMassCenter",(void*) UnityEngine_Animator_get_layersAffectMassCenter);
-	mono_add_internal_call("UnityEngine.Animator::set_layersAffectMassCenter",(void*) UnityEngine_Animator_set_layersAffectMassCenter);
-	mono_add_internal_call("UnityEngine.Animator::get_leftFeetBottomHeight",(void*) UnityEngine_Animator_get_leftFeetBottomHeight);
-	mono_add_internal_call("UnityEngine.Animator::get_rightFeetBottomHeight",(void*) UnityEngine_Animator_get_rightFeetBottomHeight);
-	mono_add_internal_call("UnityEngine.Animator::get_supportsOnAnimatorMove",(void*) UnityEngine_Animator_get_supportsOnAnimatorMove);
-	mono_add_internal_call("UnityEngine.Animator::OnUpdateModeChanged",(void*) UnityEngine_Animator_OnUpdateModeChanged);
-	mono_add_internal_call("UnityEngine.Animator::OnCullingModeChanged",(void*) UnityEngine_Animator_OnCullingModeChanged);
-	mono_add_internal_call("UnityEngine.Animator::WriteDefaultPose",(void*) UnityEngine_Animator_WriteDefaultPose);
-	mono_add_internal_call("UnityEngine.Animator::Update",(void*) UnityEngine_Animator_Update);
-	mono_add_internal_call("UnityEngine.Animator::Rebind",(void*) UnityEngine_Animator_Rebind);
-	mono_add_internal_call("UnityEngine.Animator::ApplyBuiltinRootMotion",(void*) UnityEngine_Animator_ApplyBuiltinRootMotion);
-	mono_add_internal_call("UnityEngine.Animator::EvaluateController",(void*) UnityEngine_Animator_EvaluateController);
-	mono_add_internal_call("UnityEngine.Animator::GetAnimatorStateName",(void*) UnityEngine_Animator_GetAnimatorStateName);
-	mono_add_internal_call("UnityEngine.Animator::ResolveHash",(void*) UnityEngine_Animator_ResolveHash);
-	mono_add_internal_call("UnityEngine.Animator::get_logWarnings",(void*) UnityEngine_Animator_get_logWarnings);
-	mono_add_internal_call("UnityEngine.Animator::set_logWarnings",(void*) UnityEngine_Animator_set_logWarnings);
-	mono_add_internal_call("UnityEngine.Animator::get_fireEvents",(void*) UnityEngine_Animator_get_fireEvents);
-	mono_add_internal_call("UnityEngine.Animator::set_fireEvents",(void*) UnityEngine_Animator_set_fireEvents);
-	mono_add_internal_call("UnityEngine.Animator::get_keepAnimatorControllerStateOnDisable",(void*) UnityEngine_Animator_get_keepAnimatorControllerStateOnDisable);
-	mono_add_internal_call("UnityEngine.Animator::set_keepAnimatorControllerStateOnDisable",(void*) UnityEngine_Animator_set_keepAnimatorControllerStateOnDisable);
-	mono_add_internal_call("UnityEngine.Animator::get_deltaPosition_Injected",(void*) UnityEngine_Animator_get_deltaPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_deltaRotation_Injected",(void*) UnityEngine_Animator_get_deltaRotation_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_velocity_Injected",(void*) UnityEngine_Animator_get_velocity_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_angularVelocity_Injected",(void*) UnityEngine_Animator_get_angularVelocity_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_rootPosition_Injected",(void*) UnityEngine_Animator_get_rootPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::set_rootPosition_Injected",(void*) UnityEngine_Animator_set_rootPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_rootRotation_Injected",(void*) UnityEngine_Animator_get_rootRotation_Injected);
-	mono_add_internal_call("UnityEngine.Animator::set_rootRotation_Injected",(void*) UnityEngine_Animator_set_rootRotation_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_bodyPositionInternal_Injected",(void*) UnityEngine_Animator_get_bodyPositionInternal_Injected);
-	mono_add_internal_call("UnityEngine.Animator::set_bodyPositionInternal_Injected",(void*) UnityEngine_Animator_set_bodyPositionInternal_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_bodyRotationInternal_Injected",(void*) UnityEngine_Animator_get_bodyRotationInternal_Injected);
-	mono_add_internal_call("UnityEngine.Animator::set_bodyRotationInternal_Injected",(void*) UnityEngine_Animator_set_bodyRotationInternal_Injected);
-	mono_add_internal_call("UnityEngine.Animator::GetGoalPosition_Injected",(void*) UnityEngine_Animator_GetGoalPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::SetGoalPosition_Injected",(void*) UnityEngine_Animator_SetGoalPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::GetGoalRotation_Injected",(void*) UnityEngine_Animator_GetGoalRotation_Injected);
-	mono_add_internal_call("UnityEngine.Animator::SetGoalRotation_Injected",(void*) UnityEngine_Animator_SetGoalRotation_Injected);
-	mono_add_internal_call("UnityEngine.Animator::GetHintPosition_Injected",(void*) UnityEngine_Animator_GetHintPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::SetHintPosition_Injected",(void*) UnityEngine_Animator_SetHintPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::SetLookAtPositionInternal_Injected",(void*) UnityEngine_Animator_SetLookAtPositionInternal_Injected);
-	mono_add_internal_call("UnityEngine.Animator::SetBoneLocalRotationInternal_Injected",(void*) UnityEngine_Animator_SetBoneLocalRotationInternal_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_pivotPosition_Injected",(void*) UnityEngine_Animator_get_pivotPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::MatchTarget_Injected",(void*) UnityEngine_Animator_MatchTarget_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_targetPosition_Injected",(void*) UnityEngine_Animator_get_targetPosition_Injected);
-	mono_add_internal_call("UnityEngine.Animator::get_targetRotation_Injected",(void*) UnityEngine_Animator_get_targetRotation_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::Internal_Create",(void*) UnityEngine_Animations_AimConstraint_Internal_Create_1);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_weight",(void*) UnityEngine_Animations_AimConstraint_get_weight_1);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_weight",(void*) UnityEngine_Animations_AimConstraint_set_weight_1);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_constraintActive",(void*) UnityEngine_Animations_AimConstraint_get_constraintActive);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_constraintActive",(void*) UnityEngine_Animations_AimConstraint_set_constraintActive);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_locked",(void*) UnityEngine_Animations_AimConstraint_get_locked);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_locked",(void*) UnityEngine_Animations_AimConstraint_set_locked);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_rotationAxis",(void*) UnityEngine_Animations_AimConstraint_get_rotationAxis);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_rotationAxis",(void*) UnityEngine_Animations_AimConstraint_set_rotationAxis);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_worldUpObject",(void*) UnityEngine_Animations_AimConstraint_get_worldUpObject);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_worldUpObject",(void*) UnityEngine_Animations_AimConstraint_set_worldUpObject);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_worldUpType",(void*) UnityEngine_Animations_AimConstraint_get_worldUpType);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_worldUpType",(void*) UnityEngine_Animations_AimConstraint_set_worldUpType);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::GetSourceCountInternal",(void*) UnityEngine_Animations_AimConstraint_GetSourceCountInternal);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::GetSources",(void*) UnityEngine_Animations_AimConstraint_GetSources);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::SetSourcesInternal",(void*) UnityEngine_Animations_AimConstraint_SetSourcesInternal);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::RemoveSourceInternal",(void*) UnityEngine_Animations_AimConstraint_RemoveSourceInternal);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::ActivateAndPreserveOffset",(void*) UnityEngine_Animations_AimConstraint_ActivateAndPreserveOffset);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::ActivateWithZeroOffset",(void*) UnityEngine_Animations_AimConstraint_ActivateWithZeroOffset);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::UserUpdateOffset",(void*) UnityEngine_Animations_AimConstraint_UserUpdateOffset);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_rotationAtRest_Injected",(void*) UnityEngine_Animations_AimConstraint_get_rotationAtRest_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_rotationAtRest_Injected",(void*) UnityEngine_Animations_AimConstraint_set_rotationAtRest_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_rotationOffset_Injected",(void*) UnityEngine_Animations_AimConstraint_get_rotationOffset_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_rotationOffset_Injected",(void*) UnityEngine_Animations_AimConstraint_set_rotationOffset_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_aimVector_Injected",(void*) UnityEngine_Animations_AimConstraint_get_aimVector_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_aimVector_Injected",(void*) UnityEngine_Animations_AimConstraint_set_aimVector_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_upVector_Injected",(void*) UnityEngine_Animations_AimConstraint_get_upVector_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_upVector_Injected",(void*) UnityEngine_Animations_AimConstraint_set_upVector_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::get_worldUpVector_Injected",(void*) UnityEngine_Animations_AimConstraint_get_worldUpVector_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::set_worldUpVector_Injected",(void*) UnityEngine_Animations_AimConstraint_set_worldUpVector_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::AddSource_Injected",(void*) UnityEngine_Animations_AimConstraint_AddSource_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::GetSourceInternal_Injected",(void*) UnityEngine_Animations_AimConstraint_GetSourceInternal_Injected);
-	mono_add_internal_call("UnityEngine.Animations.AimConstraint::SetSourceInternal_Injected",(void*) UnityEngine_Animations_AimConstraint_SetSourceInternal_Injected);
 	mono_add_internal_call("UnityEngine.Animations.AnimationClipPlayable::GetAnimationClipInternal",(void*) UnityEngine_Animations_AnimationClipPlayable_GetAnimationClipInternal);
 	mono_add_internal_call("UnityEngine.Animations.AnimationClipPlayable::GetApplyFootIKInternal",(void*) UnityEngine_Animations_AnimationClipPlayable_GetApplyFootIKInternal);
 	mono_add_internal_call("UnityEngine.Animations.AnimationClipPlayable::SetApplyFootIKInternal",(void*) UnityEngine_Animations_AnimationClipPlayable_SetApplyFootIKInternal);
@@ -59325,6 +56801,151 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Experimental.Animations.PropertySceneHandle::GetBoolInternal_Injected",(void*) UnityEngine_Experimental_Animations_PropertySceneHandle_GetBoolInternal_Injected_1);
 	mono_add_internal_call("UnityEngine.Experimental.Animations.PropertySceneHandle::SetBoolInternal_Injected",(void*) UnityEngine_Experimental_Animations_PropertySceneHandle_SetBoolInternal_Injected_1);
 	mono_add_internal_call("UnityEngine.AnimatorClipInfo::InstanceIDToAnimationClipPPtr",(void*) UnityEngine_AnimatorClipInfo_InstanceIDToAnimationClipPPtr);
+	mono_add_internal_call("UnityEngine.Animator::get_isOptimizable",(void*) UnityEngine_Animator_get_isOptimizable);
+	mono_add_internal_call("UnityEngine.Animator::get_isHuman",(void*) UnityEngine_Animator_get_isHuman);
+	mono_add_internal_call("UnityEngine.Animator::get_hasRootMotion",(void*) UnityEngine_Animator_get_hasRootMotion_1);
+	mono_add_internal_call("UnityEngine.Animator::get_isRootPositionOrRotationControlledByCurves",(void*) UnityEngine_Animator_get_isRootPositionOrRotationControlledByCurves);
+	mono_add_internal_call("UnityEngine.Animator::get_humanScale",(void*) UnityEngine_Animator_get_humanScale);
+	mono_add_internal_call("UnityEngine.Animator::get_isInitialized",(void*) UnityEngine_Animator_get_isInitialized);
+	mono_add_internal_call("UnityEngine.Animator::get_applyRootMotion",(void*) UnityEngine_Animator_get_applyRootMotion);
+	mono_add_internal_call("UnityEngine.Animator::set_applyRootMotion",(void*) UnityEngine_Animator_set_applyRootMotion);
+	mono_add_internal_call("UnityEngine.Animator::get_linearVelocityBlending",(void*) UnityEngine_Animator_get_linearVelocityBlending);
+	mono_add_internal_call("UnityEngine.Animator::set_linearVelocityBlending",(void*) UnityEngine_Animator_set_linearVelocityBlending);
+	mono_add_internal_call("UnityEngine.Animator::get_updateMode",(void*) UnityEngine_Animator_get_updateMode);
+	mono_add_internal_call("UnityEngine.Animator::set_updateMode",(void*) UnityEngine_Animator_set_updateMode);
+	mono_add_internal_call("UnityEngine.Animator::get_hasTransformHierarchy",(void*) UnityEngine_Animator_get_hasTransformHierarchy);
+	mono_add_internal_call("UnityEngine.Animator::get_allowConstantClipSamplingOptimization",(void*) UnityEngine_Animator_get_allowConstantClipSamplingOptimization);
+	mono_add_internal_call("UnityEngine.Animator::set_allowConstantClipSamplingOptimization",(void*) UnityEngine_Animator_set_allowConstantClipSamplingOptimization);
+	mono_add_internal_call("UnityEngine.Animator::get_gravityWeight",(void*) UnityEngine_Animator_get_gravityWeight);
+	mono_add_internal_call("UnityEngine.Animator::GetGoalWeightPosition",(void*) UnityEngine_Animator_GetGoalWeightPosition);
+	mono_add_internal_call("UnityEngine.Animator::SetGoalWeightPosition",(void*) UnityEngine_Animator_SetGoalWeightPosition);
+	mono_add_internal_call("UnityEngine.Animator::GetGoalWeightRotation",(void*) UnityEngine_Animator_GetGoalWeightRotation);
+	mono_add_internal_call("UnityEngine.Animator::SetGoalWeightRotation",(void*) UnityEngine_Animator_SetGoalWeightRotation);
+	mono_add_internal_call("UnityEngine.Animator::GetHintWeightPosition",(void*) UnityEngine_Animator_GetHintWeightPosition);
+	mono_add_internal_call("UnityEngine.Animator::SetHintWeightPosition",(void*) UnityEngine_Animator_SetHintWeightPosition);
+	mono_add_internal_call("UnityEngine.Animator::SetLookAtWeightInternal",(void*) UnityEngine_Animator_SetLookAtWeightInternal);
+	mono_add_internal_call("UnityEngine.Animator::GetBehaviour",(void*) UnityEngine_Animator_GetBehaviour);
+	mono_add_internal_call("UnityEngine.Animator::InternalGetBehaviours",(void*) UnityEngine_Animator_InternalGetBehaviours);
+	mono_add_internal_call("UnityEngine.Animator::InternalGetBehavioursByKey",(void*) UnityEngine_Animator_InternalGetBehavioursByKey);
+	mono_add_internal_call("UnityEngine.Animator::get_stabilizeFeet",(void*) UnityEngine_Animator_get_stabilizeFeet);
+	mono_add_internal_call("UnityEngine.Animator::set_stabilizeFeet",(void*) UnityEngine_Animator_set_stabilizeFeet);
+	mono_add_internal_call("UnityEngine.Animator::get_layerCount",(void*) UnityEngine_Animator_get_layerCount);
+	mono_add_internal_call("UnityEngine.Animator::GetLayerName",(void*) UnityEngine_Animator_GetLayerName);
+	mono_add_internal_call("UnityEngine.Animator::GetLayerIndex",(void*) UnityEngine_Animator_GetLayerIndex);
+	mono_add_internal_call("UnityEngine.Animator::GetLayerWeight",(void*) UnityEngine_Animator_GetLayerWeight);
+	mono_add_internal_call("UnityEngine.Animator::SetLayerWeight",(void*) UnityEngine_Animator_SetLayerWeight);
+	mono_add_internal_call("UnityEngine.Animator::GetAnimatorStateInfo",(void*) UnityEngine_Animator_GetAnimatorStateInfo);
+	mono_add_internal_call("UnityEngine.Animator::GetAnimatorTransitionInfo",(void*) UnityEngine_Animator_GetAnimatorTransitionInfo);
+	mono_add_internal_call("UnityEngine.Animator::GetAnimatorClipInfoCount",(void*) UnityEngine_Animator_GetAnimatorClipInfoCount);
+	mono_add_internal_call("UnityEngine.Animator::GetCurrentAnimatorClipInfo",(void*) UnityEngine_Animator_GetCurrentAnimatorClipInfo);
+	mono_add_internal_call("UnityEngine.Animator::GetNextAnimatorClipInfo",(void*) UnityEngine_Animator_GetNextAnimatorClipInfo);
+	mono_add_internal_call("UnityEngine.Animator::GetAnimatorClipInfoInternal",(void*) UnityEngine_Animator_GetAnimatorClipInfoInternal);
+	mono_add_internal_call("UnityEngine.Animator::GetAnimatorClipInfoInternalWinRT",(void*) UnityEngine_Animator_GetAnimatorClipInfoInternalWinRT);
+	mono_add_internal_call("UnityEngine.Animator::IsInTransition",(void*) UnityEngine_Animator_IsInTransition);
+	mono_add_internal_call("UnityEngine.Animator::get_parameters",(void*) UnityEngine_Animator_get_parameters);
+	mono_add_internal_call("UnityEngine.Animator::get_parameterCount",(void*) UnityEngine_Animator_get_parameterCount);
+	mono_add_internal_call("UnityEngine.Animator::get_feetPivotActive",(void*) UnityEngine_Animator_get_feetPivotActive);
+	mono_add_internal_call("UnityEngine.Animator::set_feetPivotActive",(void*) UnityEngine_Animator_set_feetPivotActive);
+	mono_add_internal_call("UnityEngine.Animator::get_pivotWeight",(void*) UnityEngine_Animator_get_pivotWeight);
+	mono_add_internal_call("UnityEngine.Animator::InterruptMatchTarget",(void*) UnityEngine_Animator_InterruptMatchTarget);
+	mono_add_internal_call("UnityEngine.Animator::get_isMatchingTarget",(void*) UnityEngine_Animator_get_isMatchingTarget);
+	mono_add_internal_call("UnityEngine.Animator::get_speed",(void*) UnityEngine_Animator_get_speed_1);
+	mono_add_internal_call("UnityEngine.Animator::set_speed",(void*) UnityEngine_Animator_set_speed_1);
+	mono_add_internal_call("UnityEngine.Animator::CrossFadeInFixedTime",(void*) UnityEngine_Animator_CrossFadeInFixedTime);
+	mono_add_internal_call("UnityEngine.Animator::WriteDefaultValues",(void*) UnityEngine_Animator_WriteDefaultValues);
+	mono_add_internal_call("UnityEngine.Animator::CrossFade",(void*) UnityEngine_Animator_CrossFade);
+	mono_add_internal_call("UnityEngine.Animator::PlayInFixedTime",(void*) UnityEngine_Animator_PlayInFixedTime);
+	mono_add_internal_call("UnityEngine.Animator::Play",(void*) UnityEngine_Animator_Play);
+	mono_add_internal_call("UnityEngine.Animator::SetTarget",(void*) UnityEngine_Animator_SetTarget);
+	mono_add_internal_call("UnityEngine.Animator::IsBoneTransform",(void*) UnityEngine_Animator_IsBoneTransform);
+	mono_add_internal_call("UnityEngine.Animator::get_avatarRoot",(void*) UnityEngine_Animator_get_avatarRoot);
+	mono_add_internal_call("UnityEngine.Animator::GetBoneTransformInternal",(void*) UnityEngine_Animator_GetBoneTransformInternal);
+	mono_add_internal_call("UnityEngine.Animator::get_cullingMode",(void*) UnityEngine_Animator_get_cullingMode);
+	mono_add_internal_call("UnityEngine.Animator::set_cullingMode",(void*) UnityEngine_Animator_set_cullingMode);
+	mono_add_internal_call("UnityEngine.Animator::StartPlayback",(void*) UnityEngine_Animator_StartPlayback);
+	mono_add_internal_call("UnityEngine.Animator::StopPlayback",(void*) UnityEngine_Animator_StopPlayback);
+	mono_add_internal_call("UnityEngine.Animator::get_playbackTime",(void*) UnityEngine_Animator_get_playbackTime);
+	mono_add_internal_call("UnityEngine.Animator::set_playbackTime",(void*) UnityEngine_Animator_set_playbackTime);
+	mono_add_internal_call("UnityEngine.Animator::StartRecording",(void*) UnityEngine_Animator_StartRecording);
+	mono_add_internal_call("UnityEngine.Animator::StopRecording",(void*) UnityEngine_Animator_StopRecording);
+	mono_add_internal_call("UnityEngine.Animator::GetRecorderStartTime",(void*) UnityEngine_Animator_GetRecorderStartTime);
+	mono_add_internal_call("UnityEngine.Animator::GetRecorderStopTime",(void*) UnityEngine_Animator_GetRecorderStopTime);
+	mono_add_internal_call("UnityEngine.Animator::get_recorderMode",(void*) UnityEngine_Animator_get_recorderMode);
+	mono_add_internal_call("UnityEngine.Animator::get_runtimeAnimatorController",(void*) UnityEngine_Animator_get_runtimeAnimatorController);
+	mono_add_internal_call("UnityEngine.Animator::set_runtimeAnimatorController",(void*) UnityEngine_Animator_set_runtimeAnimatorController);
+	mono_add_internal_call("UnityEngine.Animator::get_hasBoundPlayables",(void*) UnityEngine_Animator_get_hasBoundPlayables);
+	mono_add_internal_call("UnityEngine.Animator::ClearInternalControllerPlayable",(void*) UnityEngine_Animator_ClearInternalControllerPlayable);
+	mono_add_internal_call("UnityEngine.Animator::HasState",(void*) UnityEngine_Animator_HasState);
+	mono_add_internal_call("UnityEngine.Animator::StringToHash",(void*) UnityEngine_Animator_StringToHash);
+	mono_add_internal_call("UnityEngine.Animator::get_avatar",(void*) UnityEngine_Animator_get_avatar);
+	mono_add_internal_call("UnityEngine.Animator::set_avatar",(void*) UnityEngine_Animator_set_avatar);
+	mono_add_internal_call("UnityEngine.Animator::GetStats",(void*) UnityEngine_Animator_GetStats);
+	mono_add_internal_call("UnityEngine.Animator::GetCurrentGraph",(void*) UnityEngine_Animator_GetCurrentGraph);
+	mono_add_internal_call("UnityEngine.Animator::IsInIKPass",(void*) UnityEngine_Animator_IsInIKPass);
+	mono_add_internal_call("UnityEngine.Animator::SetFloatString",(void*) UnityEngine_Animator_SetFloatString);
+	mono_add_internal_call("UnityEngine.Animator::SetFloatID",(void*) UnityEngine_Animator_SetFloatID);
+	mono_add_internal_call("UnityEngine.Animator::GetFloatString",(void*) UnityEngine_Animator_GetFloatString);
+	mono_add_internal_call("UnityEngine.Animator::GetFloatID",(void*) UnityEngine_Animator_GetFloatID);
+	mono_add_internal_call("UnityEngine.Animator::SetBoolString",(void*) UnityEngine_Animator_SetBoolString);
+	mono_add_internal_call("UnityEngine.Animator::SetBoolID",(void*) UnityEngine_Animator_SetBoolID);
+	mono_add_internal_call("UnityEngine.Animator::GetBoolString",(void*) UnityEngine_Animator_GetBoolString);
+	mono_add_internal_call("UnityEngine.Animator::GetBoolID",(void*) UnityEngine_Animator_GetBoolID);
+	mono_add_internal_call("UnityEngine.Animator::SetIntegerString",(void*) UnityEngine_Animator_SetIntegerString);
+	mono_add_internal_call("UnityEngine.Animator::SetIntegerID",(void*) UnityEngine_Animator_SetIntegerID);
+	mono_add_internal_call("UnityEngine.Animator::GetIntegerString",(void*) UnityEngine_Animator_GetIntegerString);
+	mono_add_internal_call("UnityEngine.Animator::GetIntegerID",(void*) UnityEngine_Animator_GetIntegerID);
+	mono_add_internal_call("UnityEngine.Animator::SetTriggerString",(void*) UnityEngine_Animator_SetTriggerString);
+	mono_add_internal_call("UnityEngine.Animator::SetTriggerID",(void*) UnityEngine_Animator_SetTriggerID);
+	mono_add_internal_call("UnityEngine.Animator::ResetTriggerString",(void*) UnityEngine_Animator_ResetTriggerString);
+	mono_add_internal_call("UnityEngine.Animator::ResetTriggerID",(void*) UnityEngine_Animator_ResetTriggerID);
+	mono_add_internal_call("UnityEngine.Animator::IsParameterControlledByCurveString",(void*) UnityEngine_Animator_IsParameterControlledByCurveString);
+	mono_add_internal_call("UnityEngine.Animator::IsParameterControlledByCurveID",(void*) UnityEngine_Animator_IsParameterControlledByCurveID);
+	mono_add_internal_call("UnityEngine.Animator::SetFloatStringDamp",(void*) UnityEngine_Animator_SetFloatStringDamp);
+	mono_add_internal_call("UnityEngine.Animator::SetFloatIDDamp",(void*) UnityEngine_Animator_SetFloatIDDamp);
+	mono_add_internal_call("UnityEngine.Animator::get_layersAffectMassCenter",(void*) UnityEngine_Animator_get_layersAffectMassCenter);
+	mono_add_internal_call("UnityEngine.Animator::set_layersAffectMassCenter",(void*) UnityEngine_Animator_set_layersAffectMassCenter);
+	mono_add_internal_call("UnityEngine.Animator::get_leftFeetBottomHeight",(void*) UnityEngine_Animator_get_leftFeetBottomHeight);
+	mono_add_internal_call("UnityEngine.Animator::get_rightFeetBottomHeight",(void*) UnityEngine_Animator_get_rightFeetBottomHeight);
+	mono_add_internal_call("UnityEngine.Animator::get_supportsOnAnimatorMove",(void*) UnityEngine_Animator_get_supportsOnAnimatorMove);
+	mono_add_internal_call("UnityEngine.Animator::OnUpdateModeChanged",(void*) UnityEngine_Animator_OnUpdateModeChanged);
+	mono_add_internal_call("UnityEngine.Animator::OnCullingModeChanged",(void*) UnityEngine_Animator_OnCullingModeChanged);
+	mono_add_internal_call("UnityEngine.Animator::WriteDefaultPose",(void*) UnityEngine_Animator_WriteDefaultPose);
+	mono_add_internal_call("UnityEngine.Animator::Update",(void*) UnityEngine_Animator_Update);
+	mono_add_internal_call("UnityEngine.Animator::Rebind",(void*) UnityEngine_Animator_Rebind);
+	mono_add_internal_call("UnityEngine.Animator::ApplyBuiltinRootMotion",(void*) UnityEngine_Animator_ApplyBuiltinRootMotion);
+	mono_add_internal_call("UnityEngine.Animator::EvaluateController",(void*) UnityEngine_Animator_EvaluateController);
+	mono_add_internal_call("UnityEngine.Animator::GetAnimatorStateName",(void*) UnityEngine_Animator_GetAnimatorStateName);
+	mono_add_internal_call("UnityEngine.Animator::ResolveHash",(void*) UnityEngine_Animator_ResolveHash);
+	mono_add_internal_call("UnityEngine.Animator::get_logWarnings",(void*) UnityEngine_Animator_get_logWarnings);
+	mono_add_internal_call("UnityEngine.Animator::set_logWarnings",(void*) UnityEngine_Animator_set_logWarnings);
+	mono_add_internal_call("UnityEngine.Animator::get_fireEvents",(void*) UnityEngine_Animator_get_fireEvents);
+	mono_add_internal_call("UnityEngine.Animator::set_fireEvents",(void*) UnityEngine_Animator_set_fireEvents);
+	mono_add_internal_call("UnityEngine.Animator::get_keepAnimatorControllerStateOnDisable",(void*) UnityEngine_Animator_get_keepAnimatorControllerStateOnDisable);
+	mono_add_internal_call("UnityEngine.Animator::set_keepAnimatorControllerStateOnDisable",(void*) UnityEngine_Animator_set_keepAnimatorControllerStateOnDisable);
+	mono_add_internal_call("UnityEngine.Animator::get_deltaPosition_Injected",(void*) UnityEngine_Animator_get_deltaPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_deltaRotation_Injected",(void*) UnityEngine_Animator_get_deltaRotation_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_velocity_Injected",(void*) UnityEngine_Animator_get_velocity_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_angularVelocity_Injected",(void*) UnityEngine_Animator_get_angularVelocity_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_rootPosition_Injected",(void*) UnityEngine_Animator_get_rootPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::set_rootPosition_Injected",(void*) UnityEngine_Animator_set_rootPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_rootRotation_Injected",(void*) UnityEngine_Animator_get_rootRotation_Injected);
+	mono_add_internal_call("UnityEngine.Animator::set_rootRotation_Injected",(void*) UnityEngine_Animator_set_rootRotation_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_bodyPositionInternal_Injected",(void*) UnityEngine_Animator_get_bodyPositionInternal_Injected);
+	mono_add_internal_call("UnityEngine.Animator::set_bodyPositionInternal_Injected",(void*) UnityEngine_Animator_set_bodyPositionInternal_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_bodyRotationInternal_Injected",(void*) UnityEngine_Animator_get_bodyRotationInternal_Injected);
+	mono_add_internal_call("UnityEngine.Animator::set_bodyRotationInternal_Injected",(void*) UnityEngine_Animator_set_bodyRotationInternal_Injected);
+	mono_add_internal_call("UnityEngine.Animator::GetGoalPosition_Injected",(void*) UnityEngine_Animator_GetGoalPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::SetGoalPosition_Injected",(void*) UnityEngine_Animator_SetGoalPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::GetGoalRotation_Injected",(void*) UnityEngine_Animator_GetGoalRotation_Injected);
+	mono_add_internal_call("UnityEngine.Animator::SetGoalRotation_Injected",(void*) UnityEngine_Animator_SetGoalRotation_Injected);
+	mono_add_internal_call("UnityEngine.Animator::GetHintPosition_Injected",(void*) UnityEngine_Animator_GetHintPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::SetHintPosition_Injected",(void*) UnityEngine_Animator_SetHintPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::SetLookAtPositionInternal_Injected",(void*) UnityEngine_Animator_SetLookAtPositionInternal_Injected);
+	mono_add_internal_call("UnityEngine.Animator::SetBoneLocalRotationInternal_Injected",(void*) UnityEngine_Animator_SetBoneLocalRotationInternal_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_pivotPosition_Injected",(void*) UnityEngine_Animator_get_pivotPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::MatchTarget_Injected",(void*) UnityEngine_Animator_MatchTarget_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_targetPosition_Injected",(void*) UnityEngine_Animator_get_targetPosition_Injected);
+	mono_add_internal_call("UnityEngine.Animator::get_targetRotation_Injected",(void*) UnityEngine_Animator_get_targetRotation_Injected);
 	mono_add_internal_call("UnityEngine.Animations.AnimatorControllerPlayable::GetAnimatorClipInfoInternal",(void*) UnityEngine_Animations_AnimatorControllerPlayable_GetAnimatorClipInfoInternal_1);
 	mono_add_internal_call("UnityEngine.Animations.AnimatorControllerPlayable::GetAnimatorControllerInternal",(void*) UnityEngine_Animations_AnimatorControllerPlayable_GetAnimatorControllerInternal);
 	mono_add_internal_call("UnityEngine.Animations.AnimatorControllerPlayable::GetLayerCountInternal",(void*) UnityEngine_Animations_AnimatorControllerPlayable_GetLayerCountInternal);
@@ -59414,8 +57035,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AvatarMask::SetTransformWeight",(void*) UnityEngine_AvatarMask_SetTransformWeight);
 	mono_add_internal_call("UnityEngine.AvatarMask::get_hasFeetIK",(void*) UnityEngine_AvatarMask_get_hasFeetIK);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::Internal_Create",(void*) UnityEngine_Animations_PositionConstraint_Internal_Create_4);
-	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::get_weight",(void*) UnityEngine_Animations_PositionConstraint_get_weight_2);
-	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::set_weight",(void*) UnityEngine_Animations_PositionConstraint_set_weight_2);
+	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::get_weight",(void*) UnityEngine_Animations_PositionConstraint_get_weight_1);
+	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::set_weight",(void*) UnityEngine_Animations_PositionConstraint_set_weight_1);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::get_translationAxis",(void*) UnityEngine_Animations_PositionConstraint_get_translationAxis);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::set_translationAxis",(void*) UnityEngine_Animations_PositionConstraint_set_translationAxis);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::get_constraintActive",(void*) UnityEngine_Animations_PositionConstraint_get_constraintActive_1);
@@ -59426,9 +57047,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::GetSources",(void*) UnityEngine_Animations_PositionConstraint_GetSources_1);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::SetSourcesInternal",(void*) UnityEngine_Animations_PositionConstraint_SetSourcesInternal_1);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::RemoveSourceInternal",(void*) UnityEngine_Animations_PositionConstraint_RemoveSourceInternal_1);
-	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::ActivateAndPreserveOffset",(void*) UnityEngine_Animations_PositionConstraint_ActivateAndPreserveOffset_1);
-	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::ActivateWithZeroOffset",(void*) UnityEngine_Animations_PositionConstraint_ActivateWithZeroOffset_1);
-	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::UserUpdateOffset",(void*) UnityEngine_Animations_PositionConstraint_UserUpdateOffset_1);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::get_translationAtRest_Injected",(void*) UnityEngine_Animations_PositionConstraint_get_translationAtRest_Injected);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::set_translationAtRest_Injected",(void*) UnityEngine_Animations_PositionConstraint_set_translationAtRest_Injected);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::get_translationOffset_Injected",(void*) UnityEngine_Animations_PositionConstraint_get_translationOffset_Injected);
@@ -59437,8 +57055,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::GetSourceInternal_Injected",(void*) UnityEngine_Animations_PositionConstraint_GetSourceInternal_Injected_1);
 	mono_add_internal_call("UnityEngine.Animations.PositionConstraint::SetSourceInternal_Injected",(void*) UnityEngine_Animations_PositionConstraint_SetSourceInternal_Injected_1);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::Internal_Create",(void*) UnityEngine_Animations_RotationConstraint_Internal_Create_5);
-	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::get_weight",(void*) UnityEngine_Animations_RotationConstraint_get_weight_3);
-	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::set_weight",(void*) UnityEngine_Animations_RotationConstraint_set_weight_3);
+	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::get_weight",(void*) UnityEngine_Animations_RotationConstraint_get_weight_2);
+	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::set_weight",(void*) UnityEngine_Animations_RotationConstraint_set_weight_2);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::get_rotationAxis",(void*) UnityEngine_Animations_RotationConstraint_get_rotationAxis_1);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::set_rotationAxis",(void*) UnityEngine_Animations_RotationConstraint_set_rotationAxis_1);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::get_constraintActive",(void*) UnityEngine_Animations_RotationConstraint_get_constraintActive_2);
@@ -59449,9 +57067,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::GetSources",(void*) UnityEngine_Animations_RotationConstraint_GetSources_2);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::SetSourcesInternal",(void*) UnityEngine_Animations_RotationConstraint_SetSourcesInternal_2);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::RemoveSourceInternal",(void*) UnityEngine_Animations_RotationConstraint_RemoveSourceInternal_2);
-	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::ActivateAndPreserveOffset",(void*) UnityEngine_Animations_RotationConstraint_ActivateAndPreserveOffset_2);
-	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::ActivateWithZeroOffset",(void*) UnityEngine_Animations_RotationConstraint_ActivateWithZeroOffset_2);
-	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::UserUpdateOffset",(void*) UnityEngine_Animations_RotationConstraint_UserUpdateOffset_2);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::get_rotationAtRest_Injected",(void*) UnityEngine_Animations_RotationConstraint_get_rotationAtRest_Injected_1);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::set_rotationAtRest_Injected",(void*) UnityEngine_Animations_RotationConstraint_set_rotationAtRest_Injected_1);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::get_rotationOffset_Injected",(void*) UnityEngine_Animations_RotationConstraint_get_rotationOffset_Injected_1);
@@ -59460,8 +57075,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::GetSourceInternal_Injected",(void*) UnityEngine_Animations_RotationConstraint_GetSourceInternal_Injected_2);
 	mono_add_internal_call("UnityEngine.Animations.RotationConstraint::SetSourceInternal_Injected",(void*) UnityEngine_Animations_RotationConstraint_SetSourceInternal_Injected_2);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::Internal_Create",(void*) UnityEngine_Animations_ScaleConstraint_Internal_Create_6);
-	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::get_weight",(void*) UnityEngine_Animations_ScaleConstraint_get_weight_4);
-	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::set_weight",(void*) UnityEngine_Animations_ScaleConstraint_set_weight_4);
+	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::get_weight",(void*) UnityEngine_Animations_ScaleConstraint_get_weight_3);
+	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::set_weight",(void*) UnityEngine_Animations_ScaleConstraint_set_weight_3);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::get_scalingAxis",(void*) UnityEngine_Animations_ScaleConstraint_get_scalingAxis);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::set_scalingAxis",(void*) UnityEngine_Animations_ScaleConstraint_set_scalingAxis);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::get_constraintActive",(void*) UnityEngine_Animations_ScaleConstraint_get_constraintActive_3);
@@ -59472,9 +57087,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::GetSources",(void*) UnityEngine_Animations_ScaleConstraint_GetSources_3);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::SetSourcesInternal",(void*) UnityEngine_Animations_ScaleConstraint_SetSourcesInternal_3);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::RemoveSourceInternal",(void*) UnityEngine_Animations_ScaleConstraint_RemoveSourceInternal_3);
-	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::ActivateAndPreserveOffset",(void*) UnityEngine_Animations_ScaleConstraint_ActivateAndPreserveOffset_3);
-	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::ActivateWithZeroOffset",(void*) UnityEngine_Animations_ScaleConstraint_ActivateWithZeroOffset_3);
-	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::UserUpdateOffset",(void*) UnityEngine_Animations_ScaleConstraint_UserUpdateOffset_3);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::get_scaleAtRest_Injected",(void*) UnityEngine_Animations_ScaleConstraint_get_scaleAtRest_Injected);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::set_scaleAtRest_Injected",(void*) UnityEngine_Animations_ScaleConstraint_set_scaleAtRest_Injected);
 	mono_add_internal_call("UnityEngine.Animations.ScaleConstraint::get_scaleOffset_Injected",(void*) UnityEngine_Animations_ScaleConstraint_get_scaleOffset_Injected);
@@ -59501,8 +57113,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.HumanTrait::Internal_GetBoneHierarchyMass",(void*) UnityEngine_HumanTrait_Internal_GetBoneHierarchyMass);
 	mono_add_internal_call("UnityEngine.HumanTrait::Internal_GetParent",(void*) UnityEngine_HumanTrait_Internal_GetParent);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::Internal_Create",(void*) UnityEngine_Animations_LookAtConstraint_Internal_Create_8);
-	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::get_weight",(void*) UnityEngine_Animations_LookAtConstraint_get_weight_5);
-	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::set_weight",(void*) UnityEngine_Animations_LookAtConstraint_set_weight_5);
+	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::get_weight",(void*) UnityEngine_Animations_LookAtConstraint_get_weight_4);
+	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::set_weight",(void*) UnityEngine_Animations_LookAtConstraint_set_weight_4);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::get_roll",(void*) UnityEngine_Animations_LookAtConstraint_get_roll);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::set_roll",(void*) UnityEngine_Animations_LookAtConstraint_set_roll);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::get_constraintActive",(void*) UnityEngine_Animations_LookAtConstraint_get_constraintActive_4);
@@ -59517,9 +57129,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::GetSources",(void*) UnityEngine_Animations_LookAtConstraint_GetSources_4);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::SetSourcesInternal",(void*) UnityEngine_Animations_LookAtConstraint_SetSourcesInternal_4);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::RemoveSourceInternal",(void*) UnityEngine_Animations_LookAtConstraint_RemoveSourceInternal_4);
-	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::ActivateAndPreserveOffset",(void*) UnityEngine_Animations_LookAtConstraint_ActivateAndPreserveOffset_4);
-	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::ActivateWithZeroOffset",(void*) UnityEngine_Animations_LookAtConstraint_ActivateWithZeroOffset_4);
-	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::UserUpdateOffset",(void*) UnityEngine_Animations_LookAtConstraint_UserUpdateOffset_4);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::get_rotationAtRest_Injected",(void*) UnityEngine_Animations_LookAtConstraint_get_rotationAtRest_Injected_2);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::set_rotationAtRest_Injected",(void*) UnityEngine_Animations_LookAtConstraint_set_rotationAtRest_Injected_2);
 	mono_add_internal_call("UnityEngine.Animations.LookAtConstraint::get_rotationOffset_Injected",(void*) UnityEngine_Animations_LookAtConstraint_get_rotationOffset_Injected_2);
@@ -59538,8 +57147,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Experimental.Animations.MuscleHandle::GetMuscleHandleCount",(void*) UnityEngine_Experimental_Animations_MuscleHandle_GetMuscleHandleCount);
 	mono_add_internal_call("UnityEngine.Experimental.Animations.MuscleHandle::GetName_Injected",(void*) UnityEngine_Experimental_Animations_MuscleHandle_GetName_Injected);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::Internal_Create",(void*) UnityEngine_Animations_ParentConstraint_Internal_Create_9);
-	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::get_weight",(void*) UnityEngine_Animations_ParentConstraint_get_weight_6);
-	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::set_weight",(void*) UnityEngine_Animations_ParentConstraint_set_weight_6);
+	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::get_weight",(void*) UnityEngine_Animations_ParentConstraint_get_weight_5);
+	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::set_weight",(void*) UnityEngine_Animations_ParentConstraint_set_weight_5);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::get_constraintActive",(void*) UnityEngine_Animations_ParentConstraint_get_constraintActive_5);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::set_constraintActive",(void*) UnityEngine_Animations_ParentConstraint_set_constraintActive_5);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::get_locked",(void*) UnityEngine_Animations_ParentConstraint_get_locked_5);
@@ -59556,9 +57165,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::GetSources",(void*) UnityEngine_Animations_ParentConstraint_GetSources_5);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::SetSourcesInternal",(void*) UnityEngine_Animations_ParentConstraint_SetSourcesInternal_5);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::RemoveSourceInternal",(void*) UnityEngine_Animations_ParentConstraint_RemoveSourceInternal_5);
-	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::ActivateAndPreserveOffset",(void*) UnityEngine_Animations_ParentConstraint_ActivateAndPreserveOffset_5);
-	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::ActivateWithZeroOffset",(void*) UnityEngine_Animations_ParentConstraint_ActivateWithZeroOffset_5);
-	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::UserUpdateOffset",(void*) UnityEngine_Animations_ParentConstraint_UserUpdateOffset_5);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::get_translationAtRest_Injected",(void*) UnityEngine_Animations_ParentConstraint_get_translationAtRest_Injected_1);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::set_translationAtRest_Injected",(void*) UnityEngine_Animations_ParentConstraint_set_translationAtRest_Injected_1);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::get_rotationAtRest_Injected",(void*) UnityEngine_Animations_ParentConstraint_get_rotationAtRest_Injected_3);
@@ -59571,6 +57177,65 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::GetSourceInternal_Injected",(void*) UnityEngine_Animations_ParentConstraint_GetSourceInternal_Injected_5);
 	mono_add_internal_call("UnityEngine.Animations.ParentConstraint::SetSourceInternal_Injected",(void*) UnityEngine_Animations_ParentConstraint_SetSourceInternal_Injected_5);
 	mono_add_internal_call("UnityEngine.RuntimeAnimatorController::get_animationClips",(void*) UnityEngine_RuntimeAnimatorController_get_animationClips);
+	mono_add_internal_call("UnityEngine.Animation::get_clip",(void*) UnityEngine_Animation_get_clip);
+	mono_add_internal_call("UnityEngine.Animation::set_clip",(void*) UnityEngine_Animation_set_clip);
+	mono_add_internal_call("UnityEngine.Animation::get_playAutomatically",(void*) UnityEngine_Animation_get_playAutomatically);
+	mono_add_internal_call("UnityEngine.Animation::set_playAutomatically",(void*) UnityEngine_Animation_set_playAutomatically);
+	mono_add_internal_call("UnityEngine.Animation::get_wrapMode",(void*) UnityEngine_Animation_get_wrapMode_1);
+	mono_add_internal_call("UnityEngine.Animation::set_wrapMode",(void*) UnityEngine_Animation_set_wrapMode_1);
+	mono_add_internal_call("UnityEngine.Animation::INTERNAL_CALL_Stop",(void*) UnityEngine_Animation_INTERNAL_CALL_Stop);
+	mono_add_internal_call("UnityEngine.Animation::Internal_StopByName",(void*) UnityEngine_Animation_Internal_StopByName);
+	mono_add_internal_call("UnityEngine.Animation::Internal_RewindByName",(void*) UnityEngine_Animation_Internal_RewindByName);
+	mono_add_internal_call("UnityEngine.Animation::INTERNAL_CALL_Rewind",(void*) UnityEngine_Animation_INTERNAL_CALL_Rewind);
+	mono_add_internal_call("UnityEngine.Animation::INTERNAL_CALL_Sample",(void*) UnityEngine_Animation_INTERNAL_CALL_Sample);
+	mono_add_internal_call("UnityEngine.Animation::get_isPlaying",(void*) UnityEngine_Animation_get_isPlaying);
+	mono_add_internal_call("UnityEngine.Animation::IsPlaying",(void*) UnityEngine_Animation_IsPlaying);
+	mono_add_internal_call("UnityEngine.Animation::Play",(void*) UnityEngine_Animation_Play_1);
+	mono_add_internal_call("UnityEngine.Animation::CrossFade",(void*) UnityEngine_Animation_CrossFade_1);
+	mono_add_internal_call("UnityEngine.Animation::Blend",(void*) UnityEngine_Animation_Blend);
+	mono_add_internal_call("UnityEngine.Animation::CrossFadeQueued",(void*) UnityEngine_Animation_CrossFadeQueued);
+	mono_add_internal_call("UnityEngine.Animation::PlayQueued",(void*) UnityEngine_Animation_PlayQueued);
+	mono_add_internal_call("UnityEngine.Animation::AddClip",(void*) UnityEngine_Animation_AddClip);
+	mono_add_internal_call("UnityEngine.Animation::RemoveClip",(void*) UnityEngine_Animation_RemoveClip);
+	mono_add_internal_call("UnityEngine.Animation::GetClipCount",(void*) UnityEngine_Animation_GetClipCount);
+	mono_add_internal_call("UnityEngine.Animation::RemoveClip2",(void*) UnityEngine_Animation_RemoveClip2);
+	mono_add_internal_call("UnityEngine.Animation::PlayDefaultAnimation",(void*) UnityEngine_Animation_PlayDefaultAnimation);
+	mono_add_internal_call("UnityEngine.Animation::INTERNAL_CALL_SyncLayer",(void*) UnityEngine_Animation_INTERNAL_CALL_SyncLayer);
+	mono_add_internal_call("UnityEngine.Animation::GetState",(void*) UnityEngine_Animation_GetState);
+	mono_add_internal_call("UnityEngine.Animation::GetStateAtIndex",(void*) UnityEngine_Animation_GetStateAtIndex);
+	mono_add_internal_call("UnityEngine.Animation::GetStateCount",(void*) UnityEngine_Animation_GetStateCount);
+	mono_add_internal_call("UnityEngine.Animation::get_animatePhysics",(void*) UnityEngine_Animation_get_animatePhysics);
+	mono_add_internal_call("UnityEngine.Animation::set_animatePhysics",(void*) UnityEngine_Animation_set_animatePhysics);
+	mono_add_internal_call("UnityEngine.Animation::get_animateOnlyIfVisible",(void*) UnityEngine_Animation_get_animateOnlyIfVisible);
+	mono_add_internal_call("UnityEngine.Animation::set_animateOnlyIfVisible",(void*) UnityEngine_Animation_set_animateOnlyIfVisible);
+	mono_add_internal_call("UnityEngine.Animation::get_cullingType",(void*) UnityEngine_Animation_get_cullingType);
+	mono_add_internal_call("UnityEngine.Animation::set_cullingType",(void*) UnityEngine_Animation_set_cullingType);
+	mono_add_internal_call("UnityEngine.Animation::INTERNAL_get_localBounds",(void*) UnityEngine_Animation_INTERNAL_get_localBounds);
+	mono_add_internal_call("UnityEngine.Animation::INTERNAL_set_localBounds",(void*) UnityEngine_Animation_INTERNAL_set_localBounds);
+	mono_add_internal_call("UnityEngine.AnimationState::get_enabled",(void*) UnityEngine_AnimationState_get_enabled);
+	mono_add_internal_call("UnityEngine.AnimationState::set_enabled",(void*) UnityEngine_AnimationState_set_enabled);
+	mono_add_internal_call("UnityEngine.AnimationState::get_weight",(void*) UnityEngine_AnimationState_get_weight_6);
+	mono_add_internal_call("UnityEngine.AnimationState::set_weight",(void*) UnityEngine_AnimationState_set_weight_6);
+	mono_add_internal_call("UnityEngine.AnimationState::get_wrapMode",(void*) UnityEngine_AnimationState_get_wrapMode_2);
+	mono_add_internal_call("UnityEngine.AnimationState::set_wrapMode",(void*) UnityEngine_AnimationState_set_wrapMode_2);
+	mono_add_internal_call("UnityEngine.AnimationState::get_time",(void*) UnityEngine_AnimationState_get_time);
+	mono_add_internal_call("UnityEngine.AnimationState::set_time",(void*) UnityEngine_AnimationState_set_time);
+	mono_add_internal_call("UnityEngine.AnimationState::get_normalizedTime",(void*) UnityEngine_AnimationState_get_normalizedTime);
+	mono_add_internal_call("UnityEngine.AnimationState::set_normalizedTime",(void*) UnityEngine_AnimationState_set_normalizedTime);
+	mono_add_internal_call("UnityEngine.AnimationState::get_speed",(void*) UnityEngine_AnimationState_get_speed_2);
+	mono_add_internal_call("UnityEngine.AnimationState::set_speed",(void*) UnityEngine_AnimationState_set_speed_2);
+	mono_add_internal_call("UnityEngine.AnimationState::get_normalizedSpeed",(void*) UnityEngine_AnimationState_get_normalizedSpeed);
+	mono_add_internal_call("UnityEngine.AnimationState::set_normalizedSpeed",(void*) UnityEngine_AnimationState_set_normalizedSpeed);
+	mono_add_internal_call("UnityEngine.AnimationState::get_length",(void*) UnityEngine_AnimationState_get_length_1);
+	mono_add_internal_call("UnityEngine.AnimationState::get_layer",(void*) UnityEngine_AnimationState_get_layer);
+	mono_add_internal_call("UnityEngine.AnimationState::set_layer",(void*) UnityEngine_AnimationState_set_layer);
+	mono_add_internal_call("UnityEngine.AnimationState::get_clip",(void*) UnityEngine_AnimationState_get_clip_1);
+	mono_add_internal_call("UnityEngine.AnimationState::AddMixingTransform",(void*) UnityEngine_AnimationState_AddMixingTransform);
+	mono_add_internal_call("UnityEngine.AnimationState::RemoveMixingTransform",(void*) UnityEngine_AnimationState_RemoveMixingTransform);
+	mono_add_internal_call("UnityEngine.AnimationState::get_name",(void*) UnityEngine_AnimationState_get_name);
+	mono_add_internal_call("UnityEngine.AnimationState::set_name",(void*) UnityEngine_AnimationState_set_name);
+	mono_add_internal_call("UnityEngine.AnimationState::get_blendMode",(void*) UnityEngine_AnimationState_get_blendMode);
+	mono_add_internal_call("UnityEngine.AnimationState::set_blendMode",(void*) UnityEngine_AnimationState_set_blendMode);
 	mono_add_internal_call("UnityEngine.XR.Tango.TangoInputTracking::Internal_TryGetPoseAtTime",(void*) UnityEngine_XR_Tango_TangoInputTracking_Internal_TryGetPoseAtTime);
 	mono_add_internal_call("UnityEngine.AssetBundle::returnMainAsset",(void*) UnityEngine_AssetBundle_returnMainAsset);
 	mono_add_internal_call("UnityEngine.AssetBundle::UnloadAllAssetBundles",(void*) UnityEngine_AssetBundle_UnloadAllAssetBundles);
@@ -59606,6 +57271,52 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AssetBundleRequest::get_asset",(void*) UnityEngine_AssetBundleRequest_get_asset);
 	mono_add_internal_call("UnityEngine.AssetBundleRequest::get_allAssets",(void*) UnityEngine_AssetBundleRequest_get_allAssets);
 	mono_add_internal_call("UnityEngine.Experimental.AssetBundlePatching.AssetBundleUtility::PatchAssetBundles",(void*) UnityEngine_Experimental_AssetBundlePatching_AssetBundleUtility_PatchAssetBundles);
+	mono_add_internal_call("UnityEngine.AudioExtensionManager::GetAudioListener",(void*) UnityEngine_AudioExtensionManager_GetAudioListener);
+	mono_add_internal_call("UnityEngine.Audio.AudioPlayableOutput::InternalGetTarget",(void*) UnityEngine_Audio_AudioPlayableOutput_InternalGetTarget_1);
+	mono_add_internal_call("UnityEngine.Audio.AudioPlayableOutput::InternalSetTarget",(void*) UnityEngine_Audio_AudioPlayableOutput_InternalSetTarget_1);
+	mono_add_internal_call("UnityEngine.Audio.AudioPlayableOutput::InternalGetEvaluateOnSeek",(void*) UnityEngine_Audio_AudioPlayableOutput_InternalGetEvaluateOnSeek);
+	mono_add_internal_call("UnityEngine.Audio.AudioPlayableOutput::InternalSetEvaluateOnSeek",(void*) UnityEngine_Audio_AudioPlayableOutput_InternalSetEvaluateOnSeek);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetClipInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetClipInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::SetClipInternal",(void*) UnityEngine_Audio_AudioClipPlayable_SetClipInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetLoopedInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetLoopedInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::SetLoopedInternal",(void*) UnityEngine_Audio_AudioClipPlayable_SetLoopedInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetIsChannelPlayingInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetIsChannelPlayingInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetStartDelayInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetStartDelayInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::SetStartDelayInternal",(void*) UnityEngine_Audio_AudioClipPlayable_SetStartDelayInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetPauseDelayInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetPauseDelayInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::SetPauseDelayInternal",(void*) UnityEngine_Audio_AudioClipPlayable_SetPauseDelayInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::InternalCreateAudioClipPlayable",(void*) UnityEngine_Audio_AudioClipPlayable_InternalCreateAudioClipPlayable);
+	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::ValidateType",(void*) UnityEngine_Audio_AudioClipPlayable_ValidateType);
+	mono_add_internal_call("UnityEngine.Audio.AudioMixerPlayable::CreateAudioMixerPlayableInternal",(void*) UnityEngine_Audio_AudioMixerPlayable_CreateAudioMixerPlayableInternal);
+	mono_add_internal_call("UnityEngine.Audio.AudioPlayableGraphExtensions::InternalCreateAudioOutput",(void*) UnityEngine_Audio_AudioPlayableGraphExtensions_InternalCreateAudioOutput);
+	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_Start",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_Start);
+	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_Stop",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_Stop);
+	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_GetSampleCountForCaptureFrame",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_GetSampleCountForCaptureFrame);
+	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_AddMixerGroupSink",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_AddMixerGroupSink);
+	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_Render",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_Render);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_isDepth",(void*) UnityEngine_WebCamTexture_get_isDepth);
+	mono_add_internal_call("UnityEngine.WebCamTexture::Internal_CreateWebCamTexture",(void*) UnityEngine_WebCamTexture_Internal_CreateWebCamTexture);
+	mono_add_internal_call("UnityEngine.WebCamTexture::INTERNAL_CALL_Play",(void*) UnityEngine_WebCamTexture_INTERNAL_CALL_Play);
+	mono_add_internal_call("UnityEngine.WebCamTexture::INTERNAL_CALL_Pause",(void*) UnityEngine_WebCamTexture_INTERNAL_CALL_Pause);
+	mono_add_internal_call("UnityEngine.WebCamTexture::INTERNAL_CALL_Stop",(void*) UnityEngine_WebCamTexture_INTERNAL_CALL_Stop_1);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_isPlaying",(void*) UnityEngine_WebCamTexture_get_isPlaying_1);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_deviceName",(void*) UnityEngine_WebCamTexture_get_deviceName);
+	mono_add_internal_call("UnityEngine.WebCamTexture::set_deviceName",(void*) UnityEngine_WebCamTexture_set_deviceName);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_requestedFPS",(void*) UnityEngine_WebCamTexture_get_requestedFPS);
+	mono_add_internal_call("UnityEngine.WebCamTexture::set_requestedFPS",(void*) UnityEngine_WebCamTexture_set_requestedFPS);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_requestedWidth",(void*) UnityEngine_WebCamTexture_get_requestedWidth);
+	mono_add_internal_call("UnityEngine.WebCamTexture::set_requestedWidth",(void*) UnityEngine_WebCamTexture_set_requestedWidth);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_requestedHeight",(void*) UnityEngine_WebCamTexture_get_requestedHeight);
+	mono_add_internal_call("UnityEngine.WebCamTexture::set_requestedHeight",(void*) UnityEngine_WebCamTexture_set_requestedHeight);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_devices",(void*) UnityEngine_WebCamTexture_get_devices);
+	mono_add_internal_call("UnityEngine.WebCamTexture::INTERNAL_CALL_GetPixel",(void*) UnityEngine_WebCamTexture_INTERNAL_CALL_GetPixel);
+	mono_add_internal_call("UnityEngine.WebCamTexture::GetPixels",(void*) UnityEngine_WebCamTexture_GetPixels);
+	mono_add_internal_call("UnityEngine.WebCamTexture::GetPixels32",(void*) UnityEngine_WebCamTexture_GetPixels32);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_videoRotationAngle",(void*) UnityEngine_WebCamTexture_get_videoRotationAngle);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_videoVerticallyMirrored",(void*) UnityEngine_WebCamTexture_get_videoVerticallyMirrored);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_didUpdateThisFrame",(void*) UnityEngine_WebCamTexture_get_didUpdateThisFrame);
+	mono_add_internal_call("UnityEngine.WebCamTexture::get_internalAutoFocusPoint_Injected",(void*) UnityEngine_WebCamTexture_get_internalAutoFocusPoint_Injected);
+	mono_add_internal_call("UnityEngine.WebCamTexture::set_internalAutoFocusPoint_Injected",(void*) UnityEngine_WebCamTexture_set_internalAutoFocusPoint_Injected);
 	mono_add_internal_call("UnityEngine.AudioSettings::get_driverCapabilities",(void*) UnityEngine_AudioSettings_get_driverCapabilities);
 	mono_add_internal_call("UnityEngine.AudioSettings::get_speakerMode",(void*) UnityEngine_AudioSettings_get_speakerMode);
 	mono_add_internal_call("UnityEngine.AudioSettings::set_speakerMode",(void*) UnityEngine_AudioSettings_set_speakerMode);
@@ -59615,17 +57326,11 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AudioSettings::set_outputSampleRate",(void*) UnityEngine_AudioSettings_set_outputSampleRate);
 	mono_add_internal_call("UnityEngine.AudioSettings::GetDSPBufferSize",(void*) UnityEngine_AudioSettings_GetDSPBufferSize);
 	mono_add_internal_call("UnityEngine.AudioSettings::SetDSPBufferSize",(void*) UnityEngine_AudioSettings_SetDSPBufferSize);
-	mono_add_internal_call("UnityEngine.AudioSettings::get_editingInPlaymode",(void*) UnityEngine_AudioSettings_get_editingInPlaymode);
-	mono_add_internal_call("UnityEngine.AudioSettings::set_editingInPlaymode",(void*) UnityEngine_AudioSettings_set_editingInPlaymode);
-	mono_add_internal_call("UnityEngine.AudioSettings::GetSpatializerPluginNames",(void*) UnityEngine_AudioSettings_GetSpatializerPluginNames);
 	mono_add_internal_call("UnityEngine.AudioSettings::GetSpatializerPluginName",(void*) UnityEngine_AudioSettings_GetSpatializerPluginName);
-	mono_add_internal_call("UnityEngine.AudioSettings::SetSpatializerPluginName_Internal",(void*) UnityEngine_AudioSettings_SetSpatializerPluginName_Internal);
 	mono_add_internal_call("UnityEngine.AudioSettings::INTERNAL_CALL_GetConfiguration",(void*) UnityEngine_AudioSettings_INTERNAL_CALL_GetConfiguration);
 	mono_add_internal_call("UnityEngine.AudioSettings::INTERNAL_CALL_Reset",(void*) UnityEngine_AudioSettings_INTERNAL_CALL_Reset);
 	mono_add_internal_call("UnityEngine.AudioSettings::get_unityAudioDisabled",(void*) UnityEngine_AudioSettings_get_unityAudioDisabled);
 	mono_add_internal_call("UnityEngine.AudioSettings::GetAmbisonicDecoderPluginName",(void*) UnityEngine_AudioSettings_GetAmbisonicDecoderPluginName);
-	mono_add_internal_call("UnityEngine.AudioSettings::SetAmbisonicDecoderPluginName",(void*) UnityEngine_AudioSettings_SetAmbisonicDecoderPluginName);
-	mono_add_internal_call("UnityEngine.AudioExtensionManager::GetAudioListener",(void*) UnityEngine_AudioExtensionManager_GetAudioListener);
 	mono_add_internal_call("UnityEngine.AudioClip::get_length",(void*) UnityEngine_AudioClip_get_length_2);
 	mono_add_internal_call("UnityEngine.AudioClip::get_samples",(void*) UnityEngine_AudioClip_get_samples);
 	mono_add_internal_call("UnityEngine.AudioClip::get_channels",(void*) UnityEngine_AudioClip_get_channels);
@@ -59656,7 +57361,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AudioListener::INTERNAL_CALL_ReadExtensionPropertyName",(void*) UnityEngine_AudioListener_INTERNAL_CALL_ReadExtensionPropertyName);
 	mono_add_internal_call("UnityEngine.AudioListener::ReadExtensionPropertyValue",(void*) UnityEngine_AudioListener_ReadExtensionPropertyValue);
 	mono_add_internal_call("UnityEngine.AudioListener::INTERNAL_CALL_ReadExtensionProperty",(void*) UnityEngine_AudioListener_INTERNAL_CALL_ReadExtensionProperty);
-	mono_add_internal_call("UnityEngine.AudioListener::INTERNAL_CALL_WriteExtensionProperty",(void*) UnityEngine_AudioListener_INTERNAL_CALL_WriteExtensionProperty);
 	mono_add_internal_call("UnityEngine.AudioListener::INTERNAL_CALL_ClearExtensionProperties",(void*) UnityEngine_AudioListener_INTERNAL_CALL_ClearExtensionProperties);
 	mono_add_internal_call("UnityEngine.AudioSource::get_volume",(void*) UnityEngine_AudioSource_get_volume_1);
 	mono_add_internal_call("UnityEngine.AudioSource::set_volume",(void*) UnityEngine_AudioSource_set_volume_1);
@@ -59676,9 +57380,9 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AudioSource::SetScheduledStartTime",(void*) UnityEngine_AudioSource_SetScheduledStartTime);
 	mono_add_internal_call("UnityEngine.AudioSource::SetScheduledEndTime",(void*) UnityEngine_AudioSource_SetScheduledEndTime);
 	mono_add_internal_call("UnityEngine.AudioSource::Stop",(void*) UnityEngine_AudioSource_Stop);
-	mono_add_internal_call("UnityEngine.AudioSource::INTERNAL_CALL_Pause",(void*) UnityEngine_AudioSource_INTERNAL_CALL_Pause);
+	mono_add_internal_call("UnityEngine.AudioSource::INTERNAL_CALL_Pause",(void*) UnityEngine_AudioSource_INTERNAL_CALL_Pause_1);
 	mono_add_internal_call("UnityEngine.AudioSource::INTERNAL_CALL_UnPause",(void*) UnityEngine_AudioSource_INTERNAL_CALL_UnPause);
-	mono_add_internal_call("UnityEngine.AudioSource::get_isPlaying",(void*) UnityEngine_AudioSource_get_isPlaying_1);
+	mono_add_internal_call("UnityEngine.AudioSource::get_isPlaying",(void*) UnityEngine_AudioSource_get_isPlaying_2);
 	mono_add_internal_call("UnityEngine.AudioSource::get_isVirtual",(void*) UnityEngine_AudioSource_get_isVirtual);
 	mono_add_internal_call("UnityEngine.AudioSource::PlayOneShotHelper",(void*) UnityEngine_AudioSource_PlayOneShotHelper);
 	mono_add_internal_call("UnityEngine.AudioSource::get_loop",(void*) UnityEngine_AudioSource_get_loop);
@@ -59731,7 +57435,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AudioSource::INTERNAL_CALL_ReadExtensionPropertyName",(void*) UnityEngine_AudioSource_INTERNAL_CALL_ReadExtensionPropertyName_1);
 	mono_add_internal_call("UnityEngine.AudioSource::ReadExtensionPropertyValue",(void*) UnityEngine_AudioSource_ReadExtensionPropertyValue_1);
 	mono_add_internal_call("UnityEngine.AudioSource::INTERNAL_CALL_ReadExtensionProperty",(void*) UnityEngine_AudioSource_INTERNAL_CALL_ReadExtensionProperty_1);
-	mono_add_internal_call("UnityEngine.AudioSource::INTERNAL_CALL_WriteExtensionProperty",(void*) UnityEngine_AudioSource_INTERNAL_CALL_WriteExtensionProperty_1);
 	mono_add_internal_call("UnityEngine.AudioSource::INTERNAL_CALL_ClearExtensionProperties",(void*) UnityEngine_AudioSource_INTERNAL_CALL_ClearExtensionProperties_1);
 	mono_add_internal_call("UnityEngine.AudioSource::get_minVolume",(void*) UnityEngine_AudioSource_get_minVolume);
 	mono_add_internal_call("UnityEngine.AudioSource::set_minVolume",(void*) UnityEngine_AudioSource_set_minVolume);
@@ -59775,8 +57478,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AudioReverbZone::set_diffusion",(void*) UnityEngine_AudioReverbZone_set_diffusion);
 	mono_add_internal_call("UnityEngine.AudioReverbZone::get_density",(void*) UnityEngine_AudioReverbZone_get_density);
 	mono_add_internal_call("UnityEngine.AudioReverbZone::set_density",(void*) UnityEngine_AudioReverbZone_set_density);
-	mono_add_internal_call("UnityEngine.AudioReverbZone::get_active",(void*) UnityEngine_AudioReverbZone_get_active);
-	mono_add_internal_call("UnityEngine.AudioReverbZone::set_active",(void*) UnityEngine_AudioReverbZone_set_active);
 	mono_add_internal_call("UnityEngine.AudioLowPassFilter::get_cutoffFrequency",(void*) UnityEngine_AudioLowPassFilter_get_cutoffFrequency);
 	mono_add_internal_call("UnityEngine.AudioLowPassFilter::set_cutoffFrequency",(void*) UnityEngine_AudioLowPassFilter_set_cutoffFrequency);
 	mono_add_internal_call("UnityEngine.AudioLowPassFilter::get_customCutoffCurve",(void*) UnityEngine_AudioLowPassFilter_get_customCutoffCurve);
@@ -59845,7 +57546,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.AudioReverbFilter::set_lfReference",(void*) UnityEngine_AudioReverbFilter_set_lfReference);
 	mono_add_internal_call("UnityEngine.Microphone::Start",(void*) UnityEngine_Microphone_Start);
 	mono_add_internal_call("UnityEngine.Microphone::End",(void*) UnityEngine_Microphone_End);
-	mono_add_internal_call("UnityEngine.Microphone::get_devices",(void*) UnityEngine_Microphone_get_devices);
+	mono_add_internal_call("UnityEngine.Microphone::get_devices",(void*) UnityEngine_Microphone_get_devices_1);
 	mono_add_internal_call("UnityEngine.Microphone::IsRecording",(void*) UnityEngine_Microphone_IsRecording);
 	mono_add_internal_call("UnityEngine.Microphone::GetPosition",(void*) UnityEngine_Microphone_GetPosition);
 	mono_add_internal_call("UnityEngine.Microphone::GetDeviceCaps",(void*) UnityEngine_Microphone_GetDeviceCaps);
@@ -59862,80 +57563,15 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Audio.AudioMixerSnapshot::get_audioMixer",(void*) UnityEngine_Audio_AudioMixerSnapshot_get_audioMixer);
 	mono_add_internal_call("UnityEngine.Audio.AudioMixerSnapshot::TransitionTo",(void*) UnityEngine_Audio_AudioMixerSnapshot_TransitionTo);
 	mono_add_internal_call("UnityEngine.Audio.AudioMixerGroup::get_audioMixer",(void*) UnityEngine_Audio_AudioMixerGroup_get_audioMixer_1);
-	mono_add_internal_call("UnityEngine.MovieTexture::INTERNAL_CALL_Play",(void*) UnityEngine_MovieTexture_INTERNAL_CALL_Play);
-	mono_add_internal_call("UnityEngine.MovieTexture::INTERNAL_CALL_Stop",(void*) UnityEngine_MovieTexture_INTERNAL_CALL_Stop_1);
-	mono_add_internal_call("UnityEngine.MovieTexture::INTERNAL_CALL_Pause",(void*) UnityEngine_MovieTexture_INTERNAL_CALL_Pause_1);
+	mono_add_internal_call("UnityEngine.MovieTexture::INTERNAL_CALL_Play",(void*) UnityEngine_MovieTexture_INTERNAL_CALL_Play_1);
+	mono_add_internal_call("UnityEngine.MovieTexture::INTERNAL_CALL_Stop",(void*) UnityEngine_MovieTexture_INTERNAL_CALL_Stop_2);
+	mono_add_internal_call("UnityEngine.MovieTexture::INTERNAL_CALL_Pause",(void*) UnityEngine_MovieTexture_INTERNAL_CALL_Pause_2);
 	mono_add_internal_call("UnityEngine.MovieTexture::get_audioClip",(void*) UnityEngine_MovieTexture_get_audioClip);
 	mono_add_internal_call("UnityEngine.MovieTexture::get_loop",(void*) UnityEngine_MovieTexture_get_loop_1);
 	mono_add_internal_call("UnityEngine.MovieTexture::set_loop",(void*) UnityEngine_MovieTexture_set_loop_1);
-	mono_add_internal_call("UnityEngine.MovieTexture::get_isPlaying",(void*) UnityEngine_MovieTexture_get_isPlaying_2);
+	mono_add_internal_call("UnityEngine.MovieTexture::get_isPlaying",(void*) UnityEngine_MovieTexture_get_isPlaying_3);
 	mono_add_internal_call("UnityEngine.MovieTexture::get_isReadyToPlay",(void*) UnityEngine_MovieTexture_get_isReadyToPlay_1);
 	mono_add_internal_call("UnityEngine.MovieTexture::get_duration",(void*) UnityEngine_MovieTexture_get_duration);
-	mono_add_internal_call("UnityEngine.WebCamTexture::Internal_CreateWebCamTexture",(void*) UnityEngine_WebCamTexture_Internal_CreateWebCamTexture);
-	mono_add_internal_call("UnityEngine.WebCamTexture::INTERNAL_CALL_Play",(void*) UnityEngine_WebCamTexture_INTERNAL_CALL_Play_1);
-	mono_add_internal_call("UnityEngine.WebCamTexture::INTERNAL_CALL_Pause",(void*) UnityEngine_WebCamTexture_INTERNAL_CALL_Pause_2);
-	mono_add_internal_call("UnityEngine.WebCamTexture::INTERNAL_CALL_Stop",(void*) UnityEngine_WebCamTexture_INTERNAL_CALL_Stop_2);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_isPlaying",(void*) UnityEngine_WebCamTexture_get_isPlaying_3);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_deviceName",(void*) UnityEngine_WebCamTexture_get_deviceName);
-	mono_add_internal_call("UnityEngine.WebCamTexture::set_deviceName",(void*) UnityEngine_WebCamTexture_set_deviceName);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_requestedFPS",(void*) UnityEngine_WebCamTexture_get_requestedFPS);
-	mono_add_internal_call("UnityEngine.WebCamTexture::set_requestedFPS",(void*) UnityEngine_WebCamTexture_set_requestedFPS);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_requestedWidth",(void*) UnityEngine_WebCamTexture_get_requestedWidth);
-	mono_add_internal_call("UnityEngine.WebCamTexture::set_requestedWidth",(void*) UnityEngine_WebCamTexture_set_requestedWidth);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_requestedHeight",(void*) UnityEngine_WebCamTexture_get_requestedHeight);
-	mono_add_internal_call("UnityEngine.WebCamTexture::set_requestedHeight",(void*) UnityEngine_WebCamTexture_set_requestedHeight);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_devices",(void*) UnityEngine_WebCamTexture_get_devices_1);
-	mono_add_internal_call("UnityEngine.WebCamTexture::INTERNAL_CALL_GetPixel",(void*) UnityEngine_WebCamTexture_INTERNAL_CALL_GetPixel);
-	mono_add_internal_call("UnityEngine.WebCamTexture::GetPixels",(void*) UnityEngine_WebCamTexture_GetPixels);
-	mono_add_internal_call("UnityEngine.WebCamTexture::GetPixels32",(void*) UnityEngine_WebCamTexture_GetPixels32);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_videoRotationAngle",(void*) UnityEngine_WebCamTexture_get_videoRotationAngle);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_videoVerticallyMirrored",(void*) UnityEngine_WebCamTexture_get_videoVerticallyMirrored);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_didUpdateThisFrame",(void*) UnityEngine_WebCamTexture_get_didUpdateThisFrame);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_isDepth",(void*) UnityEngine_WebCamTexture_get_isDepth);
-	mono_add_internal_call("UnityEngine.WebCamTexture::get_internalAutoFocusPoint_Injected",(void*) UnityEngine_WebCamTexture_get_internalAutoFocusPoint_Injected);
-	mono_add_internal_call("UnityEngine.WebCamTexture::set_internalAutoFocusPoint_Injected",(void*) UnityEngine_WebCamTexture_set_internalAutoFocusPoint_Injected);
-	mono_add_internal_call("UnityEngine.Audio.AudioPlayableOutput::InternalGetTarget",(void*) UnityEngine_Audio_AudioPlayableOutput_InternalGetTarget_1);
-	mono_add_internal_call("UnityEngine.Audio.AudioPlayableOutput::InternalSetTarget",(void*) UnityEngine_Audio_AudioPlayableOutput_InternalSetTarget_1);
-	mono_add_internal_call("UnityEngine.Audio.AudioPlayableOutput::InternalGetEvaluateOnSeek",(void*) UnityEngine_Audio_AudioPlayableOutput_InternalGetEvaluateOnSeek);
-	mono_add_internal_call("UnityEngine.Audio.AudioPlayableOutput::InternalSetEvaluateOnSeek",(void*) UnityEngine_Audio_AudioPlayableOutput_InternalSetEvaluateOnSeek);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetClipInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetClipInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::SetClipInternal",(void*) UnityEngine_Audio_AudioClipPlayable_SetClipInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetLoopedInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetLoopedInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::SetLoopedInternal",(void*) UnityEngine_Audio_AudioClipPlayable_SetLoopedInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetIsChannelPlayingInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetIsChannelPlayingInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetStartDelayInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetStartDelayInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::SetStartDelayInternal",(void*) UnityEngine_Audio_AudioClipPlayable_SetStartDelayInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::GetPauseDelayInternal",(void*) UnityEngine_Audio_AudioClipPlayable_GetPauseDelayInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::SetPauseDelayInternal",(void*) UnityEngine_Audio_AudioClipPlayable_SetPauseDelayInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::InternalCreateAudioClipPlayable",(void*) UnityEngine_Audio_AudioClipPlayable_InternalCreateAudioClipPlayable);
-	mono_add_internal_call("UnityEngine.Audio.AudioClipPlayable::ValidateType",(void*) UnityEngine_Audio_AudioClipPlayable_ValidateType);
-	mono_add_internal_call("UnityEngine.Audio.AudioMixerPlayable::CreateAudioMixerPlayableInternal",(void*) UnityEngine_Audio_AudioMixerPlayable_CreateAudioMixerPlayableInternal);
-	mono_add_internal_call("UnityEngine.Audio.AudioPlayableGraphExtensions::InternalCreateAudioOutput",(void*) UnityEngine_Audio_AudioPlayableGraphExtensions_InternalCreateAudioOutput);
-	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_Start",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_Start);
-	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_Stop",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_Stop);
-	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_GetSampleCountForCaptureFrame",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_GetSampleCountForCaptureFrame);
-	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_AddMixerGroupSink",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_AddMixerGroupSink);
-	mono_add_internal_call("UnityEngine.AudioRenderer::Internal_AudioRenderer_Render",(void*) UnityEngine_AudioRenderer_Internal_AudioRenderer_Render);
-	mono_add_internal_call("UnityEngine.Cloth::get_selfCollision",(void*) UnityEngine_Cloth_get_selfCollision);
-	mono_add_internal_call("UnityEngine.Cloth::set_selfCollision",(void*) UnityEngine_Cloth_set_selfCollision);
-	mono_add_internal_call("UnityEngine.Cloth::get_vertices",(void*) UnityEngine_Cloth_get_vertices);
-	mono_add_internal_call("UnityEngine.Cloth::get_normals",(void*) UnityEngine_Cloth_get_normals);
-	mono_add_internal_call("UnityEngine.Cloth::get_useContinuousCollision",(void*) UnityEngine_Cloth_get_useContinuousCollision);
-	mono_add_internal_call("UnityEngine.Cloth::set_useContinuousCollision",(void*) UnityEngine_Cloth_set_useContinuousCollision);
-	mono_add_internal_call("UnityEngine.Cloth::INTERNAL_CALL_ClearTransformMotion",(void*) UnityEngine_Cloth_INTERNAL_CALL_ClearTransformMotion);
-	mono_add_internal_call("UnityEngine.Cloth::get_coefficients",(void*) UnityEngine_Cloth_get_coefficients);
-	mono_add_internal_call("UnityEngine.Cloth::set_coefficients",(void*) UnityEngine_Cloth_set_coefficients);
-	mono_add_internal_call("UnityEngine.Cloth::SetEnabledFading",(void*) UnityEngine_Cloth_SetEnabledFading);
-	mono_add_internal_call("UnityEngine.Cloth::get_capsuleColliders",(void*) UnityEngine_Cloth_get_capsuleColliders);
-	mono_add_internal_call("UnityEngine.Cloth::set_capsuleColliders",(void*) UnityEngine_Cloth_set_capsuleColliders);
-	mono_add_internal_call("UnityEngine.Cloth::get_sphereColliders",(void*) UnityEngine_Cloth_get_sphereColliders);
-	mono_add_internal_call("UnityEngine.Cloth::set_sphereColliders",(void*) UnityEngine_Cloth_set_sphereColliders);
-	mono_add_internal_call("UnityEngine.Cloth::GetVirtualParticleIndicesMono",(void*) UnityEngine_Cloth_GetVirtualParticleIndicesMono);
-	mono_add_internal_call("UnityEngine.Cloth::SetVirtualParticleIndicesMono",(void*) UnityEngine_Cloth_SetVirtualParticleIndicesMono);
-	mono_add_internal_call("UnityEngine.Cloth::GetVirtualParticleWeightsMono",(void*) UnityEngine_Cloth_GetVirtualParticleWeightsMono);
-	mono_add_internal_call("UnityEngine.Cloth::SetVirtualParticleWeightsMono",(void*) UnityEngine_Cloth_SetVirtualParticleWeightsMono);
-	mono_add_internal_call("UnityEngine.Cloth::GetSelfAndInterCollisionIndicesMono",(void*) UnityEngine_Cloth_GetSelfAndInterCollisionIndicesMono);
-	mono_add_internal_call("UnityEngine.Cloth::SetSelfAndInterCollisionIndicesMono",(void*) UnityEngine_Cloth_SetSelfAndInterCollisionIndicesMono);
 	mono_add_internal_call("UnityEngine.Cloth::get_sleepThreshold",(void*) UnityEngine_Cloth_get_sleepThreshold);
 	mono_add_internal_call("UnityEngine.Cloth::set_sleepThreshold",(void*) UnityEngine_Cloth_set_sleepThreshold);
 	mono_add_internal_call("UnityEngine.Cloth::get_bendingStiffness",(void*) UnityEngine_Cloth_get_bendingStiffness);
@@ -59970,6 +57606,26 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Cloth::set_selfCollisionDistance",(void*) UnityEngine_Cloth_set_selfCollisionDistance);
 	mono_add_internal_call("UnityEngine.Cloth::get_selfCollisionStiffness",(void*) UnityEngine_Cloth_get_selfCollisionStiffness);
 	mono_add_internal_call("UnityEngine.Cloth::set_selfCollisionStiffness",(void*) UnityEngine_Cloth_set_selfCollisionStiffness);
+	mono_add_internal_call("UnityEngine.Cloth::get_selfCollision",(void*) UnityEngine_Cloth_get_selfCollision);
+	mono_add_internal_call("UnityEngine.Cloth::set_selfCollision",(void*) UnityEngine_Cloth_set_selfCollision);
+	mono_add_internal_call("UnityEngine.Cloth::get_vertices",(void*) UnityEngine_Cloth_get_vertices);
+	mono_add_internal_call("UnityEngine.Cloth::get_normals",(void*) UnityEngine_Cloth_get_normals);
+	mono_add_internal_call("UnityEngine.Cloth::get_useContinuousCollision",(void*) UnityEngine_Cloth_get_useContinuousCollision);
+	mono_add_internal_call("UnityEngine.Cloth::set_useContinuousCollision",(void*) UnityEngine_Cloth_set_useContinuousCollision);
+	mono_add_internal_call("UnityEngine.Cloth::INTERNAL_CALL_ClearTransformMotion",(void*) UnityEngine_Cloth_INTERNAL_CALL_ClearTransformMotion);
+	mono_add_internal_call("UnityEngine.Cloth::get_coefficients",(void*) UnityEngine_Cloth_get_coefficients);
+	mono_add_internal_call("UnityEngine.Cloth::set_coefficients",(void*) UnityEngine_Cloth_set_coefficients);
+	mono_add_internal_call("UnityEngine.Cloth::SetEnabledFading",(void*) UnityEngine_Cloth_SetEnabledFading);
+	mono_add_internal_call("UnityEngine.Cloth::get_capsuleColliders",(void*) UnityEngine_Cloth_get_capsuleColliders);
+	mono_add_internal_call("UnityEngine.Cloth::set_capsuleColliders",(void*) UnityEngine_Cloth_set_capsuleColliders);
+	mono_add_internal_call("UnityEngine.Cloth::get_sphereColliders",(void*) UnityEngine_Cloth_get_sphereColliders);
+	mono_add_internal_call("UnityEngine.Cloth::set_sphereColliders",(void*) UnityEngine_Cloth_set_sphereColliders);
+	mono_add_internal_call("UnityEngine.Cloth::GetVirtualParticleIndicesMono",(void*) UnityEngine_Cloth_GetVirtualParticleIndicesMono);
+	mono_add_internal_call("UnityEngine.Cloth::SetVirtualParticleIndicesMono",(void*) UnityEngine_Cloth_SetVirtualParticleIndicesMono);
+	mono_add_internal_call("UnityEngine.Cloth::GetVirtualParticleWeightsMono",(void*) UnityEngine_Cloth_GetVirtualParticleWeightsMono);
+	mono_add_internal_call("UnityEngine.Cloth::SetVirtualParticleWeightsMono",(void*) UnityEngine_Cloth_SetVirtualParticleWeightsMono);
+	mono_add_internal_call("UnityEngine.Cloth::GetSelfAndInterCollisionIndicesMono",(void*) UnityEngine_Cloth_GetSelfAndInterCollisionIndicesMono);
+	mono_add_internal_call("UnityEngine.Cloth::SetSelfAndInterCollisionIndicesMono",(void*) UnityEngine_Cloth_SetSelfAndInterCollisionIndicesMono);
 	mono_add_internal_call("UnityEngine.Cloth::get_externalAcceleration_Injected",(void*) UnityEngine_Cloth_get_externalAcceleration_Injected);
 	mono_add_internal_call("UnityEngine.Cloth::set_externalAcceleration_Injected",(void*) UnityEngine_Cloth_set_externalAcceleration_Injected);
 	mono_add_internal_call("UnityEngine.Cloth::get_randomAcceleration_Injected",(void*) UnityEngine_Cloth_get_randomAcceleration_Injected);
@@ -59989,10 +57645,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.ClusterNetwork::get_isDisconnected",(void*) UnityEngine_ClusterNetwork_get_isDisconnected);
 	mono_add_internal_call("UnityEngine.ClusterNetwork::get_nodeIndex",(void*) UnityEngine_ClusterNetwork_get_nodeIndex);
 	mono_add_internal_call("UnityEngine.ClusterNetwork::set_nodeIndex",(void*) UnityEngine_ClusterNetwork_set_nodeIndex);
-	mono_add_internal_call("UnityEngine.AndroidInput::GetTouchCount_Bindings",(void*) UnityEngine_AndroidInput_GetTouchCount_Bindings);
-	mono_add_internal_call("UnityEngine.AndroidInput::IsInputDeviceEnabled_Bindings",(void*) UnityEngine_AndroidInput_IsInputDeviceEnabled_Bindings);
-	mono_add_internal_call("UnityEngine.AndroidInput::GetTouchpadWidth",(void*) UnityEngine_AndroidInput_GetTouchpadWidth);
-	mono_add_internal_call("UnityEngine.AndroidInput::GetTouchpadHeight",(void*) UnityEngine_AndroidInput_GetTouchpadHeight);
 	mono_add_internal_call("UnityEngine.Android.Permission::HasUserAuthorizedPermission",(void*) UnityEngine_Android_Permission_HasUserAuthorizedPermission);
 	mono_add_internal_call("UnityEngine.Android.Permission::RequestUserPermission",(void*) UnityEngine_Android_Permission_RequestUserPermission);
 	mono_add_internal_call("UnityEngine.AnimationCurve::Internal_Destroy",(void*) UnityEngine_AnimationCurve_Internal_Destroy_1);
@@ -60075,8 +57727,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Rendering.AsyncGPUReadbackRequest::GetWidth_Injected",(void*) UnityEngine_Rendering_AsyncGPUReadbackRequest_GetWidth_Injected);
 	mono_add_internal_call("UnityEngine.Rendering.AsyncGPUReadbackRequest::GetHeight_Injected",(void*) UnityEngine_Rendering_AsyncGPUReadbackRequest_GetHeight_Injected);
 	mono_add_internal_call("UnityEngine.Rendering.AsyncGPUReadbackRequest::GetDepth_Injected",(void*) UnityEngine_Rendering_AsyncGPUReadbackRequest_GetDepth_Injected);
-	mono_add_internal_call("UnityEngine.Rendering.AsyncGPUReadbackRequest::CreateSafetyHandle_Injected",(void*) UnityEngine_Rendering_AsyncGPUReadbackRequest_CreateSafetyHandle_Injected);
-	mono_add_internal_call("UnityEngine.Rendering.AsyncGPUReadbackRequest::GetSafetyHandle_Injected",(void*) UnityEngine_Rendering_AsyncGPUReadbackRequest_GetSafetyHandle_Injected);
 	mono_add_internal_call("UnityEngine.Rendering.AsyncGPUReadbackRequest::SetScriptingCallback_Injected",(void*) UnityEngine_Rendering_AsyncGPUReadbackRequest_SetScriptingCallback_Injected);
 	mono_add_internal_call("UnityEngine.Rendering.AsyncGPUReadbackRequest::GetDataRaw_Injected",(void*) UnityEngine_Rendering_AsyncGPUReadbackRequest_GetDataRaw_Injected);
 	mono_add_internal_call("UnityEngine.Rendering.AsyncGPUReadback::Request_Internal_Texture_1_Injected",(void*) UnityEngine_Rendering_AsyncGPUReadback_Request_Internal_Texture_1_Injected);
@@ -60095,28 +57745,6 @@ void regist_icall_gen()
 	mono_add_internal_call("Unity.IO.LowLevel.Unsafe.ReadHandle::IsReadHandleValid_Injected",(void*) Unity_IO_LowLevel_Unsafe_ReadHandle_IsReadHandleValid_Injected);
 	mono_add_internal_call("Unity.IO.LowLevel.Unsafe.ReadHandle::GetJobHandle_Injected",(void*) Unity_IO_LowLevel_Unsafe_ReadHandle_GetJobHandle_Injected);
 	mono_add_internal_call("Unity.IO.LowLevel.Unsafe.AsyncReadManager::ReadInternal_Injected",(void*) Unity_IO_LowLevel_Unsafe_AsyncReadManager_ReadInternal_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::PrepareUndisposable",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_PrepareUndisposable);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::UseSecondaryVersion",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_UseSecondaryVersion);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::Create_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_Create_Injected_1);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetTempUnsafePtrSliceHandle_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetTempUnsafePtrSliceHandle_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetTempMemoryHandle_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetTempMemoryHandle_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::IsTempMemoryHandle_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_IsTempMemoryHandle_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::Release_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_Release_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::SetAllowSecondaryVersionWriting_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_SetAllowSecondaryVersionWriting_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::SetAllowReadOrWriteAccess_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_SetAllowReadOrWriteAccess_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetAllowReadOrWriteAccess_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetAllowReadOrWriteAccess_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckWriteAndBumpSecondaryVersion_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckWriteAndBumpSecondaryVersion_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::EnforceAllBufferJobsHaveCompleted_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_EnforceAllBufferJobsHaveCompleted_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::EnforceAllBufferJobsHaveCompletedAndRelease_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_EnforceAllBufferJobsHaveCompletedAndRelease_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::EnforceAllBufferJobsHaveCompletedAndDisableReadWrite_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_EnforceAllBufferJobsHaveCompletedAndDisableReadWrite_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckReadAndThrowNoEarlyOut_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckReadAndThrowNoEarlyOut_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckWriteAndThrowNoEarlyOut_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckWriteAndThrowNoEarlyOut_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckDeallocateAndThrow_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckDeallocateAndThrow_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::CheckGetSecondaryDataPointerAndThrow_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_CheckGetSecondaryDataPointerAndThrow_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetReaderArray_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetReaderArray_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetWriter_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetWriter_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetReaderName_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetReaderName_Injected);
-	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.AtomicSafetyHandle::GetWriterName_Injected",(void*) Unity_Collections_LowLevel_Unsafe_AtomicSafetyHandle_GetWriterName_Injected);
 	mono_add_internal_call("UnityEngine.Behaviour::get_enabled",(void*) UnityEngine_Behaviour_get_enabled_2);
 	mono_add_internal_call("UnityEngine.Behaviour::set_enabled",(void*) UnityEngine_Behaviour_set_enabled_2);
 	mono_add_internal_call("UnityEngine.Behaviour::get_isActiveAndEnabled",(void*) UnityEngine_Behaviour_get_isActiveAndEnabled);
@@ -60184,7 +57812,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Caching::ClearCachedVersions_Injected",(void*) UnityEngine_Caching_ClearCachedVersions_Injected);
 	mono_add_internal_call("UnityEngine.Caching::IsVersionCached_Injected",(void*) UnityEngine_Caching_IsVersionCached_Injected);
 	mono_add_internal_call("UnityEngine.Caching::MarkAsUsed_Injected",(void*) UnityEngine_Caching_MarkAsUsed_Injected);
-	mono_add_internal_call("UnityEngine.Caching::SetNoBackupFlag_Injected",(void*) UnityEngine_Caching_SetNoBackupFlag_Injected);
 	mono_add_internal_call("UnityEngine.Caching::AddCache_Injected",(void*) UnityEngine_Caching_AddCache_Injected);
 	mono_add_internal_call("UnityEngine.Caching::GetCacheAt_Injected",(void*) UnityEngine_Caching_GetCacheAt_Injected);
 	mono_add_internal_call("UnityEngine.Caching::GetCacheByPath_Injected",(void*) UnityEngine_Caching_GetCacheByPath_Injected);
@@ -60387,7 +58014,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Debug::ClearDeveloperConsole",(void*) UnityEngine_Debug_ClearDeveloperConsole);
 	mono_add_internal_call("UnityEngine.Debug::get_developerConsoleVisible",(void*) UnityEngine_Debug_get_developerConsoleVisible);
 	mono_add_internal_call("UnityEngine.Debug::set_developerConsoleVisible",(void*) UnityEngine_Debug_set_developerConsoleVisible);
-	mono_add_internal_call("UnityEngine.Debug::LogPlayerBuildError",(void*) UnityEngine_Debug_LogPlayerBuildError);
 	mono_add_internal_call("UnityEngine.Debug::get_isDebugBuild",(void*) UnityEngine_Debug_get_isDebugBuild);
 	mono_add_internal_call("UnityEngine.Debug::OpenConsoleFile",(void*) UnityEngine_Debug_OpenConsoleFile);
 	mono_add_internal_call("UnityEngine.Debug::GetDiagnosticSwitches",(void*) UnityEngine_Debug_GetDiagnosticSwitches);
@@ -60405,7 +58031,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.DrivenPropertyManager::UnregisterProperties",(void*) UnityEngine_DrivenPropertyManager_UnregisterProperties);
 	mono_add_internal_call("UnityEngine.DrivenPropertyManager::RegisterPropertyPartial",(void*) UnityEngine_DrivenPropertyManager_RegisterPropertyPartial);
 	mono_add_internal_call("UnityEngine.DrivenPropertyManager::UnregisterPropertyPartial",(void*) UnityEngine_DrivenPropertyManager_UnregisterPropertyPartial);
-	mono_add_internal_call("UnityEngine.EventProvider::WriteCustomEvent",(void*) UnityEngine_EventProvider_WriteCustomEvent);
 	mono_add_internal_call("UnityEngine.ExposedPropertyResolver::ResolveReferenceBindingsInternal_Injected",(void*) UnityEngine_ExposedPropertyResolver_ResolveReferenceBindingsInternal_Injected);
 	mono_add_internal_call("UnityEngine.GameObject::CreatePrimitive",(void*) UnityEngine_GameObject_CreatePrimitive);
 	mono_add_internal_call("UnityEngine.GameObject::GetComponent",(void*) UnityEngine_GameObject_GetComponent_1);
@@ -60416,8 +58041,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GameObject::get_transform",(void*) UnityEngine_GameObject_get_transform_1);
 	mono_add_internal_call("UnityEngine.GameObject::get_layer",(void*) UnityEngine_GameObject_get_layer_1);
 	mono_add_internal_call("UnityEngine.GameObject::set_layer",(void*) UnityEngine_GameObject_set_layer_1);
-	mono_add_internal_call("UnityEngine.GameObject::get_active",(void*) UnityEngine_GameObject_get_active_1);
-	mono_add_internal_call("UnityEngine.GameObject::set_active",(void*) UnityEngine_GameObject_set_active_1);
+	mono_add_internal_call("UnityEngine.GameObject::get_active",(void*) UnityEngine_GameObject_get_active);
+	mono_add_internal_call("UnityEngine.GameObject::set_active",(void*) UnityEngine_GameObject_set_active);
 	mono_add_internal_call("UnityEngine.GameObject::SetActive",(void*) UnityEngine_GameObject_SetActive);
 	mono_add_internal_call("UnityEngine.GameObject::get_activeSelf",(void*) UnityEngine_GameObject_get_activeSelf);
 	mono_add_internal_call("UnityEngine.GameObject::get_activeInHierarchy",(void*) UnityEngine_GameObject_get_activeInHierarchy);
@@ -60436,7 +58061,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GameObject::Internal_CreateGameObject",(void*) UnityEngine_GameObject_Internal_CreateGameObject);
 	mono_add_internal_call("UnityEngine.GameObject::Find",(void*) UnityEngine_GameObject_Find);
 	mono_add_internal_call("UnityEngine.GameObject::get_scene_Injected",(void*) UnityEngine_GameObject_get_scene_Injected_1);
-	mono_add_internal_call("UnityEngine.GameObject::CalculateBounds_Injected",(void*) UnityEngine_GameObject_CalculateBounds_Injected);
 	mono_add_internal_call("UnityEngine.GeometryUtility::TestPlanesAABB_Injected",(void*) UnityEngine_GeometryUtility_TestPlanesAABB_Injected);
 	mono_add_internal_call("UnityEngine.GeometryUtility::Internal_ExtractPlanes_Injected",(void*) UnityEngine_GeometryUtility_Internal_ExtractPlanes_Injected);
 	mono_add_internal_call("UnityEngine.GeometryUtility::Internal_CalculateBounds_Injected",(void*) UnityEngine_GeometryUtility_Internal_CalculateBounds_Injected);
@@ -60467,8 +58091,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Gradient::set_mode",(void*) UnityEngine_Gradient_set_mode);
 	mono_add_internal_call("UnityEngine.Gradient::SetKeys",(void*) UnityEngine_Gradient_SetKeys_1);
 	mono_add_internal_call("UnityEngine.Gradient::Evaluate_Injected",(void*) UnityEngine_Gradient_Evaluate_Injected);
-	mono_add_internal_call("UnityEngine.Gradient::get_constantColor_Injected",(void*) UnityEngine_Gradient_get_constantColor_Injected);
-	mono_add_internal_call("UnityEngine.Gradient::set_constantColor_Injected",(void*) UnityEngine_Gradient_set_constantColor_Injected);
 	mono_add_internal_call("UnityEngine.Screen::get_width",(void*) UnityEngine_Screen_get_width_1);
 	mono_add_internal_call("UnityEngine.Screen::get_height",(void*) UnityEngine_Screen_get_height_3);
 	mono_add_internal_call("UnityEngine.Screen::get_dpi",(void*) UnityEngine_Screen_get_dpi);
@@ -60639,7 +58261,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.QualitySettings::get_streamingMipmapsMemoryBudget",(void*) UnityEngine_QualitySettings_get_streamingMipmapsMemoryBudget);
 	mono_add_internal_call("UnityEngine.QualitySettings::set_streamingMipmapsMemoryBudget",(void*) UnityEngine_QualitySettings_set_streamingMipmapsMemoryBudget);
 	mono_add_internal_call("UnityEngine.QualitySettings::get_streamingMipmapsRenderersPerFrame",(void*) UnityEngine_QualitySettings_get_streamingMipmapsRenderersPerFrame);
-	mono_add_internal_call("UnityEngine.QualitySettings::set_streamingMipmapsRenderersPerFrame",(void*) UnityEngine_QualitySettings_set_streamingMipmapsRenderersPerFrame);
 	mono_add_internal_call("UnityEngine.QualitySettings::get_streamingMipmapsMaxLevelReduction",(void*) UnityEngine_QualitySettings_get_streamingMipmapsMaxLevelReduction);
 	mono_add_internal_call("UnityEngine.QualitySettings::set_streamingMipmapsMaxLevelReduction",(void*) UnityEngine_QualitySettings_set_streamingMipmapsMaxLevelReduction);
 	mono_add_internal_call("UnityEngine.QualitySettings::get_streamingMipmapsAddAllCameras",(void*) UnityEngine_QualitySettings_get_streamingMipmapsAddAllCameras);
@@ -60656,175 +58277,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.QualitySettings::get_shadowCascade4Split_Injected",(void*) UnityEngine_QualitySettings_get_shadowCascade4Split_Injected);
 	mono_add_internal_call("UnityEngine.QualitySettings::set_shadowCascade4Split_Injected",(void*) UnityEngine_QualitySettings_set_shadowCascade4Split_Injected);
 	mono_add_internal_call("UnityEngine.RendererExtensions::UpdateGIMaterialsForRenderer",(void*) UnityEngine_RendererExtensions_UpdateGIMaterialsForRenderer);
-	mono_add_internal_call("UnityEngine.Mesh::Internal_Create",(void*) UnityEngine_Mesh_Internal_Create_12);
-	mono_add_internal_call("UnityEngine.Mesh::FromInstanceID",(void*) UnityEngine_Mesh_FromInstanceID);
-	mono_add_internal_call("UnityEngine.Mesh::get_indexFormat",(void*) UnityEngine_Mesh_get_indexFormat);
-	mono_add_internal_call("UnityEngine.Mesh::set_indexFormat",(void*) UnityEngine_Mesh_set_indexFormat);
-	mono_add_internal_call("UnityEngine.Mesh::GetIndexStartImpl",(void*) UnityEngine_Mesh_GetIndexStartImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetIndexCountImpl",(void*) UnityEngine_Mesh_GetIndexCountImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetBaseVertexImpl",(void*) UnityEngine_Mesh_GetBaseVertexImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetTrianglesImpl",(void*) UnityEngine_Mesh_GetTrianglesImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetIndicesImpl",(void*) UnityEngine_Mesh_GetIndicesImpl);
-	mono_add_internal_call("UnityEngine.Mesh::SetIndicesImpl",(void*) UnityEngine_Mesh_SetIndicesImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetTrianglesNonAllocImpl",(void*) UnityEngine_Mesh_GetTrianglesNonAllocImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetIndicesNonAllocImpl",(void*) UnityEngine_Mesh_GetIndicesNonAllocImpl);
-	mono_add_internal_call("UnityEngine.Mesh::PrintErrorCantAccessChannel",(void*) UnityEngine_Mesh_PrintErrorCantAccessChannel);
-	mono_add_internal_call("UnityEngine.Mesh::HasChannel",(void*) UnityEngine_Mesh_HasChannel);
-	mono_add_internal_call("UnityEngine.Mesh::SetArrayForChannelImpl",(void*) UnityEngine_Mesh_SetArrayForChannelImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetAllocArrayFromChannelImpl",(void*) UnityEngine_Mesh_GetAllocArrayFromChannelImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetArrayFromChannelImpl",(void*) UnityEngine_Mesh_GetArrayFromChannelImpl);
-	mono_add_internal_call("UnityEngine.Mesh::get_vertexBufferCount",(void*) UnityEngine_Mesh_get_vertexBufferCount);
-	mono_add_internal_call("UnityEngine.Mesh::GetNativeVertexBufferPtr",(void*) UnityEngine_Mesh_GetNativeVertexBufferPtr);
-	mono_add_internal_call("UnityEngine.Mesh::GetNativeIndexBufferPtr",(void*) UnityEngine_Mesh_GetNativeIndexBufferPtr);
-	mono_add_internal_call("UnityEngine.Mesh::get_blendShapeCount",(void*) UnityEngine_Mesh_get_blendShapeCount);
-	mono_add_internal_call("UnityEngine.Mesh::ClearBlendShapes",(void*) UnityEngine_Mesh_ClearBlendShapes);
-	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeName",(void*) UnityEngine_Mesh_GetBlendShapeName);
-	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeIndex",(void*) UnityEngine_Mesh_GetBlendShapeIndex);
-	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeFrameCount",(void*) UnityEngine_Mesh_GetBlendShapeFrameCount);
-	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeFrameWeight",(void*) UnityEngine_Mesh_GetBlendShapeFrameWeight);
-	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeFrameVertices",(void*) UnityEngine_Mesh_GetBlendShapeFrameVertices);
-	mono_add_internal_call("UnityEngine.Mesh::AddBlendShapeFrame",(void*) UnityEngine_Mesh_AddBlendShapeFrame);
-	mono_add_internal_call("UnityEngine.Mesh::GetBoneWeightCount",(void*) UnityEngine_Mesh_GetBoneWeightCount);
-	mono_add_internal_call("UnityEngine.Mesh::get_boneWeights",(void*) UnityEngine_Mesh_get_boneWeights);
-	mono_add_internal_call("UnityEngine.Mesh::set_boneWeights",(void*) UnityEngine_Mesh_set_boneWeights);
-	mono_add_internal_call("UnityEngine.Mesh::GetBindposeCount",(void*) UnityEngine_Mesh_GetBindposeCount);
-	mono_add_internal_call("UnityEngine.Mesh::get_bindposes",(void*) UnityEngine_Mesh_get_bindposes);
-	mono_add_internal_call("UnityEngine.Mesh::set_bindposes",(void*) UnityEngine_Mesh_set_bindposes);
-	mono_add_internal_call("UnityEngine.Mesh::GetBoneWeightsNonAllocImpl",(void*) UnityEngine_Mesh_GetBoneWeightsNonAllocImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetBindposesNonAllocImpl",(void*) UnityEngine_Mesh_GetBindposesNonAllocImpl);
-	mono_add_internal_call("UnityEngine.Mesh::get_isReadable",(void*) UnityEngine_Mesh_get_isReadable);
-	mono_add_internal_call("UnityEngine.Mesh::get_canAccess",(void*) UnityEngine_Mesh_get_canAccess);
-	mono_add_internal_call("UnityEngine.Mesh::get_vertexCount",(void*) UnityEngine_Mesh_get_vertexCount_1);
-	mono_add_internal_call("UnityEngine.Mesh::get_subMeshCount",(void*) UnityEngine_Mesh_get_subMeshCount);
-	mono_add_internal_call("UnityEngine.Mesh::set_subMeshCount",(void*) UnityEngine_Mesh_set_subMeshCount);
-	mono_add_internal_call("UnityEngine.Mesh::ClearImpl",(void*) UnityEngine_Mesh_ClearImpl);
-	mono_add_internal_call("UnityEngine.Mesh::RecalculateBoundsImpl",(void*) UnityEngine_Mesh_RecalculateBoundsImpl);
-	mono_add_internal_call("UnityEngine.Mesh::RecalculateNormalsImpl",(void*) UnityEngine_Mesh_RecalculateNormalsImpl);
-	mono_add_internal_call("UnityEngine.Mesh::RecalculateTangentsImpl",(void*) UnityEngine_Mesh_RecalculateTangentsImpl);
-	mono_add_internal_call("UnityEngine.Mesh::MarkDynamicImpl",(void*) UnityEngine_Mesh_MarkDynamicImpl);
-	mono_add_internal_call("UnityEngine.Mesh::UploadMeshDataImpl",(void*) UnityEngine_Mesh_UploadMeshDataImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetTopologyImpl",(void*) UnityEngine_Mesh_GetTopologyImpl);
-	mono_add_internal_call("UnityEngine.Mesh::GetUVDistributionMetric",(void*) UnityEngine_Mesh_GetUVDistributionMetric);
-	mono_add_internal_call("UnityEngine.Mesh::CombineMeshesImpl",(void*) UnityEngine_Mesh_CombineMeshesImpl);
-	mono_add_internal_call("UnityEngine.Mesh::get_bounds_Injected",(void*) UnityEngine_Mesh_get_bounds_Injected);
-	mono_add_internal_call("UnityEngine.Mesh::set_bounds_Injected",(void*) UnityEngine_Mesh_set_bounds_Injected);
-	mono_add_internal_call("UnityEngine.Renderer::GetMaterial",(void*) UnityEngine_Renderer_GetMaterial);
-	mono_add_internal_call("UnityEngine.Renderer::GetSharedMaterial",(void*) UnityEngine_Renderer_GetSharedMaterial);
-	mono_add_internal_call("UnityEngine.Renderer::SetMaterial",(void*) UnityEngine_Renderer_SetMaterial);
-	mono_add_internal_call("UnityEngine.Renderer::GetMaterialArray",(void*) UnityEngine_Renderer_GetMaterialArray);
-	mono_add_internal_call("UnityEngine.Renderer::CopyMaterialArray",(void*) UnityEngine_Renderer_CopyMaterialArray);
-	mono_add_internal_call("UnityEngine.Renderer::CopySharedMaterialArray",(void*) UnityEngine_Renderer_CopySharedMaterialArray);
-	mono_add_internal_call("UnityEngine.Renderer::SetMaterialArray",(void*) UnityEngine_Renderer_SetMaterialArray);
-	mono_add_internal_call("UnityEngine.Renderer::Internal_SetPropertyBlock",(void*) UnityEngine_Renderer_Internal_SetPropertyBlock);
-	mono_add_internal_call("UnityEngine.Renderer::Internal_GetPropertyBlock",(void*) UnityEngine_Renderer_Internal_GetPropertyBlock);
-	mono_add_internal_call("UnityEngine.Renderer::Internal_SetPropertyBlockMaterialIndex",(void*) UnityEngine_Renderer_Internal_SetPropertyBlockMaterialIndex);
-	mono_add_internal_call("UnityEngine.Renderer::Internal_GetPropertyBlockMaterialIndex",(void*) UnityEngine_Renderer_Internal_GetPropertyBlockMaterialIndex);
-	mono_add_internal_call("UnityEngine.Renderer::HasPropertyBlock",(void*) UnityEngine_Renderer_HasPropertyBlock);
-	mono_add_internal_call("UnityEngine.Renderer::GetClosestReflectionProbesInternal",(void*) UnityEngine_Renderer_GetClosestReflectionProbesInternal);
-	mono_add_internal_call("UnityEngine.Renderer::get_enabled",(void*) UnityEngine_Renderer_get_enabled_4);
-	mono_add_internal_call("UnityEngine.Renderer::set_enabled",(void*) UnityEngine_Renderer_set_enabled_4);
-	mono_add_internal_call("UnityEngine.Renderer::get_isVisible",(void*) UnityEngine_Renderer_get_isVisible);
-	mono_add_internal_call("UnityEngine.Renderer::get_shadowCastingMode",(void*) UnityEngine_Renderer_get_shadowCastingMode);
-	mono_add_internal_call("UnityEngine.Renderer::set_shadowCastingMode",(void*) UnityEngine_Renderer_set_shadowCastingMode);
-	mono_add_internal_call("UnityEngine.Renderer::get_receiveShadows",(void*) UnityEngine_Renderer_get_receiveShadows);
-	mono_add_internal_call("UnityEngine.Renderer::set_receiveShadows",(void*) UnityEngine_Renderer_set_receiveShadows);
-	mono_add_internal_call("UnityEngine.Renderer::get_motionVectorGenerationMode",(void*) UnityEngine_Renderer_get_motionVectorGenerationMode);
-	mono_add_internal_call("UnityEngine.Renderer::set_motionVectorGenerationMode",(void*) UnityEngine_Renderer_set_motionVectorGenerationMode);
-	mono_add_internal_call("UnityEngine.Renderer::get_lightProbeUsage",(void*) UnityEngine_Renderer_get_lightProbeUsage);
-	mono_add_internal_call("UnityEngine.Renderer::set_lightProbeUsage",(void*) UnityEngine_Renderer_set_lightProbeUsage);
-	mono_add_internal_call("UnityEngine.Renderer::get_reflectionProbeUsage",(void*) UnityEngine_Renderer_get_reflectionProbeUsage);
-	mono_add_internal_call("UnityEngine.Renderer::set_reflectionProbeUsage",(void*) UnityEngine_Renderer_set_reflectionProbeUsage);
-	mono_add_internal_call("UnityEngine.Renderer::get_renderingLayerMask",(void*) UnityEngine_Renderer_get_renderingLayerMask);
-	mono_add_internal_call("UnityEngine.Renderer::set_renderingLayerMask",(void*) UnityEngine_Renderer_set_renderingLayerMask);
-	mono_add_internal_call("UnityEngine.Renderer::get_rendererPriority",(void*) UnityEngine_Renderer_get_rendererPriority);
-	mono_add_internal_call("UnityEngine.Renderer::set_rendererPriority",(void*) UnityEngine_Renderer_set_rendererPriority);
-	mono_add_internal_call("UnityEngine.Renderer::get_sortingLayerName",(void*) UnityEngine_Renderer_get_sortingLayerName);
-	mono_add_internal_call("UnityEngine.Renderer::set_sortingLayerName",(void*) UnityEngine_Renderer_set_sortingLayerName);
-	mono_add_internal_call("UnityEngine.Renderer::get_sortingLayerID",(void*) UnityEngine_Renderer_get_sortingLayerID);
-	mono_add_internal_call("UnityEngine.Renderer::set_sortingLayerID",(void*) UnityEngine_Renderer_set_sortingLayerID);
-	mono_add_internal_call("UnityEngine.Renderer::get_sortingOrder",(void*) UnityEngine_Renderer_get_sortingOrder);
-	mono_add_internal_call("UnityEngine.Renderer::set_sortingOrder",(void*) UnityEngine_Renderer_set_sortingOrder);
-	mono_add_internal_call("UnityEngine.Renderer::get_sortingGroupID",(void*) UnityEngine_Renderer_get_sortingGroupID);
-	mono_add_internal_call("UnityEngine.Renderer::set_sortingGroupID",(void*) UnityEngine_Renderer_set_sortingGroupID);
-	mono_add_internal_call("UnityEngine.Renderer::get_sortingGroupOrder",(void*) UnityEngine_Renderer_get_sortingGroupOrder);
-	mono_add_internal_call("UnityEngine.Renderer::set_sortingGroupOrder",(void*) UnityEngine_Renderer_set_sortingGroupOrder);
-	mono_add_internal_call("UnityEngine.Renderer::get_allowOcclusionWhenDynamic",(void*) UnityEngine_Renderer_get_allowOcclusionWhenDynamic);
-	mono_add_internal_call("UnityEngine.Renderer::set_allowOcclusionWhenDynamic",(void*) UnityEngine_Renderer_set_allowOcclusionWhenDynamic);
-	mono_add_internal_call("UnityEngine.Renderer::get_staticBatchRootTransform",(void*) UnityEngine_Renderer_get_staticBatchRootTransform);
-	mono_add_internal_call("UnityEngine.Renderer::set_staticBatchRootTransform",(void*) UnityEngine_Renderer_set_staticBatchRootTransform);
-	mono_add_internal_call("UnityEngine.Renderer::get_staticBatchIndex",(void*) UnityEngine_Renderer_get_staticBatchIndex);
-	mono_add_internal_call("UnityEngine.Renderer::SetStaticBatchInfo",(void*) UnityEngine_Renderer_SetStaticBatchInfo);
-	mono_add_internal_call("UnityEngine.Renderer::get_isPartOfStaticBatch",(void*) UnityEngine_Renderer_get_isPartOfStaticBatch);
-	mono_add_internal_call("UnityEngine.Renderer::get_lightProbeProxyVolumeOverride",(void*) UnityEngine_Renderer_get_lightProbeProxyVolumeOverride);
-	mono_add_internal_call("UnityEngine.Renderer::set_lightProbeProxyVolumeOverride",(void*) UnityEngine_Renderer_set_lightProbeProxyVolumeOverride);
-	mono_add_internal_call("UnityEngine.Renderer::get_probeAnchor",(void*) UnityEngine_Renderer_get_probeAnchor);
-	mono_add_internal_call("UnityEngine.Renderer::set_probeAnchor",(void*) UnityEngine_Renderer_set_probeAnchor);
-	mono_add_internal_call("UnityEngine.Renderer::GetLightmapIndex",(void*) UnityEngine_Renderer_GetLightmapIndex);
-	mono_add_internal_call("UnityEngine.Renderer::SetLightmapIndex",(void*) UnityEngine_Renderer_SetLightmapIndex);
-	mono_add_internal_call("UnityEngine.Renderer::GetMaterialCount",(void*) UnityEngine_Renderer_GetMaterialCount);
-	mono_add_internal_call("UnityEngine.Renderer::GetSharedMaterialArray",(void*) UnityEngine_Renderer_GetSharedMaterialArray);
-	mono_add_internal_call("UnityEngine.Renderer::IsPersistent",(void*) UnityEngine_Renderer_IsPersistent);
-	mono_add_internal_call("UnityEngine.Renderer::get_bounds_Injected",(void*) UnityEngine_Renderer_get_bounds_Injected_1);
-	mono_add_internal_call("UnityEngine.Renderer::SetStaticLightmapST_Injected",(void*) UnityEngine_Renderer_SetStaticLightmapST_Injected);
-	mono_add_internal_call("UnityEngine.Renderer::get_worldToLocalMatrix_Injected",(void*) UnityEngine_Renderer_get_worldToLocalMatrix_Injected);
-	mono_add_internal_call("UnityEngine.Renderer::get_localToWorldMatrix_Injected",(void*) UnityEngine_Renderer_get_localToWorldMatrix_Injected);
-	mono_add_internal_call("UnityEngine.Renderer::GetLightmapST_Injected",(void*) UnityEngine_Renderer_GetLightmapST_Injected);
-	mono_add_internal_call("UnityEngine.Renderer::SetLightmapST_Injected",(void*) UnityEngine_Renderer_SetLightmapST_Injected);
-	mono_add_internal_call("UnityEngine.Projector::get_nearClipPlane",(void*) UnityEngine_Projector_get_nearClipPlane_1);
-	mono_add_internal_call("UnityEngine.Projector::set_nearClipPlane",(void*) UnityEngine_Projector_set_nearClipPlane_1);
-	mono_add_internal_call("UnityEngine.Projector::get_farClipPlane",(void*) UnityEngine_Projector_get_farClipPlane_1);
-	mono_add_internal_call("UnityEngine.Projector::set_farClipPlane",(void*) UnityEngine_Projector_set_farClipPlane_1);
-	mono_add_internal_call("UnityEngine.Projector::get_fieldOfView",(void*) UnityEngine_Projector_get_fieldOfView_1);
-	mono_add_internal_call("UnityEngine.Projector::set_fieldOfView",(void*) UnityEngine_Projector_set_fieldOfView_1);
-	mono_add_internal_call("UnityEngine.Projector::get_aspectRatio",(void*) UnityEngine_Projector_get_aspectRatio);
-	mono_add_internal_call("UnityEngine.Projector::set_aspectRatio",(void*) UnityEngine_Projector_set_aspectRatio);
-	mono_add_internal_call("UnityEngine.Projector::get_orthographic",(void*) UnityEngine_Projector_get_orthographic_1);
-	mono_add_internal_call("UnityEngine.Projector::set_orthographic",(void*) UnityEngine_Projector_set_orthographic_1);
-	mono_add_internal_call("UnityEngine.Projector::get_orthographicSize",(void*) UnityEngine_Projector_get_orthographicSize_1);
-	mono_add_internal_call("UnityEngine.Projector::set_orthographicSize",(void*) UnityEngine_Projector_set_orthographicSize_1);
-	mono_add_internal_call("UnityEngine.Projector::get_ignoreLayers",(void*) UnityEngine_Projector_get_ignoreLayers);
-	mono_add_internal_call("UnityEngine.Projector::set_ignoreLayers",(void*) UnityEngine_Projector_set_ignoreLayers);
-	mono_add_internal_call("UnityEngine.Projector::get_material",(void*) UnityEngine_Projector_get_material_1);
-	mono_add_internal_call("UnityEngine.Projector::set_material",(void*) UnityEngine_Projector_set_material_1);
-	mono_add_internal_call("UnityEngine.Shader::Find",(void*) UnityEngine_Shader_Find_1);
-	mono_add_internal_call("UnityEngine.Shader::FindBuiltin",(void*) UnityEngine_Shader_FindBuiltin);
-	mono_add_internal_call("UnityEngine.Shader::get_maximumLOD",(void*) UnityEngine_Shader_get_maximumLOD);
-	mono_add_internal_call("UnityEngine.Shader::set_maximumLOD",(void*) UnityEngine_Shader_set_maximumLOD);
-	mono_add_internal_call("UnityEngine.Shader::get_globalMaximumLOD",(void*) UnityEngine_Shader_get_globalMaximumLOD);
-	mono_add_internal_call("UnityEngine.Shader::set_globalMaximumLOD",(void*) UnityEngine_Shader_set_globalMaximumLOD);
-	mono_add_internal_call("UnityEngine.Shader::get_isSupported",(void*) UnityEngine_Shader_get_isSupported);
-	mono_add_internal_call("UnityEngine.Shader::get_globalRenderPipeline",(void*) UnityEngine_Shader_get_globalRenderPipeline);
-	mono_add_internal_call("UnityEngine.Shader::set_globalRenderPipeline",(void*) UnityEngine_Shader_set_globalRenderPipeline);
-	mono_add_internal_call("UnityEngine.Shader::EnableKeyword",(void*) UnityEngine_Shader_EnableKeyword);
-	mono_add_internal_call("UnityEngine.Shader::DisableKeyword",(void*) UnityEngine_Shader_DisableKeyword);
-	mono_add_internal_call("UnityEngine.Shader::IsKeywordEnabled",(void*) UnityEngine_Shader_IsKeywordEnabled);
-	mono_add_internal_call("UnityEngine.Shader::get_renderQueue",(void*) UnityEngine_Shader_get_renderQueue);
-	mono_add_internal_call("UnityEngine.Shader::get_disableBatching",(void*) UnityEngine_Shader_get_disableBatching);
-	mono_add_internal_call("UnityEngine.Shader::WarmupAllShaders",(void*) UnityEngine_Shader_WarmupAllShaders);
-	mono_add_internal_call("UnityEngine.Shader::TagToID",(void*) UnityEngine_Shader_TagToID);
-	mono_add_internal_call("UnityEngine.Shader::IDToTag",(void*) UnityEngine_Shader_IDToTag);
-	mono_add_internal_call("UnityEngine.Shader::PropertyToID",(void*) UnityEngine_Shader_PropertyToID);
-	mono_add_internal_call("UnityEngine.Shader::get_customEditor",(void*) UnityEngine_Shader_get_customEditor);
-	mono_add_internal_call("UnityEngine.Shader::SetGlobalFloatImpl",(void*) UnityEngine_Shader_SetGlobalFloatImpl);
-	mono_add_internal_call("UnityEngine.Shader::SetGlobalTextureImpl",(void*) UnityEngine_Shader_SetGlobalTextureImpl);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalFloatImpl",(void*) UnityEngine_Shader_GetGlobalFloatImpl);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalTextureImpl",(void*) UnityEngine_Shader_GetGlobalTextureImpl);
-	mono_add_internal_call("UnityEngine.Shader::SetGlobalFloatArrayImpl",(void*) UnityEngine_Shader_SetGlobalFloatArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::SetGlobalVectorArrayImpl",(void*) UnityEngine_Shader_SetGlobalVectorArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::SetGlobalMatrixArrayImpl",(void*) UnityEngine_Shader_SetGlobalMatrixArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalFloatArrayImpl",(void*) UnityEngine_Shader_GetGlobalFloatArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalVectorArrayImpl",(void*) UnityEngine_Shader_GetGlobalVectorArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalMatrixArrayImpl",(void*) UnityEngine_Shader_GetGlobalMatrixArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalFloatArrayCountImpl",(void*) UnityEngine_Shader_GetGlobalFloatArrayCountImpl);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalVectorArrayCountImpl",(void*) UnityEngine_Shader_GetGlobalVectorArrayCountImpl);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalMatrixArrayCountImpl",(void*) UnityEngine_Shader_GetGlobalMatrixArrayCountImpl);
-	mono_add_internal_call("UnityEngine.Shader::ExtractGlobalFloatArrayImpl",(void*) UnityEngine_Shader_ExtractGlobalFloatArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::ExtractGlobalVectorArrayImpl",(void*) UnityEngine_Shader_ExtractGlobalVectorArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::ExtractGlobalMatrixArrayImpl",(void*) UnityEngine_Shader_ExtractGlobalMatrixArrayImpl);
-	mono_add_internal_call("UnityEngine.Shader::SetGlobalVectorImpl_Injected",(void*) UnityEngine_Shader_SetGlobalVectorImpl_Injected);
-	mono_add_internal_call("UnityEngine.Shader::SetGlobalMatrixImpl_Injected",(void*) UnityEngine_Shader_SetGlobalMatrixImpl_Injected);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalVectorImpl_Injected",(void*) UnityEngine_Shader_GetGlobalVectorImpl_Injected);
-	mono_add_internal_call("UnityEngine.Shader::GetGlobalMatrixImpl_Injected",(void*) UnityEngine_Shader_GetGlobalMatrixImpl_Injected);
 	mono_add_internal_call("UnityEngine.TrailRenderer::get_time",(void*) UnityEngine_TrailRenderer_get_time_2);
 	mono_add_internal_call("UnityEngine.TrailRenderer::set_time",(void*) UnityEngine_TrailRenderer_set_time_2);
 	mono_add_internal_call("UnityEngine.TrailRenderer::get_startWidth",(void*) UnityEngine_TrailRenderer_get_startWidth);
@@ -60934,6 +58386,67 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.MaterialPropertyBlock::SetVectorImpl_Injected",(void*) UnityEngine_MaterialPropertyBlock_SetVectorImpl_Injected);
 	mono_add_internal_call("UnityEngine.MaterialPropertyBlock::SetColorImpl_Injected",(void*) UnityEngine_MaterialPropertyBlock_SetColorImpl_Injected);
 	mono_add_internal_call("UnityEngine.MaterialPropertyBlock::SetMatrixImpl_Injected",(void*) UnityEngine_MaterialPropertyBlock_SetMatrixImpl_Injected);
+	mono_add_internal_call("UnityEngine.Renderer::GetMaterial",(void*) UnityEngine_Renderer_GetMaterial);
+	mono_add_internal_call("UnityEngine.Renderer::GetSharedMaterial",(void*) UnityEngine_Renderer_GetSharedMaterial);
+	mono_add_internal_call("UnityEngine.Renderer::SetMaterial",(void*) UnityEngine_Renderer_SetMaterial);
+	mono_add_internal_call("UnityEngine.Renderer::GetMaterialArray",(void*) UnityEngine_Renderer_GetMaterialArray);
+	mono_add_internal_call("UnityEngine.Renderer::CopyMaterialArray",(void*) UnityEngine_Renderer_CopyMaterialArray);
+	mono_add_internal_call("UnityEngine.Renderer::CopySharedMaterialArray",(void*) UnityEngine_Renderer_CopySharedMaterialArray);
+	mono_add_internal_call("UnityEngine.Renderer::SetMaterialArray",(void*) UnityEngine_Renderer_SetMaterialArray);
+	mono_add_internal_call("UnityEngine.Renderer::Internal_SetPropertyBlock",(void*) UnityEngine_Renderer_Internal_SetPropertyBlock);
+	mono_add_internal_call("UnityEngine.Renderer::Internal_GetPropertyBlock",(void*) UnityEngine_Renderer_Internal_GetPropertyBlock);
+	mono_add_internal_call("UnityEngine.Renderer::Internal_SetPropertyBlockMaterialIndex",(void*) UnityEngine_Renderer_Internal_SetPropertyBlockMaterialIndex);
+	mono_add_internal_call("UnityEngine.Renderer::Internal_GetPropertyBlockMaterialIndex",(void*) UnityEngine_Renderer_Internal_GetPropertyBlockMaterialIndex);
+	mono_add_internal_call("UnityEngine.Renderer::HasPropertyBlock",(void*) UnityEngine_Renderer_HasPropertyBlock);
+	mono_add_internal_call("UnityEngine.Renderer::GetClosestReflectionProbesInternal",(void*) UnityEngine_Renderer_GetClosestReflectionProbesInternal);
+	mono_add_internal_call("UnityEngine.Renderer::get_enabled",(void*) UnityEngine_Renderer_get_enabled_4);
+	mono_add_internal_call("UnityEngine.Renderer::set_enabled",(void*) UnityEngine_Renderer_set_enabled_4);
+	mono_add_internal_call("UnityEngine.Renderer::get_isVisible",(void*) UnityEngine_Renderer_get_isVisible);
+	mono_add_internal_call("UnityEngine.Renderer::get_shadowCastingMode",(void*) UnityEngine_Renderer_get_shadowCastingMode);
+	mono_add_internal_call("UnityEngine.Renderer::set_shadowCastingMode",(void*) UnityEngine_Renderer_set_shadowCastingMode);
+	mono_add_internal_call("UnityEngine.Renderer::get_receiveShadows",(void*) UnityEngine_Renderer_get_receiveShadows);
+	mono_add_internal_call("UnityEngine.Renderer::set_receiveShadows",(void*) UnityEngine_Renderer_set_receiveShadows);
+	mono_add_internal_call("UnityEngine.Renderer::get_motionVectorGenerationMode",(void*) UnityEngine_Renderer_get_motionVectorGenerationMode);
+	mono_add_internal_call("UnityEngine.Renderer::set_motionVectorGenerationMode",(void*) UnityEngine_Renderer_set_motionVectorGenerationMode);
+	mono_add_internal_call("UnityEngine.Renderer::get_lightProbeUsage",(void*) UnityEngine_Renderer_get_lightProbeUsage);
+	mono_add_internal_call("UnityEngine.Renderer::set_lightProbeUsage",(void*) UnityEngine_Renderer_set_lightProbeUsage);
+	mono_add_internal_call("UnityEngine.Renderer::get_reflectionProbeUsage",(void*) UnityEngine_Renderer_get_reflectionProbeUsage);
+	mono_add_internal_call("UnityEngine.Renderer::set_reflectionProbeUsage",(void*) UnityEngine_Renderer_set_reflectionProbeUsage);
+	mono_add_internal_call("UnityEngine.Renderer::get_renderingLayerMask",(void*) UnityEngine_Renderer_get_renderingLayerMask);
+	mono_add_internal_call("UnityEngine.Renderer::set_renderingLayerMask",(void*) UnityEngine_Renderer_set_renderingLayerMask);
+	mono_add_internal_call("UnityEngine.Renderer::get_rendererPriority",(void*) UnityEngine_Renderer_get_rendererPriority);
+	mono_add_internal_call("UnityEngine.Renderer::set_rendererPriority",(void*) UnityEngine_Renderer_set_rendererPriority);
+	mono_add_internal_call("UnityEngine.Renderer::get_sortingLayerName",(void*) UnityEngine_Renderer_get_sortingLayerName);
+	mono_add_internal_call("UnityEngine.Renderer::set_sortingLayerName",(void*) UnityEngine_Renderer_set_sortingLayerName);
+	mono_add_internal_call("UnityEngine.Renderer::get_sortingLayerID",(void*) UnityEngine_Renderer_get_sortingLayerID);
+	mono_add_internal_call("UnityEngine.Renderer::set_sortingLayerID",(void*) UnityEngine_Renderer_set_sortingLayerID);
+	mono_add_internal_call("UnityEngine.Renderer::get_sortingOrder",(void*) UnityEngine_Renderer_get_sortingOrder);
+	mono_add_internal_call("UnityEngine.Renderer::set_sortingOrder",(void*) UnityEngine_Renderer_set_sortingOrder);
+	mono_add_internal_call("UnityEngine.Renderer::get_sortingGroupID",(void*) UnityEngine_Renderer_get_sortingGroupID);
+	mono_add_internal_call("UnityEngine.Renderer::set_sortingGroupID",(void*) UnityEngine_Renderer_set_sortingGroupID);
+	mono_add_internal_call("UnityEngine.Renderer::get_sortingGroupOrder",(void*) UnityEngine_Renderer_get_sortingGroupOrder);
+	mono_add_internal_call("UnityEngine.Renderer::set_sortingGroupOrder",(void*) UnityEngine_Renderer_set_sortingGroupOrder);
+	mono_add_internal_call("UnityEngine.Renderer::get_allowOcclusionWhenDynamic",(void*) UnityEngine_Renderer_get_allowOcclusionWhenDynamic);
+	mono_add_internal_call("UnityEngine.Renderer::set_allowOcclusionWhenDynamic",(void*) UnityEngine_Renderer_set_allowOcclusionWhenDynamic);
+	mono_add_internal_call("UnityEngine.Renderer::get_staticBatchRootTransform",(void*) UnityEngine_Renderer_get_staticBatchRootTransform);
+	mono_add_internal_call("UnityEngine.Renderer::set_staticBatchRootTransform",(void*) UnityEngine_Renderer_set_staticBatchRootTransform);
+	mono_add_internal_call("UnityEngine.Renderer::get_staticBatchIndex",(void*) UnityEngine_Renderer_get_staticBatchIndex);
+	mono_add_internal_call("UnityEngine.Renderer::SetStaticBatchInfo",(void*) UnityEngine_Renderer_SetStaticBatchInfo);
+	mono_add_internal_call("UnityEngine.Renderer::get_isPartOfStaticBatch",(void*) UnityEngine_Renderer_get_isPartOfStaticBatch);
+	mono_add_internal_call("UnityEngine.Renderer::get_lightProbeProxyVolumeOverride",(void*) UnityEngine_Renderer_get_lightProbeProxyVolumeOverride);
+	mono_add_internal_call("UnityEngine.Renderer::set_lightProbeProxyVolumeOverride",(void*) UnityEngine_Renderer_set_lightProbeProxyVolumeOverride);
+	mono_add_internal_call("UnityEngine.Renderer::get_probeAnchor",(void*) UnityEngine_Renderer_get_probeAnchor);
+	mono_add_internal_call("UnityEngine.Renderer::set_probeAnchor",(void*) UnityEngine_Renderer_set_probeAnchor);
+	mono_add_internal_call("UnityEngine.Renderer::GetLightmapIndex",(void*) UnityEngine_Renderer_GetLightmapIndex);
+	mono_add_internal_call("UnityEngine.Renderer::SetLightmapIndex",(void*) UnityEngine_Renderer_SetLightmapIndex);
+	mono_add_internal_call("UnityEngine.Renderer::GetMaterialCount",(void*) UnityEngine_Renderer_GetMaterialCount);
+	mono_add_internal_call("UnityEngine.Renderer::GetSharedMaterialArray",(void*) UnityEngine_Renderer_GetSharedMaterialArray);
+	mono_add_internal_call("UnityEngine.Renderer::get_bounds_Injected",(void*) UnityEngine_Renderer_get_bounds_Injected);
+	mono_add_internal_call("UnityEngine.Renderer::SetStaticLightmapST_Injected",(void*) UnityEngine_Renderer_SetStaticLightmapST_Injected);
+	mono_add_internal_call("UnityEngine.Renderer::get_worldToLocalMatrix_Injected",(void*) UnityEngine_Renderer_get_worldToLocalMatrix_Injected);
+	mono_add_internal_call("UnityEngine.Renderer::get_localToWorldMatrix_Injected",(void*) UnityEngine_Renderer_get_localToWorldMatrix_Injected);
+	mono_add_internal_call("UnityEngine.Renderer::GetLightmapST_Injected",(void*) UnityEngine_Renderer_GetLightmapST_Injected);
+	mono_add_internal_call("UnityEngine.Renderer::SetLightmapST_Injected",(void*) UnityEngine_Renderer_SetLightmapST_Injected);
 	mono_add_internal_call("UnityEngine.RenderSettings::get_fog",(void*) UnityEngine_RenderSettings_get_fog);
 	mono_add_internal_call("UnityEngine.RenderSettings::set_fog",(void*) UnityEngine_RenderSettings_set_fog);
 	mono_add_internal_call("UnityEngine.RenderSettings::get_fogStartDistance",(void*) UnityEngine_RenderSettings_get_fogStartDistance);
@@ -60984,6 +58497,44 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.RenderSettings::set_subtractiveShadowColor_Injected",(void*) UnityEngine_RenderSettings_set_subtractiveShadowColor_Injected);
 	mono_add_internal_call("UnityEngine.RenderSettings::get_ambientProbe_Injected",(void*) UnityEngine_RenderSettings_get_ambientProbe_Injected);
 	mono_add_internal_call("UnityEngine.RenderSettings::set_ambientProbe_Injected",(void*) UnityEngine_RenderSettings_set_ambientProbe_Injected);
+	mono_add_internal_call("UnityEngine.Shader::Find",(void*) UnityEngine_Shader_Find_1);
+	mono_add_internal_call("UnityEngine.Shader::FindBuiltin",(void*) UnityEngine_Shader_FindBuiltin);
+	mono_add_internal_call("UnityEngine.Shader::get_maximumLOD",(void*) UnityEngine_Shader_get_maximumLOD);
+	mono_add_internal_call("UnityEngine.Shader::set_maximumLOD",(void*) UnityEngine_Shader_set_maximumLOD);
+	mono_add_internal_call("UnityEngine.Shader::get_globalMaximumLOD",(void*) UnityEngine_Shader_get_globalMaximumLOD);
+	mono_add_internal_call("UnityEngine.Shader::set_globalMaximumLOD",(void*) UnityEngine_Shader_set_globalMaximumLOD);
+	mono_add_internal_call("UnityEngine.Shader::get_isSupported",(void*) UnityEngine_Shader_get_isSupported);
+	mono_add_internal_call("UnityEngine.Shader::get_globalRenderPipeline",(void*) UnityEngine_Shader_get_globalRenderPipeline);
+	mono_add_internal_call("UnityEngine.Shader::set_globalRenderPipeline",(void*) UnityEngine_Shader_set_globalRenderPipeline);
+	mono_add_internal_call("UnityEngine.Shader::EnableKeyword",(void*) UnityEngine_Shader_EnableKeyword);
+	mono_add_internal_call("UnityEngine.Shader::DisableKeyword",(void*) UnityEngine_Shader_DisableKeyword);
+	mono_add_internal_call("UnityEngine.Shader::IsKeywordEnabled",(void*) UnityEngine_Shader_IsKeywordEnabled);
+	mono_add_internal_call("UnityEngine.Shader::get_renderQueue",(void*) UnityEngine_Shader_get_renderQueue);
+	mono_add_internal_call("UnityEngine.Shader::get_disableBatching",(void*) UnityEngine_Shader_get_disableBatching);
+	mono_add_internal_call("UnityEngine.Shader::WarmupAllShaders",(void*) UnityEngine_Shader_WarmupAllShaders);
+	mono_add_internal_call("UnityEngine.Shader::TagToID",(void*) UnityEngine_Shader_TagToID);
+	mono_add_internal_call("UnityEngine.Shader::IDToTag",(void*) UnityEngine_Shader_IDToTag);
+	mono_add_internal_call("UnityEngine.Shader::PropertyToID",(void*) UnityEngine_Shader_PropertyToID);
+	mono_add_internal_call("UnityEngine.Shader::SetGlobalFloatImpl",(void*) UnityEngine_Shader_SetGlobalFloatImpl);
+	mono_add_internal_call("UnityEngine.Shader::SetGlobalTextureImpl",(void*) UnityEngine_Shader_SetGlobalTextureImpl);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalFloatImpl",(void*) UnityEngine_Shader_GetGlobalFloatImpl);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalTextureImpl",(void*) UnityEngine_Shader_GetGlobalTextureImpl);
+	mono_add_internal_call("UnityEngine.Shader::SetGlobalFloatArrayImpl",(void*) UnityEngine_Shader_SetGlobalFloatArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::SetGlobalVectorArrayImpl",(void*) UnityEngine_Shader_SetGlobalVectorArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::SetGlobalMatrixArrayImpl",(void*) UnityEngine_Shader_SetGlobalMatrixArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalFloatArrayImpl",(void*) UnityEngine_Shader_GetGlobalFloatArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalVectorArrayImpl",(void*) UnityEngine_Shader_GetGlobalVectorArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalMatrixArrayImpl",(void*) UnityEngine_Shader_GetGlobalMatrixArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalFloatArrayCountImpl",(void*) UnityEngine_Shader_GetGlobalFloatArrayCountImpl);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalVectorArrayCountImpl",(void*) UnityEngine_Shader_GetGlobalVectorArrayCountImpl);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalMatrixArrayCountImpl",(void*) UnityEngine_Shader_GetGlobalMatrixArrayCountImpl);
+	mono_add_internal_call("UnityEngine.Shader::ExtractGlobalFloatArrayImpl",(void*) UnityEngine_Shader_ExtractGlobalFloatArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::ExtractGlobalVectorArrayImpl",(void*) UnityEngine_Shader_ExtractGlobalVectorArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::ExtractGlobalMatrixArrayImpl",(void*) UnityEngine_Shader_ExtractGlobalMatrixArrayImpl);
+	mono_add_internal_call("UnityEngine.Shader::SetGlobalVectorImpl_Injected",(void*) UnityEngine_Shader_SetGlobalVectorImpl_Injected);
+	mono_add_internal_call("UnityEngine.Shader::SetGlobalMatrixImpl_Injected",(void*) UnityEngine_Shader_SetGlobalMatrixImpl_Injected);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalVectorImpl_Injected",(void*) UnityEngine_Shader_GetGlobalVectorImpl_Injected);
+	mono_add_internal_call("UnityEngine.Shader::GetGlobalMatrixImpl_Injected",(void*) UnityEngine_Shader_GetGlobalMatrixImpl_Injected);
 	mono_add_internal_call("UnityEngine.Material::CreateWithShader",(void*) UnityEngine_Material_CreateWithShader);
 	mono_add_internal_call("UnityEngine.Material::CreateWithMaterial",(void*) UnityEngine_Material_CreateWithMaterial);
 	mono_add_internal_call("UnityEngine.Material::CreateWithString",(void*) UnityEngine_Material_CreateWithString);
@@ -61054,7 +58605,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.OcclusionArea::set_center_Injected",(void*) UnityEngine_OcclusionArea_set_center_Injected);
 	mono_add_internal_call("UnityEngine.OcclusionArea::get_size_Injected",(void*) UnityEngine_OcclusionArea_get_size_Injected);
 	mono_add_internal_call("UnityEngine.OcclusionArea::set_size_Injected",(void*) UnityEngine_OcclusionArea_set_size_Injected);
-	mono_add_internal_call("UnityEngine.Flare::Internal_Create",(void*) UnityEngine_Flare_Internal_Create_13);
+	mono_add_internal_call("UnityEngine.Flare::Internal_Create",(void*) UnityEngine_Flare_Internal_Create_12);
 	mono_add_internal_call("UnityEngine.LensFlare::get_brightness",(void*) UnityEngine_LensFlare_get_brightness);
 	mono_add_internal_call("UnityEngine.LensFlare::set_brightness",(void*) UnityEngine_LensFlare_set_brightness);
 	mono_add_internal_call("UnityEngine.LensFlare::get_fadeSpeed",(void*) UnityEngine_LensFlare_get_fadeSpeed);
@@ -61063,6 +58614,22 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.LensFlare::set_flare",(void*) UnityEngine_LensFlare_set_flare);
 	mono_add_internal_call("UnityEngine.LensFlare::get_color_Injected",(void*) UnityEngine_LensFlare_get_color_Injected_1);
 	mono_add_internal_call("UnityEngine.LensFlare::set_color_Injected",(void*) UnityEngine_LensFlare_set_color_Injected_1);
+	mono_add_internal_call("UnityEngine.Projector::get_nearClipPlane",(void*) UnityEngine_Projector_get_nearClipPlane_1);
+	mono_add_internal_call("UnityEngine.Projector::set_nearClipPlane",(void*) UnityEngine_Projector_set_nearClipPlane_1);
+	mono_add_internal_call("UnityEngine.Projector::get_farClipPlane",(void*) UnityEngine_Projector_get_farClipPlane_1);
+	mono_add_internal_call("UnityEngine.Projector::set_farClipPlane",(void*) UnityEngine_Projector_set_farClipPlane_1);
+	mono_add_internal_call("UnityEngine.Projector::get_fieldOfView",(void*) UnityEngine_Projector_get_fieldOfView_1);
+	mono_add_internal_call("UnityEngine.Projector::set_fieldOfView",(void*) UnityEngine_Projector_set_fieldOfView_1);
+	mono_add_internal_call("UnityEngine.Projector::get_aspectRatio",(void*) UnityEngine_Projector_get_aspectRatio);
+	mono_add_internal_call("UnityEngine.Projector::set_aspectRatio",(void*) UnityEngine_Projector_set_aspectRatio);
+	mono_add_internal_call("UnityEngine.Projector::get_orthographic",(void*) UnityEngine_Projector_get_orthographic_1);
+	mono_add_internal_call("UnityEngine.Projector::set_orthographic",(void*) UnityEngine_Projector_set_orthographic_1);
+	mono_add_internal_call("UnityEngine.Projector::get_orthographicSize",(void*) UnityEngine_Projector_get_orthographicSize_1);
+	mono_add_internal_call("UnityEngine.Projector::set_orthographicSize",(void*) UnityEngine_Projector_set_orthographicSize_1);
+	mono_add_internal_call("UnityEngine.Projector::get_ignoreLayers",(void*) UnityEngine_Projector_get_ignoreLayers);
+	mono_add_internal_call("UnityEngine.Projector::set_ignoreLayers",(void*) UnityEngine_Projector_set_ignoreLayers);
+	mono_add_internal_call("UnityEngine.Projector::get_material",(void*) UnityEngine_Projector_get_material_1);
+	mono_add_internal_call("UnityEngine.Projector::set_material",(void*) UnityEngine_Projector_set_material_1);
 	mono_add_internal_call("UnityEngine.Light::get_type",(void*) UnityEngine_Light_get_type);
 	mono_add_internal_call("UnityEngine.Light::set_type",(void*) UnityEngine_Light_set_type);
 	mono_add_internal_call("UnityEngine.Light::get_spotAngle",(void*) UnityEngine_Light_get_spotAngle);
@@ -61089,10 +58656,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Light::set_cullingMask",(void*) UnityEngine_Light_set_cullingMask_1);
 	mono_add_internal_call("UnityEngine.Light::get_lightShadowCasterMode",(void*) UnityEngine_Light_get_lightShadowCasterMode);
 	mono_add_internal_call("UnityEngine.Light::set_lightShadowCasterMode",(void*) UnityEngine_Light_set_lightShadowCasterMode);
-	mono_add_internal_call("UnityEngine.Light::get_shadowRadius",(void*) UnityEngine_Light_get_shadowRadius);
-	mono_add_internal_call("UnityEngine.Light::set_shadowRadius",(void*) UnityEngine_Light_set_shadowRadius);
-	mono_add_internal_call("UnityEngine.Light::get_shadowAngle",(void*) UnityEngine_Light_get_shadowAngle);
-	mono_add_internal_call("UnityEngine.Light::set_shadowAngle",(void*) UnityEngine_Light_set_shadowAngle);
 	mono_add_internal_call("UnityEngine.Light::Reset",(void*) UnityEngine_Light_Reset_3);
 	mono_add_internal_call("UnityEngine.Light::get_shadows",(void*) UnityEngine_Light_get_shadows_1);
 	mono_add_internal_call("UnityEngine.Light::set_shadows",(void*) UnityEngine_Light_set_shadows_1);
@@ -61111,9 +58674,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Light::SetFalloffTable",(void*) UnityEngine_Light_SetFalloffTable);
 	mono_add_internal_call("UnityEngine.Light::SetAllLightsFalloffToInverseSquared",(void*) UnityEngine_Light_SetAllLightsFalloffToInverseSquared);
 	mono_add_internal_call("UnityEngine.Light::SetAllLightsFalloffToUnityLegacy",(void*) UnityEngine_Light_SetAllLightsFalloffToUnityLegacy);
-	mono_add_internal_call("UnityEngine.Light::get_lightmapBakeType",(void*) UnityEngine_Light_get_lightmapBakeType);
-	mono_add_internal_call("UnityEngine.Light::set_lightmapBakeType",(void*) UnityEngine_Light_set_lightmapBakeType);
-	mono_add_internal_call("UnityEngine.Light::SetLightDirty",(void*) UnityEngine_Light_SetLightDirty);
 	mono_add_internal_call("UnityEngine.Light::AddCommandBuffer",(void*) UnityEngine_Light_AddCommandBuffer);
 	mono_add_internal_call("UnityEngine.Light::AddCommandBufferAsync",(void*) UnityEngine_Light_AddCommandBufferAsync);
 	mono_add_internal_call("UnityEngine.Light::RemoveCommandBuffer",(void*) UnityEngine_Light_RemoveCommandBuffer);
@@ -61126,8 +58686,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Light::set_color_Injected",(void*) UnityEngine_Light_set_color_Injected_2);
 	mono_add_internal_call("UnityEngine.Light::get_bakingOutput_Injected",(void*) UnityEngine_Light_get_bakingOutput_Injected);
 	mono_add_internal_call("UnityEngine.Light::set_bakingOutput_Injected",(void*) UnityEngine_Light_set_bakingOutput_Injected);
-	mono_add_internal_call("UnityEngine.Light::get_areaSize_Injected",(void*) UnityEngine_Light_get_areaSize_Injected);
-	mono_add_internal_call("UnityEngine.Light::set_areaSize_Injected",(void*) UnityEngine_Light_set_areaSize_Injected);
 	mono_add_internal_call("UnityEngine.Skybox::get_material",(void*) UnityEngine_Skybox_get_material_2);
 	mono_add_internal_call("UnityEngine.Skybox::set_material",(void*) UnityEngine_Skybox_set_material_2);
 	mono_add_internal_call("UnityEngine.MeshFilter::get_sharedMesh",(void*) UnityEngine_MeshFilter_get_sharedMesh);
@@ -61209,7 +58767,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.SkinnedMeshRenderer::set_forceMatrixRecalculationPerRender",(void*) UnityEngine_SkinnedMeshRenderer_set_forceMatrixRecalculationPerRender);
 	mono_add_internal_call("UnityEngine.SkinnedMeshRenderer::get_rootBone",(void*) UnityEngine_SkinnedMeshRenderer_get_rootBone);
 	mono_add_internal_call("UnityEngine.SkinnedMeshRenderer::set_rootBone",(void*) UnityEngine_SkinnedMeshRenderer_set_rootBone);
-	mono_add_internal_call("UnityEngine.SkinnedMeshRenderer::get_actualRootBone",(void*) UnityEngine_SkinnedMeshRenderer_get_actualRootBone);
 	mono_add_internal_call("UnityEngine.SkinnedMeshRenderer::get_bones",(void*) UnityEngine_SkinnedMeshRenderer_get_bones);
 	mono_add_internal_call("UnityEngine.SkinnedMeshRenderer::set_bones",(void*) UnityEngine_SkinnedMeshRenderer_set_bones);
 	mono_add_internal_call("UnityEngine.SkinnedMeshRenderer::get_sharedMesh",(void*) UnityEngine_SkinnedMeshRenderer_get_sharedMesh_1);
@@ -61269,31 +58826,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUITexture::get_pixelInset_Injected",(void*) UnityEngine_GUITexture_get_pixelInset_Injected);
 	mono_add_internal_call("UnityEngine.GUITexture::set_pixelInset_Injected",(void*) UnityEngine_GUITexture_set_pixelInset_Injected);
 	mono_add_internal_call("UnityEngine.GUILayer::HitTest_Injected",(void*) UnityEngine_GUILayer_HitTest_Injected_1);
-	mono_add_internal_call("UnityEngine.Handheld::Vibrate",(void*) UnityEngine_Handheld_Vibrate);
-	mono_add_internal_call("UnityEngine.Handheld::GetUse32BitDisplayBuffer_Bindings",(void*) UnityEngine_Handheld_GetUse32BitDisplayBuffer_Bindings);
-	mono_add_internal_call("UnityEngine.Handheld::SetActivityIndicatorStyleImpl_Bindings",(void*) UnityEngine_Handheld_SetActivityIndicatorStyleImpl_Bindings);
-	mono_add_internal_call("UnityEngine.Handheld::GetActivityIndicatorStyle",(void*) UnityEngine_Handheld_GetActivityIndicatorStyle);
-	mono_add_internal_call("UnityEngine.Handheld::StartActivityIndicator",(void*) UnityEngine_Handheld_StartActivityIndicator);
-	mono_add_internal_call("UnityEngine.Handheld::StopActivityIndicator",(void*) UnityEngine_Handheld_StopActivityIndicator);
-	mono_add_internal_call("UnityEngine.Handheld::ClearShaderCache",(void*) UnityEngine_Handheld_ClearShaderCache);
-	mono_add_internal_call("UnityEngine.Handheld::PlayFullScreenMovie_Bindings_Injected",(void*) UnityEngine_Handheld_PlayFullScreenMovie_Bindings_Injected);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::Internal_Destroy",(void*) UnityEngine_TouchScreenKeyboard_Internal_Destroy_2);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::TouchScreenKeyboard_InternalConstructorHelper",(void*) UnityEngine_TouchScreenKeyboard_TouchScreenKeyboard_InternalConstructorHelper);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::get_text",(void*) UnityEngine_TouchScreenKeyboard_get_text);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::set_text",(void*) UnityEngine_TouchScreenKeyboard_set_text);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::get_hideInput",(void*) UnityEngine_TouchScreenKeyboard_get_hideInput);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::set_hideInput",(void*) UnityEngine_TouchScreenKeyboard_set_hideInput);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::get_active",(void*) UnityEngine_TouchScreenKeyboard_get_active_2);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::set_active",(void*) UnityEngine_TouchScreenKeyboard_set_active_2);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::GetDone",(void*) UnityEngine_TouchScreenKeyboard_GetDone);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::GetWasCanceled",(void*) UnityEngine_TouchScreenKeyboard_GetWasCanceled);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::get_status",(void*) UnityEngine_TouchScreenKeyboard_get_status_1);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::get_characterLimit",(void*) UnityEngine_TouchScreenKeyboard_get_characterLimit);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::set_characterLimit",(void*) UnityEngine_TouchScreenKeyboard_set_characterLimit);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::GetSelection",(void*) UnityEngine_TouchScreenKeyboard_GetSelection);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::SetSelection",(void*) UnityEngine_TouchScreenKeyboard_SetSelection);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::get_visible",(void*) UnityEngine_TouchScreenKeyboard_get_visible_1);
-	mono_add_internal_call("UnityEngine.TouchScreenKeyboard::get_area_Injected",(void*) UnityEngine_TouchScreenKeyboard_get_area_Injected);
 	mono_add_internal_call("UnityEngine.Hash128::Parse_Injected",(void*) UnityEngine_Hash128_Parse_Injected);
 	mono_add_internal_call("UnityEngine.Hash128::Internal_Hash128ToString_Injected",(void*) UnityEngine_Hash128_Internal_Hash128ToString_Injected);
 	mono_add_internal_call("UnityEngine.Hash128::Compute_Injected",(void*) UnityEngine_Hash128_Compute_Injected);
@@ -61331,7 +58863,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Input::GetMouseButtonDown",(void*) UnityEngine_Input_GetMouseButtonDown);
 	mono_add_internal_call("UnityEngine.Input::GetMouseButtonUp",(void*) UnityEngine_Input_GetMouseButtonUp);
 	mono_add_internal_call("UnityEngine.Input::ResetInputAxes",(void*) UnityEngine_Input_ResetInputAxes);
-	mono_add_internal_call("UnityEngine.Input::IsJoystickPreconfigured",(void*) UnityEngine_Input_IsJoystickPreconfigured);
 	mono_add_internal_call("UnityEngine.Input::GetJoystickNames",(void*) UnityEngine_Input_GetJoystickNames);
 	mono_add_internal_call("UnityEngine.Input::get_simulateMouseWithTouches",(void*) UnityEngine_Input_get_simulateMouseWithTouches);
 	mono_add_internal_call("UnityEngine.Input::set_simulateMouseWithTouches",(void*) UnityEngine_Input_set_simulateMouseWithTouches);
@@ -61368,10 +58899,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Input::get_acceleration_Injected",(void*) UnityEngine_Input_get_acceleration_Injected);
 	mono_add_internal_call("UnityEngine.LayerMask::LayerToName",(void*) UnityEngine_LayerMask_LayerToName);
 	mono_add_internal_call("UnityEngine.LayerMask::NameToLayer",(void*) UnityEngine_LayerMask_NameToLayer);
-	mono_add_internal_call("UnityEngine.LightProbeGroup::get_probePositions",(void*) UnityEngine_LightProbeGroup_get_probePositions);
-	mono_add_internal_call("UnityEngine.LightProbeGroup::set_probePositions",(void*) UnityEngine_LightProbeGroup_set_probePositions);
-	mono_add_internal_call("UnityEngine.LightProbeGroup::get_dering",(void*) UnityEngine_LightProbeGroup_get_dering);
-	mono_add_internal_call("UnityEngine.LightProbeGroup::set_dering",(void*) UnityEngine_LightProbeGroup_set_dering);
 	mono_add_internal_call("UnityEngine.LineUtility::GeneratePointsToKeep3D",(void*) UnityEngine_LineUtility_GeneratePointsToKeep3D);
 	mono_add_internal_call("UnityEngine.LineUtility::GeneratePointsToKeep2D",(void*) UnityEngine_LineUtility_GeneratePointsToKeep2D);
 	mono_add_internal_call("UnityEngine.LineUtility::GenerateSimplifiedPoints3D",(void*) UnityEngine_LineUtility_GenerateSimplifiedPoints3D);
@@ -61431,16 +58958,64 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Mathf::HalfToFloat",(void*) UnityEngine_Mathf_HalfToFloat);
 	mono_add_internal_call("UnityEngine.Mathf::PerlinNoise",(void*) UnityEngine_Mathf_PerlinNoise);
 	mono_add_internal_call("UnityEngine.Mathf::CorrelatedColorTemperatureToRGB_Injected",(void*) UnityEngine_Mathf_CorrelatedColorTemperatureToRGB_Injected);
+	mono_add_internal_call("UnityEngine.Mesh::Internal_Create",(void*) UnityEngine_Mesh_Internal_Create_13);
+	mono_add_internal_call("UnityEngine.Mesh::FromInstanceID",(void*) UnityEngine_Mesh_FromInstanceID);
+	mono_add_internal_call("UnityEngine.Mesh::get_indexFormat",(void*) UnityEngine_Mesh_get_indexFormat);
+	mono_add_internal_call("UnityEngine.Mesh::set_indexFormat",(void*) UnityEngine_Mesh_set_indexFormat);
+	mono_add_internal_call("UnityEngine.Mesh::GetIndexStartImpl",(void*) UnityEngine_Mesh_GetIndexStartImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetIndexCountImpl",(void*) UnityEngine_Mesh_GetIndexCountImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetBaseVertexImpl",(void*) UnityEngine_Mesh_GetBaseVertexImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetTrianglesImpl",(void*) UnityEngine_Mesh_GetTrianglesImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetIndicesImpl",(void*) UnityEngine_Mesh_GetIndicesImpl);
+	mono_add_internal_call("UnityEngine.Mesh::SetIndicesImpl",(void*) UnityEngine_Mesh_SetIndicesImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetTrianglesNonAllocImpl",(void*) UnityEngine_Mesh_GetTrianglesNonAllocImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetIndicesNonAllocImpl",(void*) UnityEngine_Mesh_GetIndicesNonAllocImpl);
+	mono_add_internal_call("UnityEngine.Mesh::PrintErrorCantAccessChannel",(void*) UnityEngine_Mesh_PrintErrorCantAccessChannel);
+	mono_add_internal_call("UnityEngine.Mesh::HasChannel",(void*) UnityEngine_Mesh_HasChannel);
+	mono_add_internal_call("UnityEngine.Mesh::SetArrayForChannelImpl",(void*) UnityEngine_Mesh_SetArrayForChannelImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetAllocArrayFromChannelImpl",(void*) UnityEngine_Mesh_GetAllocArrayFromChannelImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetArrayFromChannelImpl",(void*) UnityEngine_Mesh_GetArrayFromChannelImpl);
+	mono_add_internal_call("UnityEngine.Mesh::get_vertexBufferCount",(void*) UnityEngine_Mesh_get_vertexBufferCount);
+	mono_add_internal_call("UnityEngine.Mesh::GetNativeVertexBufferPtr",(void*) UnityEngine_Mesh_GetNativeVertexBufferPtr);
+	mono_add_internal_call("UnityEngine.Mesh::GetNativeIndexBufferPtr",(void*) UnityEngine_Mesh_GetNativeIndexBufferPtr);
+	mono_add_internal_call("UnityEngine.Mesh::get_blendShapeCount",(void*) UnityEngine_Mesh_get_blendShapeCount);
+	mono_add_internal_call("UnityEngine.Mesh::ClearBlendShapes",(void*) UnityEngine_Mesh_ClearBlendShapes);
+	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeName",(void*) UnityEngine_Mesh_GetBlendShapeName);
+	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeIndex",(void*) UnityEngine_Mesh_GetBlendShapeIndex);
+	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeFrameCount",(void*) UnityEngine_Mesh_GetBlendShapeFrameCount);
+	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeFrameWeight",(void*) UnityEngine_Mesh_GetBlendShapeFrameWeight);
+	mono_add_internal_call("UnityEngine.Mesh::GetBlendShapeFrameVertices",(void*) UnityEngine_Mesh_GetBlendShapeFrameVertices);
+	mono_add_internal_call("UnityEngine.Mesh::AddBlendShapeFrame",(void*) UnityEngine_Mesh_AddBlendShapeFrame);
+	mono_add_internal_call("UnityEngine.Mesh::GetBoneWeightCount",(void*) UnityEngine_Mesh_GetBoneWeightCount);
+	mono_add_internal_call("UnityEngine.Mesh::get_boneWeights",(void*) UnityEngine_Mesh_get_boneWeights);
+	mono_add_internal_call("UnityEngine.Mesh::set_boneWeights",(void*) UnityEngine_Mesh_set_boneWeights);
+	mono_add_internal_call("UnityEngine.Mesh::GetBindposeCount",(void*) UnityEngine_Mesh_GetBindposeCount);
+	mono_add_internal_call("UnityEngine.Mesh::get_bindposes",(void*) UnityEngine_Mesh_get_bindposes);
+	mono_add_internal_call("UnityEngine.Mesh::set_bindposes",(void*) UnityEngine_Mesh_set_bindposes);
+	mono_add_internal_call("UnityEngine.Mesh::GetBoneWeightsNonAllocImpl",(void*) UnityEngine_Mesh_GetBoneWeightsNonAllocImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetBindposesNonAllocImpl",(void*) UnityEngine_Mesh_GetBindposesNonAllocImpl);
+	mono_add_internal_call("UnityEngine.Mesh::get_isReadable",(void*) UnityEngine_Mesh_get_isReadable);
+	mono_add_internal_call("UnityEngine.Mesh::get_canAccess",(void*) UnityEngine_Mesh_get_canAccess);
+	mono_add_internal_call("UnityEngine.Mesh::get_vertexCount",(void*) UnityEngine_Mesh_get_vertexCount_1);
+	mono_add_internal_call("UnityEngine.Mesh::get_subMeshCount",(void*) UnityEngine_Mesh_get_subMeshCount);
+	mono_add_internal_call("UnityEngine.Mesh::set_subMeshCount",(void*) UnityEngine_Mesh_set_subMeshCount);
+	mono_add_internal_call("UnityEngine.Mesh::ClearImpl",(void*) UnityEngine_Mesh_ClearImpl);
+	mono_add_internal_call("UnityEngine.Mesh::RecalculateBoundsImpl",(void*) UnityEngine_Mesh_RecalculateBoundsImpl);
+	mono_add_internal_call("UnityEngine.Mesh::RecalculateNormalsImpl",(void*) UnityEngine_Mesh_RecalculateNormalsImpl);
+	mono_add_internal_call("UnityEngine.Mesh::RecalculateTangentsImpl",(void*) UnityEngine_Mesh_RecalculateTangentsImpl);
+	mono_add_internal_call("UnityEngine.Mesh::MarkDynamicImpl",(void*) UnityEngine_Mesh_MarkDynamicImpl);
+	mono_add_internal_call("UnityEngine.Mesh::UploadMeshDataImpl",(void*) UnityEngine_Mesh_UploadMeshDataImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetTopologyImpl",(void*) UnityEngine_Mesh_GetTopologyImpl);
+	mono_add_internal_call("UnityEngine.Mesh::GetUVDistributionMetric",(void*) UnityEngine_Mesh_GetUVDistributionMetric);
+	mono_add_internal_call("UnityEngine.Mesh::CombineMeshesImpl",(void*) UnityEngine_Mesh_CombineMeshesImpl);
+	mono_add_internal_call("UnityEngine.Mesh::get_bounds_Injected",(void*) UnityEngine_Mesh_get_bounds_Injected_1);
+	mono_add_internal_call("UnityEngine.Mesh::set_bounds_Injected",(void*) UnityEngine_Mesh_set_bounds_Injected);
 	mono_add_internal_call("UnityEngine.StaticBatchingHelper::InternalCombineVertices",(void*) UnityEngine_StaticBatchingHelper_InternalCombineVertices);
 	mono_add_internal_call("UnityEngine.StaticBatchingHelper::InternalCombineIndices",(void*) UnityEngine_StaticBatchingHelper_InternalCombineIndices);
 	mono_add_internal_call("UnityEngine.MonoBehaviour::StopCoroutine",(void*) UnityEngine_MonoBehaviour_StopCoroutine);
 	mono_add_internal_call("UnityEngine.MonoBehaviour::StopAllCoroutines",(void*) UnityEngine_MonoBehaviour_StopAllCoroutines);
 	mono_add_internal_call("UnityEngine.MonoBehaviour::get_useGUILayout",(void*) UnityEngine_MonoBehaviour_get_useGUILayout);
 	mono_add_internal_call("UnityEngine.MonoBehaviour::set_useGUILayout",(void*) UnityEngine_MonoBehaviour_set_useGUILayout);
-	mono_add_internal_call("UnityEngine.MonoBehaviour::get_runInEditMode",(void*) UnityEngine_MonoBehaviour_get_runInEditMode);
-	mono_add_internal_call("UnityEngine.MonoBehaviour::set_runInEditMode",(void*) UnityEngine_MonoBehaviour_set_runInEditMode);
-	mono_add_internal_call("UnityEngine.MonoBehaviour::get_allowPrefabModeInPlayMode",(void*) UnityEngine_MonoBehaviour_get_allowPrefabModeInPlayMode);
-	mono_add_internal_call("UnityEngine.MonoBehaviour::ConstructorCheck",(void*) UnityEngine_MonoBehaviour_ConstructorCheck);
 	mono_add_internal_call("UnityEngine.MonoBehaviour::Internal_CancelInvokeAll",(void*) UnityEngine_MonoBehaviour_Internal_CancelInvokeAll);
 	mono_add_internal_call("UnityEngine.MonoBehaviour::Internal_IsInvokingAll",(void*) UnityEngine_MonoBehaviour_Internal_IsInvokingAll);
 	mono_add_internal_call("UnityEngine.MonoBehaviour::InvokeDelayed",(void*) UnityEngine_MonoBehaviour_InvokeDelayed);
@@ -61453,7 +59028,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.MonoBehaviour::GetScriptClassName",(void*) UnityEngine_MonoBehaviour_GetScriptClassName);
 	mono_add_internal_call("UnityEngine.NoAllocHelpers::Internal_ResizeList",(void*) UnityEngine_NoAllocHelpers_Internal_ResizeList);
 	mono_add_internal_call("UnityEngine.NoAllocHelpers::ExtractArrayFromList",(void*) UnityEngine_NoAllocHelpers_ExtractArrayFromList);
-	mono_add_internal_call("UnityEngine.Ping::Internal_Destroy",(void*) UnityEngine_Ping_Internal_Destroy_3);
+	mono_add_internal_call("UnityEngine.Ping::Internal_Destroy",(void*) UnityEngine_Ping_Internal_Destroy_2);
 	mono_add_internal_call("UnityEngine.Ping::Internal_Create",(void*) UnityEngine_Ping_Internal_Create_14);
 	mono_add_internal_call("UnityEngine.Ping::Internal_IsDone",(void*) UnityEngine_Ping_Internal_IsDone);
 	mono_add_internal_call("UnityEngine.Ping::get_time",(void*) UnityEngine_Ping_get_time_3);
@@ -61477,9 +59052,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.PlayerPrefs::DeleteKey",(void*) UnityEngine_PlayerPrefs_DeleteKey);
 	mono_add_internal_call("UnityEngine.PlayerPrefs::DeleteAll",(void*) UnityEngine_PlayerPrefs_DeleteAll);
 	mono_add_internal_call("UnityEngine.PlayerPrefs::Save",(void*) UnityEngine_PlayerPrefs_Save);
-	mono_add_internal_call("UnityEngine.PropertyNameUtils::ConflictCountForID",(void*) UnityEngine_PropertyNameUtils_ConflictCountForID);
 	mono_add_internal_call("UnityEngine.PropertyNameUtils::PropertyNameFromString_Injected",(void*) UnityEngine_PropertyNameUtils_PropertyNameFromString_Injected);
-	mono_add_internal_call("UnityEngine.PropertyNameUtils::StringFromPropertyName_Injected",(void*) UnityEngine_PropertyNameUtils_StringFromPropertyName_Injected);
 	mono_add_internal_call("UnityEngine.Random::get_seed",(void*) UnityEngine_Random_get_seed);
 	mono_add_internal_call("UnityEngine.Random::set_seed",(void*) UnityEngine_Random_set_seed);
 	mono_add_internal_call("UnityEngine.Random::InitState",(void*) UnityEngine_Random_InitState);
@@ -61625,9 +59198,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Resources::GetBuiltinResource",(void*) UnityEngine_Resources_GetBuiltinResource);
 	mono_add_internal_call("UnityEngine.Resources::UnloadAsset",(void*) UnityEngine_Resources_UnloadAsset);
 	mono_add_internal_call("UnityEngine.Resources::UnloadUnusedAssets",(void*) UnityEngine_Resources_UnloadUnusedAssets);
-	mono_add_internal_call("UnityEngine.RuntimeUndo::SetTransformParent",(void*) UnityEngine_RuntimeUndo_SetTransformParent);
-	mono_add_internal_call("UnityEngine.RuntimeUndo::RecordObject",(void*) UnityEngine_RuntimeUndo_RecordObject);
-	mono_add_internal_call("UnityEngine.RuntimeUndo::RecordObjects",(void*) UnityEngine_RuntimeUndo_RecordObjects);
 	mono_add_internal_call("UnityEngine.ScriptableObject::SetDirty",(void*) UnityEngine_ScriptableObject_SetDirty);
 	mono_add_internal_call("UnityEngine.ScriptableObject::CreateScriptableObject",(void*) UnityEngine_ScriptableObject_CreateScriptableObject);
 	mono_add_internal_call("UnityEngine.ScriptableObject::CreateScriptableObjectInstanceFromName",(void*) UnityEngine_ScriptableObject_CreateScriptableObjectInstanceFromName);
@@ -61635,7 +59205,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Experimental.Rendering.ScriptableRenderContext::BeginRenderPassInternal",(void*) UnityEngine_Experimental_Rendering_ScriptableRenderContext_BeginRenderPassInternal);
 	mono_add_internal_call("UnityEngine.Experimental.Rendering.ScriptableRenderContext::BeginSubPassInternal",(void*) UnityEngine_Experimental_Rendering_ScriptableRenderContext_BeginSubPassInternal);
 	mono_add_internal_call("UnityEngine.Experimental.Rendering.ScriptableRenderContext::EndRenderPassInternal",(void*) UnityEngine_Experimental_Rendering_ScriptableRenderContext_EndRenderPassInternal);
-	mono_add_internal_call("UnityEngine.Experimental.Rendering.ScriptableRenderContext::EmitWorldGeometryForSceneView",(void*) UnityEngine_Experimental_Rendering_ScriptableRenderContext_EmitWorldGeometryForSceneView);
 	mono_add_internal_call("UnityEngine.Experimental.Rendering.ScriptableRenderContext::Submit_Internal_Injected",(void*) UnityEngine_Experimental_Rendering_ScriptableRenderContext_Submit_Internal_Injected);
 	mono_add_internal_call("UnityEngine.Experimental.Rendering.ScriptableRenderContext::DrawRenderers_Internal_Injected",(void*) UnityEngine_Experimental_Rendering_ScriptableRenderContext_DrawRenderers_Internal_Injected);
 	mono_add_internal_call("UnityEngine.Experimental.Rendering.ScriptableRenderContext::DrawRenderers_StateBlock_Internal_Injected",(void*) UnityEngine_Experimental_Rendering_ScriptableRenderContext_DrawRenderers_StateBlock_Internal_Injected);
@@ -61750,7 +59319,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.SystemInfo::SupportsAsyncGPUReadback",(void*) UnityEngine_SystemInfo_SupportsAsyncGPUReadback);
 	mono_add_internal_call("UnityEngine.SystemInfo::SupportsMipStreaming",(void*) UnityEngine_SystemInfo_SupportsMipStreaming);
 	mono_add_internal_call("UnityEngine.SystemInfo::IsFormatSupported",(void*) UnityEngine_SystemInfo_IsFormatSupported);
-	mono_add_internal_call("UnityEngine.TextAsset::get_text",(void*) UnityEngine_TextAsset_get_text_1);
+	mono_add_internal_call("UnityEngine.TextAsset::get_text",(void*) UnityEngine_TextAsset_get_text);
 	mono_add_internal_call("UnityEngine.TextAsset::get_bytes",(void*) UnityEngine_TextAsset_get_bytes);
 	mono_add_internal_call("UnityEngine.TextAsset::Internal_CreateInstance",(void*) UnityEngine_TextAsset_Internal_CreateInstance);
 	mono_add_internal_call("UnityEngine.Texture::get_masterTextureLimit",(void*) UnityEngine_Texture_get_masterTextureLimit_1);
@@ -61796,8 +59365,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Texture::get_streamingTextureDiscardUnusedMips",(void*) UnityEngine_Texture_get_streamingTextureDiscardUnusedMips);
 	mono_add_internal_call("UnityEngine.Texture::set_streamingTextureDiscardUnusedMips",(void*) UnityEngine_Texture_set_streamingTextureDiscardUnusedMips);
 	mono_add_internal_call("UnityEngine.Texture::get_texelSize_Injected",(void*) UnityEngine_Texture_get_texelSize_Injected);
-	mono_add_internal_call("UnityEngine.Texture::get_imageContentsHash_Injected",(void*) UnityEngine_Texture_get_imageContentsHash_Injected);
-	mono_add_internal_call("UnityEngine.Texture::set_imageContentsHash_Injected",(void*) UnityEngine_Texture_set_imageContentsHash_Injected);
 	mono_add_internal_call("UnityEngine.Texture2D::get_mipmapCount",(void*) UnityEngine_Texture2D_get_mipmapCount);
 	mono_add_internal_call("UnityEngine.Texture2D::get_format",(void*) UnityEngine_Texture2D_get_format);
 	mono_add_internal_call("UnityEngine.Texture2D::get_whiteTexture",(void*) UnityEngine_Texture2D_get_whiteTexture);
@@ -61830,15 +59397,10 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Texture2D::GetPixels",(void*) UnityEngine_Texture2D_GetPixels_1);
 	mono_add_internal_call("UnityEngine.Texture2D::GetPixels32",(void*) UnityEngine_Texture2D_GetPixels32_1);
 	mono_add_internal_call("UnityEngine.Texture2D::PackTextures",(void*) UnityEngine_Texture2D_PackTextures);
-	mono_add_internal_call("UnityEngine.Texture2D::get_alphaIsTransparency",(void*) UnityEngine_Texture2D_get_alphaIsTransparency);
-	mono_add_internal_call("UnityEngine.Texture2D::set_alphaIsTransparency",(void*) UnityEngine_Texture2D_set_alphaIsTransparency);
-	mono_add_internal_call("UnityEngine.Texture2D::get_pixelsPerPoint",(void*) UnityEngine_Texture2D_get_pixelsPerPoint);
-	mono_add_internal_call("UnityEngine.Texture2D::set_pixelsPerPoint",(void*) UnityEngine_Texture2D_set_pixelsPerPoint);
 	mono_add_internal_call("UnityEngine.Texture2D::SetPixelImpl_Injected",(void*) UnityEngine_Texture2D_SetPixelImpl_Injected);
 	mono_add_internal_call("UnityEngine.Texture2D::GetPixelImpl_Injected",(void*) UnityEngine_Texture2D_GetPixelImpl_Injected);
 	mono_add_internal_call("UnityEngine.Texture2D::GetPixelBilinearImpl_Injected",(void*) UnityEngine_Texture2D_GetPixelBilinearImpl_Injected);
 	mono_add_internal_call("UnityEngine.Texture2D::ReadPixelsImpl_Injected",(void*) UnityEngine_Texture2D_ReadPixelsImpl_Injected);
-	mono_add_internal_call("UnityEngine.Texture2D::GetSafetyHandle_Injected",(void*) UnityEngine_Texture2D_GetSafetyHandle_Injected_1);
 	mono_add_internal_call("UnityEngine.Cubemap::get_mipmapCount",(void*) UnityEngine_Cubemap_get_mipmapCount_1);
 	mono_add_internal_call("UnityEngine.Cubemap::get_format",(void*) UnityEngine_Cubemap_get_format_1);
 	mono_add_internal_call("UnityEngine.Cubemap::Internal_CreateImpl",(void*) UnityEngine_Cubemap_Internal_CreateImpl_1);
@@ -62023,7 +59585,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Experimental.Playables.MaterialEffectPlayable::SetPassInternal",(void*) UnityEngine_Experimental_Playables_MaterialEffectPlayable_SetPassInternal);
 	mono_add_internal_call("UnityEngine.Experimental.Playables.MaterialEffectPlayable::InternalCreateMaterialEffectPlayable",(void*) UnityEngine_Experimental_Playables_MaterialEffectPlayable_InternalCreateMaterialEffectPlayable);
 	mono_add_internal_call("UnityEngine.Experimental.Playables.MaterialEffectPlayable::ValidateType",(void*) UnityEngine_Experimental_Playables_MaterialEffectPlayable_ValidateType_2);
-	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::Create_Injected",(void*) UnityEngine_Playables_PlayableGraph_Create_Injected_2);
+	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::Create_Injected",(void*) UnityEngine_Playables_PlayableGraph_Create_Injected_1);
 	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::Destroy_Injected",(void*) UnityEngine_Playables_PlayableGraph_Destroy_Injected);
 	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::IsValid_Injected",(void*) UnityEngine_Playables_PlayableGraph_IsValid_Injected);
 	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::IsPlaying_Injected",(void*) UnityEngine_Playables_PlayableGraph_IsPlaying_Injected);
@@ -62049,7 +59611,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::DisconnectInternal_Injected",(void*) UnityEngine_Playables_PlayableGraph_DisconnectInternal_Injected);
 	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::DestroyPlayableInternal_Injected",(void*) UnityEngine_Playables_PlayableGraph_DestroyPlayableInternal_Injected);
 	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::DestroySubgraphInternal_Injected",(void*) UnityEngine_Playables_PlayableGraph_DestroySubgraphInternal_Injected);
-	mono_add_internal_call("UnityEngine.Playables.PlayableGraph::GetEditorName_Injected",(void*) UnityEngine_Playables_PlayableGraph_GetEditorName_Injected);
 	mono_add_internal_call("UnityEngine.Playables.PlayableHandle::IsNull_Injected",(void*) UnityEngine_Playables_PlayableHandle_IsNull_Injected);
 	mono_add_internal_call("UnityEngine.Playables.PlayableHandle::IsValid_Injected",(void*) UnityEngine_Playables_PlayableHandle_IsValid_Injected_1);
 	mono_add_internal_call("UnityEngine.Playables.PlayableHandle::GetPlayableType_Injected",(void*) UnityEngine_Playables_PlayableHandle_GetPlayableType_Injected);
@@ -62137,78 +59698,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngineInternal.GIDebugVisualisation::get_pauseCycleMode",(void*) UnityEngineInternal_GIDebugVisualisation_get_pauseCycleMode);
 	mono_add_internal_call("UnityEngineInternal.GIDebugVisualisation::get_texType",(void*) UnityEngineInternal_GIDebugVisualisation_get_texType);
 	mono_add_internal_call("UnityEngineInternal.GIDebugVisualisation::set_texType",(void*) UnityEngineInternal_GIDebugVisualisation_set_texType);
-	mono_add_internal_call("UnityEngine.iOS.Device::get_systemVersion",(void*) UnityEngine_iOS_Device_get_systemVersion);
-	mono_add_internal_call("UnityEngine.iOS.Device::get_generation",(void*) UnityEngine_iOS_Device_get_generation);
-	mono_add_internal_call("UnityEngine.iOS.Device::get_vendorIdentifier",(void*) UnityEngine_iOS_Device_get_vendorIdentifier);
-	mono_add_internal_call("UnityEngine.iOS.Device::GetAdvertisingIdentifier",(void*) UnityEngine_iOS_Device_GetAdvertisingIdentifier);
-	mono_add_internal_call("UnityEngine.iOS.Device::get_advertisingTrackingEnabled",(void*) UnityEngine_iOS_Device_get_advertisingTrackingEnabled);
-	mono_add_internal_call("UnityEngine.iOS.Device::get_hideHomeButton",(void*) UnityEngine_iOS_Device_get_hideHomeButton);
-	mono_add_internal_call("UnityEngine.iOS.Device::set_hideHomeButton",(void*) UnityEngine_iOS_Device_set_hideHomeButton);
-	mono_add_internal_call("UnityEngine.iOS.Device::get_deferSystemGesturesModeInternal",(void*) UnityEngine_iOS_Device_get_deferSystemGesturesModeInternal);
-	mono_add_internal_call("UnityEngine.iOS.Device::set_deferSystemGesturesModeInternal",(void*) UnityEngine_iOS_Device_set_deferSystemGesturesModeInternal);
-	mono_add_internal_call("UnityEngine.iOS.Device::SetNoBackupFlag",(void*) UnityEngine_iOS_Device_SetNoBackupFlag);
-	mono_add_internal_call("UnityEngine.iOS.Device::ResetNoBackupFlag",(void*) UnityEngine_iOS_Device_ResetNoBackupFlag);
-	mono_add_internal_call("UnityEngine.iOS.Device::RequestStoreReview",(void*) UnityEngine_iOS_Device_RequestStoreReview);
-	mono_add_internal_call("UnityEngine.iOS.NotificationHelper::CreateLocal",(void*) UnityEngine_iOS_NotificationHelper_CreateLocal);
-	mono_add_internal_call("UnityEngine.iOS.NotificationHelper::DestroyLocal",(void*) UnityEngine_iOS_NotificationHelper_DestroyLocal);
-	mono_add_internal_call("UnityEngine.iOS.NotificationHelper::DestroyRemote",(void*) UnityEngine_iOS_NotificationHelper_DestroyRemote);
-	mono_add_internal_call("UnityEngine.iOS.RemoteNotification::get_alertBody",(void*) UnityEngine_iOS_RemoteNotification_get_alertBody);
-	mono_add_internal_call("UnityEngine.iOS.RemoteNotification::get_alertTitle",(void*) UnityEngine_iOS_RemoteNotification_get_alertTitle);
-	mono_add_internal_call("UnityEngine.iOS.RemoteNotification::get_soundName",(void*) UnityEngine_iOS_RemoteNotification_get_soundName);
-	mono_add_internal_call("UnityEngine.iOS.RemoteNotification::get_applicationIconBadgeNumber",(void*) UnityEngine_iOS_RemoteNotification_get_applicationIconBadgeNumber);
-	mono_add_internal_call("UnityEngine.iOS.RemoteNotification::get_hasAction",(void*) UnityEngine_iOS_RemoteNotification_get_hasAction);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::get_localNotificationCount",(void*) UnityEngine_iOS_NotificationServices_get_localNotificationCount);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::get_remoteNotificationCount",(void*) UnityEngine_iOS_NotificationServices_get_remoteNotificationCount);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::ClearLocalNotifications",(void*) UnityEngine_iOS_NotificationServices_ClearLocalNotifications);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::ClearRemoteNotifications",(void*) UnityEngine_iOS_NotificationServices_ClearRemoteNotifications);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::Internal_RegisterImpl",(void*) UnityEngine_iOS_NotificationServices_Internal_RegisterImpl);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::get_enabledNotificationTypes",(void*) UnityEngine_iOS_NotificationServices_get_enabledNotificationTypes);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::CancelAllLocalNotifications",(void*) UnityEngine_iOS_NotificationServices_CancelAllLocalNotifications);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::UnregisterForRemoteNotifications",(void*) UnityEngine_iOS_NotificationServices_UnregisterForRemoteNotifications);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::get_registrationError",(void*) UnityEngine_iOS_NotificationServices_get_registrationError);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::get_deviceToken",(void*) UnityEngine_iOS_NotificationServices_get_deviceToken);
-	mono_add_internal_call("UnityEngine.iOS.NotificationServices::GetRemoteNotificationImpl",(void*) UnityEngine_iOS_NotificationServices_GetRemoteNotificationImpl);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_APIAvailable",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_APIAvailable);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_broadcastingAPIAvailable",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_broadcastingAPIAvailable);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_recordingAvailable",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_recordingAvailable);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_isRecording",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_isRecording);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_isBroadcasting",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_isBroadcasting);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_cameraEnabled",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_cameraEnabled);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::set_cameraEnabled",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_set_cameraEnabled);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_microphoneEnabled",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_microphoneEnabled);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::set_microphoneEnabled",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_set_microphoneEnabled);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_broadcastURL",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_broadcastURL);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::get_lastError",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_get_lastError);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::StartRecordingImpl",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_StartRecordingImpl);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::StartBroadcastingImpl",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_StartBroadcastingImpl);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::StopRecording",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_StopRecording_1);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::StopBroadcasting",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_StopBroadcasting);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::Preview",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_Preview);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::Discard",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_Discard);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::ShowCameraPreviewAt",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_ShowCameraPreviewAt);
-	mono_add_internal_call("UnityEngine.Apple.ReplayKit.ReplayKit::HideCameraPreview",(void*) UnityEngine_Apple_ReplayKit_ReplayKit_HideCameraPreview);
-	mono_add_internal_call("UnityEngine.iOS.OnDemandResourcesRequest::get_error",(void*) UnityEngine_iOS_OnDemandResourcesRequest_get_error);
-	mono_add_internal_call("UnityEngine.iOS.OnDemandResourcesRequest::get_loadingPriority",(void*) UnityEngine_iOS_OnDemandResourcesRequest_get_loadingPriority);
-	mono_add_internal_call("UnityEngine.iOS.OnDemandResourcesRequest::set_loadingPriority",(void*) UnityEngine_iOS_OnDemandResourcesRequest_set_loadingPriority);
-	mono_add_internal_call("UnityEngine.iOS.OnDemandResourcesRequest::GetResourcePath",(void*) UnityEngine_iOS_OnDemandResourcesRequest_GetResourcePath);
-	mono_add_internal_call("UnityEngine.iOS.OnDemandResourcesRequest::DestroyFromScript",(void*) UnityEngine_iOS_OnDemandResourcesRequest_DestroyFromScript);
-	mono_add_internal_call("UnityEngine.iOS.OnDemandResources::get_enabled",(void*) UnityEngine_iOS_OnDemandResources_get_enabled_6);
-	mono_add_internal_call("UnityEngine.iOS.OnDemandResources::PreloadAsyncImpl",(void*) UnityEngine_iOS_OnDemandResources_PreloadAsyncImpl);
-	mono_add_internal_call("UnityEngine.tvOS.Remote::get_allowExitToHome",(void*) UnityEngine_tvOS_Remote_get_allowExitToHome);
-	mono_add_internal_call("UnityEngine.tvOS.Remote::set_allowExitToHome",(void*) UnityEngine_tvOS_Remote_set_allowExitToHome);
-	mono_add_internal_call("UnityEngine.tvOS.Remote::get_allowRemoteRotation",(void*) UnityEngine_tvOS_Remote_get_allowRemoteRotation);
-	mono_add_internal_call("UnityEngine.tvOS.Remote::set_allowRemoteRotation",(void*) UnityEngine_tvOS_Remote_set_allowRemoteRotation);
-	mono_add_internal_call("UnityEngine.tvOS.Remote::get_reportAbsoluteDpadValues",(void*) UnityEngine_tvOS_Remote_get_reportAbsoluteDpadValues);
-	mono_add_internal_call("UnityEngine.tvOS.Remote::set_reportAbsoluteDpadValues",(void*) UnityEngine_tvOS_Remote_set_reportAbsoluteDpadValues);
-	mono_add_internal_call("UnityEngine.tvOS.Remote::get_touchesEnabled",(void*) UnityEngine_tvOS_Remote_get_touchesEnabled);
-	mono_add_internal_call("UnityEngine.tvOS.Remote::set_touchesEnabled",(void*) UnityEngine_tvOS_Remote_set_touchesEnabled);
-	mono_add_internal_call("UnityEngine.tvOS.Device::get_tvOSsystemVersion",(void*) UnityEngine_tvOS_Device_get_tvOSsystemVersion);
-	mono_add_internal_call("UnityEngine.tvOS.Device::get_tvOSGeneration",(void*) UnityEngine_tvOS_Device_get_tvOSGeneration);
-	mono_add_internal_call("UnityEngine.tvOS.Device::get_tvOSVendorIdentifier",(void*) UnityEngine_tvOS_Device_get_tvOSVendorIdentifier);
-	mono_add_internal_call("UnityEngine.tvOS.Device::GettvOSAdvertisingIdentifier",(void*) UnityEngine_tvOS_Device_GettvOSAdvertisingIdentifier);
-	mono_add_internal_call("UnityEngine.tvOS.Device::get_tvOSadvertisingTrackingEnabled",(void*) UnityEngine_tvOS_Device_get_tvOSadvertisingTrackingEnabled);
-	mono_add_internal_call("UnityEngine.tvOS.Device::SettvOSNoBackupFlag",(void*) UnityEngine_tvOS_Device_SettvOSNoBackupFlag);
-	mono_add_internal_call("UnityEngine.tvOS.Device::tvOSResetNoBackupFlag",(void*) UnityEngine_tvOS_Device_tvOSResetNoBackupFlag);
 	mono_add_internal_call("UnityEngine.SceneManagement.Scene::IsValidInternal",(void*) UnityEngine_SceneManagement_Scene_IsValidInternal);
 	mono_add_internal_call("UnityEngine.SceneManagement.Scene::GetPathInternal",(void*) UnityEngine_SceneManagement_Scene_GetPathInternal);
 	mono_add_internal_call("UnityEngine.SceneManagement.Scene::GetNameInternal",(void*) UnityEngine_SceneManagement_Scene_GetNameInternal);
@@ -62287,8 +59776,6 @@ void regist_icall_gen()
 	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.UnsafeUtility::SizeOf",(void*) Unity_Collections_LowLevel_Unsafe_UnsafeUtility_SizeOf);
 	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.UnsafeUtility::IsBlittable",(void*) Unity_Collections_LowLevel_Unsafe_UnsafeUtility_IsBlittable);
 	mono_add_internal_call("Unity.Collections.LowLevel.Unsafe.UnsafeUtility::LogError",(void*) Unity_Collections_LowLevel_Unsafe_UnsafeUtility_LogError);
-	mono_add_internal_call("UnityEngine.Windows.LicenseInformation::get_isOnAppTrial",(void*) UnityEngine_Windows_LicenseInformation_get_isOnAppTrial);
-	mono_add_internal_call("UnityEngine.Windows.LicenseInformation::PurchaseApp",(void*) UnityEngine_Windows_LicenseInformation_PurchaseApp);
 	mono_add_internal_call("UnityEngine.Windows.Speech.PhraseRecognitionSystem::get_isSupported",(void*) UnityEngine_Windows_Speech_PhraseRecognitionSystem_get_isSupported_1);
 	mono_add_internal_call("UnityEngine.Windows.Speech.PhraseRecognitionSystem::get_Status",(void*) UnityEngine_Windows_Speech_PhraseRecognitionSystem_get_Status);
 	mono_add_internal_call("UnityEngine.Windows.Speech.PhraseRecognitionSystem::Restart",(void*) UnityEngine_Windows_Speech_PhraseRecognitionSystem_Restart);
@@ -62311,18 +59798,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Windows.Speech.DictationRecognizer::GetInitialSilenceTimeoutSeconds",(void*) UnityEngine_Windows_Speech_DictationRecognizer_GetInitialSilenceTimeoutSeconds);
 	mono_add_internal_call("UnityEngine.Windows.Speech.DictationRecognizer::SetInitialSilenceTimeoutSeconds",(void*) UnityEngine_Windows_Speech_DictationRecognizer_SetInitialSilenceTimeoutSeconds);
 	mono_add_internal_call("UnityEngine.Windows.CrashReporting::get_crashReportFolder",(void*) UnityEngine_Windows_CrashReporting_get_crashReportFolder);
-	mono_add_internal_call("UnityEngine.Windows.Crypto::ComputeMD5Hash",(void*) UnityEngine_Windows_Crypto_ComputeMD5Hash);
-	mono_add_internal_call("UnityEngine.Windows.Crypto::ComputeSHA1Hash",(void*) UnityEngine_Windows_Crypto_ComputeSHA1Hash);
-	mono_add_internal_call("UnityEngine.Windows.Directory::get_temporaryFolder",(void*) UnityEngine_Windows_Directory_get_temporaryFolder);
-	mono_add_internal_call("UnityEngine.Windows.Directory::get_localFolder",(void*) UnityEngine_Windows_Directory_get_localFolder);
-	mono_add_internal_call("UnityEngine.Windows.Directory::get_roamingFolder",(void*) UnityEngine_Windows_Directory_get_roamingFolder);
-	mono_add_internal_call("UnityEngine.Windows.Directory::CreateDirectory",(void*) UnityEngine_Windows_Directory_CreateDirectory);
-	mono_add_internal_call("UnityEngine.Windows.Directory::Exists",(void*) UnityEngine_Windows_Directory_Exists);
-	mono_add_internal_call("UnityEngine.Windows.Directory::Delete",(void*) UnityEngine_Windows_Directory_Delete);
-	mono_add_internal_call("UnityEngine.Windows.File::ReadAllBytes",(void*) UnityEngine_Windows_File_ReadAllBytes);
-	mono_add_internal_call("UnityEngine.Windows.File::WriteAllBytes",(void*) UnityEngine_Windows_File_WriteAllBytes);
-	mono_add_internal_call("UnityEngine.Windows.File::Exists",(void*) UnityEngine_Windows_File_Exists_1);
-	mono_add_internal_call("UnityEngine.Windows.File::Delete",(void*) UnityEngine_Windows_File_Delete_1);
 	mono_add_internal_call("Unity.Jobs.JobHandle::ScheduleBatchedJobs",(void*) Unity_Jobs_JobHandle_ScheduleBatchedJobs);
 	mono_add_internal_call("Unity.Jobs.JobHandle::ScheduleBatchedJobsAndComplete",(void*) Unity_Jobs_JobHandle_ScheduleBatchedJobsAndComplete);
 	mono_add_internal_call("Unity.Jobs.JobHandle::ScheduleBatchedJobsAndIsCompleted",(void*) Unity_Jobs_JobHandle_ScheduleBatchedJobsAndIsCompleted);
@@ -62350,7 +59825,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Profiling.Profiler::set_enableBinaryLog",(void*) UnityEngine_Profiling_Profiler_set_enableBinaryLog);
 	mono_add_internal_call("UnityEngine.Profiling.Profiler::get_maxUsedMemory",(void*) UnityEngine_Profiling_Profiler_get_maxUsedMemory);
 	mono_add_internal_call("UnityEngine.Profiling.Profiler::set_maxUsedMemory",(void*) UnityEngine_Profiling_Profiler_set_maxUsedMemory);
-	mono_add_internal_call("UnityEngine.Profiling.Profiler::get_enabled",(void*) UnityEngine_Profiling_Profiler_get_enabled_7);
+	mono_add_internal_call("UnityEngine.Profiling.Profiler::get_enabled",(void*) UnityEngine_Profiling_Profiler_get_enabled_6);
 	mono_add_internal_call("UnityEngine.Profiling.Profiler::set_enabled",(void*) UnityEngine_Profiling_Profiler_set_enabled_6);
 	mono_add_internal_call("UnityEngine.Profiling.Profiler::SetAreaEnabled",(void*) UnityEngine_Profiling_Profiler_SetAreaEnabled);
 	mono_add_internal_call("UnityEngine.Profiling.Profiler::GetAreaEnabled",(void*) UnityEngine_Profiling_Profiler_GetAreaEnabled);
@@ -62389,7 +59864,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Profiling.CustomSampler::Begin",(void*) UnityEngine_Profiling_CustomSampler_Begin_2);
 	mono_add_internal_call("UnityEngine.Profiling.CustomSampler::BeginWithObject",(void*) UnityEngine_Profiling_CustomSampler_BeginWithObject);
 	mono_add_internal_call("UnityEngine.Profiling.CustomSampler::End",(void*) UnityEngine_Profiling_CustomSampler_End_2);
-	mono_add_internal_call("UnityEngine.DrivenRectTransformTracker::CanRecordModifications",(void*) UnityEngine_DrivenRectTransformTracker_CanRecordModifications);
 	mono_add_internal_call("UnityEngine.RectTransform::get_drivenByObject",(void*) UnityEngine_RectTransform_get_drivenByObject);
 	mono_add_internal_call("UnityEngine.RectTransform::set_drivenByObject",(void*) UnityEngine_RectTransform_set_drivenByObject);
 	mono_add_internal_call("UnityEngine.RectTransform::get_drivenProperties",(void*) UnityEngine_RectTransform_get_drivenProperties);
@@ -62492,11 +59966,9 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteDataAccessExtensions::GetIndicesInfo_Injected",(void*) UnityEngine_Experimental_U2D_SpriteDataAccessExtensions_GetIndicesInfo_Injected);
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteDataAccessExtensions::GetChannelInfo_Injected",(void*) UnityEngine_Experimental_U2D_SpriteDataAccessExtensions_GetChannelInfo_Injected);
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteDataAccessExtensions::GetBoneWeightsInfo_Injected",(void*) UnityEngine_Experimental_U2D_SpriteDataAccessExtensions_GetBoneWeightsInfo_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteDataAccessExtensions::GetSafetyHandle_Injected",(void*) UnityEngine_Experimental_U2D_SpriteDataAccessExtensions_GetSafetyHandle_Injected_2);
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteRendererDataAccessExtensions::DeactivateDeformableBuffer",(void*) UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_DeactivateDeformableBuffer);
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteRendererDataAccessExtensions::UpdateDeformableBuffer_Injected",(void*) UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_UpdateDeformableBuffer_Injected);
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteRendererDataAccessExtensions::GetDeformableChannelInfo_Injected",(void*) UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_GetDeformableChannelInfo_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteRendererDataAccessExtensions::GetSafetyHandle_Injected",(void*) UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_GetSafetyHandle_Injected_3);
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteRendererDataAccessExtensions::SetLocalAABB_Injected",(void*) UnityEngine_Experimental_U2D_SpriteRendererDataAccessExtensions_SetLocalAABB_Injected_1);
 	mono_add_internal_call("UnityEngine.SpriteRenderer::get_shouldSupportTiling",(void*) UnityEngine_SpriteRenderer_get_shouldSupportTiling);
 	mono_add_internal_call("UnityEngine.SpriteRenderer::get_sprite",(void*) UnityEngine_SpriteRenderer_get_sprite);
@@ -62556,7 +60028,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Rendering.SortingGroup::get_sortingGroupOrder",(void*) UnityEngine_Rendering_SortingGroup_get_sortingGroupOrder_1);
 	mono_add_internal_call("UnityEngine.Rendering.SortingGroup::get_index",(void*) UnityEngine_Rendering_SortingGroup_get_index);
 	mono_add_internal_call("UnityEngine.U2D.SpriteAtlasManager::Register",(void*) UnityEngine_U2D_SpriteAtlasManager_Register);
-	mono_add_internal_call("UnityEngine.U2D.SpriteAtlas::Internal_Create",(void*) UnityEngine_U2D_SpriteAtlas_Internal_Create_19);
 	mono_add_internal_call("UnityEngine.U2D.SpriteAtlas::get_isVariant",(void*) UnityEngine_U2D_SpriteAtlas_get_isVariant);
 	mono_add_internal_call("UnityEngine.U2D.SpriteAtlas::get_tag",(void*) UnityEngine_U2D_SpriteAtlas_get_tag_1);
 	mono_add_internal_call("UnityEngine.U2D.SpriteAtlas::get_spriteCount",(void*) UnityEngine_U2D_SpriteAtlas_get_spriteCount);
@@ -62652,8 +60123,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Event::get_commandName",(void*) UnityEngine_Event_get_commandName);
 	mono_add_internal_call("UnityEngine.Event::set_commandName",(void*) UnityEngine_Event_set_commandName);
 	mono_add_internal_call("UnityEngine.Event::Internal_Use",(void*) UnityEngine_Event_Internal_Use);
-	mono_add_internal_call("UnityEngine.Event::Internal_Create",(void*) UnityEngine_Event_Internal_Create_20);
-	mono_add_internal_call("UnityEngine.Event::Internal_Destroy",(void*) UnityEngine_Event_Internal_Destroy_4);
+	mono_add_internal_call("UnityEngine.Event::Internal_Create",(void*) UnityEngine_Event_Internal_Create_19);
+	mono_add_internal_call("UnityEngine.Event::Internal_Destroy",(void*) UnityEngine_Event_Internal_Destroy_3);
 	mono_add_internal_call("UnityEngine.Event::Internal_Copy",(void*) UnityEngine_Event_Internal_Copy);
 	mono_add_internal_call("UnityEngine.Event::GetTypeForControl",(void*) UnityEngine_Event_GetTypeForControl);
 	mono_add_internal_call("UnityEngine.Event::CopyFromPtr",(void*) UnityEngine_Event_CopyFromPtr);
@@ -62666,7 +60137,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Event::set_delta_Injected",(void*) UnityEngine_Event_set_delta_Injected);
 	mono_add_internal_call("UnityEngine.GUI::get_changed",(void*) UnityEngine_GUI_get_changed);
 	mono_add_internal_call("UnityEngine.GUI::set_changed",(void*) UnityEngine_GUI_set_changed);
-	mono_add_internal_call("UnityEngine.GUI::get_enabled",(void*) UnityEngine_GUI_get_enabled_8);
+	mono_add_internal_call("UnityEngine.GUI::get_enabled",(void*) UnityEngine_GUI_get_enabled_7);
 	mono_add_internal_call("UnityEngine.GUI::set_enabled",(void*) UnityEngine_GUI_set_enabled_7);
 	mono_add_internal_call("UnityEngine.GUI::get_depth",(void*) UnityEngine_GUI_get_depth_5);
 	mono_add_internal_call("UnityEngine.GUI::set_depth",(void*) UnityEngine_GUI_set_depth_3);
@@ -62700,7 +60171,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUI::Internal_DoModalWindow_Injected",(void*) UnityEngine_GUI_Internal_DoModalWindow_Injected);
 	mono_add_internal_call("UnityEngine.GUI::Internal_DoWindow_Injected",(void*) UnityEngine_GUI_Internal_DoWindow_Injected);
 	mono_add_internal_call("UnityEngine.GUI::DragWindow_Injected",(void*) UnityEngine_GUI_DragWindow_Injected);
-	mono_add_internal_call("UnityEngine.GUIClip::get_enabled",(void*) UnityEngine_GUIClip_get_enabled_9);
+	mono_add_internal_call("UnityEngine.GUIClip::get_enabled",(void*) UnityEngine_GUIClip_get_enabled_8);
 	mono_add_internal_call("UnityEngine.GUIClip::Internal_Pop",(void*) UnityEngine_GUIClip_Internal_Pop);
 	mono_add_internal_call("UnityEngine.GUIClip::Internal_GetCount",(void*) UnityEngine_GUIClip_Internal_GetCount);
 	mono_add_internal_call("UnityEngine.GUIClip::Reapply",(void*) UnityEngine_GUIClip_Reapply);
@@ -62724,7 +60195,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUIClip::Internal_PushParentClip_Injected",(void*) UnityEngine_GUIClip_Internal_PushParentClip_Injected);
 	mono_add_internal_call("UnityEngine.GUIDebugger::LogLayoutEndGroup",(void*) UnityEngine_GUIDebugger_LogLayoutEndGroup);
 	mono_add_internal_call("UnityEngine.GUIDebugger::LogEndProperty",(void*) UnityEngine_GUIDebugger_LogEndProperty);
-	mono_add_internal_call("UnityEngine.GUIDebugger::get_active",(void*) UnityEngine_GUIDebugger_get_active_3);
+	mono_add_internal_call("UnityEngine.GUIDebugger::get_active",(void*) UnityEngine_GUIDebugger_get_active_1);
 	mono_add_internal_call("UnityEngine.GUIDebugger::LogLayoutEntry_Injected",(void*) UnityEngine_GUIDebugger_LogLayoutEntry_Injected);
 	mono_add_internal_call("UnityEngine.GUIDebugger::LogLayoutGroupEntry_Injected",(void*) UnityEngine_GUIDebugger_LogLayoutGroupEntry_Injected);
 	mono_add_internal_call("UnityEngine.GUIDebugger::LogBeginProperty_Injected",(void*) UnityEngine_GUIDebugger_LogBeginProperty_Injected);
@@ -62734,8 +60205,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUISettings::Internal_GetCursorFlashSpeed",(void*) UnityEngine_GUISettings_Internal_GetCursorFlashSpeed);
 	mono_add_internal_call("UnityEngine.GUIStyleState::get_background",(void*) UnityEngine_GUIStyleState_get_background);
 	mono_add_internal_call("UnityEngine.GUIStyleState::set_background",(void*) UnityEngine_GUIStyleState_set_background);
-	mono_add_internal_call("UnityEngine.GUIStyleState::get_scaledBackgrounds",(void*) UnityEngine_GUIStyleState_get_scaledBackgrounds);
-	mono_add_internal_call("UnityEngine.GUIStyleState::set_scaledBackgrounds",(void*) UnityEngine_GUIStyleState_set_scaledBackgrounds);
 	mono_add_internal_call("UnityEngine.GUIStyleState::Init",(void*) UnityEngine_GUIStyleState_Init_3);
 	mono_add_internal_call("UnityEngine.GUIStyleState::Cleanup",(void*) UnityEngine_GUIStyleState_Cleanup_1);
 	mono_add_internal_call("UnityEngine.GUIStyleState::get_textColor_Injected",(void*) UnityEngine_GUIStyleState_get_textColor_Injected);
@@ -62766,9 +60235,9 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUIStyle::set_fontStyle",(void*) UnityEngine_GUIStyle_set_fontStyle);
 	mono_add_internal_call("UnityEngine.GUIStyle::get_richText",(void*) UnityEngine_GUIStyle_get_richText);
 	mono_add_internal_call("UnityEngine.GUIStyle::set_richText",(void*) UnityEngine_GUIStyle_set_richText);
-	mono_add_internal_call("UnityEngine.GUIStyle::Internal_Create",(void*) UnityEngine_GUIStyle_Internal_Create_21);
+	mono_add_internal_call("UnityEngine.GUIStyle::Internal_Create",(void*) UnityEngine_GUIStyle_Internal_Create_20);
 	mono_add_internal_call("UnityEngine.GUIStyle::Internal_Copy",(void*) UnityEngine_GUIStyle_Internal_Copy_1);
-	mono_add_internal_call("UnityEngine.GUIStyle::Internal_Destroy",(void*) UnityEngine_GUIStyle_Internal_Destroy_5);
+	mono_add_internal_call("UnityEngine.GUIStyle::Internal_Destroy",(void*) UnityEngine_GUIStyle_Internal_Destroy_4);
 	mono_add_internal_call("UnityEngine.GUIStyle::GetStyleStatePtr",(void*) UnityEngine_GUIStyle_GetStyleStatePtr);
 	mono_add_internal_call("UnityEngine.GUIStyle::AssignStyleState",(void*) UnityEngine_GUIStyle_AssignStyleState);
 	mono_add_internal_call("UnityEngine.GUIStyle::GetRectOffsetPtr",(void*) UnityEngine_GUIStyle_GetRectOffsetPtr);
@@ -62793,10 +60262,9 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUIStyle::Internal_CalcSize_Injected",(void*) UnityEngine_GUIStyle_Internal_CalcSize_Injected);
 	mono_add_internal_call("UnityEngine.GUIStyle::Internal_CalcSizeWithConstraints_Injected",(void*) UnityEngine_GUIStyle_Internal_CalcSizeWithConstraints_Injected);
 	mono_add_internal_call("UnityEngine.GUIStyle::Internal_CalcMinMaxWidth_Injected",(void*) UnityEngine_GUIStyle_Internal_CalcMinMaxWidth_Injected);
-	mono_add_internal_call("UnityEngine.GUIStyle::Internal_DrawPrefixLabel_Injected",(void*) UnityEngine_GUIStyle_Internal_DrawPrefixLabel_Injected);
 	mono_add_internal_call("UnityEngine.GUIStyle::SetMouseTooltip_Injected",(void*) UnityEngine_GUIStyle_SetMouseTooltip_Injected);
 	mono_add_internal_call("UnityEngine.GUIUtility::get_hasModalWindow",(void*) UnityEngine_GUIUtility_get_hasModalWindow);
-	mono_add_internal_call("UnityEngine.GUIUtility::get_pixelsPerPoint",(void*) UnityEngine_GUIUtility_get_pixelsPerPoint_1);
+	mono_add_internal_call("UnityEngine.GUIUtility::get_pixelsPerPoint",(void*) UnityEngine_GUIUtility_get_pixelsPerPoint);
 	mono_add_internal_call("UnityEngine.GUIUtility::get_guiDepth",(void*) UnityEngine_GUIUtility_get_guiDepth);
 	mono_add_internal_call("UnityEngine.GUIUtility::get_mouseUsed",(void*) UnityEngine_GUIUtility_get_mouseUsed);
 	mono_add_internal_call("UnityEngine.GUIUtility::set_mouseUsed",(void*) UnityEngine_GUIUtility_set_mouseUsed);
@@ -62810,7 +60278,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUIUtility::BeginContainer",(void*) UnityEngine_GUIUtility_BeginContainer);
 	mono_add_internal_call("UnityEngine.GUIUtility::Internal_EndContainer",(void*) UnityEngine_GUIUtility_Internal_EndContainer);
 	mono_add_internal_call("UnityEngine.GUIUtility::GetPermanentControlID",(void*) UnityEngine_GUIUtility_GetPermanentControlID);
-	mono_add_internal_call("UnityEngine.GUIUtility::UpdateUndoName",(void*) UnityEngine_GUIUtility_UpdateUndoName);
 	mono_add_internal_call("UnityEngine.GUIUtility::CheckForTabEvent",(void*) UnityEngine_GUIUtility_CheckForTabEvent);
 	mono_add_internal_call("UnityEngine.GUIUtility::SetKeyboardControlToFirstControlId",(void*) UnityEngine_GUIUtility_SetKeyboardControlToFirstControlId);
 	mono_add_internal_call("UnityEngine.GUIUtility::SetKeyboardControlToLastControlId",(void*) UnityEngine_GUIUtility_SetKeyboardControlToLastControlId);
@@ -62832,8 +60299,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUIUtility::Internal_MultiplyPoint_Injected",(void*) UnityEngine_GUIUtility_Internal_MultiplyPoint_Injected);
 	mono_add_internal_call("UnityEngine.GUIUtility::InternalWindowToScreenPoint_Injected",(void*) UnityEngine_GUIUtility_InternalWindowToScreenPoint_Injected);
 	mono_add_internal_call("UnityEngine.GUIUtility::InternalScreenToWindowPoint_Injected",(void*) UnityEngine_GUIUtility_InternalScreenToWindowPoint_Injected);
-	mono_add_internal_call("UnityEngine.ObjectGUIState::Internal_Create",(void*) UnityEngine_ObjectGUIState_Internal_Create_22);
-	mono_add_internal_call("UnityEngine.ObjectGUIState::Internal_Destroy",(void*) UnityEngine_ObjectGUIState_Internal_Destroy_6);
+	mono_add_internal_call("UnityEngine.ObjectGUIState::Internal_Create",(void*) UnityEngine_ObjectGUIState_Internal_Create_21);
+	mono_add_internal_call("UnityEngine.ObjectGUIState::Internal_Destroy",(void*) UnityEngine_ObjectGUIState_Internal_Destroy_5);
 	mono_add_internal_call("UnityEngineInternal.Input.NativeInputSystem::set_hasDeviceDiscoveredCallback",(void*) UnityEngineInternal_Input_NativeInputSystem_set_hasDeviceDiscoveredCallback);
 	mono_add_internal_call("UnityEngineInternal.Input.NativeInputSystem::get_currentTime",(void*) UnityEngineInternal_Input_NativeInputSystem_get_currentTime);
 	mono_add_internal_call("UnityEngineInternal.Input.NativeInputSystem::get_currentTimeOffsetToRealtimeSinceStartup",(void*) UnityEngineInternal_Input_NativeInputSystem_get_currentTimeOffsetToRealtimeSinceStartup);
@@ -62852,11 +60319,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.LocalizationAsset::set_localeIsoCode",(void*) UnityEngine_LocalizationAsset_set_localeIsoCode);
 	mono_add_internal_call("UnityEngine.LocalizationAsset::get_isEditorAsset",(void*) UnityEngine_LocalizationAsset_get_isEditorAsset);
 	mono_add_internal_call("UnityEngine.LocalizationAsset::set_isEditorAsset",(void*) UnityEngine_LocalizationAsset_set_isEditorAsset);
-	mono_add_internal_call("UnityEngine.ParticleSystem::SetCustomParticleDataInternal",(void*) UnityEngine_ParticleSystem_SetCustomParticleDataInternal);
-	mono_add_internal_call("UnityEngine.ParticleSystem::GetCustomParticleDataInternal",(void*) UnityEngine_ParticleSystem_GetCustomParticleDataInternal);
-	mono_add_internal_call("UnityEngine.ParticleSystem::Internal_EmitOld",(void*) UnityEngine_ParticleSystem_Internal_EmitOld);
-	mono_add_internal_call("UnityEngine.ParticleSystem::TriggerSubEmitter",(void*) UnityEngine_ParticleSystem_TriggerSubEmitter);
-	mono_add_internal_call("UnityEngine.ParticleSystem::Internal_TriggerSubEmitter",(void*) UnityEngine_ParticleSystem_Internal_TriggerSubEmitter);
 	mono_add_internal_call("UnityEngine.ParticleSystem::get_isPlaying",(void*) UnityEngine_ParticleSystem_get_isPlaying_5);
 	mono_add_internal_call("UnityEngine.ParticleSystem::get_isEmitting",(void*) UnityEngine_ParticleSystem_get_isEmitting);
 	mono_add_internal_call("UnityEngine.ParticleSystem::get_isStopped",(void*) UnityEngine_ParticleSystem_get_isStopped_1);
@@ -62880,26 +60342,14 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.ParticleSystem::IsAlive",(void*) UnityEngine_ParticleSystem_IsAlive);
 	mono_add_internal_call("UnityEngine.ParticleSystem::Emit_Internal",(void*) UnityEngine_ParticleSystem_Emit_Internal);
 	mono_add_internal_call("UnityEngine.ParticleSystem::ResetPreMappedBufferMemory",(void*) UnityEngine_ParticleSystem_ResetPreMappedBufferMemory);
-	mono_add_internal_call("UnityEngine.ParticleSystem::SetupDefaultType",(void*) UnityEngine_ParticleSystem_SetupDefaultType);
-	mono_add_internal_call("UnityEngine.ParticleSystem::GenerateNoisePreviewTexture",(void*) UnityEngine_ParticleSystem_GenerateNoisePreviewTexture);
-	mono_add_internal_call("UnityEngine.ParticleSystem::CalculateEffectUIData",(void*) UnityEngine_ParticleSystem_CalculateEffectUIData);
-	mono_add_internal_call("UnityEngine.ParticleSystem::GenerateRandomSeed",(void*) UnityEngine_ParticleSystem_GenerateRandomSeed);
-	mono_add_internal_call("UnityEngine.ParticleSystem::CalculateEffectUISubEmitterData",(void*) UnityEngine_ParticleSystem_CalculateEffectUISubEmitterData);
-	mono_add_internal_call("UnityEngine.ParticleSystem::CheckVertexStreamsMatchShader",(void*) UnityEngine_ParticleSystem_CheckVertexStreamsMatchShader);
-	mono_add_internal_call("UnityEngine.ParticleSystem::GetMaxTexCoordStreams",(void*) UnityEngine_ParticleSystem_GetMaxTexCoordStreams);
+	mono_add_internal_call("UnityEngine.ParticleSystem::SetCustomParticleDataInternal",(void*) UnityEngine_ParticleSystem_SetCustomParticleDataInternal);
+	mono_add_internal_call("UnityEngine.ParticleSystem::GetCustomParticleDataInternal",(void*) UnityEngine_ParticleSystem_GetCustomParticleDataInternal);
+	mono_add_internal_call("UnityEngine.ParticleSystem::Internal_EmitOld",(void*) UnityEngine_ParticleSystem_Internal_EmitOld);
+	mono_add_internal_call("UnityEngine.ParticleSystem::TriggerSubEmitter",(void*) UnityEngine_ParticleSystem_TriggerSubEmitter);
+	mono_add_internal_call("UnityEngine.ParticleSystem::Internal_TriggerSubEmitter",(void*) UnityEngine_ParticleSystem_Internal_TriggerSubEmitter);
 	mono_add_internal_call("UnityEngine.ParticleSystem::GetParticleCurrentSize3D_Injected",(void*) UnityEngine_ParticleSystem_GetParticleCurrentSize3D_Injected);
 	mono_add_internal_call("UnityEngine.ParticleSystem::GetParticleCurrentColor_Injected",(void*) UnityEngine_ParticleSystem_GetParticleCurrentColor_Injected);
 	mono_add_internal_call("UnityEngine.ParticleSystem::Emit_Injected",(void*) UnityEngine_ParticleSystem_Emit_Injected);
-	mono_add_internal_call("UnityEngine.ParticleSystem::get_localToWorldMatrix_Injected",(void*) UnityEngine_ParticleSystem_get_localToWorldMatrix_Injected_2);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_mesh",(void*) UnityEngine_ParticleSystemRenderer_get_mesh_1);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::set_mesh",(void*) UnityEngine_ParticleSystemRenderer_set_mesh_1);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::Internal_GetMeshCount",(void*) UnityEngine_ParticleSystemRenderer_Internal_GetMeshCount);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::GetMeshes",(void*) UnityEngine_ParticleSystemRenderer_GetMeshes);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::SetMeshes",(void*) UnityEngine_ParticleSystemRenderer_SetMeshes);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_activeVertexStreamsCount",(void*) UnityEngine_ParticleSystemRenderer_get_activeVertexStreamsCount);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::SetActiveVertexStreamsInternal",(void*) UnityEngine_ParticleSystemRenderer_SetActiveVertexStreamsInternal);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::GetActiveVertexStreamsInternal",(void*) UnityEngine_ParticleSystemRenderer_GetActiveVertexStreamsInternal);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_supportsMeshInstancing",(void*) UnityEngine_ParticleSystemRenderer_get_supportsMeshInstancing);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_alignment",(void*) UnityEngine_ParticleSystemRenderer_get_alignment_3);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::set_alignment",(void*) UnityEngine_ParticleSystemRenderer_set_alignment_3);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_renderMode",(void*) UnityEngine_ParticleSystemRenderer_get_renderMode_1);
@@ -62932,19 +60382,18 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::set_allowRoll",(void*) UnityEngine_ParticleSystemRenderer_set_allowRoll);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::BakeMesh",(void*) UnityEngine_ParticleSystemRenderer_BakeMesh_3);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::BakeTrailsMesh",(void*) UnityEngine_ParticleSystemRenderer_BakeTrailsMesh);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_editorEnabled",(void*) UnityEngine_ParticleSystemRenderer_get_editorEnabled);
-	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::set_editorEnabled",(void*) UnityEngine_ParticleSystemRenderer_set_editorEnabled);
+	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_mesh",(void*) UnityEngine_ParticleSystemRenderer_get_mesh_1);
+	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::set_mesh",(void*) UnityEngine_ParticleSystemRenderer_set_mesh_1);
+	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::Internal_GetMeshCount",(void*) UnityEngine_ParticleSystemRenderer_Internal_GetMeshCount);
+	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::GetMeshes",(void*) UnityEngine_ParticleSystemRenderer_GetMeshes);
+	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::SetMeshes",(void*) UnityEngine_ParticleSystemRenderer_SetMeshes);
+	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_activeVertexStreamsCount",(void*) UnityEngine_ParticleSystemRenderer_get_activeVertexStreamsCount);
+	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::SetActiveVertexStreamsInternal",(void*) UnityEngine_ParticleSystemRenderer_SetActiveVertexStreamsInternal);
+	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::GetActiveVertexStreamsInternal",(void*) UnityEngine_ParticleSystemRenderer_GetActiveVertexStreamsInternal);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_pivot_Injected",(void*) UnityEngine_ParticleSystemRenderer_get_pivot_Injected_2);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::set_pivot_Injected",(void*) UnityEngine_ParticleSystemRenderer_set_pivot_Injected_1);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::get_flip_Injected",(void*) UnityEngine_ParticleSystemRenderer_get_flip_Injected);
 	mono_add_internal_call("UnityEngine.ParticleSystemRenderer::set_flip_Injected",(void*) UnityEngine_ParticleSystemRenderer_set_flip_Injected);
-	mono_add_internal_call("UnityEngine.ParticleCollisionEvent::InstanceIDToColliderComponent",(void*) UnityEngine_ParticleCollisionEvent_InstanceIDToColliderComponent);
-	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetSafeCollisionEventSize",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetSafeCollisionEventSize);
-	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetCollisionEventsDeprecated",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetCollisionEventsDeprecated);
-	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetSafeTriggerParticlesSize",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetSafeTriggerParticlesSize);
-	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetCollisionEvents",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetCollisionEvents);
-	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetTriggerParticles",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetTriggerParticles);
-	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::SetTriggerParticles",(void*) UnityEngine_ParticleSystemExtensionsImpl_SetTriggerParticles);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::get_shape",(void*) UnityEngine_ParticleSystemForceField_get_shape_1);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::set_shape",(void*) UnityEngine_ParticleSystemForceField_set_shape_1);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::get_startRange",(void*) UnityEngine_ParticleSystemForceField_get_startRange);
@@ -62961,7 +60410,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::set_multiplyDragByParticleVelocity",(void*) UnityEngine_ParticleSystemForceField_set_multiplyDragByParticleVelocity);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::get_vectorField",(void*) UnityEngine_ParticleSystemForceField_get_vectorField);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::set_vectorField",(void*) UnityEngine_ParticleSystemForceField_set_vectorField);
-	mono_add_internal_call("UnityEngine.ParticleSystemForceField::FindAll",(void*) UnityEngine_ParticleSystemForceField_FindAll);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::get_rotationRandomness_Injected",(void*) UnityEngine_ParticleSystemForceField_get_rotationRandomness_Injected);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::set_rotationRandomness_Injected",(void*) UnityEngine_ParticleSystemForceField_set_rotationRandomness_Injected);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::get_directionX_Injected",(void*) UnityEngine_ParticleSystemForceField_get_directionX_Injected);
@@ -62982,7 +60430,14 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::set_vectorFieldSpeed_Injected",(void*) UnityEngine_ParticleSystemForceField_set_vectorFieldSpeed_Injected);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::get_vectorFieldAttraction_Injected",(void*) UnityEngine_ParticleSystemForceField_get_vectorFieldAttraction_Injected);
 	mono_add_internal_call("UnityEngine.ParticleSystemForceField::set_vectorFieldAttraction_Injected",(void*) UnityEngine_ParticleSystemForceField_set_vectorFieldAttraction_Injected);
-	mono_add_internal_call("UnityEngine.Analytics.PerformanceReporting::get_enabled",(void*) UnityEngine_Analytics_PerformanceReporting_get_enabled_10);
+	mono_add_internal_call("UnityEngine.ParticleCollisionEvent::InstanceIDToColliderComponent",(void*) UnityEngine_ParticleCollisionEvent_InstanceIDToColliderComponent);
+	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetSafeCollisionEventSize",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetSafeCollisionEventSize);
+	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetCollisionEventsDeprecated",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetCollisionEventsDeprecated);
+	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetSafeTriggerParticlesSize",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetSafeTriggerParticlesSize);
+	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetCollisionEvents",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetCollisionEvents);
+	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::GetTriggerParticles",(void*) UnityEngine_ParticleSystemExtensionsImpl_GetTriggerParticles);
+	mono_add_internal_call("UnityEngine.ParticleSystemExtensionsImpl::SetTriggerParticles",(void*) UnityEngine_ParticleSystemExtensionsImpl_SetTriggerParticles);
+	mono_add_internal_call("UnityEngine.Analytics.PerformanceReporting::get_enabled",(void*) UnityEngine_Analytics_PerformanceReporting_get_enabled_9);
 	mono_add_internal_call("UnityEngine.Analytics.PerformanceReporting::set_enabled",(void*) UnityEngine_Analytics_PerformanceReporting_set_enabled_8);
 	mono_add_internal_call("UnityEngine.Analytics.PerformanceReporting::get_graphicsInitializationFinishTime",(void*) UnityEngine_Analytics_PerformanceReporting_get_graphicsInitializationFinishTime);
 	mono_add_internal_call("UnityEngine.PhysicsScene2D::IsValid_Internal_Injected",(void*) UnityEngine_PhysicsScene2D_IsValid_Internal_Injected);
@@ -63514,7 +60969,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Rigidbody::Internal_ClosestPointOnBounds_Injected",(void*) UnityEngine_Rigidbody_Internal_ClosestPointOnBounds_Injected);
 	mono_add_internal_call("UnityEngine.Rigidbody::SweepTest_Injected",(void*) UnityEngine_Rigidbody_SweepTest_Injected);
 	mono_add_internal_call("UnityEngine.Rigidbody::Internal_SweepTestAll_Injected",(void*) UnityEngine_Rigidbody_Internal_SweepTestAll_Injected);
-	mono_add_internal_call("UnityEngine.Collider::get_enabled",(void*) UnityEngine_Collider_get_enabled_11);
+	mono_add_internal_call("UnityEngine.Collider::get_enabled",(void*) UnityEngine_Collider_get_enabled_10);
 	mono_add_internal_call("UnityEngine.Collider::set_enabled",(void*) UnityEngine_Collider_set_enabled_9);
 	mono_add_internal_call("UnityEngine.Collider::get_attachedRigidbody",(void*) UnityEngine_Collider_get_attachedRigidbody_2);
 	mono_add_internal_call("UnityEngine.Collider::get_isTrigger",(void*) UnityEngine_Collider_get_isTrigger_1);
@@ -63607,7 +61062,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Joint::set_anchor_Injected",(void*) UnityEngine_Joint_set_anchor_Injected_2);
 	mono_add_internal_call("UnityEngine.Joint::get_connectedAnchor_Injected",(void*) UnityEngine_Joint_get_connectedAnchor_Injected_1);
 	mono_add_internal_call("UnityEngine.Joint::set_connectedAnchor_Injected",(void*) UnityEngine_Joint_set_connectedAnchor_Injected_1);
-	mono_add_internal_call("UnityEngine.Joint::GetLocalPoseMatrix_Injected",(void*) UnityEngine_Joint_GetLocalPoseMatrix_Injected);
 	mono_add_internal_call("UnityEngine.HingeJoint::get_useMotor",(void*) UnityEngine_HingeJoint_get_useMotor_3);
 	mono_add_internal_call("UnityEngine.HingeJoint::set_useMotor",(void*) UnityEngine_HingeJoint_set_useMotor_3);
 	mono_add_internal_call("UnityEngine.HingeJoint::get_useLimits",(void*) UnityEngine_HingeJoint_get_useLimits_2);
@@ -63800,9 +61254,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.SpriteMask::get_spriteSortPoint",(void*) UnityEngine_SpriteMask_get_spriteSortPoint_1);
 	mono_add_internal_call("UnityEngine.SpriteMask::set_spriteSortPoint",(void*) UnityEngine_SpriteMask_set_spriteSortPoint_1);
 	mono_add_internal_call("UnityEngine.SpriteMask::GetSpriteBounds_Injected",(void*) UnityEngine_SpriteMask_GetSpriteBounds_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteShapeRenderer::GetVertexCount",(void*) UnityEngine_Experimental_U2D_SpriteShapeRenderer_GetVertexCount_1);
-	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteShapeRenderer::GetIndexCount",(void*) UnityEngine_Experimental_U2D_SpriteShapeRenderer_GetIndexCount);
-	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteShapeRenderer::GetLocalAABB_Injected",(void*) UnityEngine_Experimental_U2D_SpriteShapeRenderer_GetLocalAABB_Injected_1);
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteShapeUtility::Generate_Injected",(void*) UnityEngine_Experimental_U2D_SpriteShapeUtility_Generate_Injected);
 	mono_add_internal_call("UnityEngine.Experimental.U2D.SpriteShapeUtility::GenerateSpriteShape_Injected",(void*) UnityEngine_Experimental_U2D_SpriteShapeUtility_GenerateSpriteShape_Injected);
 	mono_add_internal_call("UnityEngine.StreamingController::get_streamingMipmapBias",(void*) UnityEngine_StreamingController_get_streamingMipmapBias);
@@ -63869,10 +61320,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Terrain::Flush",(void*) UnityEngine_Terrain_Flush_1);
 	mono_add_internal_call("UnityEngine.Terrain::SetSplatMaterialPropertyBlock",(void*) UnityEngine_Terrain_SetSplatMaterialPropertyBlock);
 	mono_add_internal_call("UnityEngine.Terrain::Internal_GetSplatMaterialPropertyBlock",(void*) UnityEngine_Terrain_Internal_GetSplatMaterialPropertyBlock);
-	mono_add_internal_call("UnityEngine.Terrain::get_bakeLightProbesForTrees",(void*) UnityEngine_Terrain_get_bakeLightProbesForTrees);
-	mono_add_internal_call("UnityEngine.Terrain::set_bakeLightProbesForTrees",(void*) UnityEngine_Terrain_set_bakeLightProbesForTrees);
-	mono_add_internal_call("UnityEngine.Terrain::get_deringLightProbesForTrees",(void*) UnityEngine_Terrain_get_deringLightProbesForTrees);
-	mono_add_internal_call("UnityEngine.Terrain::set_deringLightProbesForTrees",(void*) UnityEngine_Terrain_set_deringLightProbesForTrees);
 	mono_add_internal_call("UnityEngine.Terrain::get_preserveTreePrototypeLayers",(void*) UnityEngine_Terrain_get_preserveTreePrototypeLayers);
 	mono_add_internal_call("UnityEngine.Terrain::set_preserveTreePrototypeLayers",(void*) UnityEngine_Terrain_set_preserveTreePrototypeLayers);
 	mono_add_internal_call("UnityEngine.Terrain::get_heightmapTextureFormat",(void*) UnityEngine_Terrain_get_heightmapTextureFormat);
@@ -63902,7 +61349,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Tree::set_data",(void*) UnityEngine_Tree_set_data);
 	mono_add_internal_call("UnityEngine.Tree::get_hasSpeedTreeWind",(void*) UnityEngine_Tree_get_hasSpeedTreeWind);
 	mono_add_internal_call("UnityEngine.TerrainData::GetBoundaryValue",(void*) UnityEngine_TerrainData_GetBoundaryValue);
-	mono_add_internal_call("UnityEngine.TerrainData::Internal_Create",(void*) UnityEngine_TerrainData_Internal_Create_23);
+	mono_add_internal_call("UnityEngine.TerrainData::Internal_Create",(void*) UnityEngine_TerrainData_Internal_Create_22);
 	mono_add_internal_call("UnityEngine.TerrainData::UpdateDirtyRegion",(void*) UnityEngine_TerrainData_UpdateDirtyRegion);
 	mono_add_internal_call("UnityEngine.TerrainData::get_heightmapWidth",(void*) UnityEngine_TerrainData_get_heightmapWidth);
 	mono_add_internal_call("UnityEngine.TerrainData::get_heightmapHeight",(void*) UnityEngine_TerrainData_get_heightmapHeight);
@@ -63977,7 +61424,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.TerrainData::Internal_GetTreeInstance_Injected",(void*) UnityEngine_TerrainData_Internal_GetTreeInstance_Injected);
 	mono_add_internal_call("UnityEngine.TerrainData::SetTreeInstance_Injected",(void*) UnityEngine_TerrainData_SetTreeInstance_Injected);
 	mono_add_internal_call("UnityEngine.TerrainData::RemoveTrees_Injected",(void*) UnityEngine_TerrainData_RemoveTrees_Injected_1);
-	mono_add_internal_call("UnityEngine.TerrainLayer::Internal_Create",(void*) UnityEngine_TerrainLayer_Internal_Create_24);
+	mono_add_internal_call("UnityEngine.TerrainLayer::Internal_Create",(void*) UnityEngine_TerrainLayer_Internal_Create_23);
 	mono_add_internal_call("UnityEngine.TerrainLayer::get_diffuseTexture",(void*) UnityEngine_TerrainLayer_get_diffuseTexture);
 	mono_add_internal_call("UnityEngine.TerrainLayer::set_diffuseTexture",(void*) UnityEngine_TerrainLayer_set_diffuseTexture);
 	mono_add_internal_call("UnityEngine.TerrainLayer::get_normalMapTexture",(void*) UnityEngine_TerrainLayer_get_normalMapTexture);
@@ -64041,8 +61488,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.TextGenerator::get_characterCount",(void*) UnityEngine_TextGenerator_get_characterCount);
 	mono_add_internal_call("UnityEngine.TextGenerator::get_lineCount",(void*) UnityEngine_TextGenerator_get_lineCount);
 	mono_add_internal_call("UnityEngine.TextGenerator::get_fontSizeUsedForBestFit",(void*) UnityEngine_TextGenerator_get_fontSizeUsedForBestFit);
-	mono_add_internal_call("UnityEngine.TextGenerator::Internal_Create",(void*) UnityEngine_TextGenerator_Internal_Create_25);
-	mono_add_internal_call("UnityEngine.TextGenerator::Internal_Destroy",(void*) UnityEngine_TextGenerator_Internal_Destroy_7);
+	mono_add_internal_call("UnityEngine.TextGenerator::Internal_Create",(void*) UnityEngine_TextGenerator_Internal_Create_24);
+	mono_add_internal_call("UnityEngine.TextGenerator::Internal_Destroy",(void*) UnityEngine_TextGenerator_Internal_Destroy_6);
 	mono_add_internal_call("UnityEngine.TextGenerator::GetVerticesArray",(void*) UnityEngine_TextGenerator_GetVerticesArray);
 	mono_add_internal_call("UnityEngine.TextGenerator::GetCharactersArray",(void*) UnityEngine_TextGenerator_GetCharactersArray);
 	mono_add_internal_call("UnityEngine.TextGenerator::GetLinesArray",(void*) UnityEngine_TextGenerator_GetLinesArray);
@@ -64051,8 +61498,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.TextGenerator::GetLinesInternal",(void*) UnityEngine_TextGenerator_GetLinesInternal);
 	mono_add_internal_call("UnityEngine.TextGenerator::get_rectExtents_Injected",(void*) UnityEngine_TextGenerator_get_rectExtents_Injected);
 	mono_add_internal_call("UnityEngine.TextGenerator::Populate_Internal_Injected",(void*) UnityEngine_TextGenerator_Populate_Internal_Injected);
-	mono_add_internal_call("UnityEngine.GUIText::get_text",(void*) UnityEngine_GUIText_get_text_2);
-	mono_add_internal_call("UnityEngine.GUIText::set_text",(void*) UnityEngine_GUIText_set_text_1);
+	mono_add_internal_call("UnityEngine.GUIText::get_text",(void*) UnityEngine_GUIText_get_text_1);
+	mono_add_internal_call("UnityEngine.GUIText::set_text",(void*) UnityEngine_GUIText_set_text);
 	mono_add_internal_call("UnityEngine.GUIText::get_material",(void*) UnityEngine_GUIText_get_material_5);
 	mono_add_internal_call("UnityEngine.GUIText::set_material",(void*) UnityEngine_GUIText_set_material_5);
 	mono_add_internal_call("UnityEngine.GUIText::get_font",(void*) UnityEngine_GUIText_get_font_1);
@@ -64075,8 +61522,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.GUIText::set_color_Injected",(void*) UnityEngine_GUIText_set_color_Injected_6);
 	mono_add_internal_call("UnityEngine.GUIText::get_pixelOffset_Injected",(void*) UnityEngine_GUIText_get_pixelOffset_Injected);
 	mono_add_internal_call("UnityEngine.GUIText::set_pixelOffset_Injected",(void*) UnityEngine_GUIText_set_pixelOffset_Injected);
-	mono_add_internal_call("UnityEngine.TextMesh::get_text",(void*) UnityEngine_TextMesh_get_text_3);
-	mono_add_internal_call("UnityEngine.TextMesh::set_text",(void*) UnityEngine_TextMesh_set_text_2);
+	mono_add_internal_call("UnityEngine.TextMesh::get_text",(void*) UnityEngine_TextMesh_get_text_2);
+	mono_add_internal_call("UnityEngine.TextMesh::set_text",(void*) UnityEngine_TextMesh_set_text_1);
 	mono_add_internal_call("UnityEngine.TextMesh::get_font",(void*) UnityEngine_TextMesh_get_font_2);
 	mono_add_internal_call("UnityEngine.TextMesh::set_font",(void*) UnityEngine_TextMesh_set_font_2);
 	mono_add_internal_call("UnityEngine.TextMesh::get_fontSize",(void*) UnityEngine_TextMesh_get_fontSize_2);
@@ -64132,7 +61579,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::ClearAllTiles",(void*) UnityEngine_Tilemaps_Tilemap_ClearAllTiles);
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::ResizeBounds",(void*) UnityEngine_Tilemaps_Tilemap_ResizeBounds);
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::CompressBounds",(void*) UnityEngine_Tilemaps_Tilemap_CompressBounds);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::ClearAllEditorPreviewTiles",(void*) UnityEngine_Tilemaps_Tilemap_ClearAllEditorPreviewTiles);
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::get_localBounds_Injected",(void*) UnityEngine_Tilemaps_Tilemap_get_localBounds_Injected_1);
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::get_localFrameBounds_Injected",(void*) UnityEngine_Tilemaps_Tilemap_get_localFrameBounds_Injected);
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::get_color_Injected",(void*) UnityEngine_Tilemaps_Tilemap_get_color_Injected_8);
@@ -64164,18 +61610,6 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::GetColliderType_Injected",(void*) UnityEngine_Tilemaps_Tilemap_GetColliderType_Injected);
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::FloodFillTileAsset_Injected",(void*) UnityEngine_Tilemaps_Tilemap_FloodFillTileAsset_Injected);
 	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::BoxFillTileAsset_Injected",(void*) UnityEngine_Tilemaps_Tilemap_BoxFillTileAsset_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::get_editorPreviewOrigin_Injected",(void*) UnityEngine_Tilemaps_Tilemap_get_editorPreviewOrigin_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::get_editorPreviewSize_Injected",(void*) UnityEngine_Tilemaps_Tilemap_get_editorPreviewSize_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewTileAsset_Injected",(void*) UnityEngine_Tilemaps_Tilemap_GetEditorPreviewTileAsset_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::SetEditorPreviewTileAsset_Injected",(void*) UnityEngine_Tilemaps_Tilemap_SetEditorPreviewTileAsset_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewSprite_Injected",(void*) UnityEngine_Tilemaps_Tilemap_GetEditorPreviewSprite_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewTransformMatrix_Injected",(void*) UnityEngine_Tilemaps_Tilemap_GetEditorPreviewTransformMatrix_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::SetEditorPreviewTransformMatrix_Injected",(void*) UnityEngine_Tilemaps_Tilemap_SetEditorPreviewTransformMatrix_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewColor_Injected",(void*) UnityEngine_Tilemaps_Tilemap_GetEditorPreviewColor_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::SetEditorPreviewColor_Injected",(void*) UnityEngine_Tilemaps_Tilemap_SetEditorPreviewColor_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::GetEditorPreviewTileFlags_Injected",(void*) UnityEngine_Tilemaps_Tilemap_GetEditorPreviewTileFlags_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::EditorPreviewFloodFillTileAsset_Injected",(void*) UnityEngine_Tilemaps_Tilemap_EditorPreviewFloodFillTileAsset_Injected);
-	mono_add_internal_call("UnityEngine.Tilemaps.Tilemap::EditorPreviewBoxFillTileAsset_Injected",(void*) UnityEngine_Tilemaps_Tilemap_EditorPreviewBoxFillTileAsset_Injected);
 	mono_add_internal_call("UnityEngine.Tilemaps.TilemapRenderer::get_maxChunkCount",(void*) UnityEngine_Tilemaps_TilemapRenderer_get_maxChunkCount);
 	mono_add_internal_call("UnityEngine.Tilemaps.TilemapRenderer::set_maxChunkCount",(void*) UnityEngine_Tilemaps_TilemapRenderer_set_maxChunkCount);
 	mono_add_internal_call("UnityEngine.Tilemaps.TilemapRenderer::get_maxFrameAge",(void*) UnityEngine_Tilemaps_TilemapRenderer_get_maxFrameAge);
@@ -64509,7 +61943,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Networking.GlobalConfigInternal::set_MaxTimerTimeout",(void*) UnityEngine_Networking_GlobalConfigInternal_set_MaxTimerTimeout);
 	mono_add_internal_call("UnityEngine.Networking.GlobalConfigInternal::set_MinNetSimulatorTimeout",(void*) UnityEngine_Networking_GlobalConfigInternal_set_MinNetSimulatorTimeout);
 	mono_add_internal_call("UnityEngine.Networking.GlobalConfigInternal::set_MaxNetSimulatorTimeout",(void*) UnityEngine_Networking_GlobalConfigInternal_set_MaxNetSimulatorTimeout);
-	mono_add_internal_call("UnityEngine.Connect.UnityConnectSettings::get_enabled",(void*) UnityEngine_Connect_UnityConnectSettings_get_enabled_12);
+	mono_add_internal_call("UnityEngine.Connect.UnityConnectSettings::get_enabled",(void*) UnityEngine_Connect_UnityConnectSettings_get_enabled_11);
 	mono_add_internal_call("UnityEngine.Connect.UnityConnectSettings::set_enabled",(void*) UnityEngine_Connect_UnityConnectSettings_set_enabled_10);
 	mono_add_internal_call("UnityEngine.Connect.UnityConnectSettings::get_testMode",(void*) UnityEngine_Connect_UnityConnectSettings_get_testMode);
 	mono_add_internal_call("UnityEngine.Connect.UnityConnectSettings::set_testMode",(void*) UnityEngine_Connect_UnityConnectSettings_set_testMode);
@@ -64521,7 +61955,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Connect.UnityConnectSettings::set_configUrl",(void*) UnityEngine_Connect_UnityConnectSettings_set_configUrl);
 	mono_add_internal_call("UnityEngine.Connect.UnityConnectSettings::get_testInitMode",(void*) UnityEngine_Connect_UnityConnectSettings_get_testInitMode);
 	mono_add_internal_call("UnityEngine.Connect.UnityConnectSettings::set_testInitMode",(void*) UnityEngine_Connect_UnityConnectSettings_set_testInitMode);
-	mono_add_internal_call("UnityEngine.Advertisements.UnityAdsSettings::get_enabled",(void*) UnityEngine_Advertisements_UnityAdsSettings_get_enabled_13);
+	mono_add_internal_call("UnityEngine.Advertisements.UnityAdsSettings::get_enabled",(void*) UnityEngine_Advertisements_UnityAdsSettings_get_enabled_12);
 	mono_add_internal_call("UnityEngine.Advertisements.UnityAdsSettings::set_enabled",(void*) UnityEngine_Advertisements_UnityAdsSettings_set_enabled_11);
 	mono_add_internal_call("UnityEngine.Advertisements.UnityAdsSettings::get_initializeOnStartup",(void*) UnityEngine_Advertisements_UnityAdsSettings_get_initializeOnStartup);
 	mono_add_internal_call("UnityEngine.Advertisements.UnityAdsSettings::set_initializeOnStartup",(void*) UnityEngine_Advertisements_UnityAdsSettings_set_initializeOnStartup);
@@ -64632,10 +62066,10 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.WheelCollider::set_forwardFriction_Injected",(void*) UnityEngine_WheelCollider_set_forwardFriction_Injected);
 	mono_add_internal_call("UnityEngine.WheelCollider::get_sidewaysFriction_Injected",(void*) UnityEngine_WheelCollider_get_sidewaysFriction_Injected);
 	mono_add_internal_call("UnityEngine.WheelCollider::set_sidewaysFriction_Injected",(void*) UnityEngine_WheelCollider_set_sidewaysFriction_Injected);
-	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::Internal_Create",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_Create_26);
+	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::Internal_Create",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_Create_25);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::Internal_InitFromAsset",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_InitFromAsset);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::Internal_InitFromEventAttribute",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_InitFromEventAttribute);
-	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::Internal_Destroy",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_Destroy_8);
+	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::Internal_Destroy",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_Internal_Destroy_7);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::HasBool",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_HasBool);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::HasInt",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_HasInt);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXEventAttribute::HasUint",(void*) UnityEngine_Experimental_VFX_VFXEventAttribute_HasUint);
@@ -64680,8 +62114,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXManager::set_maxDeltaTime",(void*) UnityEngine_Experimental_VFX_VFXManager_set_maxDeltaTime);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXManager::get_renderPipeSettingsPath",(void*) UnityEngine_Experimental_VFX_VFXManager_get_renderPipeSettingsPath);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXManager::ProcessCamera",(void*) UnityEngine_Experimental_VFX_VFXManager_ProcessCamera);
-	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXSpawnerState::Internal_Create",(void*) UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Create_27);
-	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXSpawnerState::Internal_Destroy",(void*) UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Destroy_9);
+	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXSpawnerState::Internal_Create",(void*) UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Create_26);
+	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXSpawnerState::Internal_Destroy",(void*) UnityEngine_Experimental_VFX_VFXSpawnerState_Internal_Destroy_8);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXSpawnerState::get_playing",(void*) UnityEngine_Experimental_VFX_VFXSpawnerState_get_playing);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXSpawnerState::set_playing",(void*) UnityEngine_Experimental_VFX_VFXSpawnerState_set_playing);
 	mono_add_internal_call("UnityEngine.Experimental.VFX.VFXSpawnerState::get_spawnCount",(void*) UnityEngine_Experimental_VFX_VFXSpawnerState_get_spawnCount);
@@ -64794,8 +62228,8 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Experimental.Video.VideoClipPlayable::SetPauseDelayInternal",(void*) UnityEngine_Experimental_Video_VideoClipPlayable_SetPauseDelayInternal_1);
 	mono_add_internal_call("UnityEngine.Experimental.Video.VideoClipPlayable::InternalCreateVideoClipPlayable",(void*) UnityEngine_Experimental_Video_VideoClipPlayable_InternalCreateVideoClipPlayable);
 	mono_add_internal_call("UnityEngine.Experimental.Video.VideoClipPlayable::ValidateType",(void*) UnityEngine_Experimental_Video_VideoClipPlayable_ValidateType_3);
-	mono_add_internal_call("UnityEngineInternal.Video.VideoPlaybackMgr::Internal_Create",(void*) UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Create_28);
-	mono_add_internal_call("UnityEngineInternal.Video.VideoPlaybackMgr::Internal_Destroy",(void*) UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Destroy_10);
+	mono_add_internal_call("UnityEngineInternal.Video.VideoPlaybackMgr::Internal_Create",(void*) UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Create_27);
+	mono_add_internal_call("UnityEngineInternal.Video.VideoPlaybackMgr::Internal_Destroy",(void*) UnityEngineInternal_Video_VideoPlaybackMgr_Internal_Destroy_9);
 	mono_add_internal_call("UnityEngineInternal.Video.VideoPlaybackMgr::CreateVideoPlayback",(void*) UnityEngineInternal_Video_VideoPlaybackMgr_CreateVideoPlayback);
 	mono_add_internal_call("UnityEngineInternal.Video.VideoPlaybackMgr::ReleaseVideoPlayback",(void*) UnityEngineInternal_Video_VideoPlaybackMgr_ReleaseVideoPlayback);
 	mono_add_internal_call("UnityEngineInternal.Video.VideoPlaybackMgr::get_videoPlaybackCount",(void*) UnityEngineInternal_Video_VideoPlaybackMgr_get_videoPlaybackCount);
@@ -64886,19 +62320,7 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.Video.VideoPlayer::get_sendFrameReadyEvents",(void*) UnityEngine_Video_VideoPlayer_get_sendFrameReadyEvents);
 	mono_add_internal_call("UnityEngine.Video.VideoPlayer::set_sendFrameReadyEvents",(void*) UnityEngine_Video_VideoPlayer_set_sendFrameReadyEvents);
 	mono_add_internal_call("UnityEngine.Experimental.Video.VideoPlayerExtensions::InternalGetAudioSampleProviderId",(void*) UnityEngine_Experimental_Video_VideoPlayerExtensions_InternalGetAudioSampleProviderId);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::Reset",(void*) UnityEngine_Internal_VR_VRTestMock_Reset_6);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::AddTrackedDevice",(void*) UnityEngine_Internal_VR_VRTestMock_AddTrackedDevice);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateTrackedDevice",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateTrackedDevice);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateLeftEye",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateLeftEye);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateRightEye",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateRightEye);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateCenterEye",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateCenterEye);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateHead",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateHead);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateLeftHand",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateLeftHand);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateRightHand",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateRightHand);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::AddController",(void*) UnityEngine_Internal_VR_VRTestMock_AddController);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::UpdateControllerAxis",(void*) UnityEngine_Internal_VR_VRTestMock_UpdateControllerAxis);
-	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::UpdateControllerButton",(void*) UnityEngine_Internal_VR_VRTestMock_UpdateControllerButton);
-	mono_add_internal_call("UnityEngine.XR.XRSettings::get_enabled",(void*) UnityEngine_XR_XRSettings_get_enabled_14);
+	mono_add_internal_call("UnityEngine.XR.XRSettings::get_enabled",(void*) UnityEngine_XR_XRSettings_get_enabled_13);
 	mono_add_internal_call("UnityEngine.XR.XRSettings::set_enabled",(void*) UnityEngine_XR_XRSettings_set_enabled_12);
 	mono_add_internal_call("UnityEngine.XR.XRSettings::get_gameViewRenderMode",(void*) UnityEngine_XR_XRSettings_get_gameViewRenderMode);
 	mono_add_internal_call("UnityEngine.XR.XRSettings::set_gameViewRenderMode",(void*) UnityEngine_XR_XRSettings_set_gameViewRenderMode);
@@ -64940,11 +62362,23 @@ void regist_icall_gen()
 	mono_add_internal_call("UnityEngine.XR.XRStats::TryGetDroppedFrameCount",(void*) UnityEngine_XR_XRStats_TryGetDroppedFrameCount);
 	mono_add_internal_call("UnityEngine.XR.XRStats::TryGetFramePresentCount",(void*) UnityEngine_XR_XRStats_TryGetFramePresentCount);
 	mono_add_internal_call("UnityEngine.Experimental.XR.Boundary::TryGetDimensionsInternal",(void*) UnityEngine_Experimental_XR_Boundary_TryGetDimensionsInternal);
-	mono_add_internal_call("UnityEngine.Experimental.XR.Boundary::get_visible",(void*) UnityEngine_Experimental_XR_Boundary_get_visible_2);
+	mono_add_internal_call("UnityEngine.Experimental.XR.Boundary::get_visible",(void*) UnityEngine_Experimental_XR_Boundary_get_visible_1);
 	mono_add_internal_call("UnityEngine.Experimental.XR.Boundary::set_visible",(void*) UnityEngine_Experimental_XR_Boundary_set_visible_1);
 	mono_add_internal_call("UnityEngine.Experimental.XR.Boundary::get_configured",(void*) UnityEngine_Experimental_XR_Boundary_get_configured);
 	mono_add_internal_call("UnityEngine.Experimental.XR.Boundary::TryGetGeometryScriptingInternal",(void*) UnityEngine_Experimental_XR_Boundary_TryGetGeometryScriptingInternal);
 	mono_add_internal_call("UnityEngine.Experimental.XR.Boundary::TryGetGeometryArrayInternal",(void*) UnityEngine_Experimental_XR_Boundary_TryGetGeometryArrayInternal);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::Reset",(void*) UnityEngine_Internal_VR_VRTestMock_Reset_6);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::AddTrackedDevice",(void*) UnityEngine_Internal_VR_VRTestMock_AddTrackedDevice);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateTrackedDevice",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateTrackedDevice);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateLeftEye",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateLeftEye);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateRightEye",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateRightEye);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateCenterEye",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateCenterEye);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateHead",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateHead);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateLeftHand",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateLeftHand);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::INTERNAL_CALL_UpdateRightHand",(void*) UnityEngine_Internal_VR_VRTestMock_INTERNAL_CALL_UpdateRightHand);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::AddController",(void*) UnityEngine_Internal_VR_VRTestMock_AddController);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::UpdateControllerAxis",(void*) UnityEngine_Internal_VR_VRTestMock_UpdateControllerAxis);
+	mono_add_internal_call("UnityEngine.Internal.VR.VRTestMock::UpdateControllerButton",(void*) UnityEngine_Internal_VR_VRTestMock_UpdateControllerButton);
 	mono_add_internal_call("UnityEngine.WindZone::get_mode",(void*) UnityEngine_WindZone_get_mode_3);
 	mono_add_internal_call("UnityEngine.WindZone::set_mode",(void*) UnityEngine_WindZone_set_mode_3);
 	mono_add_internal_call("UnityEngine.WindZone::get_radius",(void*) UnityEngine_WindZone_get_radius_7);

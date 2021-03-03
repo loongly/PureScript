@@ -180,7 +180,7 @@ MonoArray* UnityEngine_GameObject_GetComponentsInternal(MonoObject* obj, MonoRef
 	Il2CppObject* il2cppObj = get_il2cpp_object(obj, NULL);
 	Il2CppReflectionType* il2cppType = get_il2cpp_reflection_type(type);
 	
-	Il2CppArray* res = icall(il2cppObj, il2cppType, useSearchTypeAsArrayReturnType, recursive, includeInactive, reverse, resultList);
+	Il2CppArray* res = icall(il2cppObj, il2cppType, useSearchTypeAsArrayReturnType, recursive, includeInactive, reverse, NULL);//resultList
 
 	MonoArray* monoRes = get_mono_array(res);
 	return monoRes;

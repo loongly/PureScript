@@ -10,6 +10,7 @@ namespace Generater
     {
         public static string OutDir;
         private static HashSet<TypeReference> TypeSet = new HashSet<TypeReference>();
+        static HashSet<ModuleDefinition> moduleSet = new HashSet<ModuleDefinition>();
 
         public static void Init(string outDir)
         {
@@ -46,6 +47,11 @@ namespace Generater
             EventGenerater.Gen();
             ICallGenerater.Gen();
             ClassCacheGenerater.Gen();
+
+            foreach (var m in moduleSet)
+                m.Dispose();
+
+            moduleSet.Clear();
         }
 
         public static void Bind(string dllPath)
@@ -60,6 +66,7 @@ namespace Generater
             };
 
             ModuleDefinition module = ModuleDefinition.ReadModule(dllPath, parameters);
+            moduleSet.Add(module);
 
             var moduleTypes = new HashSet<TypeReference>(module.Types);
 

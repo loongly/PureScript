@@ -20,18 +20,19 @@
 extern "C"
 {
 #endif // __cplusplus
-	extern void* g_manageFuncPtr;
 	extern MonoDomain *g_domain;
 
 	typedef void(*print_log)(char* data);
 
-	int mono_setup(char* bundleDir, const char* dllName);
+	int mono_setup(char* reloadDir, const char* dllName);
 	int mono_exit();
+
 	void set_log_callback(print_log callback);
 	MonoAssembly* load_assembly(const char *name, const char *culture);
 
 	MonoObject * mono_exception_property(MonoObject *obj, const char *name, char is_virtual);
 
+	const char * runtime_bundle_path(void);
 #if defined(__cplusplus)
 }
 #endif // __cplusplus

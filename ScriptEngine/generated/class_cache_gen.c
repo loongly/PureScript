@@ -105,13 +105,6 @@ MonoImage* mono_get_image_UnityEngine_PhysicsModule()
 		img = mono_get_image("UnityEngine.PhysicsModule.dll");
 	return img;
 }
-MonoImage* mono_get_image_UnityEngine_ParticleSystemModule()
-{
-	static MonoImage* img;
-	if(!img)
-		img = mono_get_image("UnityEngine.ParticleSystemModule.dll");
-	return img;
-}
 MonoImage* mono_get_image_UnityEngine_Physics2DModule()
 {
 	static MonoImage* img;
@@ -602,13 +595,6 @@ MonoClass* mono_get_class_UnityEngine_Canvas()
 		klass = mono_get_class(mono_get_image_UnityEngine_UIModule(),"UnityEngine","Canvas");
 	return klass;
 }
-MonoClass* mono_get_class_UnityEngine_CanvasRenderer()
-{
-	static MonoClass* klass;
-	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_UIModule(),"UnityEngine","CanvasRenderer");
-	return klass;
-}
 MonoClass* mono_get_class_UnityEngine_XR_XRDevice()
 {
 	static MonoClass* klass;
@@ -623,6 +609,13 @@ MonoClass* mono_get_class_UnityEngine_XR_InputTracking()
 		klass = mono_get_class(mono_get_image_UnityEngine_XRModule(),"UnityEngine.XR","InputTracking");
 	return klass;
 }
+MonoClass* mono_get_class_System_Object()
+{
+	static MonoClass* klass;
+	if(!klass)
+		klass = mono_get_class(mono_get_image_mscorlib(),"System","Object");
+	return klass;
+}
 MonoClass* mono_get_class_UnityEngine_Object()
 {
 	static MonoClass* klass;
@@ -630,11 +623,11 @@ MonoClass* mono_get_class_UnityEngine_Object()
 		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Object");
 	return klass;
 }
-MonoClass* mono_get_class_UnityEngine_AI_OffMeshLink()
+MonoClass* mono_get_class_UnityEngine_Component()
 {
 	static MonoClass* klass;
 	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_AIModule(),"UnityEngine.AI","OffMeshLink");
+		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Component");
 	return klass;
 }
 MonoClass* mono_get_class_UnityEngine_Transform()
@@ -644,18 +637,11 @@ MonoClass* mono_get_class_UnityEngine_Transform()
 		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Transform");
 	return klass;
 }
-MonoClass* mono_get_class_System_Object()
+MonoClass* mono_get_class_UnityEngine_AI_OffMeshLink()
 {
 	static MonoClass* klass;
 	if(!klass)
-		klass = mono_get_class(mono_get_image_mscorlib(),"System","Object");
-	return klass;
-}
-MonoClass* mono_get_class_UnityEngine_Component()
-{
-	static MonoClass* klass;
-	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Component");
+		klass = mono_get_class(mono_get_image_UnityEngine_AIModule(),"UnityEngine.AI","OffMeshLink");
 	return klass;
 }
 MonoClass* mono_get_class_System_Array()
@@ -672,11 +658,11 @@ MonoClass* mono_get_class_UnityEngine_AnimationClip()
 		klass = mono_get_class(mono_get_image_UnityEngine_AnimationModule(),"UnityEngine","AnimationClip");
 	return klass;
 }
-MonoClass* mono_get_class_UnityEngine_AnimationState()
+MonoClass* mono_get_class_UnityEngine_Animator()
 {
 	static MonoClass* klass;
 	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_AnimationModule(),"UnityEngine","AnimationState");
+		klass = mono_get_class(mono_get_image_UnityEngine_AnimationModule(),"UnityEngine","Animator");
 	return klass;
 }
 MonoClass* mono_get_class_UnityEngine_ScriptableObject()
@@ -707,11 +693,11 @@ MonoClass* mono_get_class_UnityEngine_Avatar()
 		klass = mono_get_class(mono_get_image_UnityEngine_AnimationModule(),"UnityEngine","Avatar");
 	return klass;
 }
-MonoClass* mono_get_class_UnityEngine_Animator()
+MonoClass* mono_get_class_UnityEngine_AnimationState()
 {
 	static MonoClass* klass;
 	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_AnimationModule(),"UnityEngine","Animator");
+		klass = mono_get_class(mono_get_image_UnityEngine_AnimationModule(),"UnityEngine","AnimationState");
 	return klass;
 }
 MonoClass* mono_get_class_UnityEngine_AssetBundle()
@@ -742,6 +728,13 @@ MonoClass* mono_get_class_UnityEngine_AssetBundleRecompressOperation()
 		klass = mono_get_class(mono_get_image_UnityEngine_AssetBundleModule(),"UnityEngine","AssetBundleRecompressOperation");
 	return klass;
 }
+MonoClass* mono_get_class_UnityEngine_AudioSource()
+{
+	static MonoClass* klass;
+	if(!klass)
+		klass = mono_get_class(mono_get_image_UnityEngine_AudioModule(),"UnityEngine","AudioSource");
+	return klass;
+}
 MonoClass* mono_get_class_UnityEngine_Audio_AudioMixerGroup()
 {
 	static MonoClass* klass;
@@ -768,13 +761,6 @@ MonoClass* mono_get_class_UnityEngine_Audio_AudioMixer()
 	static MonoClass* klass;
 	if(!klass)
 		klass = mono_get_class(mono_get_image_UnityEngine_AudioModule(),"UnityEngine.Audio","AudioMixer");
-	return klass;
-}
-MonoClass* mono_get_class_UnityEngine_AudioSource()
-{
-	static MonoClass* klass;
-	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_AudioModule(),"UnityEngine","AudioSource");
 	return klass;
 }
 MonoClass* mono_get_class_UnityEngine_CapsuleCollider()
@@ -833,18 +819,11 @@ MonoClass* mono_get_class_UnityEngine_LightProbes()
 		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","LightProbes");
 	return klass;
 }
-MonoClass* mono_get_class_UnityEngine_Mesh()
+MonoClass* mono_get_class_UnityEngine_Gradient()
 {
 	static MonoClass* klass;
 	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Mesh");
-	return klass;
-}
-MonoClass* mono_get_class_UnityEngine_Shader()
-{
-	static MonoClass* klass;
-	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Shader");
+		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Gradient");
 	return klass;
 }
 MonoClass* mono_get_class_UnityEngine_Texture()
@@ -854,13 +833,6 @@ MonoClass* mono_get_class_UnityEngine_Texture()
 		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Texture");
 	return klass;
 }
-MonoClass* mono_get_class_UnityEngine_Gradient()
-{
-	static MonoClass* klass;
-	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Gradient");
-	return klass;
-}
 MonoClass* mono_get_class_UnityEngine_Light()
 {
 	static MonoClass* klass;
@@ -868,11 +840,25 @@ MonoClass* mono_get_class_UnityEngine_Light()
 		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Light");
 	return klass;
 }
+MonoClass* mono_get_class_UnityEngine_Shader()
+{
+	static MonoClass* klass;
+	if(!klass)
+		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Shader");
+	return klass;
+}
 MonoClass* mono_get_class_UnityEngine_Flare()
 {
 	static MonoClass* klass;
 	if(!klass)
 		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Flare");
+	return klass;
+}
+MonoClass* mono_get_class_UnityEngine_Mesh()
+{
+	static MonoClass* klass;
+	if(!klass)
+		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Mesh");
 	return klass;
 }
 MonoClass* mono_get_class_UnityEngine_RectOffset()
@@ -924,20 +910,6 @@ MonoClass* mono_get_class_UnityEngine_Playables_INotificationReceiver()
 		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine.Playables","INotificationReceiver");
 	return klass;
 }
-MonoClass* mono_get_class_UnityEngine_iOS_RemoteNotification()
-{
-	static MonoClass* klass;
-	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine.iOS","RemoteNotification");
-	return klass;
-}
-MonoClass* mono_get_class_UnityEngine_iOS_OnDemandResourcesRequest()
-{
-	static MonoClass* klass;
-	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine.iOS","OnDemandResourcesRequest");
-	return klass;
-}
 MonoClass* mono_get_class_UnityEngine_Sprite()
 {
 	static MonoClass* klass;
@@ -950,13 +922,6 @@ MonoClass* mono_get_class_UnityEngine_Texture3D()
 	static MonoClass* klass;
 	if(!klass)
 		klass = mono_get_class(mono_get_image_UnityEngine_CoreModule(),"UnityEngine","Texture3D");
-	return klass;
-}
-MonoClass* mono_get_class_UnityEngine_ParticleSystemForceField()
-{
-	static MonoClass* klass;
-	if(!klass)
-		klass = mono_get_class(mono_get_image_UnityEngine_ParticleSystemModule(),"UnityEngine","ParticleSystemForceField");
 	return klass;
 }
 MonoClass* mono_get_class_UnityEngine_Collider2D()
@@ -1267,13 +1232,6 @@ Il2CppClass* il2cpp_get_class_UnityEngine_Canvas()
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_UIModule(),"UnityEngine","Canvas");
 	return klass;
 }
-Il2CppClass* il2cpp_get_class_UnityEngine_CanvasRenderer()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_UIModule(),"UnityEngine","CanvasRenderer");
-	return klass;
-}
 Il2CppClass* il2cpp_get_class_UnityEngine_Video_VideoPlayer()
 {
 	static Il2CppClass* klass;
@@ -1330,6 +1288,20 @@ Il2CppClass* il2cpp_get_class_UnityEngine_Experimental_XR_XRSessionSubsystem()
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_XRModule(),"UnityEngine.Experimental.XR","XRSessionSubsystem");
 	return klass;
 }
+Il2CppClass* il2cpp_get_class_UnityEngine_AI_NavMeshData()
+{
+	static Il2CppClass* klass;
+	if(!klass)
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AIModule(),"UnityEngine.AI","NavMeshData");
+	return klass;
+}
+Il2CppClass* il2cpp_get_class_UnityEngine_Transform()
+{
+	static Il2CppClass* klass;
+	if(!klass)
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","Transform");
+	return klass;
+}
 Il2CppClass* il2cpp_get_class_UnityEngine_AI_NavMeshPath()
 {
 	static Il2CppClass* klass;
@@ -1358,18 +1330,11 @@ Il2CppClass* il2cpp_get_class_UnityEngine_AI_OffMeshLink()
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AIModule(),"UnityEngine.AI","OffMeshLink");
 	return klass;
 }
-Il2CppClass* il2cpp_get_class_UnityEngine_Transform()
+Il2CppClass* il2cpp_get_class_UnityEngine_Animations_AimConstraint()
 {
 	static Il2CppClass* klass;
 	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","Transform");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_AI_NavMeshData()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AIModule(),"UnityEngine.AI","NavMeshData");
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine.Animations","AimConstraint");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_AnimationClip()
@@ -1393,18 +1358,11 @@ Il2CppClass* il2cpp_get_class_UnityEngine_AnimationCurve()
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","AnimationCurve");
 	return klass;
 }
-Il2CppClass* il2cpp_get_class_UnityEngine_Animation()
+Il2CppClass* il2cpp_get_class_UnityEngine_AvatarMask()
 {
 	static Il2CppClass* klass;
 	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine","Animation");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_AnimationState()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine","AnimationState");
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine","AvatarMask");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_Animator()
@@ -1426,20 +1384,6 @@ Il2CppClass* il2cpp_get_class_UnityEngine_Avatar()
 	static Il2CppClass* klass;
 	if(!klass)
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine","Avatar");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_Animations_AimConstraint()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine.Animations","AimConstraint");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_AvatarMask()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine","AvatarMask");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_Animations_PositionConstraint()
@@ -1491,6 +1435,20 @@ Il2CppClass* il2cpp_get_class_UnityEngine_Animations_ParentConstraint()
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine.Animations","ParentConstraint");
 	return klass;
 }
+Il2CppClass* il2cpp_get_class_UnityEngine_Animation()
+{
+	static Il2CppClass* klass;
+	if(!klass)
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine","Animation");
+	return klass;
+}
+Il2CppClass* il2cpp_get_class_UnityEngine_AnimationState()
+{
+	static Il2CppClass* klass;
+	if(!klass)
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AnimationModule(),"UnityEngine","AnimationState");
+	return klass;
+}
 Il2CppClass* il2cpp_get_class_UnityEngine_AssetBundle()
 {
 	static Il2CppClass* klass;
@@ -1526,13 +1484,6 @@ Il2CppClass* il2cpp_get_class_UnityEngine_AssetBundleRequest()
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AssetBundleModule(),"UnityEngine","AssetBundleRequest");
 	return klass;
 }
-Il2CppClass* il2cpp_get_class_UnityEngine_AudioListener()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AudioModule(),"UnityEngine","AudioListener");
-	return klass;
-}
 Il2CppClass* il2cpp_get_class_UnityEngine_AudioSource()
 {
 	static Il2CppClass* klass;
@@ -1545,6 +1496,20 @@ Il2CppClass* il2cpp_get_class_UnityEngine_Audio_AudioMixerGroup()
 	static Il2CppClass* klass;
 	if(!klass)
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AudioModule(),"UnityEngine.Audio","AudioMixerGroup");
+	return klass;
+}
+Il2CppClass* il2cpp_get_class_UnityEngine_WebCamTexture()
+{
+	static Il2CppClass* klass;
+	if(!klass)
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AudioModule(),"UnityEngine","WebCamTexture");
+	return klass;
+}
+Il2CppClass* il2cpp_get_class_UnityEngine_AudioListener()
+{
+	static Il2CppClass* klass;
+	if(!klass)
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AudioModule(),"UnityEngine","AudioListener");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_AudioReverbZone()
@@ -1615,13 +1580,6 @@ Il2CppClass* il2cpp_get_class_UnityEngine_MovieTexture()
 	static Il2CppClass* klass;
 	if(!klass)
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AudioModule(),"UnityEngine","MovieTexture");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_WebCamTexture()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_AudioModule(),"UnityEngine","WebCamTexture");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_Cloth()
@@ -1757,13 +1715,6 @@ Il2CppClass* il2cpp_get_class_UnityEngine_Renderer()
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","Renderer");
 	return klass;
 }
-Il2CppClass* il2cpp_get_class_UnityEngine_Projector()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","Projector");
-	return klass;
-}
 Il2CppClass* il2cpp_get_class_UnityEngine_TrailRenderer()
 {
 	static Il2CppClass* klass;
@@ -1818,6 +1769,13 @@ Il2CppClass* il2cpp_get_class_UnityEngine_LensFlare()
 	static Il2CppClass* klass;
 	if(!klass)
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","LensFlare");
+	return klass;
+}
+Il2CppClass* il2cpp_get_class_UnityEngine_Projector()
+{
+	static Il2CppClass* klass;
+	if(!klass)
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","Projector");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_Skybox()
@@ -1881,20 +1839,6 @@ Il2CppClass* il2cpp_get_class_UnityEngine_GUILayer()
 	static Il2CppClass* klass;
 	if(!klass)
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","GUILayer");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_TouchScreenKeyboard()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","TouchScreenKeyboard");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_LightProbeGroup()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine","LightProbeGroup");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_LODGroup()
@@ -2007,20 +1951,6 @@ Il2CppClass* il2cpp_get_class_UnityEngine_Playables_INotificationReceiver()
 	static Il2CppClass* klass;
 	if(!klass)
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine.Playables","INotificationReceiver");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_iOS_RemoteNotification()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine.iOS","RemoteNotification");
-	return klass;
-}
-Il2CppClass* il2cpp_get_class_UnityEngine_iOS_OnDemandResourcesRequest()
-{
-	static Il2CppClass* klass;
-	if(!klass)
-		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_CoreModule(),"UnityEngine.iOS","OnDemandResourcesRequest");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_Profiling_Recorder()
@@ -2539,6 +2469,13 @@ Il2CppClass* il2cpp_get_class_UnityEngine_CanvasGroup()
 	static Il2CppClass* klass;
 	if(!klass)
 		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_UIModule(),"UnityEngine","CanvasGroup");
+	return klass;
+}
+Il2CppClass* il2cpp_get_class_UnityEngine_CanvasRenderer()
+{
+	static Il2CppClass* klass;
+	if(!klass)
+		klass = il2cpp_get_class(il2cpp_get_image_UnityEngine_UIModule(),"UnityEngine","CanvasRenderer");
 	return klass;
 }
 Il2CppClass* il2cpp_get_class_UnityEngine_Networking_GlobalConfigInternal()

@@ -14,6 +14,7 @@
 
 const char* il2cpp_exception = NULL;
 const char* mono_exception = NULL;
+void* g_manageFuncPtr = NULL;
 
 DLLEXPORT void SetupMono(char* bundleDir, const char* dllName)
 {

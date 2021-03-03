@@ -51,6 +51,8 @@ namespace Generater
                 foreach (var ns in nsSet)
                     CS.Writer.WriteLine($"using {ns}");
 
+                CS.Writer.WriteLine("using PureScript.Mono");
+
                 CS.Writer.Start("public static class MonoBind");
 
                 foreach (var method in methods)
@@ -82,6 +84,7 @@ namespace Generater
                 foreach (var ns in nsSet)
                     CS.Writer.WriteLine($"using {ns}");
 
+                CS.Writer.WriteLine("using PureScript");
                 CS.Writer.WriteLine($"using AOT");
 
                 CS.Writer.Start("public static unsafe class UnityBind");

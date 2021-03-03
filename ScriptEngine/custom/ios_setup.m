@@ -1,5 +1,5 @@
 
-#if RUNTIME_IOS
+#if !RUNTIME_IOS
 #import <Foundation/Foundation.h>
 #import <os/log.h>
 #include <sys/stat.h>
@@ -27,34 +27,21 @@ extern void mono_marshal_ilgen_init (void);
 extern void mono_method_builder_ilgen_init (void);
 extern void mono_sgen_mono_ilgen_init (void);
 
-const char * runtime_bundle_path(void);
 
-char *mono_runtime_bundle_path;
+char *bundle_path;
 char *doc_path;
 
-const char *
-get_bundle_path (void)
+const char *ios_bundle_path(void)
 {
-    if (mono_runtime_bundle_path)
-        return mono_runtime_bundle_path;
-    
-    #if RUNTIME_IOS
+	if (bundle_path != NULL)
+		return bundle_path;
+
     NSBundle *main_bundle = [NSBundle mainBundle];
     NSString *path;
     
     path = [main_bundle bundlePath];
-    mono_runtime_bundle_path = strdup ([path UTF8String]);
-#else
-    if ((bundle_path = _getcwd(NULL, 0)) == NULL)
-    {
-        perror("getcwd error");
-    }
-    else
-    {
-        printf("doc_path=%s\n", doc_path);
-    }
-#endif
-    return mono_runtime_bundle_path;
+	bundle_path = strdup ([path UTF8String]);
+    return bundle_path;
 }
 
 const char *
@@ -63,20 +50,10 @@ get_documents_path(void)
     if (doc_path)
         return doc_path;
     
-#if RUNTIME_IOS
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [paths objectAtIndex : 0];
     doc_path = strdup([path UTF8String]);
-#else
-    if ((doc_path = _getcwd(NULL, 0)) == NULL)
-    {
-        perror("getcwd error");
-    }
-    else
-    {
-        printf("doc_path=%s\n", doc_path);
-    }
-#endif
+
     return doc_path;
 }
 
@@ -154,6 +131,8 @@ register_dllmap (void)
 {
 	mono_dllmap_insert (NULL, "System.Native", NULL, "__Internal", NULL);
 	mono_dllmap_insert (NULL, "System.Security.Cryptography.Native.Apple", NULL, "__Internal", NULL);
+	mono_dllmap_insert (NULL, "ScriptEngine", NULL, "__Internal", NULL);
+	
 }
 
 /* Implemented by generated code */

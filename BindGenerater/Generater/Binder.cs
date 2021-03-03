@@ -1,4 +1,5 @@
-﻿using ICSharpCode.Decompiler;
+﻿using Generater.C;
+using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.CSharp;
 using Mono.Cecil;
 using System;
@@ -14,6 +15,7 @@ namespace Generater
     {
         static Queue<CodeGenerater> generaters = new Queue<CodeGenerater>();
         static HashSet<TypeReference> types = new HashSet<TypeReference>();
+        static HashSet<ModuleDefinition> moduleSet = new HashSet<ModuleDefinition>();
         static HashSet<TypeReference> moduleTypes;
 
         public static string OutDir;
@@ -49,6 +51,11 @@ namespace Generater
             FuncDefineWriter.EndAll();
             FuncSerWriter.EndAll();
             FuncDeSerWriter.EndAll();
+
+            foreach (var m in moduleSet)
+                m.Dispose();
+
+            moduleSet.Clear();
         }
 
         public static void Bind(string dllPath)
@@ -58,6 +65,7 @@ namespace Generater
                 return;*/
 
             DecompilerSetting = new DecompilerSettings(LanguageVersion.CSharp7);
+            DecompilerSetting.ThrowOnAssemblyResolveErrors = false;
             Decompiler = new CSharpDecompiler(dllPath, DecompilerSetting);
             var dir = Path.GetDirectoryName(dllPath);
             DefaultAssemblyResolver resolver = new DefaultAssemblyResolver();
@@ -69,6 +77,14 @@ namespace Generater
             };
 
             ModuleDefinition module = ModuleDefinition.ReadModule(dllPath, parameters);
+            moduleSet.Add(module);
+            ICallGenerater.AddWrapperAssembly(module.Assembly.Name.Name);
+            CSCGenerater.AdapterCompiler.AddReference(module.Name);
+            foreach(var refAssembly in module.AssemblyReferences )
+            {
+                CSCGenerater.AdapterCompiler.AddReference(refAssembly.Name + ".dll");
+                CSCGenerater.AdapterWrapperCompiler.AddReference(refAssembly.Name + ".dll");
+            }
 
             moduleTypes = new HashSet<TypeReference>(module.Types);
 
