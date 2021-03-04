@@ -254,7 +254,7 @@ void mono_debug() {
 int 
 mono_setup(char* reloadDir, const char* file) {
 
-	mono_runtime_reload_path = _strdup(reloadDir);
+	mono_runtime_reload_path = strdup(reloadDir);
 
 	int retval = 0;
 

@@ -46,7 +46,10 @@ public static class PureScriptBuilder
     /// called by UnityEditor when AssemblyStripper.StripAssemblies.
     /// "replace assembly" after strip will trigger il2cpp.exe`s error.
     /// </summary>
-    public static void RunBinderBeforeStrip(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+    ///
+
+    public static void RunBinderBeforeStrip(System.String managedAssemblyFolderPath, object unityLinkerPlatformProvider, object il2cppPlatformProvider, object rcr, UnityEditor.ManagedStrippingLevel managedStrippingLevel)
+    //public static void RunBinderBeforeStrip(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
     {
         if (stripHooker != null)
         {
@@ -54,6 +57,7 @@ public static class PureScriptBuilder
             stripHooker = null;
         }
         Inbuild = false;
+
 
         var managedPath = Path.Combine(ScriptEngineDir, "Managed");
 
@@ -73,7 +77,8 @@ public static class PureScriptBuilder
         }
 
         // call the realy method
-        StripAssemblies(managedAssemblyFolderPath, platformProvider, rcr, managedStrippingLevel);
+        //StripAssemblies(managedAssemblyFolderPath, platformProvider, rcr, managedStrippingLevel);
+        StripAssemblies(managedAssemblyFolderPath, unityLinkerPlatformProvider, il2cppPlatformProvider, rcr, managedStrippingLevel);
     }
 
     /// <summary>
@@ -194,7 +199,8 @@ public static class PureScriptBuilder
     }
 
     //redirect to AssemblyStripper.StripAssemblies
-    public static void StripAssemblies(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+    public static void StripAssemblies(System.String managedAssemblyFolderPath, object unityLinkerPlatformProvider, object il2cppPlatformProvider, object rcr, UnityEditor.ManagedStrippingLevel managedStrippingLevel)
+    //public static void StripAssemblies(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
     {
         throw new NotImplementedException();
     }

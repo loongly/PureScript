@@ -52,8 +52,7 @@ namespace Generater
 
         public static void Init(string cscDir,string adapterDir,string outDir,HashSet<string> ignoreRefSet)
         {
-            OperatingSystem os = Environment.OSVersion;
-            CSCPath = Path.Combine(cscDir, os.Platform == PlatformID.MacOSX? "csc":"csc.exe") ;
+            CSCPath = Path.Combine(cscDir, Utils.IsWin32() ? "csc.exe":"csc") ;
             OutDir = outDir;
             AdapterDir = adapterDir;
             IgnoreRefSet = ignoreRefSet;
@@ -121,7 +120,6 @@ namespace Generater
                 foreach (var src in srcSet)
                     config.WriteLine(src);
             }
-
 
             int res = Utils.RunCMD(CSCPath, new string[] { $"@{fName}" });
             if (res != 0)

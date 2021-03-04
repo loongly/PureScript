@@ -4,7 +4,7 @@ appdir = /Users/long/Documents/Project/monoBuild/mono/sdks/ios/bin/ios-dev/test-
 sysroot = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
 cross = $mono_sdkdir/ios-cross64-release/bin/aarch64-darwin-mono-sgen
 builddir = .
-tempdir = ./temp
+tempdir = ../temp
 signing_identity = -
 rule aot
   command = MONO_PATH=$mono_path $cross -O=gsharedvt,float32 --debug  --aot=mtriple=arm64-ios,static,asmonly,direct-icalls,no-direct-calls,dwarfdebug,interp,full,soft-debug,outfile=$outfile,data-outfile=$data_outfile $src_file
@@ -41,8 +41,11 @@ rule gen-exe
   command = clang -ObjC -isysroot $sysroot -miphoneos-version-min=10.1 -arch arm64 -framework Foundation -framework UIKit -framework GSS -o $appdir/test-corlib $in -liconv -lz $forcelibs
 rule arlib
   command = ar crv $out $in
-rule aot_build
+rule aot_build_module_info
   command = MONO_PATH=$builddir $cross -O=gsharedvt,float32 --debug  --aot=mtriple=arm64-ios,static,asmonly,direct-icalls,no-direct-calls,dwarfdebug,interp,full,soft-debug,outfile=$tempdir/$in.s,data-outfile=$in.aotdata $in | grep 'Linking symbol:' | cut -d ':' -f 2 | tee -a $tempdir/info.txt && clang -isysroot $sysroot -miphoneos-version-min=10.1 -arch arm64 -c -o $tempdir/$in.o $tempdir/$in.s && ar crv $out $tempdir/$in.o
+  description = [AOT .dll->.s->.o->.aotdata->.a] $in -> $out
+rule aot_build
+  command = MONO_PATH=$builddir $cross -O=gsharedvt,float32 --debug  --aot=mtriple=arm64-ios,static,asmonly,direct-icalls,no-direct-calls,dwarfdebug,interp,full,soft-debug,outfile=$tempdir/$in.s,data-outfile=$in.aotdata $in && clang -isysroot $sysroot -miphoneos-version-min=10.1 -arch arm64 -c -o $tempdir/$in.o $tempdir/$in.s && ar crv $out $tempdir/$in.o
   description = [AOT .dll->.s->.o->.aotdata->.a] $in -> $out
 
     #  

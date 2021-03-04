@@ -1,36 +1,32 @@
 
 include ../tools/config.ninja
 src_dir = .
-out_dir = ..\aot
+out_dir = ../aot
 build $out_dir/libAssembly-CSharp.dll.a : aot_build $src_dir/Assembly-CSharp.dll
 build $out_dir/libMono.Security.dll.a : aot_build $src_dir/Mono.Security.dll
-build $out_dir/libmscorlib.dll.a : aot_build $src_dir/mscorlib.dll
-build $out_dir/libnetstandard.dll.a : aot_build $src_dir/netstandard.dll
 build $out_dir/libSystem.Configuration.dll.a : aot_build $src_dir/System.Configuration.dll
 build $out_dir/libSystem.Core.dll.a : aot_build $src_dir/System.Core.dll
 build $out_dir/libSystem.Diagnostics.StackTrace.dll.a : aot_build $src_dir/System.Diagnostics.StackTrace.dll
-build $out_dir/libSystem.dll.a : aot_build $src_dir/System.dll
 build $out_dir/libSystem.Globalization.Extensions.dll.a : aot_build $src_dir/System.Globalization.Extensions.dll
-build $out_dir/libSystem.IO.Compression.dll.a : aot_build $src_dir/System.IO.Compression.dll
-build $out_dir/libSystem.Net.dll.a : aot_build $src_dir/System.Net.dll
-build $out_dir/libSystem.Net.Http.dll.a : aot_build $src_dir/System.Net.Http.dll
-build $out_dir/libSystem.Numerics.dll.a : aot_build $src_dir/System.Numerics.dll
-build $out_dir/libSystem.Numerics.Vectors.dll.a : aot_build $src_dir/System.Numerics.Vectors.dll
 build $out_dir/libSystem.Xml.dll.a : aot_build $src_dir/System.Xml.dll
+build $out_dir/libSystem.dll.a : aot_build $src_dir/System.dll
 build $out_dir/libUnityEngine.AIModule.dll.a : aot_build $src_dir/UnityEngine.AIModule.dll
+build $out_dir/libUnityEngine.AndroidJNIModule.dll.a : aot_build $src_dir/UnityEngine.AndroidJNIModule.dll
 build $out_dir/libUnityEngine.AnimationModule.dll.a : aot_build $src_dir/UnityEngine.AnimationModule.dll
 build $out_dir/libUnityEngine.AssetBundleModule.dll.a : aot_build $src_dir/UnityEngine.AssetBundleModule.dll
 build $out_dir/libUnityEngine.AudioModule.dll.a : aot_build $src_dir/UnityEngine.AudioModule.dll
 build $out_dir/libUnityEngine.CoreModule.dll.a : aot_build $src_dir/UnityEngine.CoreModule.dll
 build $out_dir/libUnityEngine.DirectorModule.dll.a : aot_build $src_dir/UnityEngine.DirectorModule.dll
-build $out_dir/libUnityEngine.dll.a : aot_build $src_dir/UnityEngine.dll
+build $out_dir/libUnityEngine.GameCenterModule.dll.a : aot_build $src_dir/UnityEngine.GameCenterModule.dll
 build $out_dir/libUnityEngine.GridModule.dll.a : aot_build $src_dir/UnityEngine.GridModule.dll
 build $out_dir/libUnityEngine.IMGUIModule.dll.a : aot_build $src_dir/UnityEngine.IMGUIModule.dll
+build $out_dir/libUnityEngine.InputLegacyModule.dll.a : aot_build $src_dir/UnityEngine.InputLegacyModule.dll
 build $out_dir/libUnityEngine.InputModule.dll.a : aot_build $src_dir/UnityEngine.InputModule.dll
 build $out_dir/libUnityEngine.ParticleSystemModule.dll.a : aot_build $src_dir/UnityEngine.ParticleSystemModule.dll
 build $out_dir/libUnityEngine.Physics2DModule.dll.a : aot_build $src_dir/UnityEngine.Physics2DModule.dll
 build $out_dir/libUnityEngine.PhysicsModule.dll.a : aot_build $src_dir/UnityEngine.PhysicsModule.dll
 build $out_dir/libUnityEngine.SharedInternalsModule.dll.a : aot_build $src_dir/UnityEngine.SharedInternalsModule.dll
+build $out_dir/libUnityEngine.SubsystemsModule.dll.a : aot_build $src_dir/UnityEngine.SubsystemsModule.dll
 build $out_dir/libUnityEngine.TerrainModule.dll.a : aot_build $src_dir/UnityEngine.TerrainModule.dll
 build $out_dir/libUnityEngine.TextRenderingModule.dll.a : aot_build $src_dir/UnityEngine.TextRenderingModule.dll
 build $out_dir/libUnityEngine.TilemapModule.dll.a : aot_build $src_dir/UnityEngine.TilemapModule.dll
@@ -38,7 +34,10 @@ build $out_dir/libUnityEngine.UIElementsModule.dll.a : aot_build $src_dir/UnityE
 build $out_dir/libUnityEngine.UIModule.dll.a : aot_build $src_dir/UnityEngine.UIModule.dll
 build $out_dir/libUnityEngine.UnityWebRequestModule.dll.a : aot_build $src_dir/UnityEngine.UnityWebRequestModule.dll
 build $out_dir/libUnityEngine.VFXModule.dll.a : aot_build $src_dir/UnityEngine.VFXModule.dll
-build $out_dir/libUnityEngine.VideoModule.dll.a : aot_build $src_dir/UnityEngine.VideoModule.dll
 build $out_dir/libUnityEngine.VRModule.dll.a : aot_build $src_dir/UnityEngine.VRModule.dll
+build $out_dir/libUnityEngine.VideoModule.dll.a : aot_build $src_dir/UnityEngine.VideoModule.dll
 build $out_dir/libUnityEngine.XRModule.dll.a : aot_build $src_dir/UnityEngine.XRModule.dll
+build $out_dir/libUnityEngine.dll.a : aot_build $src_dir/UnityEngine.dll
+build $out_dir/libmscorlib.dll.a : aot_build $src_dir/mscorlib.dll
+build $out_dir/libnetstandard.dll.a : aot_build $src_dir/netstandard.dll
 

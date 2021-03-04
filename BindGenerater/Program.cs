@@ -138,18 +138,20 @@ namespace BindGenerater
             }
         }
 
-        public static void ReplaceMscorlib(string libDir,string outDir)
+        public static void ReplaceMscorlib(string libDir, string outDir)
         {
-            OperatingSystem os = Environment.OSVersion;
-            var srcDir = Path.Combine(libDir, os.Platform == PlatformID.MacOSX ? "iOS" : "win32");
+            var srcDir = Path.Combine(libDir, Utils.IsWin32() ? "win32" : "iOS");
 
             DirectoryInfo dir = new DirectoryInfo(srcDir);
 
             foreach (var fi in dir.GetFiles())
             {
-                File.Copy(Path.Combine(srcDir, fi.Name), Path.Combine(outDir, fi.Name), true);
+                var tarPath = Path.Combine(outDir, fi.Name);
+                if (File.Exists(tarPath))
+                    File.Copy(Path.Combine(srcDir, fi.Name), tarPath, true);
             }
         }
+
 
 
         static void StartTestBinder()
