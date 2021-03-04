@@ -237,7 +237,10 @@ void mono_register_icall(void);
 void register_assembly_map();
 
 #if RUNTIME_IOS
+#define __STRDUP strdup
 void mono_ios_runtime_init(void);
+#else
+#define __STRDUP _strdup
 #endif
 
 void mono_debug() {
@@ -254,7 +257,7 @@ void mono_debug() {
 int 
 mono_setup(char* reloadDir, const char* file) {
 
-	mono_runtime_reload_path = strdup(reloadDir);
+	mono_runtime_reload_path = __STRDUP(reloadDir);
 
 	int retval = 0;
 
