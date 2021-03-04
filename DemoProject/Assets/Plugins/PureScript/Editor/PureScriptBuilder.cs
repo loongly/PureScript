@@ -19,8 +19,8 @@ public static class PureScriptBuilder
     static string ScriptEngineDir = "../ScriptEngine";
     static bool Inbuild = false;
 
-    static MethodHooker hooker;
-
+    static MethodHooker stripHooker;
+    static MethodHooker il2cppHooker;
 
     [UnityEditor.Callbacks.PostProcessScene]
     public static void AutoInjectAssemblys()
@@ -31,51 +31,41 @@ public static class PureScriptBuilder
         if (Enable && !Inbuild)
         {
             Inbuild = true;
-
-            // wait IL2CPPBuilder,maybe you can use SBP in the future.
+            ScriptEngineDir = Path.GetFullPath(ScriptEngineDir);
             InsertBuildTask();
         }
     }
     [MenuItem("PureScript/TestBuild", false, 1)]
     public static void TestBuild()
     {
-       // RunBinder(null, null, null, Application.dataPath.Replace("Assets", Path.Combine("Library", "PlayerDataCache", "Managed")));
+        //RunBinder(null, null, null, Application.dataPath.Replace("Assets", Path.Combine("Library", "PlayerDataCache", "Managed")));
     }
 
-    //called by UnityEditor when IL2CPPBuilder.RunIl2CppWithArguments
-    //public static void RunBinder(object obj, List<string> arguments, Action<System.Diagnostics.ProcessStartInfo> setupStartInfo, string workingDirectory)
-    public static void RunBinder(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+    /// <summary>
+    /// bind adapter before strip.
+    /// called by UnityEditor when AssemblyStripper.StripAssemblies.
+    /// "replace assembly" after strip will trigger il2cpp.exe`s error.
+    /// </summary>
+    public static void RunBinderBeforeStrip(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
     {
-        var workingDirectory = managedAssemblyFolderPath;
-        if (hooker != null)
+        if (stripHooker != null)
         {
-            hooker.Dispose();
-            hooker = null;
+            stripHooker.Dispose();
+            stripHooker = null;
         }
         Inbuild = false;
 
-        ScriptEngineDir = NiceWinPath(ScriptEngineDir);
+        var managedPath = Path.Combine(ScriptEngineDir, "Managed");
 
-        //copy all striped assemblys
-        var managedPath = Path.Combine(ScriptEngineDir , "Managed");
-        CreateOrCleanDirectory(managedPath);
+        //copy all assemblys
+        CopyManagedFile(managedAssemblyFolderPath, managedPath);
 
-        foreach (string fi in Directory.GetFiles(workingDirectory))
-        {
-            string fname = Path.GetFileName(fi);
-            string targetfname = Path.Combine(managedPath, fname);
-            File.Copy(fi, targetfname);
-        }
-
-        // call binder,bind icall and adapter
-        var binderPath = Path.Combine(ScriptEngineDir, "Tools", "Binder.exe");
-        var configPath = Path.GetFullPath(Path.Combine(ScriptEngineDir, "Tools", "config.json"));
-        var toolsetPath = GetEnginePath(Path.Combine("Tools", "Roslyn"));
-        CallBinder(binderPath, new List<string>() { configPath, toolsetPath });
+        // call binder,bind adapter
+        CallBinder("Adapter");
 
         // replace adapter by generated assembly
         var generatedAdapter = Path.Combine(managedPath, "Adapter.gen.dll");
-        var adapterGenPath = Path.Combine(workingDirectory, "Adapter.gen.dll");
+        var adapterGenPath = Path.Combine(managedAssemblyFolderPath, "Adapter.gen.dll");
         if (File.Exists(generatedAdapter))
         {
             File.Copy(generatedAdapter, adapterGenPath, true);
@@ -83,18 +73,50 @@ public static class PureScriptBuilder
         }
 
         // call the realy method
-        /*if (obj != null)
-            RunIl2CppWithArguments(obj, arguments, setupStartInfo, workingDirectory);*/
-
         StripAssemblies(managedAssemblyFolderPath, platformProvider, rcr, managedStrippingLevel);
     }
 
-    public static void CallBinder(string binderPath,List<string> args)
+    /// <summary>
+    /// resolve all bind task after strip.
+    /// called by UnityEditor when IL2CPPBuilder.RunIl2CppWithArguments.
+    /// </summary>
+    public static void RunBinderBeforeIl2cpp(object obj, List<string> arguments, Action<System.Diagnostics.ProcessStartInfo> setupStartInfo, string workingDirectory)
     {
+        if (il2cppHooker != null)
+        {
+            il2cppHooker.Dispose();
+            il2cppHooker = null;
+        }
+        Inbuild = false;
+
+        //copy all striped assemblys
+        var managedPath = Path.Combine(ScriptEngineDir, "Managed");
+        CopyManagedFile(workingDirectory, managedPath);
+
+        // call binder,bind icall and adapter
+        CallBinder("All");
+
+        // call the realy method
+        if (obj != null)
+            RunIl2CppWithArguments(obj, arguments, setupStartInfo, workingDirectory);
+    }
+
+    public static void CallBinder(string mode)
+    {
+        var binderPath = Path.Combine(ScriptEngineDir, "Tools", "Binder.exe");
+        var configPath = Path.GetFullPath(Path.Combine(ScriptEngineDir, "Tools", "config.json"));
+        var toolsetPath = GetEnginePath(Path.Combine("Tools", "Roslyn"));
+
+        var args = new List<string>() { configPath, toolsetPath };
+        if (!string.IsNullOrEmpty(mode))
+            args.Add(mode);
+
+
         var monoPath = GetEnginePath(Path.Combine("MonoBleedingEdge", "bin", Application.platform == RuntimePlatform.OSXEditor ? "mono" : "mono.exe")); 
         if (!File.Exists(monoPath))
         {
             UnityEngine.Debug.LogError("can not find mono!");
+            return;
         }
 
         if (!File.Exists(binderPath))
@@ -123,7 +145,6 @@ public static class PureScriptBuilder
             UnityEngine.Debug.LogWarning(line);
         }
 
-
         binder.WaitForExit();
 
         if (binder.ExitCode != 0)
@@ -131,6 +152,19 @@ public static class PureScriptBuilder
             var errorInfo = "Binder.exe run error. \n" + binder.StandardError.ReadToEnd();
             UnityEngine.Debug.LogError(errorInfo);
             throw new Exception(errorInfo);
+        }
+    }
+
+
+    public static void CopyManagedFile(string workDir,string managedPath)
+    {
+        CreateOrCleanDirectory(managedPath);
+
+        foreach (string fi in Directory.GetFiles(workDir))
+        {
+            string fname = Path.GetFileName(fi);
+            string targetfname = Path.Combine(managedPath, fname);
+            File.Copy(fi, targetfname);
         }
     }
 
@@ -154,32 +188,35 @@ public static class PureScriptBuilder
     }
 
     //redirect to IL2CPPBuilder.RunIl2CppWithArguments
-    /*public static void RunIl2CppWithArguments(object obj, List<string> arguments, Action<System.Diagnostics.ProcessStartInfo> setupStartInfo, string workingDirectory)
-    {
-        throw new NotImplementedException();
-    }*/
-
-    public static void StripAssemblies(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+    public static void RunIl2CppWithArguments(object obj, List<string> arguments, Action<System.Diagnostics.ProcessStartInfo> setupStartInfo, string workingDirectory)
     {
         throw new NotImplementedException();
     }
 
-
+    //redirect to AssemblyStripper.StripAssemblies
+    public static void StripAssemblies(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+    {
+        throw new NotImplementedException();
+    }
+	
     private static void InsertBuildTask()
     {
-        if(hooker == null)
+        if (stripHooker == null)
         {
-            /* var builderType = typeof(Editor).Assembly.GetType("UnityEditorInternal.IL2CPPBuilder");
-             MethodBase orign = builderType.GetMethod("RunIl2CppWithArguments", BindingFlags.Instance | BindingFlags.NonPublic);
-             MethodBase custom = typeof(PureScriptBuilder).GetMethod("RunBinder");
-             MethodBase wrap2Orign = typeof(PureScriptBuilder).GetMethod("RunIl2CppWithArguments");*/
-
-             var builderType = typeof(Editor).Assembly.GetType("UnityEditorInternal.AssemblyStripper");
+            var builderType = typeof(Editor).Assembly.GetType("UnityEditorInternal.AssemblyStripper");
             MethodBase orign = builderType.GetMethod("StripAssemblies", BindingFlags.Static | BindingFlags.NonPublic);
-            MethodBase custom = typeof(PureScriptBuilder).GetMethod("RunBinder");
+            MethodBase custom = typeof(PureScriptBuilder).GetMethod("RunBinderBeforeStrip");
             MethodBase wrap2Orign = typeof(PureScriptBuilder).GetMethod("StripAssemblies");
+            stripHooker = new MethodHooker(orign, custom, wrap2Orign);
+        }
 
-            hooker = new MethodHooker(orign, custom, wrap2Orign);
+        if (il2cppHooker == null)
+        {
+             var builderType = typeof(Editor).Assembly.GetType("UnityEditorInternal.IL2CPPBuilder");
+             MethodBase orign = builderType.GetMethod("RunIl2CppWithArguments", BindingFlags.Instance | BindingFlags.NonPublic);
+             MethodBase custom = typeof(PureScriptBuilder).GetMethod("RunBinderBeforeIl2cpp");
+             MethodBase wrap2Orign = typeof(PureScriptBuilder).GetMethod("RunIl2CppWithArguments");
+            il2cppHooker = new MethodHooker(orign, custom, wrap2Orign);
         }
     }
 

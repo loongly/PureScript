@@ -13,19 +13,19 @@ namespace BindGenerater
 {
     class Program
     {
-        public enum Platform
-        {
-            iOS,
-            Windows,
-        }
 
         class BindOptions
         {
-            public Platform Platform;
             public string ScriptEngineDir;
             public HashSet<string> AdapterSet;
             public HashSet<string> InterpSet;
         }
+        public enum BindTarget
+        {
+            Adapter,
+            All,
+        }
+
 
         static BindOptions options;
 
@@ -34,7 +34,7 @@ namespace BindGenerater
             "PureScript.dll","Adapter.gen.dll","UnityEngine.UnityAnalyticsModule.dll",
         };
         public static string ToolsetPath;
-
+        public static BindTarget Mode;
 
         static int Main(string[] args)
         {
@@ -60,6 +60,10 @@ namespace BindGenerater
                 return;
             var configFile = args[0];
             ToolsetPath = args[1];
+            if (args.Length >= 3)
+                Mode = (BindTarget)Enum.Parse(typeof(BindTarget), args[2]);
+            else
+                Mode = BindTarget.All;
 
 
             Console.WriteLine("start binder..");
@@ -73,9 +77,10 @@ namespace BindGenerater
             ReplaceMscorlib("lib", managedDir);
 
             Binder.Init(Path.Combine(adapterDir, "glue"));
+            CSCGenerater.Init(ToolsetPath, adapterDir, managedDir, options.AdapterSet);
             CBinder.Init(Path.Combine(options.ScriptEngineDir, "generated"));
             AOTGenerater.Init(options.ScriptEngineDir);
-            CSCGenerater.Init(ToolsetPath, adapterDir, managedDir, options.AdapterSet);
+
 
             foreach (var filePath in Directory.GetFiles(managedDir))
             {
@@ -87,7 +92,7 @@ namespace BindGenerater
                     {
                         Binder.Bind(filePath);
                     }
-                    else
+                    else if(Mode == BindTarget.All)
                     {
                         if (!options.InterpSet.Contains(file))
                         {
@@ -108,16 +113,28 @@ namespace BindGenerater
                     }
                 }
             }
-            CBinder.End();
+
             Binder.End();
             CSCGenerater.End();
-            AOTGenerater.End();
+
+            if (Mode == BindTarget.All)
+            {
+                CBinder.End();
+                AOTGenerater.End();
+            }
 
             foreach(var file in options.AdapterSet)
             {
                 var path = Path.Combine(managedDir, file);
                 if (File.Exists(path))
+                {
+                    var tempDir = Path.Combine(managedDir, "..", "temp");
+                    if (!Directory.Exists(tempDir))
+                        Directory.CreateDirectory(tempDir);
+
+                    File.Copy(path, Path.Combine(tempDir, file), true);
                     File.Delete(path);
+                }
             }
         }
 
