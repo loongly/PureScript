@@ -22,7 +22,7 @@ namespace Generater.C
                     return new ValueTypeResolver(_type, il2cppType); //TODO ref String
             }
 
-            if (_type.IsPointer || _type.Name.Equals("IntPtr"))
+            if (_type.IsPointer || _type.Name.Equals("IntPtr") || _type.Name.Equals("UintPtr"))
                 return new ValueTypeResolver(_type, il2cppType);
 
             if (_type.IsPrimitive)
@@ -99,6 +99,8 @@ namespace Generater.C
                 case "Char":
                     return "char";
                 case "Byte":
+                    return "uint8_t";
+                case "SByte":
                     return "int8_t";
             }
 
