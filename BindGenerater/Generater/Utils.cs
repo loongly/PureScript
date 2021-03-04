@@ -1,6 +1,7 @@
 ﻿using Mono.Cecil;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -730,6 +731,8 @@ namespace Generater
             p.StartInfo.CreateNoWindow = true;
             if (workdir != null)
                 p.StartInfo.WorkingDirectory = workdir;
+            else
+                p.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
             p.Start();
 
             while (!p.StandardOutput.EndOfStream)
@@ -740,6 +743,12 @@ namespace Generater
             p.WaitForExit();
 
             return p.ExitCode;
+        }
+
+        public static bool IsWin32()
+        {
+            OperatingSystem os = Environment.OSVersion;
+            return os.Platform.ToString().StartsWith("Win");
         }
 
     }

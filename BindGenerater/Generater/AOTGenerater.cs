@@ -71,10 +71,11 @@ namespace Generater
                 CS.Writer.EndAll();
             }
 
-            OperatingSystem os = Environment.OSVersion;
-            if(os.Platform == PlatformID.MacOSX)
+            if(!Utils.IsWin32())
             {
-                Utils.RunCMD("ninja", new string[] { }, ManagedDir);
+                var res = Utils.RunCMD("ninja", new string[] { }, ManagedDir);
+                if (res != 0)
+                    throw new Exception($"Run ninja with dir {ManagedDir} error. ");
             }
         }
 

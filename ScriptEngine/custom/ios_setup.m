@@ -1,5 +1,5 @@
 
-#if !RUNTIME_IOS
+#if RUNTIME_IOS
 #import <Foundation/Foundation.h>
 #import <os/log.h>
 #include <sys/stat.h>

@@ -25,3 +25,4 @@
 /ScriptEngine/generated/*.h
 *.user
 
+ScriptEngine/temp
