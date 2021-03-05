@@ -18,10 +18,10 @@
 ## iOS平台  
 使用“Mixed Mode Execution” 兼顾性能(aot)和灵活性(interpreter)
 
-## windows平台
-使用jit模式运行，可以导出Il2cpp工程，添加ScriptEngine项目断点调试。
+## Windows平台
+使用Jit模式运行，可以导出Il2cpp工程，添加ScriptEngine项目断点调试。
 
-## Andrroid平台
+## Android平台
 请使用Unity的Mono运行时，可以直接调用`Assembly.Load`，同使用PureScript是等效的，工程结构无需修改。
 
 ---------------------------------------------------
