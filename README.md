@@ -1,7 +1,6 @@
 # PureScript
 
-[![license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/loongly/PureScript/blob/master/LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/loongly/PureScript/pulls)
+[![license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/loongly/PureScript/blob/master/LICENSE)[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blue.svg)](https://github.com/loongly/PureScript/pulls)
 
 
 一个支持Unity3D的C#热更框架，基于Mono的[MONO_AOT_MODE_INTERP](https://www.mono-project.com/news/2017/11/13/mono-interpreter/)模式。  
@@ -45,13 +44,15 @@
 以下两段代码是等效的，详细参考DemoProject/*/MonoEntry.cs。
 
     ScriptEngine.Setup(reloadDir, "TestEntry.dll");
-
+    
     // equal to:
-
+    
     Assembly assembly = Assembly.Load("TestEntry.dll");
     Type type = assembly.GetType("MonoEntry");
     MethodInfo mi = type.GetMethod("Main");
     var res = mi.Invoke(null, null)
+
+`注意` 需要热更新的程序集如果是Unity自动生成的工程，会自动引用一堆的无用dll，比如UntiyEditor*.dll,和一堆根本不会用到的System*.dll ，因为安装包内并没有带上这些，加载会失败。这时需要手动删掉这些用不到的引用。或者再建一个工程，手动管理引用，后面也可以考虑做自动化工具，strip掉没用的引用。    
 
 --------------------------------------------
 
