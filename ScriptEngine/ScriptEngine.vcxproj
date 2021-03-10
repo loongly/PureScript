@@ -73,27 +73,28 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Program Files\Mono\include\mono-2.0;E:\Program Files\Unity2018.4.7f\Editor\Data\il2cpp\libil2cpp;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\Mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(UnityEditorPath)\Data\il2cpp\libil2cpp;$(ProjectDir)\lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(Mono)\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>F:\Work\Project\mono\msvc\include;E:\Program Files\Unity2018.4.7f\Editor\Data\il2cpp\libil2cpp;$(ProjectDir)\lib\include;$(IncludePath)</IncludePath>
-    <LibraryPath>F:\Work\Project\mono\msvc\build\sgen\x64\lib\Debug;$(LibraryPath)</LibraryPath>
-    <OutDir>F:\Project\UnityBind\PureScript\DemoProject\Export3\build\bin\DemoProject_Data\Plugins\</OutDir>
+    <IncludePath>$(UnityEditorPath)\Data\il2cpp\libil2cpp;$(ProjectDir)\lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(Mono)\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\DemoProject\Export3\build\bin\DemoProject_Data\Plugins\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Program Files\Mono\include\mono-2.0;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\Mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(UnityEditorPath)\Data\il2cpp\libil2cpp;$(ProjectDir)\lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(Mono)\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Program Files\Mono\include\mono-2.0;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files\Mono\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(UnityEditorPath)\Data\il2cpp\libil2cpp;$(ProjectDir)\lib\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(Mono)\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)..\DemoProject\Export3\build\bin\DemoProject_Data\Plugins\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -131,7 +132,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -150,7 +151,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -158,12 +159,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;MONOLIB_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>NotSet</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <AdditionalDependencies>mono-2.0-sgen.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
