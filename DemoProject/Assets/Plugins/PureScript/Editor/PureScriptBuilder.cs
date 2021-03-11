@@ -15,10 +15,18 @@ using Process = System.Diagnostics.Process;
 
 public static class PureScriptBuilder 
 {
-    public static bool Enable = true;
-    static string ScriptEngineDir = "../ScriptEngine";
+    public static bool Enable;
+    static string ScriptEngineDir;
     static bool Inbuild = false;
 
+    static PureScriptBuilder()
+    {
+        Enable = true;
+        ScriptEngineDir = "../ScriptEngine";
+#if UNITY_ANDROID
+        Enable = false;
+#endif
+    }
 
 
     [UnityEditor.Callbacks.PostProcessScene]

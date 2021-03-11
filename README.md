@@ -29,15 +29,23 @@
 2. 修改 PureScriptBuilder.cs及ScriptEngine/Tools/config.json中的路径配置。
 3. config.json中配置运行在interpreter模式的dll(否则以aot运行),以及运行在Il2cpp运行时内的dll(一般用作Adapter)。
 
-+ iOS平台需要安装[Cocoapods](https://cocoapods.org/)和[Ninja](https://ninja-build.org/) 。在项目的podfile内添加PureScript引用。 
+### iOS平台
+  iOS平台需要安装[Cocoapods](https://cocoapods.org/)和[Ninja](https://ninja-build.org/) 。并在项目的podfile内添加PureScript引用。 
 例： */iOS/Podfile-example  
-然后  
+导出xcode工程，然后  
 
         pod install  
 
 
-
-+ Windows平台仅用来调试，在构建项目后，编译 ScriptEngine/ScriptEngine.vcxproj,替换原来Plugins目录下的的dll，或者导出Il2cpp的工程添加ScriptEngine.vcxproj项目调试运行。
+### Windows平台
+  Windows平台仅用来调试，目前未添加自动集成，在构建项目后，需编译 ScriptEngine/ScriptEngine.vcxproj,替换原来Plugins目录下的的ScriptEngine.dll。  
+手动调试步骤：    
+1. 设置传入ScriptEngine.Setup接口的reloadDir路径为 */ScriptEngine/Managed  
+2. Unity导出VS工程。  
+3. 需要删除Unity导出目录下的Managed目录例如($(ExportPath)/DemoProject/Managed),否则Mono会默认从此处加载dll,Il2cpp并不会使用此目录，但是每次构建都会导出。
+4. 在导出的解决方案中添加ScriptEngine.vcxproj,并在主项目中添加ScriptEngine项目的依赖（方便调试）。  
+5. 修改ScriptEngine.vcxproj中的输出目录为 $(ExportPath)/build/bin/DemoProject_Data/Plugins/,即替换原本的ScriptEngine.dll。  
+6. 运行项目
 
 
 ## 例子
@@ -70,7 +78,23 @@ PureScript 封装了Mono运行时，c/csharp代码生成器，pod项目自动集
 
 * Adapter绑定：
 由纯CSharp实现，分别在Mono端和Il2cpp端生成绑定代码，具有更好的兼容和灵活性。Mono运行时内的dll调用Il2cpp内的dll时用到，在config.json中配置需要运行在Il2cpp内又需要在Mono内调用的dll，构建时自动生成绑定代码，在aot执行，调用时自动替换到绑定代码，调用方无需修改。
-例：DemoProject/*/AdapterTest
+例：DemoProject/*/AdapterTest  
+1. 绑定分两部分，构建时会自动生成Adapter.gen.dll(Il2cpp内执行)和Adapter.wrapper.dll(Mono内执行)，生成代码参考：ScriptEngine/Adapter/glue/*.cs。
+2. 运行时ScriptEngine.Setup会将需要绑定的接口生成代理对象，然后序列化到非托管内存中，同时将内存指针报错到ScriptEngine中,参考：ScriptEngine.c。
+3. Mono运行时启动后，执行Main函数时会首先从ScriptEngine读取内存指针，然后反序列化为代理，供Wrapper调用。
+4. Mono运行时内，调用被Adapter绑定过的程序集时会自动指向Adapter.wrapper.dll内的Wrapper实现。   
+注：代理的序列化与反序列化[参考](https://docs.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.marshal.getfunctionpointerfordelegate)：  
+ ```
+ Marshal.GetFunctionPointerForDelegate
+ Marshal.GetDelegateForFunctionPointer
+ ```
+
+## 自动绑定过程
+* 构建Unity项目时PureScriptBuilder.cs内注册了回调，并通过hook的方式分别在`StripAssemblies`前/后添加了绑定调用,此处是要再Il2cpp前将已经`Strip`的Assemblies拷贝出一份，并且进行Adapter绑定的代码生成。
+* 第一次绑定调用是做Adapter绑定的代码生成，生产物是Adapter.gen.dll和Adapter.wrapper.dll，这步需要在`Strip`前，否则会触发Il2cpp构建错误。
+* 第二次绑定调用是在`Strip`后，此次绑定会将已经`Strip`的Assemblies拷贝出一份。  
+  然后进行icall绑定，生产物是ScriptEngine/generated/*.c  
+  如果是iOS平台，会进行aot构建,首先生成`build.ninja`,然后通过ninja生成ScriptEngine/aot/*.a
 
 ----------------------------------
 
