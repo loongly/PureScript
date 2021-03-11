@@ -18,7 +18,7 @@ public class Lancher : MonoBehaviour
     void Start()
     {
 #if UNITY_STANDALONE_WIN
-        reloadDir = @"F:\Project\UnityBind\PureScript\ScriptEngine\Managed";
+        reloadDir = @"{path_to_ScriptEngine}\Managed";//C:\xx\PureScript\ScriptEngine\Managed
 #else
         reloadDir =  Path.Combine(Application.persistentDataPath , "Managed");
 #endif
