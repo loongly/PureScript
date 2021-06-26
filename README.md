@@ -14,7 +14,7 @@
 >支持对"magic code"的自定义绑定实现
 
 [iOS真机演示视频](https://www.zhihu.com/zvideo/1351991103290302464)  
-[项目的缘起](https://zhuanlan.zhihu.com/p/355280556)
+[项目介绍](https://zhuanlan.zhihu.com/p/355280556)
 
 -------------------------------------------
 ## iOS平台  
