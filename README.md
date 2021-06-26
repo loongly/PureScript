@@ -13,6 +13,9 @@
 >支持`Cocoapods`自动集成  
 >支持对"magic code"的自定义绑定实现
 
+[iOS真机演示视频](https://www.zhihu.com/zvideo/1351991103290302464)  
+[项目的缘起](https://zhuanlan.zhihu.com/p/355280556)
+
 -------------------------------------------
 ## iOS平台  
 使用“Mixed Mode Execution” 兼顾性能(aot)和灵活性(interpreter)
@@ -28,6 +31,7 @@
 1. Clone本工程，拷贝DemoProject/Assets/Plugins/PureScript目录。
 2. 修改 PureScriptBuilder.cs及ScriptEngine/Tools/config.json中的路径配置。
 3. config.json中配置运行在interpreter模式的dll(否则以aot运行),以及运行在Il2cpp运行时内的dll(一般用作Adapter)。
+4. ScriptEngine启动接口请参考 DemoProject\Assets\Scripts\Lancher.cs, (注意修改'reloadDir'变量)。
 
 ### iOS平台
   iOS平台需要安装[Cocoapods](https://cocoapods.org/)和[Ninja](https://ninja-build.org/) 。并在项目的podfile内添加PureScript引用。 
@@ -39,7 +43,9 @@
 
 ### Windows平台
   Windows平台仅用来调试，目前未添加自动集成，在构建项目后，需编译 ScriptEngine/ScriptEngine.vcxproj,替换原来Plugins目录下的的ScriptEngine.dll。  
-手动调试步骤：    
+  ScriptEngine.vcxproj 属性/VC++目录/包含目录中使用了宏：$(UnityEditorPath) 指向Unity/Editor目录。  
+
+调试步骤(直接运行时可以忽略)：    
 1. 设置传入ScriptEngine.Setup接口的reloadDir路径为 */ScriptEngine/Managed  
 2. Unity导出VS工程。  
 3. 需要删除Unity导出目录下的Managed目录例如($(ExportPath)/DemoProject/Managed),否则Mono会默认从此处加载dll,Il2cpp并不会使用此目录，但是每次构建都会导出。
@@ -102,4 +108,4 @@ PureScript 封装了Mono运行时，c/csharp代码生成器，pod项目自动集
 
 如果大家对这个方案有兴趣再补充详细文档，同时欢迎提交PR或者Star。
 
-有问题请联系 loongly@foxmail.com
+有问题欢迎提交issue 或 loongly@foxmail.com
