@@ -103,6 +103,10 @@ namespace Generater
                 paramSeparation = "<";
             else if (method.Name == "op_GreaterThan")
                 paramSeparation = ">";
+            else if (method.Name == "op_GreaterThanOrEqual")
+                paramSeparation = ">=";
+            else if (method.Name == "op_LessThanOrEqual")
+                paramSeparation = "<=";
             else if (method.Name == "op_Explicit")
                 CS.Writer.Write($"({TypeResolver.Resolve(method.ReturnType).RealTypeName()})");
             else if (method.Name == "op_UnaryNegation")
