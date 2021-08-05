@@ -1,8 +1,5 @@
-mono_sdkdir = /Users/long/Documents/Project/monoBuild/mono/sdks/out
-monoios_dir = /Users/long/Documents/Project/monoBuild/mono/sdks/ios/runtime
-appdir = /Users/long/Documents/Project/monoBuild/mono/sdks/ios/bin/ios-dev/test-corlib.app
 sysroot = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk
-cross = $mono_sdkdir/ios-cross64-release/bin/aarch64-darwin-mono-sgen
+cross = ../tools/mono/aarch64-darwin-mono-sgen
 builddir = .
 tempdir = ../temp
 signing_identity = -
@@ -36,9 +33,6 @@ rule mkdir
   command = mkdir -p $out
 rule compile-objc
   command = clang -isysroot $sysroot -miphoneos-version-min=10.1 -arch arm64 -c -o $out $in
-rule gen-exe
-  command = mkdir $appdir
-  command = clang -ObjC -isysroot $sysroot -miphoneos-version-min=10.1 -arch arm64 -framework Foundation -framework UIKit -framework GSS -o $appdir/test-corlib $in -liconv -lz $forcelibs
 rule arlib
   command = ar crv $out $in
 rule aot_build_module_info
@@ -46,6 +40,9 @@ rule aot_build_module_info
   description = [AOT .dll->.s->.o->.aotdata->.a] $in -> $out
 rule aot_build
   command = MONO_PATH=$builddir $cross -O=gsharedvt,float32 --debug  --aot=mtriple=arm64-ios,static,asmonly,direct-icalls,no-direct-calls,dwarfdebug,interp,full,soft-debug,outfile=$tempdir/$in.s,data-outfile=$in.aotdata $in && clang -isysroot $sysroot -miphoneos-version-min=10.1 -arch arm64 -c -o $tempdir/$in.o $tempdir/$in.s && ar crv $out $tempdir/$in.o
+  description = [AOT .dll->.s->.o->.aotdata->.a] $in -> $out
+rule aot_test
+  command = MONO_PATH=$builddir $cross -O=gsharedvt,float32 --debug  --aot=mtriple=arm64-ios,static,asmonly,direct-icalls,no-direct-calls,dwarfdebug,interp,full,soft-debug,outfile=$tempdir/$in.s,data-outfile=$in.aotdata $in
   description = [AOT .dll->.s->.o->.aotdata->.a] $in -> $out
 
     #  
