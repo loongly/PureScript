@@ -40,7 +40,7 @@ namespace BindGenerater
         {
             //TestWriter();
             //return;
-      
+            Console.WriteLine("OS: " + Environment.OSVersion);
             try
             {
                 StartBinder(args);
