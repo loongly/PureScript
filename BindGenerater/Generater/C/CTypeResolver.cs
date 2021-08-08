@@ -102,6 +102,8 @@ namespace Generater.C
                     return "uint8_t";
                 case "SByte":
                     return "int8_t";
+                case "UIntPtr":
+                    return "size_t";
             }
 
             return type.Name;
