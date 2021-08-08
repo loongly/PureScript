@@ -65,6 +65,8 @@ namespace Generater
             foreach (var file in AdapterWrapperSrc)
                 AdapterWrapperCompiler.AddSource(Path.Combine(adapterDir, file));
             AdapterWrapperCompiler.AddDefine("WRAPPER_SIDE");
+            if(!Utils.IsWin32())
+                AdapterWrapperCompiler.AddDefine("IOS");
         }
 
         public static void End()

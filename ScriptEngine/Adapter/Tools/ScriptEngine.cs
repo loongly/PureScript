@@ -8,8 +8,11 @@ namespace PureScript.Mono
 {
     public class ScriptEngine
     {
-
+#if IOS
+        const string XMONO_LIB = "__Internal";
+#else
         const string XMONO_LIB = "ScriptEngine";
+#endif
 
         [DllImport(XMONO_LIB, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr GetFuncPointer();
