@@ -20,10 +20,18 @@ public class MonoEntry
 
     static void TestLoadAssembly()
     {
-        var dllPath = Application.persistentDataPath + $"/Managed/{StartInfo.ReloadDllName}";
-        if(File.Exists(dllPath))
+        var dllName = StartInfo.ReloadDllName;
+        var dllPath = Application.persistentDataPath + $"/Managed/{dllName}";
+
+        Assembly assembly = null;
+
+        if (File.Exists(dllPath))
+            assembly = Assembly.LoadFrom(dllPath);
+        else
+            assembly = Assembly.Load(dllName);
+
+        if (assembly != null)
         {
-            Assembly assembly = Assembly.LoadFrom(dllPath);
             Type type = assembly.GetType(StartInfo.ReloadClassName);
             MethodInfo mi = type.GetMethod(StartInfo.TestMethodName);
             var res = mi.Invoke(null, new object[] {"hello"});
