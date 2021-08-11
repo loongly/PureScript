@@ -43,6 +43,26 @@ public static class PureScriptBuilder
         }
     }
 
+    [MenuItem("PureScript/BuildDll", false, 1)]
+    public static void BuildDll()
+    {
+        string outputDir = ".";
+        var target = EditorUserBuildSettings.activeBuildTarget;
+        var group = BuildPipeline.GetBuildTargetGroup(target);
+
+        ScriptCompilationSettings scriptCompilationSettings = new ScriptCompilationSettings();
+        scriptCompilationSettings.group = group;
+        scriptCompilationSettings.target = target;
+        var buildDir = $"{outputDir}/build";
+        if (false == Directory.Exists(buildDir))
+        {
+            Directory.CreateDirectory(buildDir);
+        }
+        ScriptCompilationResult scriptCompilationResult = PlayerBuildInterface.CompilePlayerScripts(scriptCompilationSettings, buildDir);
+
+        //MoveAssemblys(outputDir, buildDir, true);
+    }
+
     /// <summary>
     /// bind adapter before strip.
     /// called by UnityEditor when AssemblyStripper.StripAssemblies.
@@ -145,7 +165,15 @@ public static class PureScriptBuilder
     {
         CreateOrCleanDirectory(managedPath);
 
-        foreach (string fi in Directory.GetFiles(workDir))
+        if (string.IsNullOrEmpty(workDir))
+        {
+            Debug.LogError(" ============ workDir is null");
+            return;
+        }
+
+        Debug.LogWarning("copy dir : " + workDir);
+        var files = Directory.GetFiles(workDir);
+        foreach (string fi in files)
         {
             string fname = Path.GetFileName(fi);
             string targetfname = Path.Combine(managedPath, fname);
