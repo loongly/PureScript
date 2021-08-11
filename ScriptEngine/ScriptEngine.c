@@ -9,7 +9,7 @@
 #ifdef _WIN32
 #define DLLEXPORT __declspec(dllexport)
 #else
-#define DLLEXPORT __attribute__((visibility("default"))) __attribute__((used))
+#define DLLEXPORT 
 #endif
 
 const char* il2cpp_exception = NULL;

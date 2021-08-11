@@ -479,6 +479,7 @@ MonoObject* get_mono_wrapper_object(Il2CppObject* il2cpp, MonoClass* m_class)
     if (mono == NULL && m_class != NULL)
     {
         mono = mono_object_new(g_domain, m_class);
+        mono_runtime_object_init (mono);
         call_wrapper_init(il2cpp, mono);
     }
     return mono;
