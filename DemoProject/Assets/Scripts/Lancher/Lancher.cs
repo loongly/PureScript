@@ -38,7 +38,7 @@ public class Lancher : MonoBehaviour
         if (GUI.Button(new Rect(20,80,120,70),"Start"))
         {
 #if UNITY_EDITOR
-            //MonoEntry.Main();
+            MonoEntry.Main();
 #else
             ScriptEngine.Setup(reloadDir, "TestEntry.dll");
 

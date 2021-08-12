@@ -18,10 +18,17 @@ public class MonoEntry
         TestLoadAssembly();
     }
 
+
+
     static void TestLoadAssembly()
     {
         var dllName = StartInfo.ReloadDllName;
         var dllPath = Application.persistentDataPath + $"/Managed/{dllName}";
+
+#if UNITY_EDITOR
+        var path = typeof(MonoEntry).Assembly.Location;
+        dllPath = Path.Combine(Path.GetDirectoryName(path), StartInfo.ReloadDllName);
+#endif
 
         Assembly assembly = null;
 
