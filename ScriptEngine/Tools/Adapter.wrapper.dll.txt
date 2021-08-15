@@ -7,6 +7,7 @@
 -r:../Managed/netstandard.dll
 -r:../Managed/UnityEngine.CoreModule.dll
 -define:WRAPPER_SIDE
+-define:IOS
 /Users/long/Documents/Project/PureScript/ScriptEngine/Adapter/glue/Binder.define.cs
 /Users/long/Documents/Project/PureScript/ScriptEngine/Adapter/glue/Binder.funcdeser.cs
 /Users/long/Documents/Project/PureScript/ScriptEngine/Adapter/Tools/CustomBinder.cs
