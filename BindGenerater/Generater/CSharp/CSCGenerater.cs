@@ -18,7 +18,6 @@ namespace Generater
         {
             "mscorlib.dll",
             "PureScript.dll",
-            "netstandard.dll",
         };
 
         private static string CSCPath = "csc";
@@ -118,6 +117,10 @@ namespace Generater
                     config.WriteLine($"-r:{Path.Combine(OutDir, refFile)}");
                 foreach (var define in defineSet)
                     config.WriteLine($"-define:{define}");
+
+                var netstandFile = Path.Combine(OutDir, "netstandard.dll");
+                if(File.Exists(netstandFile))
+                    config.WriteLine($"-r:{Path.Combine(OutDir, netstandFile)}");
 
                 foreach (var src in srcSet)
                     config.WriteLine(src);
