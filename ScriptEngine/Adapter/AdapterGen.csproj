@@ -37,7 +37,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DemoProject\Temp\StagingArea\Data\Managed\AdapterTest.dll</HintPath>
     </Reference>
-    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="PureScript, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\DemoProject\Temp\StagingArea\Data\Managed\PureScript.dll</HintPath>
@@ -73,6 +72,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) F:\Project\UnityBind\PureScript\ScriptEngine\Managed\$(TargetFileName) /y</PostBuildEvent>
+    <PostBuildEvent>echo copy $(TargetPath) F:\Project\UnityBind\PureScript\ScriptEngine\Managed\$(TargetFileName) /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
