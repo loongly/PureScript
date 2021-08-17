@@ -272,7 +272,7 @@ namespace Generater
             
 
             var td = type.Resolve();
-            if (td != null && IsObsolete(td) || td.IsInterface)
+            if (td != null && (IsObsolete(td) || td.IsInterface))
             {
                 DropTypes.Add(type);
                 return false;
