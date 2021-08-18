@@ -30,7 +30,14 @@
 ## 使用
 1. Clone本工程，拷贝DemoProject/Assets/Plugins/PureScript目录。
 2. 修改 PureScriptBuilder.cs及ScriptEngine/Tools/config.json中的路径配置。
-3. config.json中配置运行在interpreter模式的dll(否则以aot运行),以及运行在Il2cpp运行时内的dll(一般用作Adapter)。
+3. config.json中配置运行在interpreter模式的dll(否则以aot运行),以及运行在Il2cpp运行时内的dll(一般用作Adapter)。  
+    config.json（默认配置为Demo工程配置）：  
+
+        ScriptEngineDir： 指向PureScript\ScriptEngine目录
+        AdapterSet：      配置即要在Il2cpp又要在Mono中使用的dll,一般为一些通用插件
+        InterpSet：       配置需要热更的dll,否则运行在aot中   
+
+
 4. ScriptEngine启动接口请参考 DemoProject\Assets\Scripts\Lancher.cs, (注意修改'reloadDir'变量)。
 
 ### iOS平台
@@ -45,8 +52,9 @@
   Windows平台仅用来调试，目前未添加自动集成，在构建项目后，需编译 ScriptEngine/ScriptEngine.vcxproj,替换原来Plugins目录下的的ScriptEngine.dll。  
   ScriptEngine.vcxproj 属性/VC++目录/包含目录中使用了宏：$(UnityEditorPath) 指向Unity/Editor目录。  
 
-调试步骤(直接运行时可以忽略)：    
-1. 设置传入ScriptEngine.Setup接口的reloadDir路径为 */ScriptEngine/Managed  
+调试步骤：    
+
+1. 修改Lancher.cs中的reloadDir，替换其中的{path_to_ScriptEngine}指向PureScript\ScriptEngine\Managed目录 
 2. Unity导出VS工程。  
 3. 需要删除Unity导出目录下的Managed目录例如($(ExportPath)/DemoProject/Managed),否则Mono会默认从此处加载dll,Il2cpp并不会使用此目录，但是每次构建都会导出。
 4. 在导出的解决方案中添加ScriptEngine.vcxproj,并在主项目中添加ScriptEngine项目的依赖（方便调试）。  
@@ -55,18 +63,23 @@
 
 
 ## 例子
-以下两段代码是等效的，详细参考DemoProject/*/MonoEntry.cs。
+以下两段代码是等效的，详细参考DemoProject/*/MonoEntry.cs。  
+```c#
+  ScriptEngine.Setup(reloadDir, "TestEntry.dll");
 
-    ScriptEngine.Setup(reloadDir, "TestEntry.dll");
-    
-    // equal to:
-    
-    Assembly assembly = Assembly.Load("TestEntry.dll");
-    Type type = assembly.GetType("MonoEntry");
-    MethodInfo mi = type.GetMethod("Main");
-    var res = mi.Invoke(null, null)
+  // equal to:
 
-`注意` 需要热更新的程序集如果是Unity自动生成的工程，会自动引用一堆的无用dll，比如UntiyEditor*.dll,和一堆根本不会用到的System*.dll ，因为安装包内并没有带上这些，加载会失败。这时需要手动删掉这些用不到的引用。或者再建一个工程，手动管理引用，后面也可以考虑做自动化工具，strip掉没用的引用。    
+  Assembly assembly = Assembly.Load("TestEntry.dll");
+  Type type = assembly.GetType("MonoEntry");
+  MethodInfo mi = type.GetMethod("Main");
+  var res = mi.Invoke(null, null)
+```
+## `注意`   
+1. 需要热更新的程序集可以使用UnityEditor上的菜单PureScript/Build构建。    
+2. 目前iOS平台带的mono库为arm64指令集没有开启bitcode，如有其它需求请自己构建一个替换。
+3. 如果是windows平台记得根据上面说明生成ScriptEngine.dll 替换导出目录中的dll
+4. Unity2020编辑器默release模式导出失败，需要在右下角修改为debug模式即可正常导出。
+5. 建议所有网络或文件IO操作统一在il2cpp内执行，配置为Adapter提供给Mono使用。
 
 --------------------------------------------
 

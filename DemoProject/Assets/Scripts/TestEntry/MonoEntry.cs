@@ -13,9 +13,17 @@ public class MonoEntry
 {
     public static void Main()
     {
-        TestCube();
+        try
+        {
+            TestCube();
 
-        TestLoadAssembly();
+            TestLoadAssembly();
+        }catch(Exception e)
+        {
+            Debug.Log(e.ToString());
+            PureScript.Mono.ScriptEngine.OnException(e.ToString());
+        }
+       
     }
 
 
