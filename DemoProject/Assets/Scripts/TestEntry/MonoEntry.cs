@@ -21,9 +21,8 @@ public class MonoEntry
         }catch(Exception e)
         {
             Debug.Log(e.ToString());
-            PureScript.Mono.ScriptEngine.OnException(e.ToString());
+            throw new Exception(e.ToString());
         }
-       
     }
 
 

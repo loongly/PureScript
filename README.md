@@ -78,7 +78,7 @@
 1. 需要热更新的程序集可以使用UnityEditor上的菜单PureScript/Build构建。    
 2. 目前iOS平台带的mono库为arm64指令集没有开启bitcode，如有其它需求请自己构建一个替换。
 3. 如果是windows平台记得根据上面说明生成ScriptEngine.dll 替换导出目录中的dll
-4. Unity2020编辑器默release模式导出失败，需要在右下角修改为debug模式即可正常导出。
+4. 暂时不支持Unity2020
 5. 建议所有网络或文件IO操作统一在il2cpp内执行，配置为Adapter提供给Mono使用。
 
 --------------------------------------------
