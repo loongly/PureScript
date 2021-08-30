@@ -14,13 +14,17 @@ namespace Generater
         static CodeWriter NinjaWriter;
         static CodeWriter ModuleRegisterWriter;
         static Dictionary<string, string> AOTDic = new Dictionary<string, string>();
+        static Dictionary<string, List<string>> StrpDic = new Dictionary<string, List<string>>();
 
         static string WorkDir;
         static string ManagedDir;
         static string AotDir;
-        public static void Init(string workDir)
+        public static void Init(string workDir, Dictionary<string, List<string>> stripDic)
         {
             WorkDir = workDir;
+            if (stripDic == null)
+                stripDic = new Dictionary<string, List<string>>();
+            StrpDic = stripDic;
             ManagedDir = Path.Combine(workDir, "Managed");
             NinjaWriter = new CodeWriter(File.CreateText(Path.Combine(ManagedDir, "build.ninja")));
             NinjaWriter._eol = "";
@@ -30,11 +34,36 @@ namespace Generater
         public static void AddAOTAssembly(string file)
         {
             var assembly = AssemblyDefinition.ReadAssembly(file);
+            var tmp = file + ".tmp";
+            if (File.Exists(tmp))
+                File.Delete(tmp);
 
             AOTDic[Path.GetFileName(file)] = assembly.Name.Name.Replace(".","_").Replace("-","_");
 
+            var fName = Path.GetFileName(file);
+            if(StrpDic.TryGetValue(fName,out var sList))
+            {
+                foreach(var strips in sList)
+                {
+                    var info = strips.Split(':');
+                    var type = assembly.MainModule.GetType(info[0]);
+                    var method = type?.Methods.FirstOrDefault(m => m.Name == info[1]);
+                    if (method != null)
+                        type?.Methods.Remove(method);
+                }
+
+                assembly.Write(tmp);
+            }
+
             assembly.Dispose();
+
+            if (File.Exists(tmp))
+            {
+                File.Copy(tmp, file, true);
+                File.Delete(tmp);
+            }
         }
+
         public static void End()
         {
             using (new CS(NinjaWriter))
