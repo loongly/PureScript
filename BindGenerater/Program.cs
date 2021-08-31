@@ -19,6 +19,7 @@ namespace BindGenerater
             public string ScriptEngineDir;
             public HashSet<string> AdapterSet;
             public HashSet<string> InterpSet;
+            public Dictionary<string, List<string>> StripDic;
         }
         public enum BindTarget
         {
@@ -79,7 +80,7 @@ namespace BindGenerater
             Binder.Init(Path.Combine(adapterDir, "glue"));
             CSCGenerater.Init(ToolsetPath, adapterDir, managedDir, options.AdapterSet);
             CBinder.Init(Path.Combine(options.ScriptEngineDir, "generated"));
-            AOTGenerater.Init(options.ScriptEngineDir);
+            AOTGenerater.Init(options.ScriptEngineDir, options.StripDic);
 
 
             foreach (var filePath in Directory.GetFiles(managedDir))
