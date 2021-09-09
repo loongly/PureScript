@@ -99,6 +99,23 @@ namespace Generater.C
             }
 
             CS.Writer.Write("&exc);");
+
+            //call orign
+            CS.Writer.WriteLine("methods[index].orign(",false);
+            if (!method.IsStatic)
+            {
+                CS.Writer.Write("thiz");
+                //if (method.Parameters.Count > 0)
+                CS.Writer.Write(",");
+            }
+            foreach (var p in method.Parameters)
+            {
+                CS.Writer.Write(p.Name);
+                //if (lastP != p)
+                CS.Writer.Write(",");
+            }
+            CS.Writer.Write("imethod);");
+
             CS.Writer.WriteLine("check_mono_exception(exc)");
             if (!method.ReturnType.IsVoid())
             {

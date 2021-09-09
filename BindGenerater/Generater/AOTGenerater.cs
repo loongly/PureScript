@@ -19,6 +19,7 @@ namespace Generater
         static string WorkDir;
         static string ManagedDir;
         static string AotDir;
+        static bool needAOT;
         public static void Init(string workDir, Dictionary<string, List<string>> stripDic)
         {
             WorkDir = workDir;
@@ -30,6 +31,8 @@ namespace Generater
             NinjaWriter._eol = "";
             AotDir = Path.Combine(workDir, "aot");
             ModuleRegisterWriter = new CodeWriter(File.CreateText(Path.Combine(workDir, "generated", "aot_module_register.c")));
+
+            needAOT = !Utils.IsWin32();
         }
         public static void AddAOTAssembly(string file)
         {
@@ -40,28 +43,32 @@ namespace Generater
 
             AOTDic[Path.GetFileName(file)] = assembly.Name.Name.Replace(".","_").Replace("-","_");
 
-            var fName = Path.GetFileName(file);
-            if(StrpDic.TryGetValue(fName,out var sList))
+            if (needAOT)
             {
-                foreach(var strips in sList)
+                var fName = Path.GetFileName(file);
+                if (StrpDic.TryGetValue(fName, out var sList))
                 {
-                    var info = strips.Split(':');
-                    var type = assembly.MainModule.GetType(info[0]);
-                    var method = type?.Methods.FirstOrDefault(m => m.Name == info[1]);
-                    if (method != null)
-                        type?.Methods.Remove(method);
+                    foreach (var strips in sList)
+                    {
+                        var info = strips.Split(':');
+                        var type = assembly.MainModule.GetType(info[0]);
+                        var method = type?.Methods.FirstOrDefault(m => m.Name == info[1]);
+                        if (method != null)
+                            type?.Methods.Remove(method);
+                    }
+
+                    assembly.Write(tmp);
                 }
 
-                assembly.Write(tmp);
-            }
+                assembly.Dispose();
 
-            assembly.Dispose();
-
-            if (File.Exists(tmp))
-            {
-                File.Copy(tmp, file, true);
-                File.Delete(tmp);
+                if (File.Exists(tmp))
+                {
+                    File.Copy(tmp, file, true);
+                    File.Delete(tmp);
+                }
             }
+                
         }
 
         public static void End()
@@ -100,7 +107,7 @@ namespace Generater
                 CS.Writer.EndAll();
             }
 
-            if(!Utils.IsWin32())
+            if(needAOT)
             {
                 var res = Utils.RunCMD("ninja", new string[] { }, ManagedDir);
                 if (res != 0)
