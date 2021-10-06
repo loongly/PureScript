@@ -48,31 +48,44 @@ namespace Generater
         private static string OutDir;
         private static string AdapterDir;
         private static HashSet<string> IgnoreRefSet = new HashSet<string>();
+        private static Dictionary<string, CSCGenerater> WrapperDic = new Dictionary<string, CSCGenerater>();
 
-        public static void Init(string cscDir,string adapterDir,string outDir,HashSet<string> ignoreRefSet)
+        public static void Init(string cscDir,string adapterDir,HashSet<string> ignoreRefSet)
         {
+            string outDir = Path.Combine(adapterDir, "out");
             CSCPath = Path.Combine(cscDir, Utils.IsWin32() ? "csc.exe":"csc") ;
             OutDir = outDir;
             AdapterDir = adapterDir;
             IgnoreRefSet = ignoreRefSet;
             AdapterCompiler = new CSCGenerater(Path.Combine(outDir, "Adapter.gen.dll"));
-            AdapterWrapperCompiler = new CSCGenerater(Path.Combine(outDir, "Adapter.wrapper.dll"));
-
+            
             foreach(var file in AdapterSrc)
                 AdapterCompiler.AddSource(Path.Combine(adapterDir,file));
+        }
 
-            foreach (var file in AdapterWrapperSrc)
-                AdapterWrapperCompiler.AddSource(Path.Combine(adapterDir, file));
-            AdapterWrapperCompiler.AddDefine("WRAPPER_SIDE");
-            if(!Utils.IsWin32())
-                AdapterWrapperCompiler.AddDefine("IOS");
+        public static void SetWrapper(string dllName)
+        {
+            if (!WrapperDic.TryGetValue(dllName,out AdapterWrapperCompiler))
+            {
+                AdapterWrapperCompiler = new CSCGenerater(Path.Combine(OutDir, "Adapter.wrapper.dll"));
+                foreach (var file in AdapterWrapperSrc)
+                    AdapterWrapperCompiler.AddSource(Path.Combine(AdapterDir, file));
+                AdapterWrapperCompiler.AddDefine("WRAPPER_SIDE");
+                if (!Utils.IsWin32())
+                    AdapterWrapperCompiler.AddDefine("IOS");
+
+                WrapperDic[dllName] = AdapterWrapperCompiler;
+            }
         }
 
         public static void End()
         {
-            
             AdapterCompiler.Gen();
-            AdapterWrapperCompiler.Gen();
+            //AdapterWrapperCompiler.Gen();
+            foreach(var wrapper in WrapperDic.Values)
+            {
+                wrapper.Gen();
+            }
         }
 
 

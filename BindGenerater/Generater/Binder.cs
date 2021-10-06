@@ -63,6 +63,7 @@ namespace Generater
             /*var file = Path.GetFileName(dllPath);
             if (IgnoreAssemblySet.Contains(file))
                 return;*/
+            var file = Path.GetFileName(dllPath);
 
             DecompilerSetting = new DecompilerSettings(LanguageVersion.CSharp7);
             DecompilerSetting.ThrowOnAssemblyResolveErrors = false;
@@ -79,6 +80,7 @@ namespace Generater
             ModuleDefinition module = ModuleDefinition.ReadModule(dllPath, parameters);
             moduleSet.Add(module);
             ICallGenerater.AddWrapperAssembly(module.Assembly.Name.Name);
+            CSCGenerater.SetWrapper(file);
             CSCGenerater.AdapterCompiler.AddReference(module.Name);
             foreach(var refAssembly in module.AssemblyReferences )
             {

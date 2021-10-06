@@ -25,11 +25,14 @@ namespace Generater
 
         public HashSet<string> RefNameSpace = new HashSet<string>();
 
+        Dictionary<int, AstNode> retainDic = new Dictionary<int, AstNode>();
         public ClassGenerater(TypeDefinition type, StreamWriter writer = null)
         {
+
             genType = type;
             RefNameSpace.Add("PureScript.Mono");
 
+            CheckCopyOrignNodes();
             if (writer == null)
             {
                 var filePath = Path.Combine(Binder.OutDir, $"Binder.{TypeFullName()}.cs");
@@ -83,7 +86,7 @@ namespace Generater
 
             foreach (PropertyDefinition prop in genType.Properties)
             {
-                if (Utils.Filter(prop))
+                if (Utils.Filter(prop) && !IsCopyOrignNode(prop))
                 {
                     var pt = prop.PropertyType.Resolve();
                     if (pt.IsDelegate())
@@ -102,8 +105,9 @@ namespace Generater
             {
                 foreach (MethodDefinition method in genType.Methods)
                 {
-                    // if (isFullValueType && (method.Name.StartsWith("op_") || method.Name == "Equals"))
-                    //     continue;
+                    if (IsCopyOrignNode(method))
+                        continue;
+
                     if ((method.IsPublic || genType.IsInterface) && !method.IsGetter && !method.IsSetter && !method.IsAddOn && !method.IsRemoveOn && Utils.Filter(method))
                     {
                         methods.Add(new MethodGenerater(method));
@@ -139,9 +143,9 @@ namespace Generater
             {
                 base.Gen();
 
-                if (IsCopyOrign(genType))
+                if (IsCopyOrignType(genType))
                 {
-                    CopyGen(genType);
+                    CopyType(genType);
                     CS.Writer.EndAll();
                     return;
                 }
@@ -210,27 +214,27 @@ namespace Generater
                 {
                     m.Gen();
                 }
+                
+                GenCopyOrignNodes();
 
                 CS.Writer.EndAll();
             }
         }
 
-        bool IsCopyOrign(TypeDefinition type)
+        bool IsCopyOrignType(TypeDefinition type)
         {
             if (type.IsGeneric() && !type.IsDelegate())
                 return false;
             return type.IsValueType || type.IsEnum || type.IsDelegate() || type.IsInterface;
         }
 
-        void CopyGen(TypeDefinition type )
+        void CopyType(TypeDefinition type )
         {
-
             bool isNested = type.IsNested;
             
-
             HashSet<string> IgnoreNestType = new HashSet<string>();
 
-            if (!(isNested && IsCopyOrign(genType.DeclaringType)))
+            if (!(isNested && IsCopyOrignType(genType.DeclaringType)))
             {
                 var tName = type.FullName.Replace("/", "+");
                 var name = new FullTypeName(tName);
@@ -299,7 +303,44 @@ namespace Generater
                 }
 
             }
+        }
 
+
+        void CheckCopyOrignNodes()
+        {
+            if (genType.Module.Name != "UnityEngine.CoreModule.dll")
+                return;
+
+            var retainFilter = new RetainFilter(genType.MetadataToken.ToInt32());
+            var tName = genType.FullName.Replace("/", "+");
+            var name = new FullTypeName(tName);
+            ITypeDefinition typeInfo = Binder.Decompiler.TypeSystem.MainModule.Compilation.FindType(name).GetDefinition();
+            var tokenOfType = typeInfo.MetadataToken;
+            var st = Binder.Decompiler.Decompile(tokenOfType);
+            st.AcceptVisitor(retainFilter);
+            retainDic = retainFilter.RetainDic;
+
+            if (retainDic.Count > 0)
+                RefNameSpace.Add("System.Runtime.CompilerServices");
+        }
+        bool IsCopyOrignNode(MemberReference member)
+        {
+            if (retainDic.Count < 1)
+                return false;
+
+            var token = member.MetadataToken.ToInt32();
+            return token != 0 && retainDic.ContainsKey(token);
+        }
+        void GenCopyOrignNodes()
+        {
+            if (retainDic.Count < 1)
+                return ;
+
+            CS.Writer.WriteLine("// -- copy orign code nodes --");
+            CS.Writer.Flush();
+            var outputVisitor = new CustomOutputVisitor(genType.IsNested,CS.Writer.GetWriter(), Binder.DecompilerSetting.CSharpFormattingOptions);
+            foreach (var node in retainDic.Values)
+                node.AcceptVisitor(outputVisitor);
         }
     }
 }

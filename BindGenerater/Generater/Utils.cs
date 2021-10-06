@@ -86,7 +86,7 @@ namespace Generater
             return param;
         }
 
-        static string ReName(string name)
+        public static string ReName(string name)
         {
             return name.Replace("::", "_").Replace(".", "_").Replace("/","_");
         }
@@ -749,6 +749,31 @@ namespace Generater
         {
             OperatingSystem os = Environment.OSVersion;
             return os.Platform.ToString().StartsWith("Win");
+        }
+
+        public static void CollectMonoAssembly(string entry, string dir, HashSet<string> adapterSet,HashSet<string> outSet)
+        {
+            if (outSet.Contains(entry))
+                return;
+
+            var file = Path.Combine(dir, entry);
+            if (!File.Exists(file))
+                return;
+
+            outSet.Add(entry);
+            var assembly = AssemblyDefinition.ReadAssembly(file);
+            var refs = assembly.MainModule.AssemblyReferences;
+            foreach(var aref in refs)
+            {
+                var refName = aref.Name;
+                if (!refName.EndsWith(".dll"))
+                    refName += ".dll";
+
+                if (adapterSet.Contains(refName))
+                    continue;
+
+                CollectMonoAssembly(refName, dir, adapterSet, outSet);
+            }
         }
 
     }

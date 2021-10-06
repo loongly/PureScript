@@ -19,6 +19,8 @@ namespace BindGenerater
             public string ScriptEngineDir;
             public HashSet<string> AdapterSet;
             public HashSet<string> InterpSet;
+            public string Entry;
+
             public Dictionary<string, List<string>> StripDic;
         }
         public enum BindTarget
@@ -42,16 +44,20 @@ namespace BindGenerater
             //TestWriter();
             //return;
             Console.WriteLine("OS: " + Environment.OSVersion);
-            try
-            {
-                StartBinder(args);
-                Utils.Log("Binder All Done..");
-            }
-            catch(Exception e)
-            {
-                Console.Error.WriteLine(e.ToString());
-                return 2;
-            }
+
+            StartBinder(args);
+            //StartTestBinder();
+            /* try
+             {
+                 StartBinder(args);
+                 //StartTestBinder();
+                 Utils.Log("Binder All Done..");
+             }
+             catch(Exception e)
+             {
+                 Console.Error.WriteLine(e.ToString());
+                 return 2;
+             }*/
             return 0;
         }
 
@@ -75,20 +81,36 @@ namespace BindGenerater
 
             string managedDir = Path.Combine(options.ScriptEngineDir, "Managed");
             string adapterDir = Path.Combine(options.ScriptEngineDir, "Adapter");
+
             ReplaceMscorlib("lib", managedDir);
 
             Binder.Init(Path.Combine(adapterDir, "glue"));
-            CSCGenerater.Init(ToolsetPath, adapterDir, managedDir, options.AdapterSet);
+            CSCGenerater.Init(ToolsetPath, adapterDir, options.AdapterSet);
             CBinder.Init(Path.Combine(options.ScriptEngineDir, "generated"));
             AOTGenerater.Init(options.ScriptEngineDir, options.StripDic);
 
 
-            foreach (var filePath in Directory.GetFiles(managedDir))
+            var assemblySet = new HashSet<string>();
+            Utils.CollectMonoAssembly(options.Entry, managedDir, options.AdapterSet, assemblySet);
+            options.AdapterSet.UnionWith(assemblySet.Where(assem => assem.StartsWith("UnityEngine.")));
+
+            foreach (var assembly in options.AdapterSet)
+            {
+                var filePath = Path.Combine(managedDir, assembly);
+                if (IgnoreAssemblySet.Contains(assembly))
+                    continue;
+
+                Binder.Bind(filePath);
+            }
+
+            /*foreach (var filePath in Directory.GetFiles(managedDir))
             {
                 var file = Path.GetFileName(filePath);
 
                 if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file))
                 {
+                    Binder.Bind(filePath);
+
                     if (options.AdapterSet.Contains(file))
                     {
                         Binder.Bind(filePath);
@@ -113,7 +135,7 @@ namespace BindGenerater
                         }
                     }
                 }
-            }
+            }*/
 
             Binder.End();
             CSCGenerater.End();
@@ -124,7 +146,7 @@ namespace BindGenerater
                 AOTGenerater.End();
             }
 
-            foreach(var file in options.AdapterSet)
+            /*foreach(var file in options.AdapterSet)
             {
                 var path = Path.Combine(managedDir, file);
                 if (File.Exists(path))
@@ -136,7 +158,7 @@ namespace BindGenerater
                     File.Copy(path, Path.Combine(tempDir, file), true);
                     File.Delete(path);
                 }
-            }
+            }*/
         }
 
         public static void ReplaceMscorlib(string libDir, string outDir)
