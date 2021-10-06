@@ -73,6 +73,8 @@ namespace Generater
             UsePointer(CreateLinePoint("// auto gengerated !"));
         }
 
+        public TextWriter GetWriter() { return writer; }
+
         public void Write(string str)
         {
             if (lines.Count == 0)

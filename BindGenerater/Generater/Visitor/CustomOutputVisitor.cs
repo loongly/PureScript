@@ -52,8 +52,6 @@ public class CustomOutputVisitor : CSharpOutputVisitor
 
     public override void VisitUsingDeclaration(UsingDeclaration usingDeclaration)
     {
-        
-
         if (isNested)
         {
             nestedUsing.Add(usingDeclaration.Namespace);

@@ -72,12 +72,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generater\AstNodeExtensions.cs" />
     <Compile Include="Generater\Binder.cs" />
     <Compile Include="Generater\AOTGenerater.cs" />
     <Compile Include="Generater\CSharp\CSCGenerater.cs" />
     <Compile Include="Generater\TestBinder.cs" />
     <Compile Include="Generater\CBinder.cs" />
-    <Compile Include="Generater\CSharp\CustomOutputVisitor.cs" />
+    <Compile Include="Generater\Visitor\CustomOutputVisitor.cs" />
     <Compile Include="Generater\CSharp\MethodResolver.cs" />
     <Compile Include="Generater\CSharp\TypeResolver.cs" />
     <Compile Include="Generater\CSharp\ClassGenerater.cs" />
@@ -94,6 +95,8 @@
     <Compile Include="Generater\C\ICallGenerater.cs" />
     <Compile Include="Generater\TypeDefinitionExtensions.cs" />
     <Compile Include="Generater\Utils.cs" />
+    <Compile Include="Generater\Visitor\RetainFilter.cs" />
+    <Compile Include="Generater\Visitor\TokenMapVisitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
