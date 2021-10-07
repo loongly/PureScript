@@ -168,6 +168,8 @@ void* get_il2cpp_internal_ptr(Il2CppObject* obj)
 
 MonoString* get_mono_string(Il2CppString* str)
 {
+    if(str == NULL)
+        return NULL;
 	/*char* ptr = (char*)str;
 	int32_t* lenPtr = (int32_t*)(ptr + sizeof(void *) * 2);
 	int32_t len = *lenPtr;
@@ -180,6 +182,9 @@ MonoString* get_mono_string(Il2CppString* str)
 }
 Il2CppString* get_il2cpp_string(MonoString* str)
 {
+    if(str == NULL)
+        return NULL;
+    
     int32_t len = mono_string_length(str);
     Il2CppChar* chars = (Il2CppChar* )mono_string_to_utf16(str);
 

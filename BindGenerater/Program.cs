@@ -170,7 +170,7 @@ namespace BindGenerater
             foreach (var fi in dir.GetFiles())
             {
                 var tarPath = Path.Combine(outDir, fi.Name);
-                if (File.Exists(tarPath))
+                if (File.Exists(tarPath) || fi.Name == "netstandard.dll") // netstandard reserved for unity2020 build bug
                     File.Copy(Path.Combine(srcDir, fi.Name), tarPath, true);
             }
         }
