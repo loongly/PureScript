@@ -1,4 +1,6 @@
 ﻿using ICSharpCode.Decompiler.CSharp.Syntax;
+using ICSharpCode.Decompiler.Semantics;
+using ICSharpCode.Decompiler.TypeSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,19 @@ using System.Threading.Tasks;
 
 public static class AstNodeExtensions
 {
+    public static ResolveResult Resolve(this AstNode node)
+    {
+        var res = node.Annotation<ResolveResult>();
+        return res;
+    }
+
+    public static int GetToken(this AstNode node)
+    {
+        var entity = Resolve(node).GetSymbol() as IEntity;
+        if (entity != null)
+            return entity.MetadataToken.GetHashCode();
+        return 0;
+    }
 
     public static string SimpleTypeName(this AstType tNode)
     {

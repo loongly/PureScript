@@ -20,7 +20,7 @@ namespace Generater
         public PropertyGenerater(PropertyDefinition property)
         {
             genProperty = property;
-            if (genProperty.GetMethod != null && genProperty.GetMethod.IsPublic && Utils.Filter(genProperty.GetMethod))
+            if (genProperty.GetMethod != null && genProperty.GetMethod.IsPublic )
             {
                 isStatic = genProperty.GetMethod.IsStatic;
                 isAbstract = genProperty.GetMethod.IsAbstract;
@@ -28,7 +28,7 @@ namespace Generater
                 isVirtual = genProperty.GetMethod.IsVirtual && !genProperty.DeclaringType.IsValueType;
                 methods.Add(new MethodGenerater(genProperty.GetMethod));
             }
-            if (genProperty.SetMethod != null && genProperty.SetMethod.IsPublic && Utils.Filter(genProperty.SetMethod))
+            if (genProperty.SetMethod != null && genProperty.SetMethod.IsPublic )
             {
                 isStatic = genProperty.SetMethod.IsStatic;
                 isAbstract = genProperty.SetMethod.IsAbstract;

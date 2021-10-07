@@ -86,7 +86,7 @@ namespace Generater
                     break;
 
                 default:
-                    if (!tName.StartsWith("System"))
+                    if (!tName.StartsWith("System") && !type.IsGeneric())
                         tName = "global::" + tName;
 
                     break;
@@ -94,6 +94,12 @@ namespace Generater
 
             if (et != null)
                 tName = type.FullName.Replace(et.FullName, tName);
+
+            var genericIndex = tName.IndexOf('`');
+            if(genericIndex > 0)
+            {
+                tName = tName.Substring(0, genericIndex) + tName.Substring(tName.IndexOf('<'));
+            }
 
             return tName.Replace("/",".");
         }
@@ -119,7 +125,7 @@ namespace Generater
 
             var tName = Alias();
 
-            if (type.IsByReference && et.IsValueType)
+            if (type.IsByReference && (et.IsValueType || et.IsGeneric()))
                 tName = "ref " + tName.Replace("&", "");
 
             return tName;

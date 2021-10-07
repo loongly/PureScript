@@ -1,6 +1,7 @@
 ﻿using Generater.C;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.CSharp;
+using ICSharpCode.Decompiler.TypeSystem;
 using Mono.Cecil;
 using System;
 using System.Collections.Generic;
@@ -17,18 +18,36 @@ namespace Generater
         static HashSet<TypeReference> types = new HashSet<TypeReference>();
         static HashSet<ModuleDefinition> moduleSet = new HashSet<ModuleDefinition>();
         static HashSet<TypeReference> moduleTypes;
+        static HashSet<TypeReference> refTypes = new HashSet<TypeReference>();
 
         public static string OutDir;
         public static CodeWriter FuncDefineWriter;
         public static CodeWriter FuncSerWriter;
         public static CodeWriter FuncDeSerWriter;
-        public static CSharpDecompiler Decompiler;
+
+        public static Dictionary<string, CSharpDecompiler> DecompilerDic = new Dictionary<string, CSharpDecompiler>();
         public static DecompilerSettings DecompilerSetting;
+        public static string ManagedDir;
+        public static ModuleDefinition curModule;
 
         private static string[] IgnorTypes = new string[]
         {
             "System.Collections",
             "UnityEditor",
+        };
+
+        public static HashSet<string> UnityCoreModuleSet = new HashSet<string>
+        {
+            "UnityEngine.SharedInternalsModule.dll",
+            "UnityEngine.CoreModule.dll"
+        };
+
+        public static HashSet<string> IgnoreUsing = new HashSet<string>()
+        {
+            "UnityEngine.Internal",
+            "UnityEngine.Scripting.APIUpdating",
+            "UnityEngine.Bindings",
+            "Unity.Burst"
         };
 
         public static void Init(string outDir)
@@ -67,28 +86,28 @@ namespace Generater
 
             DecompilerSetting = new DecompilerSettings(LanguageVersion.CSharp7);
             DecompilerSetting.ThrowOnAssemblyResolveErrors = false;
-            Decompiler = new CSharpDecompiler(dllPath, DecompilerSetting);
-            var dir = Path.GetDirectoryName(dllPath);
+
+            ManagedDir = Path.GetDirectoryName(dllPath);
             DefaultAssemblyResolver resolver = new DefaultAssemblyResolver();
-            resolver.AddSearchDirectory(dir);
+            resolver.AddSearchDirectory(ManagedDir);
             ReaderParameters parameters = new ReaderParameters()
             {
                 AssemblyResolver = resolver,
                 ReadSymbols = false,
             };
 
-            ModuleDefinition module = ModuleDefinition.ReadModule(dllPath, parameters);
-            moduleSet.Add(module);
-            ICallGenerater.AddWrapperAssembly(module.Assembly.Name.Name);
+            curModule = ModuleDefinition.ReadModule(dllPath, parameters);
+            moduleSet.Add(curModule);
+            ICallGenerater.AddWrapperAssembly(curModule.Assembly.Name.Name);
             CSCGenerater.SetWrapper(file);
-            CSCGenerater.AdapterCompiler.AddReference(module.Name);
-            foreach(var refAssembly in module.AssemblyReferences )
+            CSCGenerater.AdapterCompiler.AddReference(curModule.Name);
+            foreach(var refAssembly in curModule.AssemblyReferences )
             {
                 CSCGenerater.AdapterCompiler.AddReference(refAssembly.Name + ".dll");
                 CSCGenerater.AdapterWrapperCompiler.AddReference(refAssembly.Name + ".dll");
             }
 
-            moduleTypes = new HashSet<TypeReference>(module.Types);
+            moduleTypes = new HashSet<TypeReference>(curModule.Types);
 
             foreach (TypeDefinition type in moduleTypes)
             {
@@ -122,5 +141,34 @@ namespace Generater
             generaters.Enqueue(new ClassGenerater(type));
             
         }
+
+        public static void AddTypeRef(TypeReference type)
+        {
+            refTypes.Add(type);
+            var td = type.Resolve();
+            if (td == null)
+                return;
+            if (!types.Add(type))
+                return;
+
+            if (!Utils.Filter(type))
+                return;
+
+            generaters.Enqueue(new ClassGenerater(td));
+        }
+
+        public static CSharpDecompiler GetDecompiler(string module)
+        {
+            CSharpDecompiler decompiler = null;
+            
+            if (DecompilerDic.TryGetValue(module, out decompiler))
+                return decompiler;
+
+            var dllPath = Path.Combine(ManagedDir, module);
+            decompiler = new CSharpDecompiler(dllPath, DecompilerSetting);
+            DecompilerDic[module] = decompiler;
+            return decompiler;
+        }
+        
     }
 }

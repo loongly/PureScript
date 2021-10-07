@@ -21,17 +21,21 @@ public class TokenMapVisitor: DepthFirstAstVisitor
         base.VisitMethodDeclaration(methodDeclaration);
     }
 
+    public override void VisitConstructorDeclaration(ConstructorDeclaration constructorDeclaration)
+    {
+        InsertMap(constructorDeclaration);
+        base.VisitConstructorDeclaration(constructorDeclaration);
+    }
+
+    public override void VisitOperatorDeclaration(OperatorDeclaration operatorDeclaration)
+    {
+        InsertMap(operatorDeclaration);
+        base.VisitOperatorDeclaration(operatorDeclaration);
+    }
+
     void InsertMap(AstNode node)
     {
-        TokenMap[GetToken(node)] = node;
+        TokenMap[node.GetToken()] = node;
     }
 
-    protected int GetToken(AstNode node)
-    {
-        var res = node.Annotation<ResolveResult>() as MemberResolveResult;
-        if (res != null)
-            return res.Member.MemberDefinition.MetadataToken.GetHashCode();
-
-        return 0;
-    }
 }
