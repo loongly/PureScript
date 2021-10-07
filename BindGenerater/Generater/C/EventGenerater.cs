@@ -101,7 +101,7 @@ namespace Generater.C
             CS.Writer.Write("&exc);");
 
             //call orign
-            CS.Writer.WriteLine("methods[index].orign(");
+            CS.Writer.WriteLine("methods[index].orign(",false);
             if (!method.IsStatic)
             {
                 CS.Writer.Write("thiz");
