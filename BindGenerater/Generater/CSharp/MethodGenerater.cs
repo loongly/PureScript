@@ -9,9 +9,12 @@ namespace Generater
     {
         MethodDefinition genMethod;
         CodeWriter writer;
+
+        bool isNotImplement = false;
         public MethodGenerater(MethodDefinition method)
         {
             genMethod = method;
+            isNotImplement = !Utils.Filter(method);
 
             if (!genMethod.IsPublic && !genMethod.DeclaringType.IsInterface)
                 return;
@@ -25,7 +28,7 @@ namespace Generater
             }
             Binder.AddType(genMethod.ReturnType.Resolve());
 
-            if (!method.IsAbstract)
+            if (!method.IsAbstract && !isNotImplement)
                 GenerateBindings.AddMethod(genMethod);
         }
 
@@ -61,9 +64,17 @@ namespace Generater
                 return;
             }
             writer.Start("get");
-            var res =  MethodResolver.Resolve(genMethod).Call("res");
-            writer.WriteLine("ScriptEngine.CheckException()");
-            writer.WriteLine($"return {res}");
+            if(isNotImplement)
+            {
+                WriteNotImplemented();
+            }
+            else
+            {
+                var res = MethodResolver.Resolve(genMethod).Call("res");
+                writer.WriteLine("ScriptEngine.CheckException()");
+                writer.WriteLine($"return {res}");
+            }
+            
             writer.End();
         }
 
@@ -76,31 +87,62 @@ namespace Generater
             }
 
             writer.Start("set");
-            MethodResolver.Resolve(genMethod).Call("");
-            writer.WriteLine("ScriptEngine.CheckException()");
+            if (isNotImplement)
+            {
+                WriteNotImplemented();
+            }
+            else
+            {
+                MethodResolver.Resolve(genMethod).Call("");
+                writer.WriteLine("ScriptEngine.CheckException()");
+            }
+                
             writer.End();
         }
 
         void GenAddOn()
         {
             writer.Start("add");
-            MethodResolver.Resolve(genMethod).Call("");
-            writer.WriteLine("ScriptEngine.CheckException()");
+            if (isNotImplement)
+            {
+                WriteNotImplemented();
+            }
+            else
+            {
+                MethodResolver.Resolve(genMethod).Call("");
+                writer.WriteLine("ScriptEngine.CheckException()");
+            }
+                
             writer.End();
         }
 
         void GenRemoveOn()
         {
             writer.Start("remove");
-            MethodResolver.Resolve(genMethod).Call("");
-            writer.WriteLine("ScriptEngine.CheckException()");
+            if (isNotImplement)
+            {
+                WriteNotImplemented();
+            }
+            else
+            {
+                MethodResolver.Resolve(genMethod).Call("");
+                writer.WriteLine("ScriptEngine.CheckException()");
+            }
             writer.End();
         }
 
         void GenMethod()
         {
             writer.Start(GetMethodDelcear());
-            if(genMethod.IsConstructor)
+
+            if (isNotImplement)
+            {
+                WriteNotImplemented();
+                writer.End();
+                return;
+            }
+
+            if (genMethod.IsConstructor)
             {
                 if(genMethod.DeclaringType.IsValueType)
                 {
@@ -133,85 +175,18 @@ namespace Generater
 
         string GetMethodDelcear()
         {
-
-            string declear = "public ";
-            if (genMethod.IsStatic)
-                declear += "static ";
-
-            if (Utils.IsUnsafeMethod(genMethod))
-                declear += "unsafe ";
-
-            if (genMethod.IsAbstract)
-                declear += "abstract ";
-            else if (genMethod.IsOverride())
-                declear += "override ";
-            else if (genMethod.IsVirtual && !genMethod.IsFinal)
-                declear += "virtual ";
-
-            var methodName = genMethod.Name;
-
-            switch(methodName)
-            {
-                case "op_Addition":
-                    methodName = "operator+";
-                    break;
-                case "op_Subtraction":
-                    methodName = "operator-";
-                    break;
-                case "op_UnaryNegation":
-                    methodName = "operator-";
-                    break;
-                case "op_Multiply":
-                    methodName = "operator*";
-                    break;
-                case "op_Division":
-                    methodName = "operator/";
-                    break;
-                case "op_Equality":
-                    methodName = "operator==";
-                    break;
-                case "op_Inequality":
-                    methodName = "operator!=";
-                    break;
-                case "op_Implicit":
-                    methodName = "implicit operator " + genMethod.ReturnType.Name;
-                    break;
-                case "op_Explicit":
-                    methodName = "explicit operator " + genMethod.ReturnType.Name;
-                    break;
-
-            }
-
-            if (!genMethod.IsConstructor)
-            {
-                if(!methodName.StartsWith("implicit")&& !methodName.StartsWith("explicit"))
-                    declear += TypeResolver.Resolve(genMethod.ReturnType).RealTypeName() + " ";
-                declear += methodName;
-            }
-            else
-            {
-                declear += genMethod.DeclaringType.Name;
-            }
-
-            var param = "(";
-            var lastP = genMethod.Parameters.LastOrDefault();
-            foreach (var p in genMethod.Parameters)
-            {
-                var type = p.ParameterType;
-                var typeName = TypeResolver.Resolve(type).RealTypeName();
-                if (type.IsGenericInstance)
-                    typeName = Utils.GetGenericTypeName(type);
-
-                param += $"{typeName} {p.Name}" + (p == lastP ? "" : ", ");
-            }
-            param += ")";
-
-            declear += param;
+            string declear = Utils.GetMethodDelcear(genMethod);
 
             if (genMethod.IsConstructor && genMethod.DeclaringType.IsValueType)
                 declear += ":this()";
 
             return declear;
         }
+
+        void WriteNotImplemented()
+        {
+            CS.Writer.WriteLine("throw new System.NotImplementedException()");
+        }
+
     }
 }

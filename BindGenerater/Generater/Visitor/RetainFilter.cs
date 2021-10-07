@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Generater;
+using ICSharpCode.Decompiler.CSharp;
 using ICSharpCode.Decompiler.CSharp.OutputVisitor;
 using ICSharpCode.Decompiler.CSharp.Resolver;
 using ICSharpCode.Decompiler.CSharp.Syntax;
@@ -16,10 +18,13 @@ using AstAttribute = ICSharpCode.Decompiler.CSharp.Syntax.Attribute;
 public class RetainFilter :DepthFirstAstVisitor<bool>
 {
     public Dictionary<int, AstNode> RetainDic = new Dictionary<int, AstNode>();
+    public HashSet<string> NamespaceRef = new HashSet<string>();
     private int targetTypeToken;
+    private MetadataModule module;
 
-    public RetainFilter(int tarTypeToken)
+    public RetainFilter(int tarTypeToken, CSharpDecompiler decompiler)
     {
+        module = decompiler.TypeSystem.MainModule;
         targetTypeToken = tarTypeToken;
     }
 
@@ -49,8 +54,9 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
 
         if(!wrap)
         {
-            var res = Resolve(propertyDeclaration) as MemberResolveResult;
+            var res = propertyDeclaration.Resolve() as MemberResolveResult;
             RetainDic[res.Member.MetadataToken.GetHashCode()] = propertyDeclaration;
+            RequiredNamespaceCollector.CollectNamespaces(res.Member,module, NamespaceRef);
         }
 
         return wrap;
@@ -58,17 +64,24 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
 
     public override bool VisitMethodDeclaration(MethodDeclaration methodDeclaration)
     {
-        bool wrap = base.VisitMethodDeclaration(methodDeclaration);
-        if (wrap)
-            wrap = !IsInternCallNode(methodDeclaration);
+        var res = methodDeclaration.Resolve() as MemberResolveResult;
+        var imethod = res.Member as IMethod;
 
-        if (!wrap)
+        bool retain = false;
+        
+        if(IsInternCallNode(methodDeclaration) || methodDeclaration.HasModifier(Modifiers.Public))
+            retain = !base.VisitMethodDeclaration(methodDeclaration);
+
+        /*if (imethod.IsExtensionMethod)
+            retain = true;*/
+
+        if (retain)
         {
-            var res = Resolve(methodDeclaration) as MemberResolveResult;
             RetainDic[res.Member.MetadataToken.GetHashCode()] = methodDeclaration;
+            RequiredNamespaceCollector.CollectNamespaces(res.Member, module, NamespaceRef);
         }
 
-        return wrap;
+        return !retain;
     }
 
     public override bool VisitAccessor(Accessor accessor)
@@ -87,7 +100,7 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
 
     public override bool VisitTypeDeclaration(TypeDeclaration typeDeclaration)
     {
-        if (GetToken(typeDeclaration) != targetTypeToken)
+        if (typeDeclaration.GetToken() != targetTypeToken)
             return false;
 
         return base.VisitTypeDeclaration(typeDeclaration);
@@ -101,7 +114,7 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
     // aa(bb);
     public override bool VisitInvocationExpression(InvocationExpression invocationExpression)
     {
-        var target = Resolve(invocationExpression) as CSharpInvocationResolveResult;
+        var target = invocationExpression.Resolve() as CSharpInvocationResolveResult;
 
         if (target != null)
         {
@@ -113,15 +126,31 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
         return base.VisitInvocationExpression(invocationExpression);
     }
 
+    public override bool VisitObjectCreateExpression(ObjectCreateExpression objectCreateExpression)
+    {
+        var target = objectCreateExpression.Resolve() as CSharpInvocationResolveResult;
+        if (target != null)
+        {
+            bool res = NeedWrap(target.Member);
+            if (res)
+                return true;
+        }
+
+        return base.VisitObjectCreateExpression(objectCreateExpression);
+    }
+
     // T0.xx  /  T1 func(T2 aa,T3<T4> bb)  /  (T5)xx
     public override bool VisitSimpleType(SimpleType simpleType)
     {
-
-        var res = Resolve(simpleType) as TypeResolveResult;
+        if(simpleType.Identifier == "Internal_DrawTextureArguments")
+        {
+            int c = 0;
+        }
+        var res = simpleType.Resolve() as TypeResolveResult;
         if(res != null)
         {
             var td = res.Type.GetDefinition();
-            if (td == null || td.Accessibility != Accessibility.Public)
+            if (td == null || (td.Accessibility != Accessibility.Public && !Utils.IsFullValueType(td)))
                 return true;
         }
 
@@ -130,7 +159,7 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
 
     public override bool VisitIdentifierExpression(IdentifierExpression identifierExpression)
     {
-        var member = Resolve(identifierExpression);
+        var member = identifierExpression.Resolve();
         if(member != null)
         {
             var mres = member as MemberResolveResult;
@@ -149,7 +178,7 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
     //aa.bb
     public override bool VisitMemberReferenceExpression(MemberReferenceExpression memberReferenceExpression)
     {
-        var member = Resolve(memberReferenceExpression.Target);
+        var member = memberReferenceExpression.Target.Resolve();
         var mres = member as MemberResolveResult;
         if (mres != null)
         {
@@ -209,21 +238,6 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
         return true;
     }
 
-    protected ResolveResult Resolve(AstNode node)
-    {
-        var res = node.Annotation<ResolveResult>();
-        return res;
-    }
-
-    protected int GetToken(AstNode node)
-    {
-        var entity = Resolve(node).GetSymbol() as IEntity;
-        if (entity != null)
-            return entity.MetadataToken.GetHashCode();
-
-        return 0;
-    }
-
     protected bool IsInternCallNode(AstNode node)
     {
         var attrs = node.GetChildsOf<AstAttribute>() ;
@@ -243,6 +257,8 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
         }
         return false;*/
     }
+
+
 
 }
 

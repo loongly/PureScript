@@ -20,15 +20,16 @@ namespace Generater
         private List<MethodGenerater> methods = new List<MethodGenerater>();
         private List<ClassGenerater> nestType = new List<ClassGenerater>();
         private bool hasDefaultConstructor = false;
-        private bool isFullValueType;
+        private bool isCopyOrignType;
         private StreamWriter FileStream;
 
         public HashSet<string> RefNameSpace = new HashSet<string>();
 
         Dictionary<int, AstNode> retainDic = new Dictionary<int, AstNode>();
+        public TokenMapVisitor nodesCollector;
+
         public ClassGenerater(TypeDefinition type, StreamWriter writer = null)
         {
-
             genType = type;
             RefNameSpace.Add("PureScript.Mono");
 
@@ -44,7 +45,9 @@ namespace Generater
                 FileStream = writer;
             }
             
-            isFullValueType = Utils.IsFullValueType(genType);
+            isCopyOrignType = IsCopyOrignType(genType);
+            if (isCopyOrignType)
+                return;
 
             if (type.BaseType != null)
                 RefNameSpace.Add(type.BaseType.Namespace);
@@ -61,19 +64,17 @@ namespace Generater
                 }
             }
 
-            if(!isFullValueType)
+            foreach (FieldDefinition field in genType.Fields)
             {
-                foreach (FieldDefinition field in genType.Fields)
+               // if (isFullValueType && !field.IsStatic)
+                //    continue;
+                if (field.IsPublic)
                 {
-                    if (field.IsPublic)
-                    {
-                        properties.Add(new PropertyGenerater(field));
-                        RefNameSpace.Add(field.FieldType.Namespace);
-                    }
-                    
+                    properties.Add(new PropertyGenerater(field));
+                    RefNameSpace.Add(field.FieldType.Namespace);
                 }
+
             }
-            
 
             foreach(var e in genType.Events)
             {
@@ -108,9 +109,10 @@ namespace Generater
                     if (IsCopyOrignNode(method))
                         continue;
 
-                    if ((method.IsPublic || genType.IsInterface) && !method.IsGetter && !method.IsSetter && !method.IsAddOn && !method.IsRemoveOn && Utils.Filter(method))
+                    if ((method.IsPublic || genType.IsInterface) && !method.IsGetter && !method.IsSetter && !method.IsAddOn && !method.IsRemoveOn )
                     {
-                        methods.Add(new MethodGenerater(method));
+                        var methodGener = new MethodGenerater(method);
+                        methods.Add(methodGener);
                         RefNameSpace.UnionWith(Utils.GetNameSpaceRef(method));
                     }
                     if (method.IsConstructor && method.Parameters.Count == 0 && method.IsPublic)
@@ -143,7 +145,7 @@ namespace Generater
             {
                 base.Gen();
 
-                if (IsCopyOrignType(genType))
+                if (isCopyOrignType)
                 {
                     CopyType(genType);
                     CS.Writer.EndAll();
@@ -152,6 +154,7 @@ namespace Generater
 
                 if(!genType.IsNested)
                 {
+                    RefNameSpace.ExceptWith(Binder.IgnoreUsing);
                     foreach (var ns in RefNameSpace)
                     {
                         if (!string.IsNullOrEmpty(ns))
@@ -193,6 +196,8 @@ namespace Generater
 
                 GenNested();
 
+                Utils.TokenMap = nodesCollector.TokenMap;
+
                 /*CS.Writer.Start($"internal {genType.Name}(int handle,IntPtr ptr): base(handle, ptr)");
                 CS.Writer.End();*/
 
@@ -223,9 +228,15 @@ namespace Generater
 
         bool IsCopyOrignType(TypeDefinition type)
         {
+            if (type.IsAbstract && type.IsSealed) // static class
+                return true;
+
+            if (Utils.IsFullValueType(type))
+                return true;
+
             if (type.IsGeneric() && !type.IsDelegate())
                 return false;
-            return type.IsValueType || type.IsEnum || type.IsDelegate() || type.IsInterface;
+            return type.IsEnum || type.IsDelegate() || type.IsInterface;
         }
 
         void CopyType(TypeDefinition type )
@@ -238,26 +249,36 @@ namespace Generater
             {
                 var tName = type.FullName.Replace("/", "+");
                 var name = new FullTypeName(tName);
-                SyntaxTree syntaxTree;
+                var decompiler = Binder.GetDecompiler(type.Module.Name);
+                AstNode syntaxTree;
 
                 if (isNested)
                 {
-                    ITypeDefinition typeInfo = Binder.Decompiler.TypeSystem.MainModule.Compilation.FindType(name).GetDefinition();
+                    ITypeDefinition typeInfo = decompiler.TypeSystem.MainModule.Compilation.FindType(name).GetDefinition();
                     var tokenOfFirstMethod = typeInfo.MetadataToken;
-                    syntaxTree = Binder.Decompiler.Decompile(tokenOfFirstMethod);
+                    syntaxTree = decompiler.Decompile(tokenOfFirstMethod);
                 }
                 else
                 {
-                    syntaxTree = Binder.Decompiler.DecompileType(name);
+                    syntaxTree = decompiler.DecompileType(name);
                 }
 
                 StringWriter w = new StringWriter();
                 CustomOutputVisitor outVisitor;
-                outVisitor = new BlittableOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
+                outVisitor = new CustomOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
 
                 syntaxTree.AcceptVisitor(outVisitor);
 
-                if (!isNested)
+                foreach(var rtype in outVisitor.InternalTypeRef)
+                {
+                    var td = genType.Module.GetType(rtype);
+                    if(td != null)
+                        Binder.AddType(td);
+                    else if(genType.Module.TryGetTypeReference(rtype, out var tref))
+                        Binder.AddTypeRef(tref);
+                }
+
+                /*if (!isNested)
                 {
                     RefNameSpace.UnionWith(outVisitor.nestedUsing);
                     foreach (var ns in RefNameSpace)
@@ -265,9 +286,8 @@ namespace Generater
                         if(!string.IsNullOrEmpty(ns))
                             CS.Writer.WriteHead($"using {ns}");
                     }
-                }
+                }*/
                 
-
                 var txt = w.ToString();
                 CS.Writer.WriteLine(txt, false);
             }
@@ -281,47 +301,56 @@ namespace Generater
                         Binder.AddType(fType);
                 }
 
-                if (!string.IsNullOrEmpty(genType.Namespace))
+                if(properties.Count + methods.Count + nestType.Count > 0)
                 {
-                    CS.Writer.Start($"namespace {genType.Namespace}");
+                    if (!string.IsNullOrEmpty(genType.Namespace))
+                    {
+                        CS.Writer.Start($"namespace {genType.Namespace}");
+                    }
+
+                    var classDefine = $"public partial struct {genType.Name}";
+
+                    CS.Writer.Start(classDefine);
+
+                    GenNested();
+
+                    foreach (var p in properties)
+                    {
+                        p.Gen();
+                    }
+
+                    foreach (var m in methods)
+                    {
+                        m.Gen();
+                    }
                 }
-
-                var classDefine = $"public partial struct {genType.Name}";
-
-                CS.Writer.Start(classDefine);
-
-                GenNested();
-
-                foreach (var p in properties)
-                {
-                    p.Gen();
-                }
-
-                foreach (var m in methods)
-                {
-                    m.Gen();
-                }
-
             }
         }
 
 
         void CheckCopyOrignNodes()
         {
-            if (genType.Module.Name != "UnityEngine.CoreModule.dll")
-                return;
+            
+            var decompiler = Binder.GetDecompiler(genType.Module.Name);
 
-            var retainFilter = new RetainFilter(genType.MetadataToken.ToInt32());
+            var retainFilter = new RetainFilter(genType.MetadataToken.ToInt32(), decompiler);
             var tName = genType.FullName.Replace("/", "+");
             var name = new FullTypeName(tName);
-            ITypeDefinition typeInfo = Binder.Decompiler.TypeSystem.MainModule.Compilation.FindType(name).GetDefinition();
+            ITypeDefinition typeInfo = decompiler.TypeSystem.MainModule.Compilation.FindType(name).GetDefinition();
             var tokenOfType = typeInfo.MetadataToken;
-            var st = Binder.Decompiler.Decompile(tokenOfType);
+            var st = decompiler.Decompile(tokenOfType);
+
+            nodesCollector = new TokenMapVisitor();
+            st.AcceptVisitor(nodesCollector);
+
+            if (!Binder.UnityCoreModuleSet.Contains(genType.Module.Name))
+                return;
+
             st.AcceptVisitor(retainFilter);
             retainDic = retainFilter.RetainDic;
 
             if (retainDic.Count > 0)
-                RefNameSpace.Add("System.Runtime.CompilerServices");
+                RefNameSpace.UnionWith(retainFilter.NamespaceRef);
         }
         bool IsCopyOrignNode(MemberReference member)
         {
@@ -341,6 +370,15 @@ namespace Generater
             var outputVisitor = new CustomOutputVisitor(genType.IsNested,CS.Writer.GetWriter(), Binder.DecompilerSetting.CSharpFormattingOptions);
             foreach (var node in retainDic.Values)
                 node.AcceptVisitor(outputVisitor);
+
+            foreach (var rtype in outputVisitor.InternalTypeRef)
+            {
+                var td = genType.Module.GetType(rtype);
+                if (td != null)
+                    Binder.AddType(td);
+                else if (genType.Module.TryGetTypeReference(rtype, out var tref))
+                    Binder.AddTypeRef(tref);
+            }
         }
     }
 }

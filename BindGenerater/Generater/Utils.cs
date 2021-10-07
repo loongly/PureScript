@@ -1,4 +1,6 @@
-﻿using Mono.Cecil;
+﻿using ICSharpCode.Decompiler.CSharp.Syntax;
+using ICSharpCode.Decompiler.TypeSystem;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -147,7 +149,7 @@ namespace Generater
 
         public static bool Filter(MethodDefinition method)
         {
-            if (!Filter(method.ReturnType))
+            if (!Filter(method.ReturnType) || !Filter(method.DeclaringType) || method.DeclaringType.IsNotPublic)
                 return false;
 
             if (IsObsolete(method))
@@ -243,7 +245,7 @@ namespace Generater
                 }
             }
 
-            if (type.IsGeneric() && !IsDelegate(type)) // 
+            if (type.IsGeneric() && !(IsDelegate(type) || IsFullValueType(type))) // 
             {
                 Log("ignorType: " + type.FullName);
                 DropTypes.Add(type);
@@ -449,7 +451,7 @@ namespace Generater
                 return type.Name;
 
             var typeName = TypeResolver.Resolve(type).RealTypeName();
-            var baseType = typeName.Substring(0, typeName.IndexOf('`'));
+            var baseType = typeName.Substring(0, typeName.IndexOf('<'));
 
             var param = "<";
 
@@ -596,19 +598,36 @@ namespace Generater
             return _type.IsValueType && !IsFullValueType(_type);
         }
 
+        public static bool IsFullValueType(IType _type)
+        {
+            var tn = _type.GetDefinition().FullTypeName.ReflectionName.Replace("+", "/");
+
+            var td = Binder.curModule.GetType(tn);
+            if (td != null)
+                return IsFullValueType(td);
+            else if (Binder.curModule.TryGetTypeReference(tn, out var tref))
+                return IsFullValueType(tref);
+
+            return false;
+        }
+
         public static bool IsFullValueType(TypeReference _type)
         {
+            if (_type.IsPointer)
+                _type = _type.GetElementType();
             var type = _type.Resolve();
-            if (!_type.IsValueType)
-            {
-                return false;
-            }
+            
             if (type == null)
                 return false;
 
             if (_type.IsPrimitive || type.IsEnum || _type.IsVoid())
             {
                 return true;
+            }
+
+            if (!_type.IsValueType)
+            {
+                return false;
             }
 
             foreach (var field in type.Fields)
@@ -776,6 +795,21 @@ namespace Generater
             }
         }
 
+
+        public static Dictionary<int, AstNode> TokenMap;
+        public static string GetMethodDelcear(MethodDefinition method)
+        {
+            if(method.IsConstructor && method.Parameters.Count == 0)
+            {
+                return $"public {method.DeclaringType.Name}()";
+            }
+
+            var token = method.MetadataToken.ToInt32();
+            StringWriter writer = new StringWriter();
+            var output = new MethodDeclearVisitor(false, writer, Binder.DecompilerSetting.CSharpFormattingOptions);
+            TokenMap[token].AcceptVisitor(output);
+            return writer.ToString();
+        }
     }
 
     public class NameCounter

@@ -1,4 +1,5 @@
-﻿using ICSharpCode.Decompiler.CSharp.OutputVisitor;
+﻿using Generater;
+using ICSharpCode.Decompiler.CSharp.OutputVisitor;
 using ICSharpCode.Decompiler.CSharp.Syntax;
 using ICSharpCode.Decompiler.CSharp.Transforms;
 using ICSharpCode.Decompiler.Semantics;
@@ -12,16 +13,13 @@ using System.Threading.Tasks;
 
 public class CustomOutputVisitor : CSharpOutputVisitor
 {
-    static HashSet<string> IgnoreUsing = new HashSet<string>();
-    static CustomOutputVisitor()
-    {
-        IgnoreUsing.Add("UnityEngine.Internal");
-        IgnoreUsing.Add("UnityEngine.Scripting.APIUpdating");
-    }
+    static HashSet<string> IgnoreUsing = Binder.IgnoreUsing;
 
     protected bool isNested;
     public List<string> nestedUsing = new List<string>();
     public HashSet<string> IgnoreNestType = new HashSet<string>();
+    public HashSet<string> InternalTypeRef = new HashSet<string>();
+
     public CustomOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(textWriter, formattingPolicy)
     {
         isNested = _isNested;
@@ -85,22 +83,27 @@ public class CustomOutputVisitor : CSharpOutputVisitor
 
         base.VisitTypeDeclaration(typeDeclaration);
     }
+
+    public override void VisitSimpleType(SimpleType simpleType)
+    {
+        var res = simpleType.Resolve() as TypeResolveResult;
+        if(res != null )
+        {
+            var td = res.Type.GetDefinition();
+            if(td != null && td.Accessibility != Accessibility.Public && td.DeclaringType == null)
+                InternalTypeRef.Add(res.Type.FullName);
+        }
+        base.VisitSimpleType(simpleType);
+    }
 }
 
 public class BlittableOutputVisitor : CustomOutputVisitor
 {
-
-
     public BlittableOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(_isNested,textWriter, formattingPolicy)
     {
     }
-
-
-
-
     public override void VisitFieldDeclaration(FieldDeclaration fieldDeclaration)
     {
-        
         foreach(var token in fieldDeclaration.ModifierTokens)
         {
             if (token.Modifier == Modifiers.Static)
@@ -109,68 +112,28 @@ public class BlittableOutputVisitor : CustomOutputVisitor
 
         base.VisitFieldDeclaration(fieldDeclaration);
     }
-
-    public override void VisitIndexerDeclaration(IndexerDeclaration indexerDeclaration)
-    {
-        return;
-        base.VisitIndexerDeclaration(indexerDeclaration);
-    }
-
-    public override void VisitConstructorDeclaration(ConstructorDeclaration constructorDeclaration)
-    {
-        return ;
-        base.VisitConstructorDeclaration(constructorDeclaration);
-    }
-
-    public override void VisitOperatorDeclaration(OperatorDeclaration operatorDeclaration)
-    {
-        return;
-
-        //if (operatorDeclaration.Name == "op_Implicit" || operatorDeclaration.Name == "op_Explicit")
-           
-        base.VisitOperatorDeclaration(operatorDeclaration);
-    }
-
-    public override void VisitMethodDeclaration(MethodDeclaration methodDeclaration)
-    {
-        bool forceWrite = false;
-        if (!methodDeclaration.HasModifier(Modifiers.Public) && methodDeclaration.Name == "Dispose")
-            forceWrite = true;
-
-        if (forceWrite)
-            base.VisitMethodDeclaration(methodDeclaration);
-    }
-    public override void VisitPropertyDeclaration(PropertyDeclaration propertyDeclaration)
-    {
-        if (!propertyDeclaration.HasModifier(Modifiers.Public) && propertyDeclaration.Name == "Current")
-            base.VisitPropertyDeclaration(propertyDeclaration);
-    }
 }
 
-/*
-public class CheckMethodBodyVisible: CSharpOutputVisitor
+public class MethodDeclearVisitor: CustomOutputVisitor
 {
-    public bool IsVisible = true;
-
-    public CheckMethodBodyVisible(TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(textWriter, formattingPolicy)
+    bool hasBodyBlock;
+    public MethodDeclearVisitor(bool outputBodyBlock,TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(false, textWriter, formattingPolicy)
     {
+        hasBodyBlock = outputBodyBlock;
     }
 
-    public override void VisitMethodDeclaration(MethodDeclaration methodDeclaration)
+    protected override void WriteMethodBody(BlockStatement body, BraceStyle style)
     {
-        if (!IsVisible)
+        if (!hasBodyBlock)
             return;
-
-        IsVisible = methodDeclaration.HasModifier(Modifiers.Public);
-        base.VisitMethodDeclaration(methodDeclaration);
+        base.WriteMethodBody(body, style);
     }
-    public override void VisitPropertyDeclaration(PropertyDeclaration propertyDeclaration)
+
+    public override void VisitConstructorInitializer(ConstructorInitializer constructorInitializer)
     {
-        if (!IsVisible)
+        if (!hasBodyBlock)
             return;
-
-        IsVisible = propertyDeclaration.HasModifier(Modifiers.Public);
-
-        base.VisitPropertyDeclaration(propertyDeclaration);
+        base.VisitConstructorInitializer(constructorInitializer);
     }
-}*/
+
+}
