@@ -21,6 +21,7 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
     public HashSet<string> NamespaceRef = new HashSet<string>();
     private int targetTypeToken;
     private MetadataModule module;
+    public Dictionary<int, AstNode> TokenMap = new Dictionary<int, AstNode>();
 
     public RetainFilter(int tarTypeToken, CSharpDecompiler decompiler)
     {

@@ -16,6 +16,9 @@ namespace Generater
             genMethod = method;
             isNotImplement = !Utils.Filter(method);
 
+            if (isNotImplement)//maybe generate a empty method?
+                return;
+
             if (!genMethod.IsPublic && !genMethod.DeclaringType.IsInterface)
                 return;
             if (genMethod.IsConstructor && genMethod.DeclaringType.IsAbstract)
@@ -34,6 +37,9 @@ namespace Generater
 
         public override void Gen()
         {
+            if (isNotImplement)
+                return;
+
             writer = CS.Writer;
             base.Gen();
 

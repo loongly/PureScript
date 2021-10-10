@@ -34,6 +34,17 @@ namespace Generater
         {
             "System.Collections",
             "UnityEditor",
+            "UnityEngine.Experimental",
+            "LowLevel.Unsafe",
+            "UnityEngine.TestTools",
+
+            //platform specific
+            "UnityEngine.WSA",
+            "UnityEngine.iOS",
+            "UnityEngine.tvOS",
+            "UnityEngine.Apple",
+            "UnityEngine.Handheld",
+            "UnityEngine.Social"
         };
 
         public static HashSet<string> UnityCoreModuleSet = new HashSet<string>
@@ -47,7 +58,8 @@ namespace Generater
             "UnityEngine.Internal",
             "UnityEngine.Scripting.APIUpdating",
             "UnityEngine.Bindings",
-            "Unity.Burst"
+            "Unity.IL2CPP.CompilerServices",
+            "Unity.Burst",
         };
 
         public static void Init(string outDir)
@@ -111,7 +123,7 @@ namespace Generater
 
             foreach (TypeDefinition type in moduleTypes)
             {
-                if (!type.IsPublic)
+                if (!type.IsPublic || type.IsInterface)
                     continue;
 
                 AddType(type);
