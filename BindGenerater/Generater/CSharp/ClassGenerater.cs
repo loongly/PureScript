@@ -140,7 +140,6 @@ namespace Generater
 
         public override void Gen()
         {
-
             using (new CS(new CodeWriter(FileStream)))
             {
                 base.Gen();
@@ -170,21 +169,25 @@ namespace Generater
                         CS.Writer.Start($"namespace {genType.Namespace}");
                     }
                 }
-                
-                var flag = "public";
-                if (genType.IsAbstract)
-                    flag += " abstract";
 
-                var classDefine = $"{flag} class {genType.Name}";
+                bool isStatic = genType.IsAbstract && genType.IsSealed;
+                var classDefine = "public";
+                if (isStatic)
+                    classDefine += " static";
+                else if(genType.IsAbstract)
+                    classDefine += " abstract";
 
                 if (genType.IsInterface)
-                {
-                   // classDefine += $" : WObject";
-                }
-                else if (genType.BaseType != null)
+                    classDefine += " interface ";
+                else
+                    classDefine += " class ";
+
+                classDefine += genType.Name;
+
+                if (genType.BaseType != null && !isStatic)
                 {
                     string baseName = genType.BaseType.IsNested ? genType.BaseType.FullName.Replace("/", ".") : genType.BaseType.Name;
-                    if (genType.BaseType.FullName == "System.Object")
+                    if (genType.BaseType.FullName == "System.Object" )
                         baseName = "WObject";
                     else
                         Binder.AddType(genType.BaseType.Resolve());
@@ -228,8 +231,6 @@ namespace Generater
 
         bool IsCopyOrignType(TypeDefinition type)
         {
-            if (type.IsAbstract && type.IsSealed) // static class
-                return true;
 
             if (Utils.IsFullValueType(type))
                 return true;
@@ -333,7 +334,7 @@ namespace Generater
             
             var decompiler = Binder.GetDecompiler(genType.Module.Name);
 
-            var retainFilter = new RetainFilter(genType.MetadataToken.ToInt32(), decompiler);
+            
             var tName = genType.FullName.Replace("/", "+");
             var name = new FullTypeName(tName);
             ITypeDefinition typeInfo = decompiler.TypeSystem.MainModule.Compilation.FindType(name).GetDefinition();
@@ -346,6 +347,8 @@ namespace Generater
             if (!Binder.UnityCoreModuleSet.Contains(genType.Module.Name))
                 return;
 
+            var retainFilter = new RetainFilter(genType.MetadataToken.ToInt32(), decompiler);
+            retainFilter.TokenMap = nodesCollector.TokenMap;
             st.AcceptVisitor(retainFilter);
             retainDic = retainFilter.RetainDic;
 

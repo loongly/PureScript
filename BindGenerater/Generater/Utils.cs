@@ -218,7 +218,6 @@ namespace Generater
         private static HashSet<TypeReference> DropTypes = new HashSet<TypeReference>();
         public static bool Filter(TypeReference type)
         {
-
             if (DropTypes.Contains(type))
                 return false;
 
@@ -282,6 +281,11 @@ namespace Generater
 
             if (td != null && td.IsStruct())
             {
+                if(!IsFullValueType(td))
+                {
+                    DropTypes.Add(type);
+                    return false;
+                }
                 foreach (var f in td.Fields)
                 {
                     if (!f.IsStatic && !Utils.Filter(f.FieldType))
