@@ -20,7 +20,11 @@ public class TokenMapVisitor: DepthFirstAstVisitor
         InsertMap(methodDeclaration);
         base.VisitMethodDeclaration(methodDeclaration);
     }
-
+    public override void VisitFieldDeclaration(FieldDeclaration fieldDeclaration)
+    {
+        InsertMap(fieldDeclaration);
+        base.VisitFieldDeclaration(fieldDeclaration);
+    }
     public override void VisitConstructorDeclaration(ConstructorDeclaration constructorDeclaration)
     {
         InsertMap(constructorDeclaration);
@@ -31,6 +35,17 @@ public class TokenMapVisitor: DepthFirstAstVisitor
     {
         InsertMap(operatorDeclaration);
         base.VisitOperatorDeclaration(operatorDeclaration);
+    }
+    public override void VisitAccessor(Accessor accessor)
+    {
+        InsertMap(accessor);
+        base.VisitAccessor(accessor);
+    }
+
+    public override void VisitTypeDeclaration(TypeDeclaration typeDeclaration)
+    {
+        InsertMap(typeDeclaration);
+        base.VisitTypeDeclaration(typeDeclaration);
     }
 
     void InsertMap(AstNode node)

@@ -59,15 +59,10 @@ namespace Generater
 
         void GenProperty()
         {
-            var flag = isStatic ? "static " : "";
-            if (isAbstract)
-                flag += "abstract ";
-            else if (isOverride)
-                flag += "override ";
-            else if(isVirtual)
-                flag += "virtual ";
 
-            CS.Writer.Start($"public {flag}{TypeResolver.Resolve(genProperty.PropertyType).RealTypeName()} {genProperty.Name}");
+            var declear = Utils.GetMemberDelcear(genProperty);
+
+            CS.Writer.Start(declear);
 
             foreach (var m in methods)
                 m.Gen();

@@ -34,8 +34,6 @@ namespace Generater
         {
             "System.Collections",
             "UnityEditor",
-            "UnityEngine.Experimental",
-            "LowLevel.Unsafe",
             "UnityEngine.TestTools",
 
             //platform specific
@@ -60,6 +58,17 @@ namespace Generater
             "UnityEngine.Bindings",
             "Unity.IL2CPP.CompilerServices",
             "Unity.Burst",
+            "UnityEngine.Bindings"
+        };
+
+        public static HashSet<string> retainTypes = new HashSet<string>()
+        {
+            "UnityEngine.Transform",
+            "UnityEngine.Texture",
+            "UnityEngine.UnityException",
+            "UnityEngine.UnityString",
+            "UnityEngine.CastHelper`1",
+            "UnityEngineInternal.MathfInternal"
         };
 
         public static void Init(string outDir)
@@ -98,6 +107,7 @@ namespace Generater
 
             DecompilerSetting = new DecompilerSettings(LanguageVersion.CSharp7);
             DecompilerSetting.ThrowOnAssemblyResolveErrors = false;
+            DecompilerSetting.UseExpressionBodyForCalculatedGetterOnlyProperties = false;
 
             ManagedDir = Path.GetDirectoryName(dllPath);
             DefaultAssemblyResolver resolver = new DefaultAssemblyResolver();

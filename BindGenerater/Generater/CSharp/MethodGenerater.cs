@@ -139,7 +139,14 @@ namespace Generater
 
         void GenMethod()
         {
-            writer.Start(GetMethodDelcear());
+            var declear = GetMethodDelcear();
+            if(!genMethod.HasBody)
+            {
+                writer.WriteLine(declear);
+                return;
+            }
+
+            writer.Start(declear);
 
             if (isNotImplement)
             {
@@ -181,7 +188,7 @@ namespace Generater
 
         string GetMethodDelcear()
         {
-            string declear = Utils.GetMethodDelcear(genMethod);
+            string declear = Utils.GetMemberDelcear(genMethod);
 
             if (genMethod.IsConstructor && genMethod.DeclaringType.IsValueType)
                 declear += ":this()";

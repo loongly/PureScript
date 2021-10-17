@@ -48,13 +48,20 @@ static internal class TypeDefinitionExtensions
      .Any(ifaceDef => DoesSpecificInterfaceImplementInterface(ifaceDef.InterfaceType.Resolve(), parentInterfaceDef));
    }
 
-   /// <summary>
-   /// Does interface iface0 equal or implement interface iface1
-   /// </summary>
-   /// <param name="iface0"></param>
-   /// <param name="iface1"></param>
-   /// <returns></returns>
-   public static bool DoesSpecificInterfaceImplementInterface(TypeDefinition iface0, TypeDefinition iface1)
+    public static bool DoesSpecificTypeImplementInterface(this TypeDefinition childTypeDef, string interfaceName)
+    {
+        return childTypeDef
+       .Interfaces
+       .Any(ifaceDef => ifaceDef.InterfaceType.Name == interfaceName);
+    }
+
+    /// <summary>
+    /// Does interface iface0 equal or implement interface iface1
+    /// </summary>
+    /// <param name="iface0"></param>
+    /// <param name="iface1"></param>
+    /// <returns></returns>
+    public static bool DoesSpecificInterfaceImplementInterface(TypeDefinition iface0, TypeDefinition iface1)
    {
      Debug.Assert(iface1.IsInterface);
      Debug.Assert(iface0.IsInterface);
