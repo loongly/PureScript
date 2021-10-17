@@ -52,10 +52,10 @@ public static class AstNodeExtensions
         AstNode m = node as AstNode;
         while (m.Parent != null)
         {
-            if (m.Parent.GetType() == typeof(T))
-            {
-                return m.Parent as T;
-            }
+            var p = m.Parent as T;
+            if (p != null)
+                return p;
+            
             m = m.Parent;
         }
         return default(T);

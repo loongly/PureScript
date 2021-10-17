@@ -98,7 +98,7 @@ namespace Generater
             var genericIndex = tName.IndexOf('`');
             if(genericIndex > 0)
             {
-                tName = tName.Substring(0, genericIndex) + tName.Substring(tName.IndexOf('<'));
+                tName = tName.Remove(genericIndex, 2);
             }
 
             return tName.Replace("/",".");

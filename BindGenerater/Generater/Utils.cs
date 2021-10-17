@@ -221,6 +221,9 @@ namespace Generater
             if (DropTypes.Contains(type))
                 return false;
 
+            if (Binder.retainTypes.Contains(type.FullName))
+                return true;
+
             foreach (var t in IgnoreTypeSet)
             {
                 if (type.FullName.Contains(t))
@@ -244,7 +247,7 @@ namespace Generater
                 }
             }
 
-            if (type.IsGeneric() && !(IsDelegate(type) || IsFullValueType(type))) // 
+            if (type.IsGeneric() && !(IsDelegate(type))) // 
             {
                 Log("ignorType: " + type.FullName);
                 DropTypes.Add(type);
@@ -307,6 +310,20 @@ namespace Generater
                 }
 
                 ct = ct.BaseType();
+            }
+
+            return true;
+        }
+
+        public static bool Filter(ITypeDefinition type)
+        {
+            var tName = type.FullTypeName.ReflectionName.Replace("+", "/");
+            TypeReference tref = Binder.curModule.GetType(tName);
+            if (tref == null)
+                Binder.curModule.TryGetTypeReference(tName, out tref);
+            if(tref != null)
+            {
+                return Filter(tref);
             }
 
             return true;
@@ -593,6 +610,14 @@ namespace Generater
             {
                 set.Add(p.ParameterType.Namespace);
             }
+
+            foreach(var attr in method.CustomAttributes)
+            {
+                var ns = attr.AttributeType.Namespace;
+                if (ns.StartsWith("System"))
+                    set.Add(ns);
+            }
+
             set.Remove("");
             return set;
         }
@@ -801,16 +826,22 @@ namespace Generater
 
 
         public static Dictionary<int, AstNode> TokenMap;
-        public static string GetMethodDelcear(MethodDefinition method)
+        public static string GetMemberDelcear(IMemberDefinition member, HashSet<string> stripInterface = null)
         {
-            if(method.IsConstructor && method.Parameters.Count == 0)
+            var method = member as MethodDefinition;
+            if(method != null)
             {
-                return $"public {method.DeclaringType.Name}()";
+                if (method.IsConstructor && method.Parameters.Count == 0)
+                {
+                    return $"public {method.DeclaringType.Name}()";
+                }
             }
 
-            var token = method.MetadataToken.ToInt32();
+            var token = member.MetadataToken.ToInt32();
             StringWriter writer = new StringWriter();
-            var output = new MethodDeclearVisitor(false, writer, Binder.DecompilerSetting.CSharpFormattingOptions);
+            var output = new MemberDeclearVisitor(false, writer, Binder.DecompilerSetting.CSharpFormattingOptions);
+            if (stripInterface != null)
+                output.stripInterfaceSet = stripInterface;
             TokenMap[token].AcceptVisitor(output);
             return writer.ToString();
         }

@@ -19,7 +19,11 @@ public class CustomOutputVisitor : CSharpOutputVisitor
     public List<string> nestedUsing = new List<string>();
     public HashSet<string> IgnoreNestType = new HashSet<string>();
     public HashSet<string> InternalTypeRef = new HashSet<string>();
+    public HashSet<string> stripInterfaceSet = new HashSet<string>();
 
+    public bool AddWObject = false;
+    public bool isFullRetain = false;
+    string curTypeName = null;
     public CustomOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(textWriter, formattingPolicy)
     {
         isNested = _isNested;
@@ -60,26 +64,44 @@ public class CustomOutputVisitor : CSharpOutputVisitor
             base.VisitUsingDeclaration(usingDeclaration);
     }
 
-    public override void VisitTypeDeclaration(TypeDeclaration typeDeclaration)
+    protected void ResolveTypeDeclear(TypeDeclaration typeDeclaration)
     {
-        var type = typeDeclaration.Annotation<ResolveResult>().Type;
-        if (IgnoreNestType.Contains(type.Name))
-            return;
-
         if (typeDeclaration.ClassType == ClassType.Struct || typeDeclaration.ClassType == ClassType.Class)
         {
             typeDeclaration.Modifiers |= Modifiers.Partial;
+            if (typeDeclaration.HasModifier(Modifiers.Readonly))
+                typeDeclaration.Modifiers ^= Modifiers.Readonly;
         }
+        /*else if(typeDeclaration.ClassType == ClassType.Interface)
+        {
+            typeDeclaration.BaseTypes.Add(new SimpleType("IWObject"));
+        }*/
 
         List<AstType> dList = new List<AstType>();
         foreach (var t in typeDeclaration.BaseTypes)
         {
             var at = t.Annotation<ResolveResult>();
-            if (at.Type.Kind == TypeKind.Interface && !at.Type.Namespace.StartsWith("System"))
+            if (at.Type.Kind == TypeKind.Interface && (!at.Type.Namespace.StartsWith("System") || stripInterfaceSet.Contains(at.Type.Name)))
                 dList.Add(t);
         }
         foreach (var t in dList)
             typeDeclaration.BaseTypes.Remove(t);
+
+        if (AddWObject)
+            typeDeclaration.BaseTypes.InsertBefore(typeDeclaration.BaseTypes.FirstOrDefault(),new SimpleType("WObject"));
+    }
+
+    public override void VisitTypeDeclaration(TypeDeclaration typeDeclaration)
+    {
+        if (!string.IsNullOrEmpty(curTypeName) && !isFullRetain)
+            return;
+
+        curTypeName = typeDeclaration.Name;
+        var type = typeDeclaration.Annotation<ResolveResult>().Type;
+        if (IgnoreNestType.Contains(type.Name))
+            return;
+
+        ResolveTypeDeclear(typeDeclaration);
 
         base.VisitTypeDeclaration(typeDeclaration);
     }
@@ -90,34 +112,58 @@ public class CustomOutputVisitor : CSharpOutputVisitor
         if(res != null )
         {
             var td = res.Type.GetDefinition();
-            if(td != null && td.Accessibility != Accessibility.Public && td.DeclaringType == null)
-                InternalTypeRef.Add(res.Type.FullName);
+            if(td != null && !td.Namespace.StartsWith("System")) 
+                InternalTypeRef.Add(td.FullTypeName.ReflectionName);
         }
         base.VisitSimpleType(simpleType);
     }
 }
 
-public class BlittableOutputVisitor : CustomOutputVisitor
+public class BlittablePartOutputVisitor : CustomOutputVisitor
 {
-    public BlittableOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(_isNested,textWriter, formattingPolicy)
+    public BlittablePartOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(_isNested, textWriter, formattingPolicy)
     {
     }
+
     public override void VisitFieldDeclaration(FieldDeclaration fieldDeclaration)
     {
-        foreach(var token in fieldDeclaration.ModifierTokens)
-        {
-            if (token.Modifier == Modifiers.Static)
-                return;
-        }
+        if(fieldDeclaration.HasModifier(Modifiers.Static) && !fieldDeclaration.HasModifier(Modifiers.Readonly))
+            return;
 
         base.VisitFieldDeclaration(fieldDeclaration);
     }
+
+    public override void VisitIndexerDeclaration(IndexerDeclaration indexerDeclaration)
+    {
+        return;
+    }
+
+    public override void VisitConstructorDeclaration(ConstructorDeclaration constructorDeclaration)
+    {
+        return;
+    }
+
+    public override void VisitOperatorDeclaration(OperatorDeclaration operatorDeclaration)
+    {
+        return;
+    }
+
+    public override void VisitMethodDeclaration(MethodDeclaration methodDeclaration)
+    {
+        return;
+    }
+    public override void VisitPropertyDeclaration(PropertyDeclaration propertyDeclaration)
+    {
+        return;
+    }
 }
 
-public class MethodDeclearVisitor: CustomOutputVisitor
+
+public class MemberDeclearVisitor: CustomOutputVisitor
 {
     bool hasBodyBlock;
-    public MethodDeclearVisitor(bool outputBodyBlock,TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(false, textWriter, formattingPolicy)
+    
+    public MemberDeclearVisitor(bool outputBodyBlock,TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(false, textWriter, formattingPolicy)
     {
         hasBodyBlock = outputBodyBlock;
     }
@@ -128,12 +174,73 @@ public class MethodDeclearVisitor: CustomOutputVisitor
             return;
         base.WriteMethodBody(body, style);
     }
-
+    
     public override void VisitConstructorInitializer(ConstructorInitializer constructorInitializer)
     {
         if (!hasBodyBlock)
             return;
         base.VisitConstructorInitializer(constructorInitializer);
+    }
+
+    public override void VisitPropertyDeclaration(PropertyDeclaration propertyDeclaration)
+    {
+        if (!hasBodyBlock)
+        {
+            StartNode(propertyDeclaration);
+            WriteAttributes(propertyDeclaration.Attributes);
+            WriteModifiers(propertyDeclaration.ModifierTokens);
+            propertyDeclaration.ReturnType.AcceptVisitor(this);
+            Space();
+            WritePrivateImplementationType(propertyDeclaration.PrivateImplementationType);
+            WriteIdentifier(propertyDeclaration.NameToken);
+            EndNode(propertyDeclaration);
+            return;
+        }
+        base.VisitPropertyDeclaration(propertyDeclaration);
+    }
+
+    public override void VisitTypeDeclaration(TypeDeclaration typeDeclaration)
+    {
+        ResolveTypeDeclear(typeDeclaration);
+
+        if (!hasBodyBlock)
+        {
+            StartNode(typeDeclaration);
+            WriteModifiers(typeDeclaration.ModifierTokens);
+            BraceStyle braceStyle;
+            switch (typeDeclaration.ClassType)
+            {
+                case ClassType.Enum:
+                    WriteKeyword(Roles.EnumKeyword);
+                    braceStyle = policy.EnumBraceStyle;
+                    break;
+                case ClassType.Interface:
+                    WriteKeyword(Roles.InterfaceKeyword);
+                    braceStyle = policy.InterfaceBraceStyle;
+                    break;
+                case ClassType.Struct:
+                    WriteKeyword(Roles.StructKeyword);
+                    braceStyle = policy.StructBraceStyle;
+                    break;
+                default:
+                    WriteKeyword(Roles.ClassKeyword);
+                    braceStyle = policy.ClassBraceStyle;
+                    break;
+            }
+            WriteIdentifier(typeDeclaration.NameToken);
+            WriteTypeParameters(typeDeclaration.TypeParameters);
+            if (typeDeclaration.BaseTypes.Any())
+            {
+                Space();
+                WriteToken(Roles.Colon);
+                Space();
+                WriteCommaSeparatedList(typeDeclaration.BaseTypes);
+            }
+
+            return;
+        }
+
+        base.VisitTypeDeclaration(typeDeclaration);
     }
 
 }
