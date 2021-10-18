@@ -845,6 +845,22 @@ namespace Generater
             TokenMap[token].AcceptVisitor(output);
             return writer.ToString();
         }
+
+        public static void CopyDir(string src,string tar,string postfix)
+        {
+            if (!Directory.Exists(tar))
+                Directory.CreateDirectory(tar);
+
+            foreach (string fi in Directory.GetFiles(src))
+            {
+                if(fi.EndsWith(postfix))
+                {
+                    string fname = Path.GetFileName(fi);
+                    string targetfname = Path.Combine(tar, fname);
+                    File.Copy(fi, targetfname, true);
+                }
+            }
+        }
     }
 
     public class NameCounter
