@@ -199,7 +199,7 @@ namespace Generater
 
         public override string TypeName()
         {
-            return "int";
+            return "IntPtr";
         }
 
         /// <summary>

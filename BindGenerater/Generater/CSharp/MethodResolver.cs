@@ -156,7 +156,7 @@ namespace Generater
             if(IsValueTypeConstructor)
                 return "void";
 
-            return "int";
+            return "IntPtr";
         }
 
         /// <summary>
