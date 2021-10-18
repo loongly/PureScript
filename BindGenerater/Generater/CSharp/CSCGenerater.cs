@@ -39,35 +39,37 @@ namespace Generater
             "Tools/CustomBinder.cs",
             "Tools/ObjectStore.wrapper.cs",
             "Tools/ScriptEngine.cs",
-            "Tools/StringStore.cs",
             
         };
 
         public static CSCGenerater AdapterCompiler;
         public static CSCGenerater AdapterWrapperCompiler;
         private static string OutDir;
+        private static string DllRefDir;
         private static string AdapterDir;
         private static HashSet<string> IgnoreRefSet = new HashSet<string>();
         private static Dictionary<string, CSCGenerater> WrapperDic = new Dictionary<string, CSCGenerater>();
 
-        public static void Init(string cscDir,string adapterDir,HashSet<string> ignoreRefSet)
+        public static void Init(string cscDir,string adapterDir, string outDir,string dllRefDir, HashSet<string> ignoreRefSet)
         {
-            string outDir = Path.Combine(adapterDir, "out");
             CSCPath = Path.Combine(cscDir, Utils.IsWin32() ? "csc.exe":"csc") ;
             OutDir = outDir;
+            DllRefDir = dllRefDir;
             AdapterDir = adapterDir;
             IgnoreRefSet = ignoreRefSet;
             AdapterCompiler = new CSCGenerater(Path.Combine(outDir, "Adapter.gen.dll"));
             
             foreach(var file in AdapterSrc)
                 AdapterCompiler.AddSource(Path.Combine(adapterDir,file));
+
+            SetWrapper("Adapter.wrapper.dll");
         }
 
         public static void SetWrapper(string dllName)
         {
             if (!WrapperDic.TryGetValue(dllName,out AdapterWrapperCompiler))
             {
-                AdapterWrapperCompiler = new CSCGenerater(Path.Combine(OutDir, "Adapter.wrapper.dll"));
+                AdapterWrapperCompiler = new CSCGenerater(Path.Combine(OutDir, dllName));
                 foreach (var file in AdapterWrapperSrc)
                     AdapterWrapperCompiler.AddSource(Path.Combine(AdapterDir, file));
                 AdapterWrapperCompiler.AddDefine("WRAPPER_SIDE");
@@ -125,15 +127,15 @@ namespace Generater
                 foreach (var flag in addtionFlag)
                     config.WriteLine(flag);
                 foreach (var refFile in addtionRef)
-                    config.WriteLine($"-r:{Path.Combine(OutDir, refFile)}");
+                    config.WriteLine($"-r:{Path.Combine(DllRefDir, refFile)}");
                 foreach (var refFile in refSet)
-                    config.WriteLine($"-r:{Path.Combine(OutDir, refFile)}");
+                    config.WriteLine($"-r:{Path.Combine(DllRefDir, refFile)}");
                 foreach (var define in defineSet)
                     config.WriteLine($"-define:{define}");
 
                 var netstandFile = Path.Combine(OutDir, "netstandard.dll");
                 if(File.Exists(netstandFile))
-                    config.WriteLine($"-r:{Path.Combine(OutDir, netstandFile)}");
+                    config.WriteLine($"-r:{Path.Combine(DllRefDir, netstandFile)}");
 
                 foreach (var src in srcSet)
                     config.WriteLine(src);

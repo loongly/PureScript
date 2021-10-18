@@ -80,27 +80,38 @@ namespace BindGenerater
             options = JsonConvert.DeserializeObject<BindOptions>(json);
 
             string managedDir = Path.Combine(options.ScriptEngineDir, "Managed");
+            string orignDir = Path.Combine(options.ScriptEngineDir, "Managed_orign");
             string adapterDir = Path.Combine(options.ScriptEngineDir, "Adapter");
 
             ReplaceMscorlib("lib", managedDir);
+            Utils.CopyDir(managedDir, orignDir, ".dll");
 
             Binder.Init(Path.Combine(adapterDir, "glue"));
-            CSCGenerater.Init(ToolsetPath, adapterDir, options.AdapterSet);
+            CSCGenerater.Init(ToolsetPath, adapterDir,managedDir, orignDir, options.AdapterSet);
             CBinder.Init(Path.Combine(options.ScriptEngineDir, "generated"));
             AOTGenerater.Init(options.ScriptEngineDir, options.StripDic);
 
 
             var assemblySet = new HashSet<string>();
-            Utils.CollectMonoAssembly(options.Entry, managedDir, options.AdapterSet, assemblySet);
+            Utils.CollectMonoAssembly(options.Entry, orignDir, options.AdapterSet, assemblySet);
             options.AdapterSet.UnionWith(assemblySet.Where(assem => assem.StartsWith("UnityEngine.")));
 
             foreach (var assembly in options.AdapterSet)
             {
-                var filePath = Path.Combine(managedDir, assembly);
                 if (IgnoreAssemblySet.Contains(assembly))
                     continue;
 
-                Binder.Bind(filePath);
+                var filePath = Path.Combine(orignDir, assembly);
+
+                if(File.Exists(filePath))
+                {
+                    Binder.Bind(filePath);
+
+                    var delFile = Path.Combine(managedDir, assembly);
+                    if (File.Exists(delFile))
+                        File.Delete(delFile);
+                }
+                
             }
 
             /*foreach (var filePath in Directory.GetFiles(managedDir))

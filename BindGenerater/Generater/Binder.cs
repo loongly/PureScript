@@ -100,9 +100,6 @@ namespace Generater
 
         public static void Bind(string dllPath)
         {
-            /*var file = Path.GetFileName(dllPath);
-            if (IgnoreAssemblySet.Contains(file))
-                return;*/
             var file = Path.GetFileName(dllPath);
 
             DecompilerSetting = new DecompilerSettings(LanguageVersion.CSharp7);
@@ -121,7 +118,7 @@ namespace Generater
             curModule = ModuleDefinition.ReadModule(dllPath, parameters);
             moduleSet.Add(curModule);
             ICallGenerater.AddWrapperAssembly(curModule.Assembly.Name.Name);
-            CSCGenerater.SetWrapper(file);
+            //CSCGenerater.SetWrapper(file);
             CSCGenerater.AdapterCompiler.AddReference(curModule.Name);
             foreach(var refAssembly in curModule.AssemblyReferences )
             {
