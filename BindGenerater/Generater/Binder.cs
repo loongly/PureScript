@@ -125,6 +125,7 @@ namespace Generater
                 CSCGenerater.AdapterCompiler.AddReference(refAssembly.Name + ".dll");
                 CSCGenerater.AdapterWrapperCompiler.AddReference(refAssembly.Name + ".dll");
             }
+            CSCGenerater.AdapterWrapperCompiler.RemoveReference(curModule.Name);
 
             moduleTypes = new HashSet<TypeReference>(curModule.Types);
 

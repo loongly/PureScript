@@ -29,7 +29,6 @@ namespace Generater
             "glue/Binder.funcser.cs",
             "Tools/CustomBinder.cs",
             "Tools/ObjectStore.cs",
-            "Tools/StringStore.cs",
         };
 
         private static string[] AdapterWrapperSrc = new string[]
@@ -105,6 +104,11 @@ namespace Generater
         {
             //if(!IgnoreRefSet.Contains(target))
             refSet.Add(target);
+        }
+        public void RemoveReference(string target)
+        {
+            //if(!IgnoreRefSet.Contains(target))
+            refSet.Remove(target);
         }
 
         public void AddSource(string file)
