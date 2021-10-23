@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Attribute = ICSharpCode.Decompiler.CSharp.Syntax.Attribute;
 
 public class CustomOutputVisitor : CSharpOutputVisitor
 {
@@ -36,10 +37,13 @@ public class CustomOutputVisitor : CSharpOutputVisitor
             foreach (var att in attSec.Attributes)
             {
                 var t = att.Type.Annotation<ResolveResult>(); // .Annotations.First() as ResolveResult
-                var td = t.Type as ITypeDefinition;
-                if (td.IsBuiltinAttribute() == KnownAttribute.None)
+                if(t != null)
                 {
-                    att.Remove();
+                    var td = t.Type as ITypeDefinition;
+                    if (td.IsBuiltinAttribute() == KnownAttribute.None)
+                    {
+                        att.Remove();
+                    }
                 }
             }
 
@@ -89,6 +93,13 @@ public class CustomOutputVisitor : CSharpOutputVisitor
 
         if (AddWObject)
             typeDeclaration.BaseTypes.InsertBefore(typeDeclaration.BaseTypes.FirstOrDefault(),new SimpleType("WObject"));
+
+        var wrapFlag = new AttributeSection();
+        var wrapAttr = new Attribute();
+        wrapAttr.Type = new SimpleType("WrapperClass");
+        wrapAttr.Arguments.Add(new PrimitiveExpression(Binder.curModule.Name));
+        wrapFlag.Attributes.Add(wrapAttr);
+        typeDeclaration.Attributes.Add(wrapFlag);
     }
 
     public override void VisitTypeDeclaration(TypeDeclaration typeDeclaration)
@@ -127,7 +138,11 @@ public class BlittablePartOutputVisitor : CustomOutputVisitor
 
     public override void VisitFieldDeclaration(FieldDeclaration fieldDeclaration)
     {
+
         if(fieldDeclaration.HasModifier(Modifiers.Static) && !fieldDeclaration.HasModifier(Modifiers.Readonly))
+            return;
+
+        if (fieldDeclaration.HasModifier(Modifiers.Static) && fieldDeclaration.HasModifier(Modifiers.Readonly) && !fieldDeclaration.HasModifier(Modifiers.Public))
             return;
 
         base.VisitFieldDeclaration(fieldDeclaration);

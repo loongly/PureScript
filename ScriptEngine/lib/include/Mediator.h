@@ -12,22 +12,25 @@ extern "C"
 {
 #endif // __cplusplus
 
-	typedef struct UnityObjectHead
+	typedef struct WObjectHead
 	{
 		void* __align1;
 		void* __align2;
 		void* objectPtr;
-	}UnityObjectHead;
+	}WObjectHead;
 
     typedef struct WrapperHead
     {
-        UnityObjectHead objHead;
+        WObjectHead objHead;
         int32_t handle;
     }WrapperHead;
 
     
 	void bind_mono_il2cpp_object(MonoObject* mono, Il2CppObject* il2cpp);
-	MonoObject* get_mono_object(Il2CppObject* il2cpp, MonoClass* m_class);
+	MonoObject* get_mono_object_impl(Il2CppObject* il2cpp, MonoClass* m_class,bool decide_class);
+	inline MonoObject* get_mono_object(Il2CppObject* il2cpp, MonoClass* m_class) {
+		return get_mono_object_impl(il2cpp, m_class, FALSE);
+	}
 	Il2CppObject* get_il2cpp_object(MonoObject* mono,Il2CppClass* m_class);
 	Il2CppObject* get_il2cpp_object_with_ptr(void* objPtr);
 	void* get_il2cpp_internal_ptr(Il2CppObject* obj);

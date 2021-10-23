@@ -15,7 +15,7 @@ namespace Generater
     public static class Binder
     {
         static Queue<CodeGenerater> generaters = new Queue<CodeGenerater>();
-        static HashSet<TypeReference> types = new HashSet<TypeReference>();
+        static Dictionary<string, TypeReference> types = new Dictionary<string, TypeReference>();
         static HashSet<ModuleDefinition> moduleSet = new HashSet<ModuleDefinition>();
         static HashSet<TypeReference> moduleTypes;
         static HashSet<TypeReference> refTypes = new HashSet<TypeReference>();
@@ -152,8 +152,11 @@ namespace Generater
         {
             if (type == null || !moduleTypes.Contains(type))
                 return;
-            if (!types.Add(type))
+
+
+            if (types.ContainsKey(type.FullName))
                 return;
+            types[type.FullName] = type;
 
             if (!Utils.Filter(type))
                 return;
@@ -168,8 +171,9 @@ namespace Generater
             var td = type.Resolve();
             if (td == null)
                 return;
-            if (!types.Add(type))
+            if (types.ContainsKey(td.FullName))
                 return;
+            types[td.FullName] = td;
 
             if (!Utils.Filter(type))
                 return;

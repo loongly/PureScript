@@ -1,14 +1,45 @@
 #include "engine_include.h"
 #include "wrapper.h"
 
+MonoObject* MonoGetObject(void* ptr)
+{
+	Il2CppObject * i2Obj = (Il2CppObject *)ptr;
+	 return get_mono_object_impl(i2Obj, NULL,TRUE);
+}
 
+void* MonoStoreObject(MonoObject* obj, void* ptr)
+{
+	if (ptr == NULL)
+	{
+		Il2CppClass* i2Class = get_il2cpp_class(mono_object_get_class(obj));
+		ptr = get_il2cpp_object(obj, i2Class);
+		if (ptr == NULL)
+			return NULL;
+	}
+
+	bind_mono_il2cpp_object(obj, (Il2CppObject*)ptr);
+	return ptr;
+}
+
+Il2CppObject* Il2cppGetObject(void* ptr)
+{
+	return (Il2CppObject *)ptr;
+}
+void* Il2cppGetObjectPtr(Il2CppObject * obj)
+{
+	return obj;
+}
+
+
+
+/*
 MonoObject* NewObject(MonoReflectionType* type)
 {
 	MonoType* monoType = mono_reflection_type_get_type(type);
 	MonoClass * mclass = mono_class_from_mono_type(monoType);
 	MonoObject* monoObj = mono_object_new(mono_domain_get(), mclass);
 	return monoObj;
-}
+}*/
 
 /*
 MonoObject* UnityEngine_GameObject_CreatePrimitive(int32_t type)
@@ -255,10 +286,10 @@ void UnityEngine_Coroutine_ReleaseCoroutine(void* ptr)
 	if (!icall)
 		icall = (ReleaseCoroutine)il2cpp_resolve_icall("UnityEngine.Coroutine::ReleaseCoroutine");
 
-	Il2CppObject* il2cppObj = get_il2cpp_object_with_ptr(ptr);
-	void* internal_ptr = get_il2cpp_internal_ptr(il2cppObj);
+	/*Il2CppObject* il2cppObj = get_il2cpp_object_with_ptr(ptr);
+	void* internal_ptr = get_il2cpp_internal_ptr(il2cppObj);*/
 
-	icall(internal_ptr);
+	icall(ptr);
 	return;
 }
 
@@ -297,7 +328,12 @@ void mono_register_icall(void)
 
 	regist_icall_gen();
 	
-	mono_add_internal_call("ObjectStore::NewObject", NewObject);
+
+	il2cpp_add_internal_call("ObjectStore::GetObject", (Il2CppMethodPointer)Il2cppGetObject);
+	il2cpp_add_internal_call("ObjectStore::GetObjectPtr", (Il2CppMethodPointer)Il2cppGetObjectPtr);
+
+	mono_add_internal_call("ObjectStore::GetObject", MonoGetObject);
+	mono_add_internal_call("ObjectStore::StoreObject", MonoStoreObject);
 
 	//Aono_add_internal_call("UnityEngine.GameObject::CreatePrimitive", (void*)UnityEngine_GameObject_CreatePrimitive);
 	//Aono_add_internal_call("UnityEngine.DebugLogHandler::Internal_Log", (void*)UnityEngine_DebugLogHandler_Internal_Log);

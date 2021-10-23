@@ -106,25 +106,26 @@ namespace Generater.C
             return name;
         }
 
-        public static bool Filter(PropertyDefinition property)
+        /*public static bool Filter(PropertyDefinition property)
         {
             foreach (var attr in property.CustomAttributes)
             {
                 if (attr.AttributeType.Name.Equals("ObsoleteAttribute"))
                     return false;
             }
+
             return true;
-        }
+        }*/
 
         public static bool Filter(MethodDefinition method)
         {
-            if (!Filter(method.ReturnType))// || !HaveHeadPtr(method.ReturnType)
+            if (!Filter(method.ReturnType))
                 return false;
             foreach (var p in method.Parameters)
             {
-                if (p.ParameterType.IsByReference && !p.ParameterType.GetElementType().IsValueType)
+                if (p.ParameterType.IsByReference && !Utils.IsFullValueType(p.ParameterType.GetElementType()))
                     return false;
-                if (!Filter(p.ParameterType)) // || !HaveHeadPtr(p.ParameterType)
+                if (!Filter(p.ParameterType)) 
                     return false;
             }
 
@@ -150,6 +151,9 @@ namespace Generater.C
                 if (type.FullName.Contains(t))
                     return false;
             }
+            var td = type.Resolve();
+            if (td != null && td.IsStruct() && !Utils.IsFullValueType(type))
+                return false;
 
             return true;
         }

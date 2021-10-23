@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Runtime.InteropServices;
-using AOT;
 using System;
 using System.Reflection;
 
@@ -27,7 +26,8 @@ namespace PureScript.Mono
             var ptr = GetFuncPointer();
             MonoBind.InitBind(GetFuncPointer());
 
-            if(args.Length > 0)
+            Debug.Log("start MonoEntry.Main..");
+            if (args.Length > 0)
             {
                 var dllPath = args[0];
                 Assembly assembly = Assembly.Load(dllPath);
@@ -37,6 +37,16 @@ namespace PureScript.Mono
             }
 
             return 0;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.All)]
+    public class WrapperClassAttribute : Attribute
+    {
+        public string OrignAsm;
+        public WrapperClassAttribute(string orignAsm)
+        {
+            OrignAsm = orignAsm;
         }
     }
 }

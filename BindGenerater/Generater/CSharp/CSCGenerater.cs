@@ -90,7 +90,7 @@ namespace Generater
         }
 
 
-        string outName;
+        public string outName { get; private set; }
         HashSet<string> refSet = new HashSet<string>();
         HashSet<string> srcSet = new HashSet<string>();
         HashSet<string> defineSet = new HashSet<string>();

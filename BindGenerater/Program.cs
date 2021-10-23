@@ -19,9 +19,7 @@ namespace BindGenerater
             public string ScriptEngineDir;
             public HashSet<string> AdapterSet;
             public HashSet<string> InterpSet;
-            public string Entry;
-
-            public Dictionary<string, List<string>> StripDic;
+            public HashSet<string> Entry;
         }
         public enum BindTarget
         {
@@ -89,11 +87,14 @@ namespace BindGenerater
             Binder.Init(Path.Combine(adapterDir, "glue"));
             CSCGenerater.Init(ToolsetPath, adapterDir,managedDir, orignDir, options.AdapterSet);
             CBinder.Init(Path.Combine(options.ScriptEngineDir, "generated"));
-            AOTGenerater.Init(options.ScriptEngineDir, options.StripDic);
-
+            AOTGenerater.Init(options.ScriptEngineDir);
 
             var assemblySet = new HashSet<string>();
-            Utils.CollectMonoAssembly(options.Entry, orignDir, options.AdapterSet, assemblySet);
+            foreach(var entry in options.Entry)
+            {
+                Utils.CollectMonoAssembly(entry, orignDir, options.AdapterSet, assemblySet);
+            }
+
             options.AdapterSet.UnionWith(assemblySet.Where(assem => assem.StartsWith("UnityEngine.")));
 
             foreach (var assembly in options.AdapterSet)
@@ -153,6 +154,18 @@ namespace BindGenerater
 
             if (Mode == BindTarget.All)
             {
+                CBinder.Bind(CSCGenerater.AdapterWrapperCompiler.outName);
+
+                foreach (var filePath in Directory.GetFiles(managedDir))
+                {
+                    var file = Path.GetFileName(filePath);
+                    if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file) && !options.InterpSet.Contains(file))
+                    {
+                        Console.WriteLine("aot: " + file);
+                        AOTGenerater.AddAOTAssembly(filePath);
+                    }
+                }
+
                 CBinder.End();
                 AOTGenerater.End();
             }

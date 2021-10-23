@@ -55,6 +55,12 @@ namespace Generater.C
         public static string GetClass(TypeDefinition type,bool il2cpp = false)
         {
             var filePath = type.Module.Assembly.MainModule.FileName;
+            if(il2cpp)
+            {
+                var flag = type.CustomAttributes.First(attr => attr.AttributeType.Name == "WrapperClassAttribute");
+                if (flag != null)
+                    filePath = flag.ConstructorArguments.First().Value.ToString();
+            }
 
             return GetClass(Path.GetFileNameWithoutExtension(filePath), type.Namespace, type.Name, il2cpp);
         }
