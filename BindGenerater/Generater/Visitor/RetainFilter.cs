@@ -138,6 +138,8 @@ public class RetainFilter :DepthFirstAstVisitor<bool>
         {
             if (fieldDeclaration.HasModifier(Modifiers.Static) && !fieldDeclaration.HasModifier(Modifiers.Readonly))
                 return true;
+            if(fieldDeclaration.HasModifier(Modifiers.Static) && fieldDeclaration.HasModifier(Modifiers.Readonly) && !fieldDeclaration.HasModifier(Modifiers.Public))
+                return true;
 
             return false;
         }

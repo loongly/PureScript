@@ -34,7 +34,9 @@ public static class WObjectExtend
 internal static class ObjectStore
 {
     [MethodImpl(MethodImplOptions.InternalCall)]
-    private static extern object NewObject(Type type);
+    private static extern object GetObject(IntPtr ptr);
+    [MethodImpl(MethodImplOptions.InternalCall)]
+    private static extern IntPtr StoreObject(object obj, IntPtr ptr);
 
     [MethodImpl(MethodImplOptions.InternalCall)]
     private static extern object OnException(Exception e);
@@ -47,12 +49,19 @@ internal static class ObjectStore
 
     public static IntPtr Store(WObject obj,IntPtr handle)
     {
-        return handle;
+        if (obj == null)
+            return IntPtr.Zero;
+
+        return StoreObject(obj,handle);
     }
 
     public static T Get<T>(IntPtr handle)
         where T : WObject
     {
-        return null;
+        if (handle == IntPtr.Zero)
+            return null;
+
+        var obj = GetObject(handle);
+        return obj as T;
     }
 }

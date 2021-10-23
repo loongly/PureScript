@@ -73,11 +73,6 @@ namespace Generater
             foreach (TypeDefinition type in moduleTypes)
             {
                 //Utils.Log(type.FullName);
-                if(!CUtils.Filter(type))
-                {
-                    Utils.Log("ignor type:" + type.FullName);
-                    continue;
-                }
 
                 foreach (var method in type.Methods)
                 {

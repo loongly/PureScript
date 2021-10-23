@@ -46,29 +46,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>E:\Program Files\Unity2018.4.7f\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\..\BindGenerater\EngineLib\full\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>..\..\BindGenerater\EngineLib\full\UnityEngine.SharedInternalsModule.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="glue\Binder.define.cs" />
-    <Compile Include="glue\Binder.funcdeser.cs" />
-    <Compile Include="glue\Binder.PureScript.ExceptionTest.cs" />
-    <Compile Include="glue\Binder.PureScript.StartInfo.cs" />
+    <Compile Include="glue\*.cs" />
+    <Compile Remove="glue\Binder.funcser.cs" />
     <Compile Include="Tools\CustomBinder.cs" />
     <Compile Include="Tools\ObjectStore.wrapper.cs" />
     <Compile Include="Tools\ScriptEngine.cs" />
-    <Compile Include="Tools\StringStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

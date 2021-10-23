@@ -35,12 +35,12 @@ bool is_wrapper_class(Il2CppClass* klass)
 	return is_wrapper_name_space(ns);
 }
 
+/*
 bool is_unity_native(MonoClass* klass)
 {
-	return true;
 	//return mono_check_flag(klass, CLASS_MASK_UNITY_NATIVE);
 	//return  klass->inited & CLASS_MASK_UNITY_NATIVE;
-}
+}*/
 
 
 #pragma region ObjectBind
@@ -80,12 +80,9 @@ void bind_mono_il2cpp_object(MonoObject* mono, Il2CppObject* il2cpp)
 	info.i2_handle = i2Handle;
 	s_il2cppMap[(uint64_t)il2cpp] = info;
 
-	if (is_unity_native(mono_object_get_class(mono)))
-	{
-		UnityObjectHead* monoHead = (UnityObjectHead*)(mono);
-		if (monoHead->objectPtr == NULL)
-			monoHead->objectPtr = il2cpp;
-	}
+	WObjectHead* monoHead = (WObjectHead*)(mono);
+	if (monoHead->objectPtr == NULL)
+		monoHead->objectPtr = il2cpp; // non-compacting gc
 
 	if (gc_queue == NULL)
 		gc_queue = mono_gc_reference_queue_new(on_mono_object_gc);
@@ -94,7 +91,7 @@ void bind_mono_il2cpp_object(MonoObject* mono, Il2CppObject* il2cpp)
 }
 
 
-MonoObject* get_mono_object(Il2CppObject* il2cpp, MonoClass* m_class)
+MonoObject* get_mono_object_impl(Il2CppObject* il2cpp, MonoClass* m_class, bool decide_class)
 {
 	if (il2cpp == NULL)
 		return NULL;
@@ -117,10 +114,16 @@ MonoObject* get_mono_object(Il2CppObject* il2cpp, MonoClass* m_class)
 		if (monoObj == NULL)
 			mono_gchandle_free(monoHandle);
 	}
-	if (monoObj == NULL && m_class != NULL)
+	if (monoObj == NULL)
 	{
-		monoObj = mono_object_new(g_domain, m_class);
-		bind_mono_il2cpp_object(monoObj, il2cpp);
+		if (m_class == NULL && decide_class)
+			m_class = get_mono_class(il2cpp_object_get_class(il2cpp));
+
+		if (m_class != NULL)
+		{
+			monoObj = mono_object_new(g_domain, m_class);
+			bind_mono_il2cpp_object(monoObj, il2cpp);
+		}
 	}
 	return monoObj;
 }
@@ -130,20 +133,17 @@ Il2CppObject* get_il2cpp_object(MonoObject* mono, Il2CppClass* m_class)
 		return NULL;
 
 	Il2CppObject* il2cpp = NULL;
-	if (is_unity_native(mono_object_get_class(mono)))
-	{
-		UnityObjectHead* monoHead = (UnityObjectHead*)(mono);
-		if (monoHead->objectPtr == NULL)
-		{
-			il2cpp = il2cpp_object_new(m_class);
-			bind_mono_il2cpp_object(mono, il2cpp);
-			return il2cpp;
-			//return NULL;
-		}
 
-		return get_il2cpp_object_with_ptr(monoHead->objectPtr);
+	WObjectHead* monoHead = (WObjectHead*)(mono);
+	if (monoHead->objectPtr == NULL)
+	{
+		il2cpp = il2cpp_object_new(m_class);
+		bind_mono_il2cpp_object(mono, il2cpp);
+		return il2cpp;
+		//return NULL;
 	}
-	return NULL;
+
+	return get_il2cpp_object_with_ptr(monoHead->objectPtr);
 }
 
 Il2CppObject* get_il2cpp_object_with_ptr(void* objPtr)
@@ -151,7 +151,7 @@ Il2CppObject* get_il2cpp_object_with_ptr(void* objPtr)
 	if (objPtr == NULL)
 		return NULL;
 
-	return (Il2CppObject*)objPtr; // no move gc
+	return (Il2CppObject*)objPtr; // non-compacting gc
 
 	//uint32_t handle = (uint32_t)objPtr;
 	//return il2cpp_gchandle_get_target(handle);
@@ -159,7 +159,7 @@ Il2CppObject* get_il2cpp_object_with_ptr(void* objPtr)
 
 void* get_il2cpp_internal_ptr(Il2CppObject* obj)
 {
-	UnityObjectHead* head = (UnityObjectHead*)(obj);
+	WObjectHead* head = (WObjectHead*)(obj);
 	return head->objectPtr;
 }
 #pragma endregion
@@ -455,7 +455,7 @@ void call_wrapper_init(Il2CppObject* il2cpp, MonoObject* mono)
     const char* ns = mono_class_get_namespace(mono_object_get_class(mono));
     if (klass == get_monobehaviour_wrapper_class())
     {
-        UnityObjectHead* monoHead = (UnityObjectHead*)(mono);
+        WObjectHead* monoHead = (WObjectHead*)(mono);
         if (monoHead->objectPtr == NULL)
             monoHead->objectPtr = il2cpp;
     }

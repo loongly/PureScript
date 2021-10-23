@@ -2,9 +2,5 @@
   "ScriptEngineDir": "..",
   "AdapterSet": [ "AdapterTest.dll" ],
   "InterpSet": ["TestEntry.dll","Code.dll"],
-  "StripDic": 
-  {
-	"UnityEngine.CoreModule.dll":["Unity.Collections.LowLevel.Unsafe.UnsafeUtility:EnumEquals"]
-  },
-  "Entry":"TestEntry.dll"
+  "Entry":["TestEntry.dll","Code.dll"]
 }

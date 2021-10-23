@@ -34,7 +34,8 @@ namespace Generater
         {
             genType = type;
             RefNameSpace.Add("PureScript.Mono");
-
+            RefNameSpace.Add("System.Runtime.CompilerServices");
+            
             if (writer == null)
             {
                 var filePath = Path.Combine(Binder.OutDir, $"Binder.{TypeFullName()}.cs");
@@ -111,6 +112,9 @@ namespace Generater
             {
                 foreach (MethodDefinition method in genType.Methods)
                 {
+                    if (method.IsConstructor && method.Parameters.Count == 0)
+                        hasDefaultConstructor = true;
+
                     if (IsCopyOrignNode(method))
                         continue;
                     CheckInterface(method);
@@ -120,8 +124,6 @@ namespace Generater
                         methods.Add(methodGener);
                         RefNameSpace.UnionWith(Utils.GetNameSpaceRef(method));
                     }
-                    if (method.IsConstructor && method.Parameters.Count == 0 && method.IsPublic)
-                        hasDefaultConstructor = true;
                 }
             }
         }
@@ -179,7 +181,8 @@ namespace Generater
                     }
                 }
 
-                
+                if (!isCopyOrignType)
+                    CS.Writer.WriteLine($"[WrapperClass(\"{Binder.curModule.Name}\")]", false);
 
                 Utils.TokenMap = nodesCollector.TokenMap;
                 string classDefine = Utils.GetMemberDelcear(genType,stripInterfaceSet);
@@ -216,10 +219,10 @@ namespace Generater
                     e.Gen();
                 }
 
-                /*if(!hasDefaultConstructor && !genType.IsSealed)
+                if(!hasDefaultConstructor && !genType.IsSealed)
                 {
                     CS.Writer.WriteLine($"internal {genType.Name}()" + " { }", false);
-                }*/
+                }
                 foreach (var m in methods)
                 {
                     m.Gen();
@@ -393,6 +396,9 @@ namespace Generater
 
             if(method.Name == "GetSurrogate" && method.Parameters.Count == 3 && !Utils.Filter(method))
                 stripInterfaceSet.Add("ISurrogateSelector");
+
+            if (method.Name == "GetEnumerator" && method.Parameters.Count == 0 && !Utils.Filter(method))
+                stripInterfaceSet.Add("IEnumerable");
         }
     }
 }

@@ -28,7 +28,8 @@ namespace Generater.C
                 CS.Writer.WriteLine("#include \"event_binding.h\"", false);
                 CS.Writer.WriteLine("#include \"class_cache_gen.h\"", false);
 
-                CS.Writer.WriteLine($"EventMethodDesc methods[{methodSet.Count}]");
+                if(methodSet.Count > 0)
+                    CS.Writer.WriteLine($"EventMethodDesc methods[{methodSet.Count}]");
 
                 int index = 0;
                 foreach (var m in methodSet)
