@@ -33,12 +33,13 @@ namespace Generater
         public ClassGenerater(TypeDefinition type, StreamWriter writer = null)
         {
             genType = type;
+            RefNameSpace.Add("System");
             RefNameSpace.Add("PureScript.Mono");
             RefNameSpace.Add("System.Runtime.CompilerServices");
             
             if (writer == null)
             {
-                var filePath = Path.Combine(Binder.OutDir, $"Binder.{TypeFullName()}.cs");
+                var filePath = Path.Combine(Binder.OutDir, $"Gen.{TypeFullName()}.cs");
                 CSCGenerater.AdapterWrapperCompiler.AddSource(filePath);
                 FileStream = File.CreateText(filePath);
             }
@@ -181,8 +182,8 @@ namespace Generater
                     }
                 }
 
-                if (!isCopyOrignType)
-                    CS.Writer.WriteLine($"[WrapperClass(\"{Binder.curModule.Name}\")]", false);
+                //if (!isCopyOrignType)
+                //    CS.Writer.WriteLine($"[WrapperClass(\"{Binder.curModule.Name}\")]", false);
 
                 Utils.TokenMap = nodesCollector.TokenMap;
                 string classDefine = Utils.GetMemberDelcear(genType,stripInterfaceSet);
@@ -221,7 +222,7 @@ namespace Generater
 
                 if(!hasDefaultConstructor && !genType.IsSealed)
                 {
-                    CS.Writer.WriteLine($"internal {genType.Name}()" + " { }", false);
+                    CS.Writer.WriteLine($"public {genType.Name}()" + " { }", false);
                 }
                 foreach (var m in methods)
                 {
@@ -294,9 +295,6 @@ namespace Generater
                 }
 
                 syntaxTree.AcceptVisitor(outVisitor);
-                AddRefType(outVisitor.InternalTypeRef);
-               
-
                 if (!isNested)
                 {
                     RefNameSpace.UnionWith(outVisitor.nestedUsing);
@@ -310,6 +308,8 @@ namespace Generater
                 
                 var txt = w.ToString();
                 CS.Writer.WriteLine(txt, false);
+
+                AddRefType(outVisitor.InternalTypeRef);
             }
 
         }
@@ -380,6 +380,8 @@ namespace Generater
                     var tdDeclear = td.DeclaringType;
                     if (tdDeclear != null && tdDeclear.MetadataToken == genType.MetadataToken)
                         nestType[td] = new ClassGenerater(td, FileStream);
+                    else if(!Utils.Filter(td))
+                        CS.Writer.WriteLine($"internal class {td.Name}{{}}", false);
                     else
                         Binder.AddType(td);
                 }

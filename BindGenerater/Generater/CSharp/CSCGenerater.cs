@@ -25,16 +25,13 @@ namespace Generater
 
         private static string[] AdapterSrc = new string[]
         {
-            "glue/Binder.define.cs",
-            "glue/Binder.funcser.cs",
+            "glue/Binder.impl.cs",
             "Tools/CustomBinder.cs",
             "Tools/ObjectStore.cs",
         };
 
         private static string[] AdapterWrapperSrc = new string[]
         {
-            "glue/Binder.define.cs",
-            "glue/Binder.funcdeser.cs",
             "Tools/CustomBinder.cs",
             "Tools/ObjectStore.wrapper.cs",
             "Tools/ScriptEngine.cs",
@@ -49,11 +46,11 @@ namespace Generater
         private static HashSet<string> IgnoreRefSet = new HashSet<string>();
         private static Dictionary<string, CSCGenerater> WrapperDic = new Dictionary<string, CSCGenerater>();
 
-        public static void Init(string cscDir,string adapterDir, string outDir,string dllRefDir, HashSet<string> ignoreRefSet)
+        public static void Init(string cscDir,string adapterDir, string outDir, HashSet<string> ignoreRefSet)
         {
             CSCPath = Path.Combine(cscDir, Utils.IsWin32() ? "csc.exe":"csc") ;
             OutDir = outDir;
-            DllRefDir = dllRefDir;
+            DllRefDir = outDir;
             AdapterDir = adapterDir;
             IgnoreRefSet = ignoreRefSet;
             AdapterCompiler = new CSCGenerater(Path.Combine(outDir, "Adapter.gen.dll"));
@@ -62,6 +59,8 @@ namespace Generater
                 AdapterCompiler.AddSource(Path.Combine(adapterDir,file));
 
             SetWrapper("Adapter.wrapper.dll");
+            foreach (var file in AdapterWrapperSrc)
+                AdapterWrapperCompiler.AddSource(Path.Combine(adapterDir, file));
         }
 
         public static void SetWrapper(string dllName)
@@ -69,13 +68,16 @@ namespace Generater
             if (!WrapperDic.TryGetValue(dllName,out AdapterWrapperCompiler))
             {
                 AdapterWrapperCompiler = new CSCGenerater(Path.Combine(OutDir, dllName));
-                foreach (var file in AdapterWrapperSrc)
-                    AdapterWrapperCompiler.AddSource(Path.Combine(AdapterDir, file));
+                //foreach (var file in AdapterWrapperSrc)
+                //    AdapterWrapperCompiler.AddSource(Path.Combine(AdapterDir, file));
                 AdapterWrapperCompiler.AddDefine("WRAPPER_SIDE");
                 if (!Utils.IsWin32())
                     AdapterWrapperCompiler.AddDefine("IOS");
 
                 WrapperDic[dllName] = AdapterWrapperCompiler;
+
+                if (dllName != "Adapter.wrapper.dll")
+                    AdapterWrapperCompiler.AddReference("Adapter.wrapper.dll");
             }
         }
 
@@ -83,15 +85,40 @@ namespace Generater
         {
             AdapterCompiler.Gen();
             //AdapterWrapperCompiler.Gen();
-            foreach(var wrapper in WrapperDic.Values)
+            var list = GetSortedList();
+            foreach (var wrapper in list)
             {
                 wrapper.Gen();
             }
         }
 
+        private static List<CSCGenerater> GetSortedList()
+        {
+            foreach (var wrapper in WrapperDic.Values)
+            {
+                CountRef(wrapper);
+            }
+            var list = new List<CSCGenerater>(WrapperDic.Values);
+            list.Sort((a, b) => { return b.RefCount - a.RefCount; });
+            return list;
+        }
+
+        private static void CountRef(CSCGenerater gener)
+        {
+            foreach (var depend in gener.refSet)
+            {
+                if (WrapperDic.TryGetValue(depend, out var dependGener))
+                {
+                    dependGener.RefCount++;
+                    CountRef(dependGener);
+                }
+            }
+        }
+
 
         public string outName { get; private set; }
-        HashSet<string> refSet = new HashSet<string>();
+        public HashSet<string> refSet = new HashSet<string>();
+        public int RefCount = 0;
         HashSet<string> srcSet = new HashSet<string>();
         HashSet<string> defineSet = new HashSet<string>();
 

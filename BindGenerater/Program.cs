@@ -43,9 +43,9 @@ namespace BindGenerater
             //return;
             Console.WriteLine("OS: " + Environment.OSVersion);
 
-            StartBinder(args);
+            //StartBinder(args);
             //StartTestBinder();
-            /* try
+             try
              {
                  StartBinder(args);
                  //StartTestBinder();
@@ -55,7 +55,7 @@ namespace BindGenerater
              {
                  Console.Error.WriteLine(e.ToString());
                  return 2;
-             }*/
+             }
             return 0;
         }
 
@@ -81,11 +81,11 @@ namespace BindGenerater
             string orignDir = Path.Combine(options.ScriptEngineDir, "Managed_orign");
             string adapterDir = Path.Combine(options.ScriptEngineDir, "Adapter");
 
+            Utils.CopyDir(orignDir,managedDir, ".dll");
             ReplaceMscorlib("lib", managedDir);
-            Utils.CopyDir(managedDir, orignDir, ".dll");
 
             Binder.Init(Path.Combine(adapterDir, "glue"));
-            CSCGenerater.Init(ToolsetPath, adapterDir,managedDir, orignDir, options.AdapterSet);
+            CSCGenerater.Init(ToolsetPath, adapterDir,managedDir, options.AdapterSet);
             CBinder.Init(Path.Combine(options.ScriptEngineDir, "generated"));
             AOTGenerater.Init(options.ScriptEngineDir);
 
@@ -107,60 +107,24 @@ namespace BindGenerater
                 if(File.Exists(filePath))
                 {
                     Binder.Bind(filePath);
-
-                    var delFile = Path.Combine(managedDir, assembly);
-                    if (File.Exists(delFile))
-                        File.Delete(delFile);
                 }
                 
             }
-
-            /*foreach (var filePath in Directory.GetFiles(managedDir))
-            {
-                var file = Path.GetFileName(filePath);
-
-                if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file))
-                {
-                    Binder.Bind(filePath);
-
-                    if (options.AdapterSet.Contains(file))
-                    {
-                        Binder.Bind(filePath);
-                    }
-                    else if(Mode == BindTarget.All)
-                    {
-                        if (!options.InterpSet.Contains(file))
-                        {
-                            Console.WriteLine("aot: " + file);
-                            AOTGenerater.AddAOTAssembly(filePath);
-                        }
-
-                        if (file.StartsWith("UnityEngine."))
-                        {
-                            Console.WriteLine("bind icall: " + file);
-                            CBinder.Bind(filePath);
-                        }
-                        else
-                        {
-                            if (options.InterpSet.Contains(file))
-                                Console.WriteLine("Interpreter runtime: " + file);
-                        }
-                    }
-                }
-            }*/
-
             Binder.End();
             CSCGenerater.End();
 
             if (Mode == BindTarget.All)
             {
-                CBinder.Bind(CSCGenerater.AdapterWrapperCompiler.outName);
+               // CBinder.Bind(CSCGenerater.AdapterWrapperCompiler.outName);
 
                 foreach (var filePath in Directory.GetFiles(managedDir))
                 {
                     var file = Path.GetFileName(filePath);
                     if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file) && !options.InterpSet.Contains(file))
                     {
+                        if (file.StartsWith("UnityEngine."))
+                            CBinder.Bind(filePath);
+
                         Console.WriteLine("aot: " + file);
                         AOTGenerater.AddAOTAssembly(filePath);
                     }
@@ -170,19 +134,7 @@ namespace BindGenerater
                 AOTGenerater.End();
             }
 
-            /*foreach(var file in options.AdapterSet)
-            {
-                var path = Path.Combine(managedDir, file);
-                if (File.Exists(path))
-                {
-                    var tempDir = Path.Combine(managedDir, "..", "temp");
-                    if (!Directory.Exists(tempDir))
-                        Directory.CreateDirectory(tempDir);
 
-                    File.Copy(path, Path.Combine(tempDir, file), true);
-                    File.Delete(path);
-                }
-            }*/
         }
 
         public static void ReplaceMscorlib(string libDir, string outDir)

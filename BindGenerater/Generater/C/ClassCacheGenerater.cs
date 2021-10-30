@@ -52,17 +52,12 @@ namespace Generater.C
             return GetImageDefine(name, il2cpp);
         }
 
-        public static string GetClass(TypeDefinition type,bool il2cpp = false)
+        public static string GetClass(TypeReference type,bool il2cpp = false)
         {
-            var filePath = type.Module.Assembly.MainModule.FileName;
-            if(il2cpp)
-            {
-                var flag = type.CustomAttributes.First(attr => attr.AttributeType.Name == "WrapperClassAttribute");
-                if (flag != null)
-                    filePath = flag.ConstructorArguments.First().Value.ToString();
-            }
+            var td = type.Resolve();
+            var filePath = td.Module.Assembly.MainModule.FileName;
 
-            return GetClass(Path.GetFileNameWithoutExtension(filePath), type.Namespace, type.Name, il2cpp);
+            return GetClass(Path.GetFileNameWithoutExtension(filePath), td.Namespace, td.Name, il2cpp);
         }
 
         public static string GetClass(string _assembly ,string _namespace,string name, bool il2cpp)

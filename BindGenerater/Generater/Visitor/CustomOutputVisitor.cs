@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Attribute = ICSharpCode.Decompiler.CSharp.Syntax.Attribute;
@@ -40,10 +41,26 @@ public class CustomOutputVisitor : CSharpOutputVisitor
                 if(t != null)
                 {
                     var td = t.Type as ITypeDefinition;
-                    if (td.IsBuiltinAttribute() == KnownAttribute.None)
+                    if (td != null )
                     {
-                        att.Remove();
+                        if(td.IsBuiltinAttribute() == KnownAttribute.None)
+                            att.Remove();
                     }
+
+                    if (t.Type.Name == "StructLayoutAttribute") // fix StructLayoutAttribute bug
+                    {
+                        var firstArg = att.Arguments.First();
+                        var primitExp = firstArg as PrimitiveExpression;
+                        if(primitExp != null)
+                        {
+                            if(primitExp.Value.GetType() == typeof(int))
+                            {
+                                var layout = (LayoutKind)primitExp.Value;
+                                firstArg.ReplaceWith(new IdentifierExpression("LayoutKind."+ layout));
+                            }
+                        }
+                    }
+
                 }
             }
 
@@ -84,8 +101,9 @@ public class CustomOutputVisitor : CSharpOutputVisitor
         List<AstType> dList = new List<AstType>();
         foreach (var t in typeDeclaration.BaseTypes)
         {
-            var at = t.Annotation<ResolveResult>();
-            if (at.Type.Kind == TypeKind.Interface && (!at.Type.Namespace.StartsWith("System") || stripInterfaceSet.Contains(at.Type.Name)))
+            var res = t.Annotation<ResolveResult>();
+            var td = res.Type.GetDefinition();
+            if ((td.Kind == TypeKind.Interface && !td.Namespace.StartsWith("System") && !Binder.retainTypes.Contains(td.FullTypeName.ReflectionName)) || stripInterfaceSet.Contains(td.Name))
                 dList.Add(t);
         }
         foreach (var t in dList)
@@ -94,12 +112,12 @@ public class CustomOutputVisitor : CSharpOutputVisitor
         if (AddWObject)
             typeDeclaration.BaseTypes.InsertBefore(typeDeclaration.BaseTypes.FirstOrDefault(),new SimpleType("WObject"));
 
-        var wrapFlag = new AttributeSection();
+        /*var wrapFlag = new AttributeSection();
         var wrapAttr = new Attribute();
         wrapAttr.Type = new SimpleType("WrapperClass");
         wrapAttr.Arguments.Add(new PrimitiveExpression(Binder.curModule.Name));
         wrapFlag.Attributes.Add(wrapAttr);
-        typeDeclaration.Attributes.Add(wrapFlag);
+        typeDeclaration.Attributes.Add(wrapFlag);*/
     }
 
     public override void VisitTypeDeclaration(TypeDeclaration typeDeclaration)

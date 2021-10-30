@@ -152,7 +152,7 @@ namespace Generater.C
                     return false;
             }
             var td = type.Resolve();
-            if (td != null && td.IsStruct() && !Utils.IsFullValueType(type))
+            if (td != null && td.IsStruct() && !Utils.IsFullValueType(td))
                 return false;
 
             return true;

@@ -224,7 +224,7 @@ namespace Generater.C
         public override string Box(string name, bool previous = false)
         {
             var reName = $"mono{name}";
-            var classCache = ClassCacheGenerater.GetClass(type.Resolve());
+            var classCache = ClassCacheGenerater.GetClass(type);
             if(type.FullName == "UnityEngine.Object" || type.FullName == "System.Object")
                 classCache = $"get_mono_class(il2cpp_object_get_class({name}))";
 
@@ -242,7 +242,7 @@ namespace Generater.C
             string classCache = "NULL";
             if (type.Namespace.StartsWith("UnityEngine"))
             {
-                classCache = ClassCacheGenerater.GetClass(type.Resolve(), true);
+                classCache = ClassCacheGenerater.GetClass(type, true);
                // if (type.FullName == "UnityEngine.Object" || type.FullName == "System.Object")
                //     classCache = $"get_il2cpp_class(mono_object_get_class({name}))";
             }
@@ -318,7 +318,7 @@ namespace Generater.C
 
             var eType = type.GetElementType();
             if(eType.Name != "String")
-                ClassCacheGenerater.GetClass(type.GetElementType().Resolve());
+                ClassCacheGenerater.GetClass(type.GetElementType());
 
             var reName = $"mono{name}";
             var cmd = $"MonoArray* {reName} = get_mono_array({name})";
