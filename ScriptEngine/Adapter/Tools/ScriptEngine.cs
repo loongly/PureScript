@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Runtime.InteropServices;
 using System;
 using System.Reflection;
@@ -24,9 +23,8 @@ namespace PureScript.Mono
         private static int Main(string[] args)
         {
             var ptr = GetFuncPointer();
-            MonoBind.InitBind(GetFuncPointer());
+            //MonoBind.InitBind(GetFuncPointer());
 
-            Debug.Log("start MonoEntry.Main..");
             if (args.Length > 0)
             {
                 var dllPath = args[0];

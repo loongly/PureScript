@@ -14,14 +14,14 @@ public class WObject : IWObject
 {
     private IntPtr _handle;
     public IntPtr Handle { get { return _handle; } }
-    internal void SetHandle(IntPtr handle)
+    public void SetHandle(IntPtr handle)
     {
         _handle = handle;
     }
 }
 public static class WObjectExtend
 {
-    internal static IntPtr __GetHandle(this WObject obj)
+    public static IntPtr __GetHandle(this WObject obj)
     {
         if (object.ReferenceEquals(obj , null) )
             return IntPtr.Zero;
@@ -31,7 +31,7 @@ public static class WObjectExtend
 }
 
 
-internal static class ObjectStore
+public static class ObjectStore
 {
     [MethodImpl(MethodImplOptions.InternalCall)]
     private static extern object GetObject(IntPtr ptr);

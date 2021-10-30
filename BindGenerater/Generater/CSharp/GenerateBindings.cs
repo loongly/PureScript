@@ -1,59 +1,78 @@
 ﻿using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Generater
 {
-    public static class GenerateBindings
+    public class BindingGenerater
     {
-        static HashSet<MethodDefinition> methods = new HashSet<MethodDefinition>();
-        static HashSet<string> delegateDefines = new HashSet<string>();
-        public static void AddMethod(MethodDefinition method)
+        public string Name;
+        public int Offset;
+        HashSet<MethodDefinition> methods = new HashSet<MethodDefinition>();
+        HashSet<string> delegateDefines = new HashSet<string>();
+
+        StreamWriter Writer;
+
+        public BindingGenerater(string name,int _offset,StreamWriter writer)
+        {
+            Name = name;
+            Offset = _offset;
+            Writer = writer;
+        }
+
+        public void AddMethod(MethodDefinition method)
         {
             methods.Add(method);
         }
 
-        public static void AddDelegateDefine(string defineStr)
+        public void AddDelegateDefine(string defineStr)
         {
             delegateDefines.Add(defineStr);
         }
 
-        public static void Gen()
+        private void GenDefines()
         {
-            var nsSet = Utils.GetNameSpaceList(methods);
-            nsSet.Add("System.Runtime.InteropServices");
-            nsSet.Add("System.Collections.Generic");
-            nsSet.Add("Object = UnityEngine.Object");
-            nsSet.Add("Random = UnityEngine.Random");
-
-
-            using (new CS(Binder.FuncDefineWriter))
+            // method define
+            foreach (var method in methods)
             {
-                foreach(var ns in nsSet)
-                    CS.Writer.WriteLine($"using {ns}");
-
-                foreach (var method in methods)
-                {
-                    CS.Writer.WriteLine("[UnmanagedFunctionPointer(CallingConvention.Cdecl)]", false);
-                    //MethodResolver.Resolve(method).DefineDelegate();
-                    var flag = Utils.IsUnsafeMethod(method) ? " unsafe " : " ";
-                    CS.Writer.WriteLine($"public{flag}delegate {MethodResolver.Resolve(method).ReturnType()} {Utils.BindMethodName(method,true,false)}_Type {Utils.BindMethodParamDefine(method,true)}");
-                }
-
-                foreach(var define in delegateDefines)
-                {
-                    CS.Writer.WriteLine(define);
-                }
+                CS.Writer.WriteLine("[UnmanagedFunctionPointer(CallingConvention.Cdecl)]", false);
+                //MethodResolver.Resolve(method).DefineDelegate();
+                var flag = Utils.IsUnsafeMethod(method) ? " unsafe " : " ";
+                CS.Writer.WriteLine($"public{flag}delegate {MethodResolver.Resolve(method).ReturnType()} {Utils.BindMethodName(method, true, false)}_Type {Utils.BindMethodParamDefine(method, true)}");
             }
 
-            using (new CS(Binder.FuncDeSerWriter))
+            // delegate define
+            foreach (var define in delegateDefines)
             {
+                CS.Writer.WriteLine(define);
+            }
+        }
+
+        public void GenWrapper()
+        {
+            var nsSet = Utils.GetNameSpaceList(methods);
+            if(methods.Count > 0)
+            {
+                nsSet.Add("System.Runtime.InteropServices");
+                nsSet.Add("System.Collections.Generic");
+                nsSet.Add("Object = UnityEngine.Object");
+                nsSet.Add("Random = UnityEngine.Random");
+            }
+            nsSet.Add("System");
+
+            using (new CS(new CodeWriter(Writer)))
+            {
+
                 foreach (var ns in nsSet)
                     CS.Writer.WriteLine($"using {ns}");
 
-                CS.Writer.WriteLine("using PureScript.Mono");
+                GenDefines();
 
-                CS.Writer.Start("public static class MonoBind");
+                // wrapper imple
+                //CS.Writer.WriteLine("using PureScript.Mono");
+
+                CS.Writer.Start("internal static partial class MonoBind");
 
                 foreach (var method in methods)
                 {
@@ -61,31 +80,44 @@ namespace Generater
                     CS.Writer.WriteLine($"public static {methodName}_Type {methodName}");
                 }
 
+                CS.Writer.Start("static MonoBind()");
+                CS.Writer.WriteLine("InitBind(PureScript.Mono.ScriptEngine.GetFuncPointer())");
+                CS.Writer.End();
+
                 CS.Writer.Start("public static void InitBind(IntPtr memory)");
                 //CS.Writer.Start("if(memory == IntPtr.Zero)");
                 //CS.Writer.WriteLine("memory = GetManageFuncPtr()");
                 //CS.Writer.End();
-                CS.Writer.WriteLine("int curMemory = 0");
 
                 foreach (var method in methods)
                 {
                     var methodName = Utils.BindMethodName(method, true, false);
-                    CS.Writer.WriteLine($"{methodName} = Marshal.GetDelegateForFunctionPointer<{methodName}_Type>(Marshal.ReadIntPtr(memory, curMemory))");
-                    CS.Writer.WriteLine("curMemory += IntPtr.Size");
+                    CS.Writer.WriteLine($"{methodName} = Marshal.GetDelegateForFunctionPointer<{methodName}_Type>(Marshal.ReadIntPtr(memory, {Offset} * IntPtr.Size ))");
+                    Offset++;
                 }
-
-                CS.Writer.WriteLine("Custom.DeSer(memory + curMemory)");
 
                 CS.Writer.EndAll();
             }
+        }
 
-            using (new CS(Binder.FuncSerWriter))
+        public void GenImpl()
+        {
+            var nsSet = Utils.GetNameSpaceList(methods);
+            nsSet.Add("System.Runtime.InteropServices");
+            nsSet.Add("System.Collections.Generic");
+            nsSet.Add("Object = UnityEngine.Object");
+            nsSet.Add("Random = UnityEngine.Random");
+            nsSet.Add("PureScript");
+            nsSet.Add("AOT");
+            nsSet.Add("System");
+
+
+            using (new CS(new CodeWriter(Writer)))
             {
                 foreach (var ns in nsSet)
                     CS.Writer.WriteLine($"using {ns}");
 
-                CS.Writer.WriteLine("using PureScript");
-                CS.Writer.WriteLine($"using AOT");
+                GenDefines();
 
                 CS.Writer.Start("public static unsafe class UnityBind");
 
@@ -96,17 +128,16 @@ namespace Generater
                 }
 
                 CS.Writer.Start("public static IntPtr BindFunc()");
-                CS.Writer.WriteLine("IntPtr memory = Marshal.AllocHGlobal(8192*8)");
-                CS.Writer.WriteLine("int curMemory = 0;");
-                
+                CS.Writer.WriteLine($"IntPtr memory = Marshal.AllocHGlobal({methods.Count + 1} * IntPtr.Size)");
+
                 foreach (var method in methods)
                 {
                     var methodName = Utils.BindMethodName(method, true, false) + "Delegate";
-                    CS.Writer.WriteLine($"Marshal.WriteIntPtr(memory, curMemory, Marshal.GetFunctionPointerForDelegate({methodName}))");
-                    CS.Writer.WriteLine("curMemory += IntPtr.Size");
+                    CS.Writer.WriteLine($"Marshal.WriteIntPtr(memory, {Offset} * IntPtr.Size, Marshal.GetFunctionPointerForDelegate({methodName}))");
+                    Offset++;
                 }
 
-                CS.Writer.WriteLine("Custom.Ser(memory + curMemory)");
+                CS.Writer.WriteLine($"Custom.Ser(memory + {Offset} * IntPtr.Size)");
                 CS.Writer.WriteLine("return memory");
                 CS.Writer.End();
 
@@ -139,10 +170,53 @@ namespace Generater
                     CS.Writer.End();//method
 
                 }
+                CS.Writer.EndAll();
+            }
+        }
+    }
 
-                CS.Writer.End();
+    public static class GenerateBindings
+    {
+        static BindingGenerater implGenerater;
+        static BindingGenerater wrapGenerater;
+
+        public static void StartWraper(string file)
+        {
+            if (implGenerater == null)
+            {
+                var implName = "Binder.impl.cs";
+                var implWriter = File.CreateText(Path.Combine(Binder.OutDir, implName));
+                implGenerater = new BindingGenerater("Binder.impl",0, implWriter);
             }
 
+            var name = $"Binder.{file.Replace(".dll",".cs")}";
+            var path = Path.Combine(Binder.OutDir, name);
+            var writer = File.CreateText(path);
+            var offset = wrapGenerater != null ? wrapGenerater.Offset : 0;
+            wrapGenerater = new BindingGenerater(name, offset, writer);
+
+            CSCGenerater.AdapterWrapperCompiler.AddSource(path);
+        }
+
+        public static void AddMethod(MethodDefinition method)
+        {
+            implGenerater.AddMethod(method);
+            wrapGenerater.AddMethod(method);
+        }
+
+        public static void AddDelegateDefine(string defineStr)
+        {
+            implGenerater.AddDelegateDefine(defineStr);
+            wrapGenerater.AddDelegateDefine(defineStr);
+        }
+
+        public static void Gen()
+        {
+            wrapGenerater.GenWrapper();
+        }
+        public static void End()
+        {
+            implGenerater.GenImpl();
         }
     }
 }

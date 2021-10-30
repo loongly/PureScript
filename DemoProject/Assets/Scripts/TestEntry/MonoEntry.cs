@@ -38,7 +38,7 @@ public class MonoEntry
 #endif
 
         Assembly assembly = null;
-
+        Debug.LogError("loaddll: " + dllPath + "  exits:"+ File.Exists(dllPath));
         if (File.Exists(dllPath))
             assembly = Assembly.LoadFrom(dllPath);
         else
@@ -58,6 +58,7 @@ public class MonoEntry
     static void TestCube()
     {
         var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        var ob = new GameObject();
 
         var t = obj.transform;
         t.position = new Vector3(3, 2, 1);

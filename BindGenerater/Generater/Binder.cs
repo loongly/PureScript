@@ -21,9 +21,6 @@ namespace Generater
         static HashSet<TypeReference> refTypes = new HashSet<TypeReference>();
 
         public static string OutDir;
-        public static CodeWriter FuncDefineWriter;
-        public static CodeWriter FuncSerWriter;
-        public static CodeWriter FuncDeSerWriter;
 
         public static Dictionary<string, CSharpDecompiler> DecompilerDic = new Dictionary<string, CSharpDecompiler>();
         public static DecompilerSettings DecompilerSetting;
@@ -65,6 +62,12 @@ namespace Generater
         {
             "UnityEngine.Transform",
             "UnityEngine.Texture",
+            "UnityEngine.Debug",
+            "UnityEngine.ILogger",
+            "UnityEngine.ILogHandler",
+            "UnityEngine.Logger",
+            "UnityEngine.DebugLogHandler",
+
             "UnityEngine.UnityException",
             "UnityEngine.UnityString",
             "UnityEngine.CastHelper`1",
@@ -77,20 +80,13 @@ namespace Generater
             if (!Directory.Exists(outDir))
                 Directory.CreateDirectory(outDir);
 
-            FuncDefineWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.define.cs")));
-            FuncSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcser.cs")));
-            FuncDeSerWriter = new CodeWriter(File.CreateText(Path.Combine(outDir, "Binder.funcdeser.cs")));
-
             Utils.IgnoreTypeSet.UnionWith(IgnorTypes);
         }
 
         public static void End()
         {
             TypeResolver.WrapperSide = false;
-            GenerateBindings.Gen();
-            FuncDefineWriter.EndAll();
-            FuncSerWriter.EndAll();
-            FuncDeSerWriter.EndAll();
+            GenerateBindings.End();
 
             foreach (var m in moduleSet)
                 m.Dispose();
@@ -118,7 +114,8 @@ namespace Generater
             curModule = ModuleDefinition.ReadModule(dllPath, parameters);
             moduleSet.Add(curModule);
             ICallGenerater.AddWrapperAssembly(curModule.Assembly.Name.Name);
-            //CSCGenerater.SetWrapper(file);
+            CSCGenerater.SetWrapper(file);
+            GenerateBindings.StartWraper(file);
             CSCGenerater.AdapterCompiler.AddReference(curModule.Name);
             foreach(var refAssembly in curModule.AssemblyReferences )
             {
@@ -146,6 +143,8 @@ namespace Generater
                     gener.Gen();
             }
             generaters.Clear();
+
+            GenerateBindings.Gen();
         }
 
         public static void AddType(TypeDefinition type)

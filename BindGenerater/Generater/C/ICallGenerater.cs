@@ -101,8 +101,8 @@ namespace Generater.C
         private static void RegisterAssemblyMap()
         {
             CS.Writer.Start("void register_assembly_map()");
-            foreach(var assembly in wrapperAssemblySet)
-                CS.Writer.WriteLine($"insert_assembly_map(\"{assembly}\", \"Adapter.wrapper\")");
+            /*foreach(var assembly in wrapperAssemblySet)
+                CS.Writer.WriteLine($"insert_assembly_map(\"{assembly}\", \"Adapter.wrapper\")");*/
             CS.Writer.End();
         }
     }
