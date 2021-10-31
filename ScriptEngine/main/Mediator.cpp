@@ -12,6 +12,7 @@
 
 #include <map>
 #include <string>
+#include <sstream>
 
 #include "runtime.h"
 //#include "internals.h"
@@ -116,8 +117,20 @@ MonoObject* get_mono_object_impl(Il2CppObject* il2cpp, MonoClass* m_class, bool 
 	}
 	if (monoObj == NULL)
 	{
-		if (m_class == NULL && decide_class)
-			m_class = get_mono_class(il2cpp_object_get_class(il2cpp));
+		Il2CppClass* i2class = il2cpp_object_get_class(il2cpp);
+		if (m_class != NULL)
+		{
+			const char* i2cname = il2cpp_class_get_name(i2class);
+			const char* monocname = mono_class_get_name(m_class);
+			if (strcmp(i2cname, monocname) != 0)
+			{
+				decide_class = true;
+				m_class = NULL;
+			}
+		}
+
+		if(m_class == NULL && decide_class)
+			m_class = get_mono_class(i2class);
 
 		if (m_class != NULL)
 		{
@@ -275,14 +288,39 @@ Il2CppClass* get_il2cpp_class(MonoClass* mclass)
 
 MonoClass* get_mono_class(Il2CppClass* mclass) 
 {
+	const char* cname = il2cpp_class_get_name(mclass);
+
+	Il2CppClass* dc = il2cpp_class_get_declaring_type(mclass);
+
+	static std::stringstream ss;
+	if (dc != NULL)
+	{
+		ss.str("");
+		const char* dtname = il2cpp_class_get_name(dc);
+		ss << dtname << '/' << cname;
+		mclass = dc;
+	}
+
 	const char* ns = il2cpp_class_get_namespace(mclass);
     if(is_wrapper_name_space(ns))
         return NULL;
-	const char* cname = il2cpp_class_get_name(mclass);
+	
 	const Il2CppImage* mimage = il2cpp_class_get_image(mclass);
 	const char* asmName = il2cpp_image_get_name(mimage);
 
-	MonoClass* monoClass = mono_search_class(asmName, ns, cname);
+	MonoClass* monoClass = NULL;
+	
+	if (dc != NULL)
+	{
+		const std::string& tmp = ss.str();
+		monoClass = mono_search_class(asmName, ns, tmp.c_str());
+	}
+	else
+	{
+		monoClass = mono_search_class(asmName, ns,cname);
+	}
+
+	
 	return monoClass;
 }
 
@@ -398,10 +436,13 @@ Il2CppException* get_il2cpp_exception(MonoException* mono)
 	MonoString* message = (MonoString*)mono_exception_property((MonoObject*)mono, "get_Message", 1);
 	char *traceStr = mono_string_to_utf8(trace);
 	char *msgStr = mono_string_to_utf8(message);
-	std::string outputMsg = std::string(msgStr) +"\n"+ std::string(traceStr);
+	std::string outputMsg = std::string(msgStr);
+	if(traceStr != NULL)
+		outputMsg += "\n"+ std::string(traceStr);
 	Il2CppException* exc = il2cpp_exception_from_name_msg(il2cpp_get_corlib(), "System", "Exception", outputMsg.c_str());
 
-	mono_free(traceStr);
+	if (traceStr != NULL)
+		mono_free(traceStr);
 	mono_free(msgStr);
 	return	exc;
 }
@@ -452,12 +493,10 @@ void call_wrapper_init(Il2CppObject* il2cpp, MonoObject* mono)
         mono_gchandle_free(il2cppHead->handle);
     il2cppHead->handle = mono_gchandle_new(mono, FALSE);
     
-    const char* ns = mono_class_get_namespace(mono_object_get_class(mono));
     if (klass == get_monobehaviour_wrapper_class())
     {
         WObjectHead* monoHead = (WObjectHead*)(mono);
-        if (monoHead->objectPtr == NULL)
-            monoHead->objectPtr = il2cpp;
+        monoHead->objectPtr = il2cpp;
     }
     
     const MethodInfo* method = il2cpp_class_get_method_from_name(klass, "Init", 0);
@@ -535,7 +574,7 @@ extern "C" const char* resolve_assembly(const char* request)
 
 #pragma endregion
 
-
+#if ENABLE_DEBUG
 const char* debug_mono_obj(MonoObject* obj)
 {
 	if (obj == NULL)
@@ -566,5 +605,5 @@ const char* debug_il2cpp_obj(Il2CppObject* obj)
 	const char* type_name = il2cpp_class_get_name(type);
 	return type_name;
 }
-
+#endif
 

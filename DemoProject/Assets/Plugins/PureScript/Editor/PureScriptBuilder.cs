@@ -65,17 +65,19 @@ public static class PureScriptBuilder
     }
 
 
+
     /// <summary>
     /// resolve all bind task after strip.
     /// called by UnityEditor when IL2CPPBuilder.RunIl2CppWithArguments.
     /// </summary>
-    public static void RunBinderBeforeIl2cpp(string workingDirectory)
+    public static void RunBinderAfterStrip(string workingDirectory)
     {
         Inbuild = false;
         if (workingDirectory != null)
             il2cppWorkDir = workingDirectory;
         else
             il2cppWorkDir = "Temp/StagingArea/Data/Managed";
+
 
         //copy all striped assemblys
         var managedPath = Path.Combine(ScriptEngineDir, "Managed");
@@ -87,6 +89,8 @@ public static class PureScriptBuilder
         // call binder,bind icall and adapter
         CallBinder("All");
 
+        BackupDir(il2cppWorkDir, true);
+
         // replace adapter by generated assembly
         var generatedAdapter = Path.Combine(managedPath, "Adapter.gen.dll");
         var adapterGenPath = Path.Combine(il2cppWorkDir, "Adapter.gen.dll");
@@ -94,6 +98,21 @@ public static class PureScriptBuilder
         {
             File.Copy(generatedAdapter, adapterGenPath, true);
             File.Delete(generatedAdapter);
+        }
+    }
+
+    public static void BackupDir(string workingDirectory, bool revert = false)
+    {
+        string BackupDir = workingDirectory + "_back";
+
+        if (revert)
+        {
+            CopyManagedFile(BackupDir, workingDirectory);
+            Directory.Delete(BackupDir, true);
+        }
+        else
+        {
+            CopyManagedFile(workingDirectory, BackupDir);
         }
     }
 
@@ -135,7 +154,7 @@ public static class PureScriptBuilder
         binder.StartInfo.RedirectStandardOutput = true;
         binder.StartInfo.RedirectStandardError = true;
         binder.StartInfo.UseShellExecute = false;
-        binder.StartInfo.CreateNoWindow = debug ? false : true;
+        binder.StartInfo.CreateNoWindow = true;
         binder.Start();
 
         while (!binder.StandardOutput.EndOfStream)
@@ -204,67 +223,64 @@ public static class PureScriptBuilder
 
 
 
-#region InsertBuildTask
+    #region InsertBuildTask
+    static MethodHooker stripHooker;
 
-    static MethodHooker il2cppHooker;
-
-#if UNITY_2020_1_OR_NEWER
-    public static void RunIl2CppWithArguments(object obj, List<string> arguments, Action<System.Diagnostics.ProcessStartInfo> setupStartInfo)
+#if UNITY_2019_1_OR_NEWER
+    public static void StripAssemblies(string managedAssemblyFolderPath, object unityLinkerPlatformProvider, object il2cppPlatformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+#else
+    public static void StripAssemblies(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+#endif
     {
-
-        if (il2cppHooker != null)
+        if (stripHooker != null)
         {
-            il2cppHooker.Dispose();
-            il2cppHooker = null;
+            stripHooker.Dispose();
+            stripHooker = null;
         }
 
-        RunBinderBeforeIl2cpp(null);
+        /*  Modifying the assembly after step 'Strip', will result in an error in step 'Il2cpp' ..  
+         *  so after modifying 'Adapter.gen.dll', we need to re-execute step 'Strip'.   */
+
+        BackupDir(managedAssemblyFolderPath);
 
         // call the realy method
-        if (obj != null)
-            RunIl2CppWithArgumentsWrap(obj, arguments, setupStartInfo);
+#if UNITY_2019_1_OR_NEWER
+        StripAssembliesWrap(managedAssemblyFolderPath, unityLinkerPlatformProvider, il2cppPlatformProvider, rcr, managedStrippingLevel);
+#else
+        StripAssembliesWrap(managedAssemblyFolderPath, platformProvider, rcr, managedStrippingLevel);
+#endif
+
+        RunBinderAfterStrip(managedAssemblyFolderPath);
+
+        // call the realy method
+#if UNITY_2019_1_OR_NEWER
+        StripAssembliesWrap(managedAssemblyFolderPath, unityLinkerPlatformProvider, il2cppPlatformProvider, rcr, managedStrippingLevel);
+#else
+        StripAssembliesWrap(managedAssemblyFolderPath, platformProvider, rcr, managedStrippingLevel);
+#endif
+
     }
 
-    //redirect to IL2CPPBuilder.RunIl2CppWithArguments
-    public static void RunIl2CppWithArgumentsWrap(object obj, List<string> arguments, Action<System.Diagnostics.ProcessStartInfo> setupStartInfo)
+    //redirect to AssemblyStripper.StripAssemblies
+#if UNITY_2019_1_OR_NEWER
+    public static void StripAssembliesWrap(string managedAssemblyFolderPath, object unityLinkerPlatformProvider, object il2cppPlatformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+#else
+    public static void StripAssembliesWrap(string managedAssemblyFolderPath, object platformProvider, object rcr, ManagedStrippingLevel managedStrippingLevel)
+#endif
     {
         Debug.LogError("In Unity2020 ,need [Switch to debug mode]");
         throw new NotImplementedException();
     }
-    
-#else
-    public static void RunIl2CppWithArguments(object obj, List<string> arguments, Action<System.Diagnostics.ProcessStartInfo> setupStartInfo, string workingDirectory)
-    {
-
-        if (il2cppHooker != null)
-        {
-            il2cppHooker.Dispose();
-            il2cppHooker = null;
-        }
-
-        RunBinderBeforeIl2cpp(workingDirectory);
-
-        // call the realy method
-        if (obj != null)
-            RunIl2CppWithArgumentsWrap(obj, arguments, setupStartInfo, workingDirectory);
-    }
-
-    //redirect to IL2CPPBuilder.RunIl2CppWithArguments
-    public static void RunIl2CppWithArgumentsWrap(object obj, List<string> arguments, Action<System.Diagnostics.ProcessStartInfo> setupStartInfo, string workingDirectory)
-    {
-        throw new NotImplementedException();
-    }
-#endif
 
     private static void InsertBuildTask()
     {
-        if (il2cppHooker == null)
+        if (stripHooker == null)
         {
-             var builderType = typeof(Editor).Assembly.GetType("UnityEditorInternal.IL2CPPBuilder");
-             MethodBase orign = builderType.GetMethod("RunIl2CppWithArguments", BindingFlags.Instance | BindingFlags.NonPublic);
-             MethodBase custom = typeof(PureScriptBuilder).GetMethod("RunIl2CppWithArguments");
-             MethodBase wrap2Orign = typeof(PureScriptBuilder).GetMethod("RunIl2CppWithArgumentsWrap");
-            il2cppHooker = new MethodHooker(orign, custom, wrap2Orign);
+            var builderType = typeof(Editor).Assembly.GetType("UnityEditorInternal.AssemblyStripper");
+            MethodBase orign = builderType.GetMethod("StripAssemblies", BindingFlags.Static | BindingFlags.NonPublic);
+            MethodBase custom = typeof(PureScriptBuilder).GetMethod("StripAssemblies");
+            MethodBase wrap2Orign = typeof(PureScriptBuilder).GetMethod("StripAssembliesWrap");
+            stripHooker = new MethodHooker(orign, custom, wrap2Orign);
         }
     }
 #endregion

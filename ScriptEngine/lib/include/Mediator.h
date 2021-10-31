@@ -6,6 +6,7 @@
 
 #define CLASS_MASK_UNITY_NATIVE (1<<2)
 #define CLASS_MASK_WRAPPER (1<<3)
+#define ENABLE_DEBUG 1
 
 #if defined(__cplusplus)
 extern "C"
@@ -68,9 +69,18 @@ extern "C"
 
 
 	bool is_unity_name_space(const char* ns);
+
+#if ENABLE_DEBUG
 	const char* debug_mono_obj(MonoObject* obj);
 	const char* debug_mono_method(MonoMethod* method);
 	const char* debug_il2cpp_obj(Il2CppObject* obj);
+#else
+#define debug_mono_obj(obj)  
+#define debug_mono_method(method)   
+#define debug_il2cpp_obj(obj) 
+#endif
+  
+	
 
 	void insert_assembly_map(const char* src, const char* tar);
 
