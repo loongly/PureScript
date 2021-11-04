@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.Internal;
 using System;
 using System.IO;
 using System.Text;
 
-[ExecuteInEditMode]
 public  class DebugHelper
 {
     public const string DEBUG_TAG_KEY = "debug_tag";
@@ -152,7 +150,7 @@ public  class DebugHelper
     //
     // Summary:
     //     Draws a line between specified start and end points.
-    public static void DrawLine(Vector3 start, Vector3 end, [DefaultValue("Color.white")] Color color, [DefaultValue("0.0f")] float duration, [DefaultValue("true")] bool depthTest)
+    public static void DrawLine(Vector3 start, Vector3 end,  Color color,  float duration,  bool depthTest)
     {
         UnityEngine.Debug.DrawLine(start, end, color, duration, depthTest);
     }
@@ -180,7 +178,7 @@ public  class DebugHelper
     //
     // Summary:
     //     Draws a line from start to start + dir in world coordinates.
-    public static void DrawRay(Vector3 start, Vector3 dir, [DefaultValue("Color.white")] Color color, [DefaultValue("0.0f")] float duration, [DefaultValue("true")] bool depthTest)
+    public static void DrawRay(Vector3 start, Vector3 dir, Color color,  float duration, bool depthTest)
     {
         UnityEngine.Debug.DrawRay(start, dir, color, duration, depthTest);
     }

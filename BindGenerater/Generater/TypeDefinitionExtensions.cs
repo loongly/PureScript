@@ -19,13 +19,19 @@ static internal class TypeDefinitionExtensions
          .EnumerateBaseClasses()
          .Any(b => b.MetadataToken == parentTypeDef.MetadataToken);
 
-   /// <summary>
-   /// Does childType inherit from parentInterface
-   /// </summary>
-   /// <param name="childType"></param>
-   /// <param name="parentInterfaceDef"></param>
-   /// <returns></returns>
-   public static bool DoesAnySubTypeImplementInterface(this TypeDefinition childType, TypeDefinition parentInterfaceDef)
+    public static bool IsSubclassOf(this TypeDefinition childTypeDef, string fullName) =>
+    childTypeDef.FullName == fullName
+        || childTypeDef
+       .EnumerateBaseClasses()
+       .Any(b => b.FullName == fullName);
+
+    /// <summary>
+    /// Does childType inherit from parentInterface
+    /// </summary>
+    /// <param name="childType"></param>
+    /// <param name="parentInterfaceDef"></param>
+    /// <returns></returns>
+    public static bool DoesAnySubTypeImplementInterface(this TypeDefinition childType, TypeDefinition parentInterfaceDef)
    {
       Debug.Assert(parentInterfaceDef.IsInterface);
       return childType

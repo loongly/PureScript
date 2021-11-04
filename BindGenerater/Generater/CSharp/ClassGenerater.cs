@@ -224,6 +224,12 @@ namespace Generater
                 {
                     CS.Writer.WriteLine($"public {genType.Name}()" + " { }", false);
                 }
+
+                if(genType.IsClass && !genType.IsValueType && !isStatic)
+                {
+                    CS.Writer.WriteLine($"protected override System.Type GetWType() {{ return typeof({genType.Name}); }}", false);
+                }
+
                 foreach (var m in methods)
                 {
                     m.Gen();
@@ -287,6 +293,7 @@ namespace Generater
                     outVisitor = new BlittablePartOutputVisitor(isNested, w, Binder.DecompilerSetting.CSharpFormattingOptions);
 
                 outVisitor.isFullRetain = isFullRetainType;
+                outVisitor.checkTypeRefVisitor = new CheckTypeRefVisitor(CheckRefType);
                 bool isStatic = genType.IsAbstract && genType.IsSealed;
                 if (genType.BaseType != null && !isStatic && genType.IsClass)
                 {
@@ -388,6 +395,20 @@ namespace Generater
                 else if (genType.Module.TryGetTypeReference(tName, out var tref))
                     Binder.AddTypeRef(tref);
             }
+        }
+
+        bool CheckRefType(string rtype)
+        {
+            var tName = rtype.Replace("+", "/");
+            TypeReference type = genType.Module.GetType(tName);
+            if (type == null)
+                genType.Module.TryGetTypeReference(tName, out type);
+
+            var td = type.DeclaringType;
+            if (td != null && td.MetadataToken == genType.MetadataToken)
+                return true;
+
+            return Utils.Filter(type);
         }
 
         private HashSet<string> stripInterfaceSet = new HashSet<string>();

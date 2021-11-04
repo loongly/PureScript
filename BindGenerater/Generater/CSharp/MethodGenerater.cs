@@ -16,6 +16,8 @@ namespace Generater
             genMethod = method;
             isNotImplement = !Utils.Filter(method);
 
+            isNotImplement |= method.IsConstructor && method.DeclaringType.IsSubclassOf("UnityEngine.Component"); // UnityEngine.Component cant be new..
+
             if (isNotImplement)//maybe generate a empty method?
                 return;
 
@@ -164,10 +166,12 @@ namespace Generater
                 }
                 else
                 {
+                    CS.Writer.Start($"if(typeof({genMethod.DeclaringType.Name}) == GetWType())");
                     CS.Writer.WriteLine($"var h = {Utils.BindMethodName(genMethod)}");
                     writer.WriteLine("ScriptEngine.CheckException()");
                     CS.Writer.WriteLine($"SetHandle(h)");
                     CS.Writer.WriteLine("ObjectStore.Store(this, h)");
+                    CS.Writer.End();
                 }
             }
             else
