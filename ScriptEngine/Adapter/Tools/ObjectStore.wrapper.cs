@@ -18,6 +18,8 @@ public class WObject : IWObject
     {
         _handle = handle;
     }
+
+    protected virtual Type GetWType() { return typeof(WObject); }
 }
 public static class WObjectExtend
 {

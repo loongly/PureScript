@@ -515,10 +515,21 @@ namespace Generater
             if (delegateTarget != null)
                 types.Add(delegateTarget);
 
-            
-
             var invokMethod = type.Resolve().Methods.Where(m => m.Name == "Invoke").FirstOrDefault();
-            if(invokMethod != null)
+            if (type.IsGenericInstance)
+            {
+                var gType = type as GenericInstanceType;
+                types.AddRange(gType.GenericArguments);
+                returnType = null;
+
+                if (type.Name.StartsWith("Func"))
+                {
+                    returnType = types.Last();
+                    types.Remove(returnType);
+                }
+                return types;
+            }
+            else if(invokMethod != null)
             {
                 foreach (var p in invokMethod.Parameters)
                 {
@@ -532,19 +543,6 @@ namespace Generater
                     returnType = null;
                 else
                     returnType = invokMethod.ReturnType;
-            }
-            else if (type.IsGenericInstance)
-            {
-                var gType = type as GenericInstanceType;
-                types.AddRange(gType.GenericArguments);
-                returnType = null;
-
-                if (type.Name.StartsWith("Func"))
-                {
-                    returnType = types.Last();
-                    types.Remove(returnType);
-                }
-                return types;
             }
             else
             {

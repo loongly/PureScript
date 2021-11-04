@@ -67,6 +67,10 @@ namespace Generater
             "UnityEngine.ILogHandler",
             "UnityEngine.Logger",
             "UnityEngine.DebugLogHandler",
+            "UnityEngine.Resources",
+            "UnityEngine.ResourcesAPI",
+            "UnityEngine.ResourceRequest",
+            "UnityEngine.ResourcesAPIInternal",
 
             "UnityEngine.UnityException",
             "UnityEngine.UnityString",

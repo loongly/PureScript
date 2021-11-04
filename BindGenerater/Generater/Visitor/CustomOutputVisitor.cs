@@ -26,6 +26,8 @@ public class CustomOutputVisitor : CSharpOutputVisitor
     public bool AddWObject = false;
     public bool isFullRetain = false;
     string curTypeName = null;
+
+    public CheckTypeRefVisitor checkTypeRefVisitor;
     public CustomOutputVisitor(bool _isNested, TextWriter textWriter, CSharpFormattingOptions formattingPolicy) : base(textWriter, formattingPolicy)
     {
         isNested = _isNested;
@@ -133,6 +135,19 @@ public class CustomOutputVisitor : CSharpOutputVisitor
         ResolveTypeDeclear(typeDeclaration);
 
         base.VisitTypeDeclaration(typeDeclaration);
+    }
+
+    public override void VisitMethodDeclaration(MethodDeclaration methodDeclaration)
+    {
+        if(checkTypeRefVisitor != null)
+        {
+            var collectRes = methodDeclaration.AcceptVisitor(checkTypeRefVisitor);
+            if (collectRes != CheckTypeRefVisitor.Result.Ok)
+                return;
+        }
+       
+
+        base.VisitMethodDeclaration(methodDeclaration);
     }
 
     public override void VisitSimpleType(SimpleType simpleType)
@@ -276,4 +291,69 @@ public class MemberDeclearVisitor: CustomOutputVisitor
         base.VisitTypeDeclaration(typeDeclaration);
     }
 
+}
+
+public class CheckTypeRefVisitor:DepthFirstAstVisitor<CheckTypeRefVisitor.Result>
+{
+    public enum Result
+    {
+        Ok = 0,
+        Error = 1,
+    }
+    public Func<string, bool> CheckRefFunc;
+    public HashSet<string> TypeRefSet = new HashSet<string>();
+    public HashSet<string> IgnorRefSet = new HashSet<string>();
+
+    public CheckTypeRefVisitor(Func<string, bool> func)
+    {
+        CheckRefFunc = func;
+    }
+
+    protected override Result VisitChildren(AstNode node)
+    {
+        Result res = Result.Ok;
+        AstNode next;
+        for (var child = node.FirstChild; child != null; child = next)
+        {
+            next = child.NextSibling;
+            res |= child.AcceptVisitor(this);
+            if (res == Result.Error && !(node is TypeDeclaration))
+                return Result.Error;
+        }
+        return res;
+    }
+
+    public override Result VisitSimpleType(SimpleType simpleType)
+    {
+        var res = simpleType.Resolve() as TypeResolveResult;
+        if (res != null)
+        {
+            var td = res.Type.GetDefinition();
+            if (td != null && !td.Namespace.StartsWith("System"))
+            {
+                var name = td.FullTypeName.ReflectionName;
+                if (TypeRefSet.Contains(name))
+                    return Result.Ok;
+                else if (IgnorRefSet.Contains(name))
+                    return Result.Error;
+
+                if (CheckRefFunc(name))
+                {
+                    TypeRefSet.Add(name);
+                    return Result.Ok;
+                }
+                else
+                {
+                    IgnorRefSet.Add(name);
+                    return Result.Error;
+                }
+            }
+        }
+        return base.VisitSimpleType(simpleType);
+    }
+
+    public override Result VisitAttributeSection(AttributeSection attributeSection)
+    {
+        return Result.Ok;
+    }
 }
