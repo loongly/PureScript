@@ -11,11 +11,12 @@ namespace Generater
     {
         public static BaseMethodResolver Resolve(MethodDefinition _method)
         {
+
+            var firstParam = _method.Parameters.FirstOrDefault()?.ParameterType?.Resolve();
             if (_method.IsConstructor)
                 return new ConstructorMethodResolver(_method);
             if (_method.IsSetter)
             {
-                var firstParam = _method.Parameters.FirstOrDefault()?.ParameterType?.Resolve();
                 if (firstParam != null && firstParam.IsDelegate())
                     return new AddOnMethodResolver(_method,false);
                 else
@@ -28,6 +29,9 @@ namespace Generater
                 return new AddOnMethodResolver(_method, true);
             if (_method.IsRemoveOn)
                 return new RemoveOnMethodResolver(_method);
+
+            if (_method.Parameters.Count == 1 && firstParam.IsDelegate())
+                return new EventMethodResolver(_method);
 
             return new BaseMethodResolver(_method);
         }
@@ -54,6 +58,21 @@ namespace Generater
         /// <returns> resObj </returns>
         public virtual string Call(string name)
         {
+            if(!(this is EventMethodResolver))
+            {
+                foreach (var param in method.Parameters)
+                {
+                    var td = param.ParameterType.Resolve();
+                    if (td != null && td.IsDelegate())
+                    {
+                        var _member = DelegateResolver.LocalMamberName(param.Name, method);
+                        CS.Writer.WriteLine($"{_member} = {param.Name}");
+                        if (!method.IsStatic)
+                            CS.Writer.WriteLine($"ObjectStore.RefMember(this,ref {_member}_ref,{_member})"); // resist gc
+                    }
+                }
+            }
+
             if (method.ReturnType.IsVoid())
             {
                 CS.Writer.WriteLine(Utils.BindMethodName(method));
@@ -121,7 +140,7 @@ namespace Generater
             var lastP = method.Parameters.LastOrDefault();
             foreach (var p in method.Parameters)
             {
-                var value = TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true);
+                var value = TypeResolver.Resolve(p.ParameterType,method).Unbox(p.Name, true);
                 //if (p.ParameterType.IsByReference)
                 //    value = "ref " + value;
 
@@ -174,7 +193,7 @@ namespace Generater
                 var lastP = method.Parameters.LastOrDefault();
                 foreach (var p in method.Parameters)
                 {
-                    CS.Writer.Write(TypeResolver.Resolve(p.ParameterType).Unbox(p.Name, true));
+                    CS.Writer.Write(TypeResolver.Resolve(p.ParameterType,method).Unbox(p.Name, true));
                     if (lastP != p)
                         CS.Writer.Write(",");
                 }
@@ -283,11 +302,7 @@ namespace Generater
         }
 
         /*
-        static Action <int,int,int> logMessageReceived;
-    static void OnlogMessageReceived(string arg0, string arg1, LogType arg2)
-    {
-        logMessageReceived(box(arg0), box(arg1), box(arg2));
-    }
+        
     [MonoPInvokeCallback(typeof(UnityEngine_Application_logMessageReceived_Type))]
 	static void UnityEngine_Application_logMessageReceived (IntPtr value_p)
 	{
@@ -299,64 +314,16 @@ namespace Generater
         {
             
             var isStatic = method.IsStatic;
-
-            var type = method.Parameters.FirstOrDefault().ParameterType; // LogCallback(string condition, string stackTrace, LogType type);
-            var paramTpes = Utils.GetDelegateParams(type,isStatic? null: method.DeclaringType, out var returnType); // string , string , LogType ,returnType
-            var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStatic ? null : method.DeclaringType); //Action <int,int,int>
-
-            var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).RealTypeName() : "void";
-
-            //static void OnlogMessageReceived(string arg0, string arg1, LogType arg2)
-            var eventFuncDeclear = $"static {returnTypeName} On{uniqueName}("; 
-            for (int i = 0;i< paramTpes.Count;i++)
-            {
-                var p = paramTpes[i];
-                if (!isStatic && i == 0)
-                    eventFuncDeclear += "this ";
-                eventFuncDeclear += $"{TypeResolver.Resolve(p).RealTypeName()} arg{i}";
-                if (i != paramTpes.Count -1)
-                {
-                    eventFuncDeclear += ",";
-                }
-            }
-            eventFuncDeclear += ")";
-
-            using (new LP(CS.Writer.GetLinePoint("//Method")))
-            {
-                CS.Writer.WriteLine($"static {eventDeclear} {uniqueName}");
-
-                CS.Writer.Start(eventFuncDeclear);
-
-                var callCmd = $"{uniqueName}(";
-                if (returnType != null)
-                    callCmd = "var res = " + callCmd;
-
-                for (int i = 0; i < paramTpes.Count; i++)
-                {
-                    var p = paramTpes[i];
-                    callCmd += TypeResolver.Resolve(p).Box($"arg{i}");
-                        
-                    if (i != paramTpes.Count - 1)
-                            callCmd += ",";
-                }
-                
-                callCmd += ")";
-                CS.Writer.WriteLine(callCmd);
-                CS.Writer.WriteLine("ScriptEngine.CheckException()");
-                if (returnType != null)
-                {
-                    var res = TypeResolver.Resolve(returnType).Box("res");
-                    CS.Writer.WriteLine($"return {res}");
-                }
-
-                CS.Writer.End();
-            }
+            var type = method.Parameters.FirstOrDefault().ParameterType;
 
             name = "value";
             var thizObj = GetThizObj();
-            CS.Writer.WriteLine($"{uniqueName} = Marshal.GetDelegateForFunctionPointer<{eventDeclear}>({name}_p)");
 
-            var actionTarget = isStatic ? $"On{uniqueName}" : $"{thizObj}.On{uniqueName}";
+            var res = TypeResolver.Resolve(type,method).Unbox(name);
+
+            //CS.Writer.WriteLine($"{uniqueName} = Marshal.GetDelegateForFunctionPointer<{eventDeclear}>({name}_p)");
+
+            var actionTarget = res;// isStatic ? $"{res}" : $"{thizObj}.On{uniqueName}";
             var op = isEvent ? "+=" : "=";
             CS.Writer.WriteLine($"{thizObj}.{propertyName} {op} {actionTarget}");
             
@@ -378,13 +345,70 @@ namespace Generater
         {
             name = "value";
             var thizObj = GetThizObj();
-            var isStatic = method.IsStatic;
+            //var isStatic = method.IsStatic;
 
-            
-            var actionTarget = isStatic ? $"On{uniqueName}" : $"{thizObj}.On{uniqueName}";
+            var type = method.Parameters.FirstOrDefault().ParameterType;
+            var res = TypeResolver.Resolve(type,method).Unbox(name);
+
+            var actionTarget = res;// isStatic ? $"On{uniqueName}" : $"{thizObj}.On{uniqueName}";
             CS.Writer.WriteLine($"{thizObj}.{propertyName} -= {actionTarget}");
             return "";
         }
+    }
+
+    public class EventMethodResolver : BaseMethodResolver
+    {
+        enum EventType
+        {
+            none,
+            addon,
+            removeon,
+        }
+        EventType eventType;
+        public EventMethodResolver(MethodDefinition _method) : base(_method)
+        {
+            if(_method.DeclaringType.IsSubclassOf("UnityEngine.Events.UnityEventBase"))
+            {
+                if (_method.Name == "AddListener")
+                    eventType = EventType.addon;
+                else if (_method.Name == "RemoveListener")
+                    eventType = EventType.removeon;
+            }
+        }
+
+        public override string Call(string name)
+        {
+            if(eventType == EventType.none)
+                return base.Call(name);
+
+            var firstParam = method.Parameters.FirstOrDefault();
+            string _member = DelegateResolver.LocalMamberName(firstParam.Name, method);
+
+            var res = "";
+
+            if (eventType == EventType.addon)
+            {
+                CS.Writer.WriteLine($"bool attach = ({_member} == null)");
+                CS.Writer.WriteLine($"{_member} += {firstParam.Name}");
+                CS.Writer.Start("if(attach)");
+            }
+            else
+            {
+                CS.Writer.WriteLine($"{_member} -= {firstParam.Name}");
+                CS.Writer.Start($"if({_member} == null)");
+            }
+
+            res = base.Call(name);
+
+            if (!method.IsStatic)
+                CS.Writer.WriteLine($"ObjectStore.RefMember(this,ref {_member}_ref,{_member})"); // resist gc
+
+            CS.Writer.End(); //if(attach)
+
+            return res;
+
+        }
+
     }
 }
 

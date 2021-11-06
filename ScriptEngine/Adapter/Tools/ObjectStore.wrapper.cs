@@ -66,4 +66,19 @@ public static class ObjectStore
         var obj = GetObject(handle);
         return obj as T;
     }
+
+    public static void RefMember(WObject obj, ref GCHandle handle,object member)
+    {
+        if(member == null)
+        {
+            if (handle.IsAllocated)
+                handle.Free();
+        }
+        else
+        {
+            if (!handle.IsAllocated)
+                handle = GCHandle.Alloc(obj);
+
+        }
+    }
 }

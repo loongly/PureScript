@@ -10,12 +10,12 @@ namespace Generater
     public class TypeResolver
     {
         public static bool WrapperSide;
-        public static BaseTypeResolver Resolve(TypeReference _type)
+        public static BaseTypeResolver Resolve(TypeReference _type, IMemberDefinition context = null)
         {
             var type = _type.Resolve();
 
             if (Utils.IsDelegate(_type))
-                return new DelegateResolver(_type);
+                return new DelegateResolver(_type, context);
 
             if (_type.Name.Equals("Void"))
                 return new VoidResolver(_type);
@@ -48,6 +48,7 @@ namespace Generater
     public class BaseTypeResolver
     {
         protected TypeReference type;
+        public object data;
         public BaseTypeResolver(TypeReference _type)
         {
             type = _type;
@@ -273,8 +274,60 @@ namespace Generater
 
     public class DelegateResolver : BaseTypeResolver
     {
-        public DelegateResolver(TypeReference type) : base(type)
+        bool isStaticMember;
+        TypeReference declarType;
+        MethodDefinition contextMember;
+        string uniqueName;
+        int paramCount;
+        bool returnValue;
+
+        static HashSet<string> BoxedMemberSet = new HashSet<string>();
+        static HashSet<string> UnBoxedMemberSet = new HashSet<string>();
+
+        private static string _Member(string name)
         {
+            return $"_{name}";
+        }
+        private static string _Action(string name)
+        {
+            return $"{name}Action";
+        }
+
+        public static string LocalMamberName(string name, MethodDefinition context)
+        {
+            var uniq = FullMemberName(context);
+            return _Member($"{uniq}_{name}");
+        }
+
+        public DelegateResolver(TypeReference type, IMemberDefinition context) : base(type)
+        {
+            if(context != null)
+            {
+                var method = context as MethodDefinition;
+                contextMember = method;
+                isStaticMember = method.IsStatic;
+                declarType = method.DeclaringType;
+                paramCount = method.Parameters.Count;
+                returnValue = !method.ReturnType.IsVoid();
+                uniqueName = FullMemberName(method);
+            }
+        }
+
+        static string FullMemberName(MethodDefinition method)
+        {
+            var methodName = method.Name;
+            if (method.IsAddOn || method.IsSetter || method.IsGetter)
+                methodName = methodName.Substring("add_".Length);//trim "add_" or "set_"
+            else if (method.IsRemoveOn)
+                methodName = methodName.Substring("remove_".Length);//trim "remove_"
+
+            // Special to AddListener / RemoveListener
+            else if (method.Parameters.Count == 1 && methodName.StartsWith("Add"))
+                methodName = methodName.Substring("Add".Length);// trim "Add"  
+            else if (method.Parameters.Count == 1 && methodName.StartsWith("Remove"))
+                methodName = methodName.Substring("Remove".Length);// trim "Remove"  
+
+            return method.DeclaringType.Name.Replace("/", "_") + "_" + methodName.Replace(".", "_");
         }
 
         public override string Paramer(string name)
@@ -287,23 +340,220 @@ namespace Generater
             return "IntPtr";
         }
 
-        public override string Box(string name)
+        /*
+        static event global::UnityEngine.Application.LogCallback _logMessageReceived;
+        static Action<int, int, int> logMessageReceivedAction = OnlogMessageReceived;
+        static void OnlogMessageReceived(int arg0,int arg1,int arg2)
         {
-            CS.Writer.WriteLine($"var {name}_p = Marshal.GetFunctionPointerForDelegate({name})");
-            return $"{name}_p";
+            _logMessageReceived(unbox(arg0), unbox(arg1), unbox(arg2));
+        }
+         */
+        void WriteBoxedMember(string name)
+        {
+            if (contextMember == null)
+                return;
+            if (BoxedMemberSet.Contains(uniqueName))
+                return;
+            BoxedMemberSet.Add(uniqueName);
+
+            string _member = _Member(name);// _logMessageReceived
+            string _action = _Action(name);// logMessageReceivedAction
+
+            var flag = isStaticMember ? "static" : "";
+            var eventTypeName = TypeResolver.Resolve(type).RealTypeName();
+            if (type.IsGenericInstance)
+                eventTypeName = Utils.GetGenericTypeName(type);
+
+            var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStaticMember ? null : declarType); //Action <int,int,int>
+            var paramTpes = Utils.GetDelegateParams(type, isStaticMember ? null : declarType, out var returnType); // string , string , LogType ,returnType
+            var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).RealTypeName() : "void";
+
+            //static event global::UnityEngine.Application.LogCallback _logMessageReceived;
+            CS.Writer.WriteLine($"public {flag} {eventTypeName} {_member}");
+
+            if(!isStaticMember)
+                CS.Writer.WriteLine($"public GCHandle {_member}_ref"); // resist gc
+
+            //static Action<int, int, int> logMessageReceivedAction = OnlogMessageReceived;
+            CS.Writer.WriteLine($"static {eventDeclear} {_action} = On{name}");
+
+            //static void OnlogMessageReceived(int arg0,int arg1,int arg2)
+            var eventFuncDeclear = $"static {returnTypeName} On{name}(";
+
+            for (int i = 0; i < paramTpes.Count; i++)
+            {
+                var p = paramTpes[i];
+                eventFuncDeclear += TypeResolver.Resolve(p).LocalVariable($"arg{i}");
+                if (i != paramTpes.Count - 1)
+                {
+                    eventFuncDeclear += ",";
+                }
+            }
+            eventFuncDeclear += ")";
+
+            CS.Writer.Start(eventFuncDeclear);
+            CS.Writer.WriteLine("Exception __e = null");
+            CS.Writer.Start("try");
+            //_logMessageReceived(unbox(arg0), unbox(arg1), unbox(arg2));
+            var callCmd = $"{_member}(";
+            var targetObj = "";
+
+            for (int i = 0; i < paramTpes.Count; i++)
+            {
+                var p = paramTpes[i];
+                var param = TypeResolver.Resolve(p).Unbox($"arg{i}");
+
+                if (i == 0 && !isStaticMember)
+                {
+                    targetObj = param + ".";
+                    continue;
+                }
+
+                callCmd += param;
+                if (i != paramTpes.Count - 1)
+                    callCmd += ",";
+            }
+            callCmd += ")";
+
+            if (!string.IsNullOrEmpty(targetObj))
+                callCmd = targetObj + callCmd;
+            if (returnType != null)
+                callCmd = $"var res = " + callCmd;
+
+            CS.Writer.WriteLine(callCmd);
+            if (returnType != null)
+            {
+                var res = TypeResolver.Resolve(returnType).Box("res");
+                CS.Writer.WriteLine($"return {res}");
+            }
+            CS.Writer.End();//try
+            CS.Writer.Start("catch(Exception e)");
+            CS.Writer.WriteLine("__e = e");
+            CS.Writer.End();//catch
+            CS.Writer.WriteLine("if(__e != null)", false);
+            CS.Writer.WriteLine("ScriptEngine.OnException(__e.ToString())");
+            if (returnType != null)
+                CS.Writer.WriteLine($"return default({returnTypeName})");
+
+            CS.Writer.End();//method
+
         }
 
+        /*
+        static Action <int,int,int> logMessageReceived;
+        static Action <int,int,int> logMessageReceivedAction;
+        static void OnlogMessageReceived(string arg0, string arg1, LogType arg2)
+        {
+            logMessageReceived(box(arg0), box(arg1), box(arg2));
+        }
+
+         */
+        void WriteUnboxedMember(string name)
+        {
+            if (contextMember == null)
+                return;
+
+            if (UnBoxedMemberSet.Contains(uniqueName))
+                return;
+            UnBoxedMemberSet.Add(uniqueName);
+
+            string _member = _Member(name);// _logMessageReceived
+
+            var paramTpes = Utils.GetDelegateParams(type, isStaticMember ? null : declarType, out var returnType); // string , string , LogType ,returnType
+            var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).RealTypeName() : "void";
+            var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStaticMember ? null : declarType); //Action <int,int,int>
+
+            //static void OnlogMessageReceived(string arg0, string arg1, LogType arg2)
+            var eventFuncDeclear = $"static {returnTypeName} On{name}(";
+            for (int i = 0; i < paramTpes.Count; i++)
+            {
+                var p = paramTpes[i];
+                if (!isStaticMember && i == 0)
+                    eventFuncDeclear += "this ";
+                eventFuncDeclear += $"{TypeResolver.Resolve(p).RealTypeName()} arg{i}";
+                if (i != paramTpes.Count - 1)
+                {
+                    eventFuncDeclear += ",";
+                }
+            }
+            eventFuncDeclear += ")";
+
+
+            CS.Writer.WriteLine($"static {eventDeclear} {_member}");
+
+            CS.Writer.Start(eventFuncDeclear);
+
+            var callCmd = $"{_member}(";
+            if (returnType != null)
+                callCmd = "var res = " + callCmd;
+
+            for (int i = 0; i < paramTpes.Count; i++)
+            {
+                var p = paramTpes[i];
+                callCmd += TypeResolver.Resolve(p).Box($"arg{i}");
+
+                if (i != paramTpes.Count - 1)
+                    callCmd += ",";
+            }
+
+            callCmd += ")";
+            CS.Writer.WriteLine(callCmd);
+            CS.Writer.WriteLine("ScriptEngine.CheckException()");
+            if (returnType != null)
+            {
+                var res = TypeResolver.Resolve(returnType).Box("res");
+                CS.Writer.WriteLine($"return {res}");
+            }
+
+            CS.Writer.End();
+
+        }
+
+        public override string Box(string name)
+        {
+            var memberUniqueName = $"{uniqueName}_{name}";
+            using (new LP(CS.Writer.GetLinePoint("//member")))
+            {
+                WriteBoxedMember(memberUniqueName);
+            }
+            
+            var _action = _Action(memberUniqueName);
+            var _member = _Member(memberUniqueName);
+
+            CS.Writer.WriteLine($"var {memberUniqueName}_p = Marshal.GetFunctionPointerForDelegate({_action})");
+            return $"{memberUniqueName}_p";
+        }
+
+        
         public override string Unbox(string name, bool previous)
         {
-            var typeName = RealTypeName();
-            if (type.IsGenericInstance)
-                typeName = Utils.GetGenericTypeName(type);
-            var unboxCmd = $"var {name}_r = Marshal.GetDelegateForFunctionPointer<{typeName}>({name}_p)";
-            if (previous)
-                CS.Writer.WritePreviousLine(unboxCmd);
-            else
-                CS.Writer.WriteLine(unboxCmd);
-            return $"{name}_r";
+            var memberUniqueName = $"{uniqueName}_{name}";
+
+            if(!contextMember.IsRemoveOn)
+            {
+                using (new LP(CS.Writer.GetLinePoint("//Method")))
+                {
+                    WriteUnboxedMember(memberUniqueName);
+                }
+
+                string _member = _Member(memberUniqueName);// _logMessageReceived
+
+                string ptrName = $"{name}_p";
+
+                var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStaticMember ? null : declarType);
+
+                var unboxCmd = $"{_member} = {ptrName} == IntPtr.Zero ? null: Marshal.GetDelegateForFunctionPointer<{eventDeclear}>({ptrName})";
+                if (previous)
+                    CS.Writer.WritePreviousLine(unboxCmd);
+                else
+                    CS.Writer.WriteLine(unboxCmd);
+            }
+
+            var resCmd = $"On{memberUniqueName}";
+            if (!isStaticMember)
+                resCmd = "thizObj." + resCmd;
+
+            return resCmd;
         }
     }
 
