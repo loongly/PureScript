@@ -71,6 +71,8 @@ namespace Generater
             "UnityEngine.ResourcesAPI",
             "UnityEngine.ResourceRequest",
             "UnityEngine.ResourcesAPIInternal",
+            "UnityEngine.WaitUntil",
+            "UnityEngine.WaitWhile",
 
             "UnityEngine.UnityException",
             "UnityEngine.UnityString",

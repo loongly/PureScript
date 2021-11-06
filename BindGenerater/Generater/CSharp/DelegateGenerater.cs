@@ -38,6 +38,7 @@ namespace Generater
                 isStatic = e.RemoveMethod.IsStatic;
             }
             isEvent = true;
+
         }
         public DelegateGenerater(PropertyDefinition prop)
         {
@@ -55,7 +56,7 @@ namespace Generater
             if (prop.GetMethod != null)
             {
                 getMethod = prop.GetMethod;
-                methods.Add(new MethodGenerater(prop.GetMethod));
+                //methods.Add(new MethodGenerater(prop.GetMethod));
                 isStatic = prop.GetMethod.IsStatic;
             }
             isEvent = false;
@@ -63,12 +64,6 @@ namespace Generater
         
 
         /*
-         static event global::UnityEngine.Application.LogCallback _logMessageReceived;
-        static Action<int, int, int> logMessageReceivedAction = OnlogMessageReceived;
-        static void OnlogMessageReceived(int arg0,int arg1,int arg2)
-        {
-            _logMessageReceived(unbox(arg0), unbox(arg1), unbox(arg2));
-        }
         public static event global::UnityEngine.Application.LogCallback logMessageReceived
 		{
 			add
@@ -95,7 +90,7 @@ namespace Generater
         public override void Gen()
         {
             var name = genName;
-            
+
             var flag = isStatic ? "static" : "";
             flag += isEvent ? " event" : "";
             var type = genType; // LogCallback(string condition, string stackTrace, LogType type);
@@ -104,74 +99,8 @@ namespace Generater
             if (type.IsGenericInstance)
                 eventTypeName = Utils.GetGenericTypeName(type);
 
-            var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStatic ? null : declarType); //Action <int,int,int>
-            var paramTpes = Utils.GetDelegateParams(type, isStatic ? null : declarType, out var returnType); // string , string , LogType ,returnType
-            var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).RealTypeName() : "void";
-
-            //static event global::UnityEngine.Application.LogCallback _logMessageReceived;
-            CS.Writer.WriteLine($"public {flag} {eventTypeName} _{name}");
-
-            //static Action<int, int, int> logMessageReceivedAction = OnlogMessageReceived;
-            CS.Writer.WriteLine($"static {eventDeclear} {name}Action = On{name}");
-
-            //static void OnlogMessageReceived(int arg0,int arg1,int arg2)
-            var eventFuncDeclear = $"static {returnTypeName} On{name}(";
-            for (int i = 0; i < paramTpes.Count; i++)
-            {
-                var p = paramTpes[i];
-                eventFuncDeclear += TypeResolver.Resolve(p).LocalVariable($"arg{i}");
-                if (i != paramTpes.Count - 1)
-                {
-                    eventFuncDeclear += ",";
-                }
-            }
-            eventFuncDeclear += ")";
-
-            CS.Writer.Start(eventFuncDeclear);
-            CS.Writer.WriteLine("Exception __e = null");
-            CS.Writer.Start("try");
-            //_logMessageReceived(unbox(arg0), unbox(arg1), unbox(arg2));
-            var callCmd = $"_{name}(";
-            var targetObj = "";
-
-            for (int i = 0; i < paramTpes.Count; i++)
-            {
-                var p = paramTpes[i];
-                var param = TypeResolver.Resolve(p).Unbox($"arg{i}");
-                
-                if (i == 0 && !isStatic)
-                {
-                    targetObj = param + ".";
-                    continue;
-                }
-
-                callCmd += param;
-                if (i != paramTpes.Count - 1)
-                    callCmd += ",";
-            }
-            callCmd += ")";
-
-            if (!string.IsNullOrEmpty(targetObj))
-                callCmd = targetObj + callCmd;
-            if (returnType != null)
-                callCmd = $"var res = " + callCmd;
-
-            CS.Writer.WriteLine(callCmd);
-            if (returnType != null)
-            {
-                var res = TypeResolver.Resolve(returnType).Box("res");
-                CS.Writer.WriteLine($"return {res}");
-            }
-            CS.Writer.End();//try
-            CS.Writer.Start("catch(Exception e)");
-            CS.Writer.WriteLine("__e = e");
-            CS.Writer.End();//catch
-            CS.Writer.WriteLine("if(__e != null)", false);
-            CS.Writer.WriteLine("ScriptEngine.OnException(__e.ToString())");
-            if (returnType != null)
-                CS.Writer.WriteLine($"return default({returnTypeName})");
-
-            CS.Writer.End();//method
+            
+            IMemberDefinition context = null ;
 
             //public static event LogCallback logMessageReceived
             CS.Writer.Start($"public {flag} {eventTypeName} {name}");
@@ -180,13 +109,24 @@ namespace Generater
             if (addMethod != null || setMethod != null)
             {
                 var method = isEvent ? addMethod : setMethod;
+                context = method;
+                string _member = DelegateResolver.LocalMamberName(name, method); // _logMessageReceived
+
                 var op = isEvent ? "+=" : "=";
-                CS.Writer.Start(isEvent? "add":"set");
-                CS.Writer.WriteLine($"bool attach = (_{name} == null)");
-                CS.Writer.WriteLine($"_{name} {op} value");
+                CS.Writer.Start(isEvent ? "add" : "set");
+                if(addMethod != null)
+                    CS.Writer.WriteLine($"bool attach = ({_member} == null)");
+                else
+                    CS.Writer.WriteLine($"bool attach = ({_member} != value)");
+
+                CS.Writer.WriteLine($"{_member} {op} value");
 
                 CS.Writer.Start("if(attach)");
-                var res = TypeResolver.Resolve(type).Box($"{name}Action");
+
+                if (!isStatic)
+                    CS.Writer.WriteLine($"ObjectStore.RefMember(this,ref {_member}_ref,{_member})"); // resist gc
+
+                var res = TypeResolver.Resolve(type, context).Box(name);
                 
                 CS.Writer.WriteLine(Utils.BindMethodName(method, false, false) + $"({targetHandle}{res})");
                 //var value_p = Marshal.GetFunctionPointerForDelegate(logMessageReceivedAction);
@@ -197,11 +137,20 @@ namespace Generater
             }
             if(removeMethod != null)
             {
-                CS.Writer.Start("remove");
-                CS.Writer.WriteLine($"_{name} -= value");
+                if(context == null)
+                    context = removeMethod;
 
-                CS.Writer.Start($"if(_{name} == null)");
-                var res = TypeResolver.Resolve(type).Box($"{name}Action");
+                string _member = DelegateResolver.LocalMamberName(name, removeMethod); // _logMessageReceived
+
+                CS.Writer.Start("remove");
+                CS.Writer.WriteLine($"{_member} -= value");
+
+                CS.Writer.Start($"if({_member} == null)");
+
+                if (!isStatic)
+                    CS.Writer.WriteLine($"ObjectStore.RefMember(this,ref {_member}_ref,{_member})"); // resist gc
+
+                var res = TypeResolver.Resolve(type, context).Box(name);
                 CS.Writer.WriteLine(Utils.BindMethodName(removeMethod, false, false) + $"({targetHandle}{res})");
                 CS.Writer.WriteLine("ScriptEngine.CheckException()");
                 CS.Writer.End(); //if(attach)
@@ -209,8 +158,10 @@ namespace Generater
             }
             else if (getMethod != null)
             {
+                string _member = DelegateResolver.LocalMamberName(name, getMethod); // _logMessageReceived
+
                 CS.Writer.Start("get");
-                CS.Writer.WriteLine($"return _{name}");
+                CS.Writer.WriteLine($"return {_member}");
                 CS.Writer.End(); //get
             }
 

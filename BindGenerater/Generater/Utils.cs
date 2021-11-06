@@ -79,7 +79,7 @@ namespace Generater
                 }
                 else
                 {
-                    param += TypeResolver.Resolve(p.ParameterType).Box(p.Name) + (p == lastP ? "" : ", ");
+                    param += TypeResolver.Resolve(p.ParameterType, method).Box(p.Name) + (p == lastP ? "" : ", ");
                 }
 
             }

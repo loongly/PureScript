@@ -117,8 +117,6 @@ namespace Generater
                 foreach (var ns in nsSet)
                     CS.Writer.WriteLine($"using {ns}");
 
-                GenDefines();
-
                 CS.Writer.Start("public static unsafe class UnityBind");
 
                 foreach (var method in methods)
@@ -170,6 +168,11 @@ namespace Generater
                     CS.Writer.End();//method
 
                 }
+
+                CS.Writer.End();//UnityBind
+
+                GenDefines();
+
                 CS.Writer.EndAll();
             }
         }

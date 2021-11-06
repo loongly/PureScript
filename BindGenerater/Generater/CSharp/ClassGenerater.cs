@@ -205,8 +205,8 @@ namespace Generater
 
                 CS.Writer.Start(classDefine);
 
-                
 
+                CS.Writer.CreateLinePoint("//member");
                 /*CS.Writer.Start($"internal {genType.Name}(int handle,IntPtr ptr): base(handle, ptr)");
                 CS.Writer.End();*/
 
