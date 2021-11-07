@@ -6,7 +6,7 @@
 
 #define CLASS_MASK_UNITY_NATIVE (1<<2)
 #define CLASS_MASK_WRAPPER (1<<3)
-#define ENABLE_DEBUG 1
+#define ENABLE_DEBUG 0
 
 #if defined(__cplusplus)
 extern "C"
@@ -59,6 +59,8 @@ extern "C"
     Il2CppClass* get_monobehaviour_wrapper_class();
     Il2CppReflectionType* get_monobehaviour_wrapper_rtype();
     void call_wrapper_init(Il2CppObject* il2cpp, MonoObject* mono);
+	bool need_monobehaviour_wrap(const char* asm_name, MonoClass* m_class);
+
 	//Exception
 	MonoException* get_mono_exception(Il2CppException* il2cpp);
 	Il2CppException* get_il2cpp_exception(MonoException* mono);
@@ -83,6 +85,8 @@ extern "C"
 	
 
 	void insert_assembly_map(const char* src, const char* tar);
+	void insert_reloadable(const char* assembly, const char* info);
+	bool is_reloadable(const char* assembly);
 
 #if defined(__cplusplus)
 }

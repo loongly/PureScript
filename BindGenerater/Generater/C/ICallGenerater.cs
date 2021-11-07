@@ -17,6 +17,7 @@ namespace Generater.C
 
         static HashSet<MethodDefinition> methodSet = new HashSet<MethodDefinition>();
         static HashSet<string> wrapperAssemblySet = new HashSet<string>();
+        static HashSet<string> ReloableAssemblySet = new HashSet<string>();
         public static void AddMethod(MethodDefinition method)
         {
             if(!CUtils.IsCustomICall(CUtils.GetICallDescName(method)))
@@ -26,6 +27,12 @@ namespace Generater.C
         public static void AddWrapperAssembly(string name)
         {
             wrapperAssemblySet.Add(name);
+        }
+        public static void AddReloableAssembly(string name)
+        {
+            if (name.EndsWith(".dll"))
+                name = name.Substring(0, name.Length - 4);
+            ReloableAssemblySet.Add(name);
         }
 
         public static void Gen()
@@ -103,6 +110,10 @@ namespace Generater.C
             CS.Writer.Start("void register_assembly_map()");
             /*foreach(var assembly in wrapperAssemblySet)
                 CS.Writer.WriteLine($"insert_assembly_map(\"{assembly}\", \"Adapter.wrapper\")");*/
+
+            foreach (var assembly in ReloableAssemblySet)
+                CS.Writer.WriteLine($"insert_reloadable(\"{assembly}\", NULL)");
+
             CS.Writer.End();
         }
     }

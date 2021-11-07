@@ -146,40 +146,30 @@ Il2CppObject* invoke_enumerator_current(Il2CppObject* obj, void* methodPtr)
 
 	debug_mono_obj(monoRes);
 
-
 	MonoClass* monoClass = mono_object_get_class(monoRes);
 	Il2CppObject* il2cppRes = NULL;
-	uint32_t flag = mono_class_get_flags(monoClass);
-	//Coroutine / AsyncOperation 
-	bool isCoroutine = mono_class_is_subclass_of(monoClass, get_coroutine_class(), FALSE);
-	bool isAsyncOperation = mono_class_is_subclass_of(monoClass, get_AsyncOperation_class(), FALSE);
-	if (isCoroutine || isAsyncOperation)
-	{
-		il2cppRes = get_il2cpp_object(monoRes, NULL);
-		debug_il2cpp_obj(il2cppRes);
-	}
-	//YieldInstruction	WaitForEndOfFrame / WaitForFixedUpdate / WaitForSeconds	//  float m_Seconds;*/
-	else if (mono_class_is_subclass_of(monoClass, get_YieldInstruction_class(), FALSE))
-	{
-		Il2CppClass* il2cppClass = get_il2cpp_class(monoClass);
-		il2cppRes = il2cpp_object_new(il2cppClass);
-		debug_il2cpp_obj(il2cppRes);
 
-		const size_t headSize = sizeof(void*) * 2;
-		int value_area = il2cpp_object_get_size(il2cppRes) - headSize;
-		if (value_area > 0)
-		{
-			memcpy((char*)il2cppRes + headSize, (char*)monoRes + headSize, value_area);
-		}
-	}
-	/* else if (mono_class_is_subclass_of(resClass, get_CustomYieldInstruction_class(), FALSE))
-		{
-			get_il2cpp_object()
-		}*/
-		//Enumerator // EnumeratorWrapper //CustomYieldInstruction // MoveNext
-	else if (mono_class_is_subclass_of(monoClass, get_ienumerator_class(), TRUE))
+	//Enumerator // EnumeratorWrapper //CustomYieldInstruction // MoveNext
+	if (mono_class_is_subclass_of(monoClass, get_ienumerator_class(), TRUE))
 	{
 		il2cppRes = create_il2cpp_enumerator_wrapper(monoRes);//, get_enumerator_wrapper_class()
+	}
+	else
+	{
+		const char* ns = mono_class_get_namespace(monoClass);
+		if (is_unity_name_space(ns))
+		{
+			il2cppRes = get_il2cpp_object(monoRes, NULL);
+
+			uint32_t handle = mono_gchandle_new(monoRes, FALSE); // resist gc until the next "moveNext" call
+			WObjectHead* il2cppHead = (WObjectHead*)(obj);
+			if (il2cppHead->objectPtr != NULL)
+				mono_gchandle_free((uint32_t)il2cppHead->objectPtr);
+
+			il2cppHead->objectPtr = (void*)handle; // save handle to an unused field
+
+			debug_il2cpp_obj(il2cppRes);
+		}
 	}
 
 	return il2cppRes;
@@ -193,6 +183,13 @@ bool invoke_enumerator_moveNext(Il2CppObject* obj, void* methodPtr)
 		return TRUE;
 
 	debug_mono_obj(monoObj);
+
+	WObjectHead* il2cppHead = (WObjectHead*)(obj); // now we can free the last 'Current' monoObj handle
+	if (il2cppHead->objectPtr != NULL)
+	{
+		mono_gchandle_free((uint32_t)il2cppHead->objectPtr);
+		il2cppHead->objectPtr = NULL;
+	}
 
 	MonoMethod* method = (MonoMethod*)methodPtr;
 
