@@ -319,7 +319,6 @@ MonoClass* get_mono_class(Il2CppClass* mclass)
 	{
 		monoClass = mono_search_class(asmName, ns,cname);
 	}
-
 	
 	return monoClass;
 }
@@ -331,12 +330,13 @@ Il2CppReflectionType* get_il2cpp_reflection_type(MonoReflectionType * type)
 
 	const char* ns = mono_class_get_namespace(mclass);
 	const char* cname = mono_class_get_name(mclass);
-
-	if (!is_unity_name_space(ns))
-		return get_monobehaviour_wrapper_rtype();//
-
 	MonoImage* mimage = mono_class_get_image(mclass);
 	const char* asmName = mono_image_get_name(mimage);
+
+	if (need_monobehaviour_wrap(asmName,mclass))
+		return get_monobehaviour_wrapper_rtype();//
+
+	
 	//const char* asmName = "Assembly-CSharp.dll";//TODO:the asmName must be same in mono and il2cpp
 
 	Il2CppClass* il2cppClass = il2cpp_search_class(asmName, ns, cname);
@@ -346,6 +346,8 @@ Il2CppReflectionType* get_il2cpp_reflection_type(MonoReflectionType * type)
 	Il2CppReflectionType* rtype = (Il2CppReflectionType*)il2cpp_type_get_object(ktype);
 	return rtype;
 }
+
+
 
 MonoReflectionType* get_mono_reflection_type(Il2CppReflectionType * type) 
 {
@@ -552,15 +554,40 @@ Il2CppReflectionType* get_monobehaviour_wrapper_rtype()
     
     return monobehaviour_wrapper_rtype;
 }
+
+bool need_monobehaviour_wrap(const char* asm_name, MonoClass* m_class)
+{
+	static MonoClass* monobehaviour = mono_search_class("UnityEngine.CoreModule.dll", "UnityEngine", "MonoBehaviour");
+	if (is_reloadable(asm_name))
+	{
+		return mono_class_is_subclass_of(m_class, monobehaviour, FALSE);
+	}
+
+	return FALSE;
+}
+
 #pragma endregion
 
 #pragma region assembly map
 
 static std::map<std::string , const char* > assembly_map;
+static std::map<std::string, const char* > reloadable_map;
 
 void insert_assembly_map(const char* src, const char* tar) 
 {
 	assembly_map[std::string(src)] = tar;
+}
+void insert_reloadable(const char* assembly, const char* info)
+{
+	reloadable_map[std::string(assembly)] = info;
+}
+bool is_reloadable(const char* assembly) 
+{
+	std::map<std::string, const char*>::iterator res = reloadable_map.find(std::string(assembly));
+	if (res != reloadable_map.end())
+		return TRUE;
+
+	return FALSE;
 }
 
 extern "C" const char* resolve_assembly(const char* request)

@@ -33,7 +33,7 @@ namespace PureScriptWrapper
                 FuncPtr[i] = WrapperUtils.GetFuncPtr(this, method.ToString());
 
                 if (FuncPtr[i] != IntPtr.Zero)
-                    Debug.LogError("bind method: " + method);
+                    Debug.Log("bind method: " + method);
             }
 
             if(awakeAfterInit)

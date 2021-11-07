@@ -1,4 +1,5 @@
 ﻿using Generater;
+using Generater.C;
 using Mono.Cecil;
 using Newtonsoft.Json;
 using System;
@@ -120,13 +121,22 @@ namespace BindGenerater
                 foreach (var filePath in Directory.GetFiles(managedDir))
                 {
                     var file = Path.GetFileName(filePath);
-                    if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file) && !options.InterpSet.Contains(file))
+                    if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file))
                     {
-                        if (file.StartsWith("UnityEngine."))
-                            CBinder.Bind(filePath);
+                        if(options.InterpSet.Contains(file))
+                        {
+                            Console.WriteLine("interp: " + file);
+                            ICallGenerater.AddReloableAssembly(file);
+                        }
+                        else
+                        {
+                            if (file.StartsWith("UnityEngine."))
+                                CBinder.Bind(filePath);
 
-                        Console.WriteLine("aot: " + file);
-                        AOTGenerater.AddAOTAssembly(filePath);
+                            Console.WriteLine("aot: " + file);
+                            AOTGenerater.AddAOTAssembly(filePath);
+                        }
+                        
                     }
                 }
 
