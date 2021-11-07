@@ -10,6 +10,9 @@ public class TestBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.LogError($"TestBehaviourScript: Start");
+
+
         testObj = GameObject.CreatePrimitive(PrimitiveType.Cube);
         testTrans = testObj.transform;
         moveTarget = new Vector3(1, 0, 0);
@@ -19,6 +22,7 @@ public class TestBehaviourScript : MonoBehaviour
         StartCoroutine(RunCoroutineTest("teststr",1));
         StartCoroutine(StartTestGC());
         TestGetComponent();
+        Debug.LogError($"TestBehaviourScript: Start End");
     }
     
     // Update is called once per frame
@@ -34,7 +38,6 @@ public class TestBehaviourScript : MonoBehaviour
         testTrans.position = curPos + moveTarget * Time.deltaTime* 3;
     }
 
-
     IEnumerator RunCoroutineTest(string str, int a = 1)
     {
         Debug.LogError("===== RunCoroutineTest ===== " + str);
@@ -42,7 +45,7 @@ public class TestBehaviourScript : MonoBehaviour
         yield return null;
 
         Debug.LogError("FFF");
-        
+
         yield return StartCoroutine(TestSecendEnumerator());
 
         Debug.LogError("00" + str);
@@ -76,6 +79,8 @@ public class TestBehaviourScript : MonoBehaviour
 
     IEnumerator TestSecendEnumerator()
     {
+        System.GC.Collect();
+
         Debug.LogError("TestSecendEnumerator >>");
         yield return new WaitForSeconds(1.0f);
         Debug.LogError("aaaa");
