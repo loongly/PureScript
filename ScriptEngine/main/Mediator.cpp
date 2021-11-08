@@ -91,7 +91,9 @@ void bind_mono_il2cpp_object(MonoObject* mono, Il2CppObject* il2cpp)
 	mono_gc_reference_queue_add(gc_queue, mono, il2cpp);
 }
 
-
+MonoObject* get_mono_object(Il2CppObject* il2cpp, MonoClass* m_class) {
+    return get_mono_object_impl(il2cpp, m_class, FALSE);
+}
 MonoObject* get_mono_object_impl(Il2CppObject* il2cpp, MonoClass* m_class, bool decide_class)
 {
 	if (il2cpp == NULL)
