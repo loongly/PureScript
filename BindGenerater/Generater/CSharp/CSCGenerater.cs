@@ -17,7 +17,7 @@ namespace Generater
         static string[] addtionRef = new string[]
         {
             "mscorlib.dll",
-            "PureScript.dll",
+            //"PureScript.dll",
         };
 
         private static string CSCPath = "csc";
@@ -57,6 +57,7 @@ namespace Generater
             
             foreach(var file in AdapterSrc)
                 AdapterCompiler.AddSource(Path.Combine(adapterDir,file));
+            AdapterCompiler.refSet.Add("PureScript.dll");
 
             SetWrapper("Adapter.wrapper.dll");
             foreach (var file in AdapterWrapperSrc)
@@ -130,7 +131,7 @@ namespace Generater
         public void AddReference(string target)
         {
             //if(!IgnoreRefSet.Contains(target))
-            refSet.Add(target);
+                refSet.Add(target);
         }
         public void RemoveReference(string target)
         {
@@ -174,7 +175,7 @@ namespace Generater
 
             int res = Utils.RunCMD(CSCPath, new string[] { $"@{fName}" });
             if (res != 0)
-                throw new Exception($"Run CSC with  {fName} error. ");
+                throw new Exception($"Run CSC error,with: {CSCPath} @{fName}");
         }
         /*public void AddTypeForwardedTo(string typeName)
         {

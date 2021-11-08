@@ -128,15 +128,16 @@ namespace BindGenerater
                             Console.WriteLine("interp: " + file);
                             ICallGenerater.AddReloableAssembly(file);
                         }
-                        else
+                        else if (options.AdapterSet.Contains(file) || file == "Adapter.wrapper.dll")
                         {
                             if (file.StartsWith("UnityEngine."))
+                            {
                                 CBinder.Bind(filePath);
+                            }
 
                             Console.WriteLine("aot: " + file);
                             AOTGenerater.AddAOTAssembly(filePath);
                         }
-                        
                     }
                 }
 
@@ -157,7 +158,10 @@ namespace BindGenerater
             {
                 var tarPath = Path.Combine(outDir, fi.Name);
                 if (File.Exists(tarPath) || fi.Name == "netstandard.dll") // netstandard reserved for unity2020 build bug
+                {
                     File.Copy(Path.Combine(srcDir, fi.Name), tarPath, true);
+                    AOTGenerater.AddAOTAssembly(tarPath);
+                }
             }
         }
 

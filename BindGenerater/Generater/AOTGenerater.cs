@@ -39,6 +39,7 @@ namespace Generater
                 File.Delete(tmp);
 
             AOTDic[Path.GetFileName(file)] = assembly.Name.Name.Replace(".","_").Replace("-","_");
+            assembly.Dispose();
         }
 
         public static void End()
