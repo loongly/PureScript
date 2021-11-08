@@ -36,6 +36,7 @@
         ScriptEngineDir： 指向PureScript\ScriptEngine目录
         AdapterSet：      配置即要在Il2cpp又要在Mono中使用的dll,一般为一些通用插件
         InterpSet：       配置需要热更的dll,否则运行在aot中   
+        Entry:            配置Mono中入口dll,通过引用关系收集需要在Mono中运行的dll,动态load的dll也需要配置在此处
 
 
 4. ScriptEngine启动接口请参考 DemoProject\Assets\Scripts\Lancher.cs, (注意修改'reloadDir'变量)。
