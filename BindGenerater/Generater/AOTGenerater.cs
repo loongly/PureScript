@@ -80,6 +80,10 @@ namespace Generater
 
             if(needAOT)
             {
+                var tmpdir = Path.Combine(WorkDir, "temp");
+                if (!Directory.Exists(tmpdir))
+                    Directory.CreateDirectory(tmpdir);
+
                 var res = Utils.RunCMD("ninja", new string[] { }, ManagedDir);
                 if (res != 0)
                     throw new Exception($"Run ninja with dir {ManagedDir} error. ");
