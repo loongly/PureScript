@@ -1,0 +1,62 @@
+{
+  "IgnoreAssemblySet": [ 
+    "PureScript.dll",
+    "Adapter.gen.dll",
+    "UnityEngine.UnityAnalyticsModule.dll",
+    "UnityEngine.AndroidJNIModule.dll" ],
+    
+  "CSharpIgnorTypes": [
+    "System.Collections",
+    "UnityEditor",
+    "UnityEngine.TestTools",
+    "UnityEngine.WSA",
+    "UnityEngine.iOS",
+    "UnityEngine.tvOS",
+    "UnityEngine.Apple",
+    "UnityEngine.Handheld",
+    "UnityEngine.Social"],
+
+  "ForceRetainTypes": [
+    "UnityEngine.Transform",
+    "UnityEngine.Texture",
+    "UnityEngine.Debug",
+    "UnityEngine.ILogger",
+    "UnityEngine.ILogHandler",
+    "UnityEngine.Logger",
+    "UnityEngine.DebugLogHandler",
+    "UnityEngine.Resources",
+    "UnityEngine.ResourcesAPI",
+    "UnityEngine.ResourceRequest",
+    "UnityEngine.ResourcesAPIInternal",
+    "UnityEngine.WaitUntil",
+    "UnityEngine.WaitWhile",
+    "UnityEngine.UnityException",
+    "UnityEngine.UnityString",
+    "UnityEngine.CastHelper`1",
+    "UnityEngineInternal.MathfInternal"],
+
+  "StripUsing": [
+    "UnityEngine.Internal",
+    "UnityEngine.Scripting.APIUpdating",
+    "UnityEngine.Bindings",
+    "Unity.IL2CPP.CompilerServices",
+    "Unity.Burst",
+    "UnityEngine.Bindings"],
+
+  "ICallIgnorTypes":[ 
+    "System.Reflection",
+    "UnityEngine.WSA",
+    "UnityEngine.XR.WSA",
+    "UnityEngine.StackTraceUtility",
+    "Unity.Burst.LowLevel",
+    "Audio.AudioSampleProvider",
+    "BuiltinRuntimeReflectionSystem",
+    "ScriptableRuntimeReflectionSystemWrapper",
+    "IScriptableRuntimeReflectionSystem",
+    "SubsystemDescriptor",
+    "System.Collections.IDictionary",
+    "UnityEngine.SocialPlatforms",
+    "UnityEngine.iOS.LocalNotification",
+    "UnityEngine.AttributeHelperEngine",
+    "UnityEngine.ComputeBuffer"]
+}

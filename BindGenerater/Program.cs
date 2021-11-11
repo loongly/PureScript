@@ -31,10 +31,6 @@ namespace BindGenerater
 
         static BindOptions options;
 
-        private static HashSet<string> IgnoreAssemblySet = new HashSet<string>
-        {
-            "PureScript.dll","Adapter.gen.dll","UnityEngine.UnityAnalyticsModule.dll",
-        };
         public static string ToolsetPath;
         public static BindTarget Mode;
 
@@ -100,7 +96,7 @@ namespace BindGenerater
 
             foreach (var assembly in options.AdapterSet)
             {
-                if (IgnoreAssemblySet.Contains(assembly))
+                if (Config.Instance.IgnoreAssemblySet.Contains(assembly))
                     continue;
 
                 var filePath = Path.Combine(orignDir, assembly);
@@ -121,7 +117,7 @@ namespace BindGenerater
                 foreach (var filePath in Directory.GetFiles(managedDir))
                 {
                     var file = Path.GetFileName(filePath);
-                    if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file))
+                    if (file.EndsWith(".dll") && !Config.Instance.IgnoreAssemblySet.Contains(file))
                     {
                         if(options.InterpSet.Contains(file))
                         {
@@ -177,7 +173,7 @@ namespace BindGenerater
             {
                 var file = Path.GetFileName(filePath);
 
-                if (file.EndsWith(".dll") && !IgnoreAssemblySet.Contains(file))
+                if (file.EndsWith(".dll") && !Config.Instance.IgnoreAssemblySet.Contains(file))
                 {
                     TestBinder.TestBind(filePath);
                 }

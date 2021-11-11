@@ -164,7 +164,7 @@ namespace Generater
                 {
                     if(!isCopyOrignType)
                     {
-                        RefNameSpace.ExceptWith(Binder.IgnoreUsing);
+                        RefNameSpace.ExceptWith(Config.Instance.StripUsing);
                         foreach (var ns in RefNameSpace)
                         {
                             if (!string.IsNullOrEmpty(ns))
@@ -305,7 +305,7 @@ namespace Generater
                 if (!isNested)
                 {
                     RefNameSpace.UnionWith(outVisitor.nestedUsing);
-                    RefNameSpace.ExceptWith(Binder.IgnoreUsing);
+                    RefNameSpace.ExceptWith(Config.Instance.StripUsing);
                     foreach (var ns in RefNameSpace)
                     {
                         if(!string.IsNullOrEmpty(ns))

@@ -18,28 +18,7 @@ namespace Generater
             if (!Directory.Exists(outDir))
                 Directory.CreateDirectory(outDir);
 
-            string[] ignore = new string[]
-            {
-                //"System.Type",
-                "System.Reflection",
-                "UnityEngine.WSA",
-                "UnityEngine.XR.WSA",
-                "UnityEngine.StackTraceUtility",
-                "Unity.Burst.LowLevel",
-                "Audio.AudioSampleProvider",
-                "BuiltinRuntimeReflectionSystem",
-                "ScriptableRuntimeReflectionSystemWrapper",
-                "IScriptableRuntimeReflectionSystem",
-                "SubsystemDescriptor",
-                "System.Collections.IDictionary",
-                "UnityEngine.SocialPlatforms",
-                "UnityEngine.iOS.LocalNotification",
-                "UnityEngine.AttributeHelperEngine",
-                "UnityEngine.ComputeBuffer"
-                //UnsafeUtility?
-            };
-
-            CUtils.IgnoreTypeSet = new HashSet<string>(ignore);
+            CUtils.IgnoreTypeSet = new HashSet<string>(Config.Instance.ICallIgnorTypes);
         }
 
         public static void End()

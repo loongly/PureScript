@@ -75,6 +75,7 @@
     <Compile Include="Generater\AstNodeExtensions.cs" />
     <Compile Include="Generater\Binder.cs" />
     <Compile Include="Generater\AOTGenerater.cs" />
+    <Compile Include="Generater\Config.cs" />
     <Compile Include="Generater\CSharp\CSCGenerater.cs" />
     <Compile Include="Generater\TestBinder.cs" />
     <Compile Include="Generater\CBinder.cs" />

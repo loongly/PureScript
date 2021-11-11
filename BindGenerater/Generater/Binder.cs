@@ -27,58 +27,13 @@ namespace Generater
         public static string ManagedDir;
         public static ModuleDefinition curModule;
 
-        private static string[] IgnorTypes = new string[]
-        {
-            "System.Collections",
-            "UnityEditor",
-            "UnityEngine.TestTools",
-
-            //platform specific
-            "UnityEngine.WSA",
-            "UnityEngine.iOS",
-            "UnityEngine.tvOS",
-            "UnityEngine.Apple",
-            "UnityEngine.Handheld",
-            "UnityEngine.Social"
-        };
-
         public static HashSet<string> UnityCoreModuleSet = new HashSet<string>
         {
             "UnityEngine.SharedInternalsModule.dll",
             "UnityEngine.CoreModule.dll"
         };
 
-        public static HashSet<string> IgnoreUsing = new HashSet<string>()
-        {
-            "UnityEngine.Internal",
-            "UnityEngine.Scripting.APIUpdating",
-            "UnityEngine.Bindings",
-            "Unity.IL2CPP.CompilerServices",
-            "Unity.Burst",
-            "UnityEngine.Bindings"
-        };
-
-        public static HashSet<string> retainTypes = new HashSet<string>()
-        {
-            "UnityEngine.Transform",
-            "UnityEngine.Texture",
-            "UnityEngine.Debug",
-            "UnityEngine.ILogger",
-            "UnityEngine.ILogHandler",
-            "UnityEngine.Logger",
-            "UnityEngine.DebugLogHandler",
-            "UnityEngine.Resources",
-            "UnityEngine.ResourcesAPI",
-            "UnityEngine.ResourceRequest",
-            "UnityEngine.ResourcesAPIInternal",
-            "UnityEngine.WaitUntil",
-            "UnityEngine.WaitWhile",
-
-            "UnityEngine.UnityException",
-            "UnityEngine.UnityString",
-            "UnityEngine.CastHelper`1",
-            "UnityEngineInternal.MathfInternal"
-        };
+        public static HashSet<string> retainTypes = Config.Instance.ForceRetainTypes;
 
         public static void Init(string outDir)
         {
@@ -86,7 +41,7 @@ namespace Generater
             if (!Directory.Exists(outDir))
                 Directory.CreateDirectory(outDir);
 
-            Utils.IgnoreTypeSet.UnionWith(IgnorTypes);
+            Utils.IgnoreTypeSet.UnionWith(Config.Instance.CSharpIgnorTypes);
         }
 
         public static void End()

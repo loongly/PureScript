@@ -15,7 +15,7 @@ using Attribute = ICSharpCode.Decompiler.CSharp.Syntax.Attribute;
 
 public class CustomOutputVisitor : CSharpOutputVisitor
 {
-    static HashSet<string> IgnoreUsing = Binder.IgnoreUsing;
+    static HashSet<string> IgnoreUsing = Config.Instance.StripUsing;
 
     protected bool isNested;
     public List<string> nestedUsing = new List<string>();
