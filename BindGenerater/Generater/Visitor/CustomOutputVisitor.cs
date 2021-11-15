@@ -105,7 +105,8 @@ public class CustomOutputVisitor : CSharpOutputVisitor
         {
             var res = t.Annotation<ResolveResult>();
             var td = res.Type.GetDefinition();
-            if ((td.Kind == TypeKind.Interface && !td.Namespace.StartsWith("System") && !Binder.retainTypes.Contains(td.FullTypeName.ReflectionName)) || stripInterfaceSet.Contains(td.Name))
+            var fullName = td == null ? res.Type.FullName : td.FullTypeName.ReflectionName;
+            if ((res.Type.Kind == TypeKind.Interface && !res.Type.Namespace.StartsWith("System") && !Binder.retainTypes.Contains(fullName)) || stripInterfaceSet.Contains(res.Type.Name))
                 dList.Add(t);
         }
         foreach (var t in dList)

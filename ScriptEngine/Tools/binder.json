@@ -13,8 +13,11 @@
     "UnityEngine.iOS",
     "UnityEngine.tvOS",
     "UnityEngine.Apple",
+    "UnityEngine.Windows",
     "UnityEngine.Handheld",
-    "UnityEngine.Social"],
+    "UnityEngine.Social",
+    "UnityEngine.LowLevel"],
+    
 
   "ForceRetainTypes": [
     "UnityEngine.Transform",

@@ -82,7 +82,7 @@ namespace Generater
             var reName = TypeResolver.Resolve(method.ReturnType).LocalVariable(name);
 
             CS.Writer.WriteLine($"{reName} = {Utils.BindMethodName(method)}");
-            return TypeResolver.Resolve(method.ReturnType).Unbox(name);
+            return TypeResolver.Resolve(method.ReturnType,method).Unbox(name);
         }
 
         /// <summary>
