@@ -155,6 +155,10 @@ public static class PureScriptBuilder
         binder.StartInfo.RedirectStandardError = true;
         binder.StartInfo.UseShellExecute = false;
         binder.StartInfo.CreateNoWindow = true;
+		
+#if UNITY_EDITOR_WIN
+        binder.StartInfo.StandardOutputEncoding = System.Text.Encoding.GetEncoding("GBK");
+#endif
         binder.Start();
 
         while (!binder.StandardOutput.EndOfStream)
