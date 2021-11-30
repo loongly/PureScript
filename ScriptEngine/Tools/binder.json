@@ -21,7 +21,6 @@
 
   "ForceRetainTypes": [
     "UnityEngine.Transform",
-    "UnityEngine.Texture",
     "UnityEngine.Debug",
     "UnityEngine.ILogger",
     "UnityEngine.ILogHandler",
