@@ -352,9 +352,11 @@ namespace Generater
         {
             if (contextMember == null)
                 return;
-            if (BoxedMemberSet.Contains(uniqueName))
+
+            var varName = uniqueName + name;
+            if (BoxedMemberSet.Contains(varName))
                 return;
-            BoxedMemberSet.Add(uniqueName);
+            BoxedMemberSet.Add(varName);
 
             string _member = _Member(name);// _logMessageReceived
             string _action = _Action(name);// logMessageReceivedAction
@@ -366,7 +368,7 @@ namespace Generater
 
             var eventDeclear = Utils.GetDelegateWrapTypeName(type, isStaticMember ? null : declarType); //Action <int,int,int>
             var paramTpes = Utils.GetDelegateParams(type, isStaticMember ? null : declarType, out var returnType); // string , string , LogType ,returnType
-            var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).RealTypeName() : "void";
+            var returnTypeName = returnType != null ? TypeResolver.Resolve(returnType).TypeName() : "void";
 
             //static event global::UnityEngine.Application.LogCallback _logMessageReceived;
             CS.Writer.WriteLine($"public {flag} {eventTypeName} {_member}");
@@ -453,9 +455,11 @@ namespace Generater
             if (contextMember == null)
                 return;
 
-            if (UnBoxedMemberSet.Contains(uniqueName))
+            var varName = uniqueName + name;
+
+            if (UnBoxedMemberSet.Contains(varName))
                 return;
-            UnBoxedMemberSet.Add(uniqueName);
+            UnBoxedMemberSet.Add(varName);
 
             string _member = _Member(name);// _logMessageReceived
 
@@ -485,7 +489,7 @@ namespace Generater
 
             var callCmd = $"{_member}(";
             if (returnType != null)
-                callCmd = "var res = " + callCmd;
+                callCmd = TypeResolver.Resolve(returnType).Paramer("res") + " = " + callCmd;
 
             for (int i = 0; i < paramTpes.Count; i++)
             {
@@ -501,7 +505,7 @@ namespace Generater
             CS.Writer.WriteLine("ScriptEngine.CheckException()");
             if (returnType != null)
             {
-                var res = TypeResolver.Resolve(returnType).Box("res");
+                var res = TypeResolver.Resolve(returnType).Unbox("res");
                 CS.Writer.WriteLine($"return {res}");
             }
 

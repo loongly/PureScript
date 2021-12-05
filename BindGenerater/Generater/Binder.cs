@@ -89,7 +89,7 @@ namespace Generater
 
             foreach (TypeDefinition type in moduleTypes)
             {
-                if (!type.IsPublic || type.IsInterface)
+                if ((!type.IsPublic || type.IsInterface) && !retainTypes.Contains(type.FullName))
                     continue;
 
                 AddType(type);
@@ -113,7 +113,6 @@ namespace Generater
             if (type == null || !moduleTypes.Contains(type))
                 return;
 
-
             if (types.ContainsKey(type.FullName))
                 return;
             types[type.FullName] = type;
@@ -131,14 +130,7 @@ namespace Generater
             var td = type.Resolve();
             if (td == null)
                 return;
-            if (types.ContainsKey(td.FullName))
-                return;
-            types[td.FullName] = td;
-
-            if (!Utils.Filter(type))
-                return;
-
-            generaters.Enqueue(new ClassGenerater(td));
+            AddType(td);
         }
 
         public static CSharpDecompiler GetDecompiler(string module)

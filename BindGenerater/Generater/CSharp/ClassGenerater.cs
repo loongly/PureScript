@@ -187,6 +187,8 @@ namespace Generater
 
                 Utils.TokenMap = nodesCollector.TokenMap;
                 string classDefine = Utils.GetMemberDelcear(genType,stripInterfaceSet);
+                if(Binder.retainTypes.Contains(genType.FullName))
+                    classDefine = classDefine.Replace("internal ", "public ");
 
                 bool isStatic = genType.IsAbstract && genType.IsSealed;
                 if (genType.BaseType != null && !isStatic && !genType.IsStruct())

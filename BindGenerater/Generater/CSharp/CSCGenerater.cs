@@ -17,6 +17,7 @@ namespace Generater
         static string[] addtionRef = new string[]
         {
             "mscorlib.dll",
+            "UnityEngine.CoreModule.dll",
             //"PureScript.dll",
         };
 

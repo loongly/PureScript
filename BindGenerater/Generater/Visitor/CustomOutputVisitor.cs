@@ -89,11 +89,19 @@ public class CustomOutputVisitor : CSharpOutputVisitor
 
     protected void ResolveTypeDeclear(TypeDeclaration typeDeclaration)
     {
+        var curRes = typeDeclaration.Annotation<ResolveResult>();
+        var curTypeName = curRes.Type.GetDefinition().FullTypeName.ReflectionName;
+
         if (typeDeclaration.ClassType == ClassType.Struct || typeDeclaration.ClassType == ClassType.Class)
         {
             typeDeclaration.Modifiers |= Modifiers.Partial;
             if (typeDeclaration.HasModifier(Modifiers.Readonly))
                 typeDeclaration.Modifiers ^= Modifiers.Readonly;
+            if(typeDeclaration.HasModifier(Modifiers.Internal) && Binder.retainTypes.Contains(curTypeName))
+            {
+                var imt = typeDeclaration.ModifierTokens.First(mt => mt.Modifier == Modifiers.Internal);
+                imt.Modifier = Modifiers.Public;
+            }
         }
         /*else if(typeDeclaration.ClassType == ClassType.Interface)
         {

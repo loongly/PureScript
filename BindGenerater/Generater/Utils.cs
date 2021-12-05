@@ -172,6 +172,11 @@ namespace Generater
                     return false;
             }
 
+            if (method.ReturnType.FullName == "System.Threading.Tasks.Task") // async
+            {
+                return false;
+            }
+
             return true;
         }
 

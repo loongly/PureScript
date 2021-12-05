@@ -35,7 +35,8 @@
     "UnityEngine.UnityException",
     "UnityEngine.UnityString",
     "UnityEngine.CastHelper`1",
-    "UnityEngineInternal.MathfInternal"],
+    "UnityEngineInternal.MathfInternal",
+	"UnityEngine.UnityString"],
 
   "StripUsing": [
     "UnityEngine.Internal",
