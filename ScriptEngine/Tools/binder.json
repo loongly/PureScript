@@ -16,7 +16,9 @@
     "UnityEngine.Windows",
     "UnityEngine.Handheld",
     "UnityEngine.Social",
-    "UnityEngine.LowLevel"],
+    "UnityEngine.LowLevel",
+	"UnityEngine.Rendering.DelegateUtility",
+	"StageRuntimeInterface"],
     
 
   "ForceRetainTypes": [
@@ -36,7 +38,14 @@
     "UnityEngine.UnityString",
     "UnityEngine.CastHelper`1",
     "UnityEngineInternal.MathfInternal",
-	"UnityEngine.UnityString"],
+	"UnityEngine.UnityString",
+	"Unity.Mathematics",
+	"UnityEngine.Rendering.BitArray8",
+	"UnityEngine.Rendering.BitArray16",
+	"UnityEngine.Rendering.BitArray32",
+	"UnityEngine.Rendering.BitArray64",
+	"UnityEngine.Rendering.BitArray128",
+	"UnityEngine.Rendering.BitArray256"],
 
   "StripUsing": [
     "UnityEngine.Internal",

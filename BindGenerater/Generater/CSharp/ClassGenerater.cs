@@ -250,6 +250,7 @@ namespace Generater
 
 
             isFullRetainType = Binder.retainTypes.Contains(type.FullName);
+            isFullRetainType |= Binder.retainTypes.Contains(type.Namespace);
 
             isFullRetainType |= type.DoesSpecificTypeImplementInterface("IEnumerator");
 

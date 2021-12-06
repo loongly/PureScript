@@ -489,7 +489,12 @@ namespace Generater
 
             var callCmd = $"{_member}(";
             if (returnType != null)
-                callCmd = TypeResolver.Resolve(returnType).Paramer("res") + " = " + callCmd;
+            {
+                var localVar = TypeResolver.Resolve(returnType).Paramer("res");
+                if(localVar.StartsWith("ref "))
+                    localVar = localVar.Replace("ref ", "");
+                callCmd = localVar + " = " + callCmd;
+            }
 
             for (int i = 0; i < paramTpes.Count; i++)
             {

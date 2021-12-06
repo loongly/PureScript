@@ -156,8 +156,8 @@ namespace Generater
                     if (!string.IsNullOrEmpty(reName))
                         CS.Writer.WriteLine($"return {reName}");
                     CS.Writer.End();//try
-                    CS.Writer.Start("catch(Exception e)");
-                    CS.Writer.WriteLine("__e = e");
+                    CS.Writer.Start("catch(Exception _e_)");
+                    CS.Writer.WriteLine("__e = _e_");
                     CS.Writer.End();//catch
 
                     CS.Writer.WriteLine("if(__e != null)", false);

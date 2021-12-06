@@ -141,8 +141,8 @@ namespace Generater
             foreach (var p in method.Parameters)
             {
                 var value = TypeResolver.Resolve(p.ParameterType,method).Unbox(p.Name, true);
-                //if (p.ParameterType.IsByReference)
-                //    value = "ref " + value;
+                if (p.IsIn)
+                    value = value.Replace("ref ", "in ");
 
                 CS.Writer.Write(value);
                 if (lastP != p)
@@ -193,7 +193,11 @@ namespace Generater
                 var lastP = method.Parameters.LastOrDefault();
                 foreach (var p in method.Parameters)
                 {
-                    CS.Writer.Write(TypeResolver.Resolve(p.ParameterType,method).Unbox(p.Name, true));
+                    var value = TypeResolver.Resolve(p.ParameterType, method).Unbox(p.Name, true);
+                    if (p.IsIn)
+                        value = value.Replace("ref ", "in ");
+
+                    CS.Writer.Write(value);
                     if (lastP != p)
                         CS.Writer.Write(",");
                 }
