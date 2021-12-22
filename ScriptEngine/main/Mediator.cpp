@@ -225,9 +225,11 @@ MonoArray* get_mono_array(Il2CppArray * array)
     }
     
 	int32_t len = il2cpp_array_length(array);
-	monoArray = mono_array_new(g_domain, monoklass, len);
 	if (len == 0)
-		return monoArray;
+		return NULL;
+	monoArray = mono_array_new(g_domain, monoklass, len);
+	//if (len == 0)
+	//	return monoArray;
 
 	for (int i = 0; i < len; i++)
 	{

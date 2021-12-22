@@ -18,7 +18,8 @@
     "UnityEngine.Social",
     "UnityEngine.LowLevel",
 	"UnityEngine.Rendering.DelegateUtility",
-	"StageRuntimeInterface"],
+	"StageRuntimeInterface",
+	"Unity.Profiling"],
     
 
   "ForceRetainTypes": [

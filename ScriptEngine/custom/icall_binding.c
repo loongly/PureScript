@@ -246,6 +246,14 @@ void UnityEngine_GameObject_GetComponentFastPath(MonoObject* obj, MonoReflection
 	}
 }
 
+MonoObject* UnityEngine_Component_get_gameObject(MonoObject* thiz);
+
+void UnityEngine_Component_GetComponentFastPath(MonoObject* obj, MonoReflectionType* type, intptr_t ptr)
+{
+	MonoObject* gameObj = UnityEngine_Component_get_gameObject(obj);
+	UnityEngine_GameObject_GetComponentFastPath(gameObj, type, ptr);
+}
+
 /*
 bool UnityEngine_MonoBehaviour_IsObjectMonoBehaviour(MonoObject* obj)
 {
@@ -351,7 +359,7 @@ void mono_register_icall(void)
 	
 	mono_add_internal_call("UnityEngine.GameObject::Internal_AddComponentWithType", (void*)UnityEngine_GameObject_Internal_AddComponentWithType);
 	mono_add_internal_call("UnityEngine.GameObject::GetComponentFastPath", (void*)UnityEngine_GameObject_GetComponentFastPath);
-	mono_add_internal_call("UnityEngine.Component::GetComponentFastPath", (void*)UnityEngine_GameObject_GetComponentFastPath);
+	mono_add_internal_call("UnityEngine.Component::GetComponentFastPath", (void*)UnityEngine_Component_GetComponentFastPath);
 	mono_add_internal_call("UnityEngine.GameObject::GetComponentsInternal", (void*)UnityEngine_GameObject_GetComponentsInternal);
 
 	//Aono_add_internal_call("UnityEngine.MonoBehaviour::IsObjectMonoBehaviour", (void*)UnityEngine_MonoBehaviour_IsObjectMonoBehaviour);
