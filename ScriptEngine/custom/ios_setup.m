@@ -20,6 +20,7 @@ void mono_install_load_aot_data_hook (MonoLoadAotDataFunc load_func, MonoFreeAot
 
 
 void mono_jit_set_aot_mode (MonoAotMode mode);
+void mono_gc_init_finalizer_thread (void);
 
 extern void mono_ee_interp_init (const char *);
 extern void mono_icall_table_init (void);
@@ -156,7 +157,9 @@ mono_ios_runtime_init(void)
 
 	//setenv ("MONO_LOG_LEVEL", "debug", TRUE);
 
-	//mono_jit_init_version ("Mono.ios", "mobile");
+	mono_jit_init_version ("Mono.ios", "mobile");
+    
+    mono_gc_init_finalizer_thread ();
 }
 
 
