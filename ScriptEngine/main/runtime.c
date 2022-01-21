@@ -295,10 +295,12 @@ mono_setup(char* reloadDir, const char* file) {
 
 #if RUNTIME_IOS
 	mono_ios_runtime_init();
-#endif
+    g_domain = mono_domain_get();
+#else
 	g_domain = mono_jit_init (file);
 	mono_domain_set(g_domain, false);
-
+#endif
+	
 	register_assembly_map();
 	/*
 	 * We add our special internal call, so that C# code
