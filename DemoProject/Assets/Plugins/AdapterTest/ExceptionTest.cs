@@ -21,6 +21,13 @@ namespace PureScript
             }
         }
 
+        public void RegistCallback(Action action)
+        {
+            Debug.LogError("RegistCallback 1");
+            callback = action;
+            Debug.LogError("RegistCallback 2");
+        }
+
         public void TestCallBack()
         {
             Debug.LogError("TestCallBack 1");

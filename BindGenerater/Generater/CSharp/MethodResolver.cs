@@ -30,7 +30,7 @@ namespace Generater
             if (_method.IsRemoveOn)
                 return new RemoveOnMethodResolver(_method);
 
-            if (_method.Parameters.Count == 1 && firstParam.IsDelegate())
+            if (EventMethodResolver.IsUnityEventMethod(_method))
                 return new EventMethodResolver(_method);
 
             return new BaseMethodResolver(_method);
@@ -58,18 +58,15 @@ namespace Generater
         /// <returns> resObj </returns>
         public virtual string Call(string name)
         {
-            if(!(this is EventMethodResolver))
+            foreach (var param in method.Parameters)
             {
-                foreach (var param in method.Parameters)
+                var td = param.ParameterType.Resolve();
+                if (td != null && td.IsDelegate())
                 {
-                    var td = param.ParameterType.Resolve();
-                    if (td != null && td.IsDelegate())
-                    {
-                        var _member = DelegateResolver.LocalMamberName(param.Name, method);
-                        CS.Writer.WriteLine($"{_member} = {param.Name}");
-                        if (!method.IsStatic)
-                            CS.Writer.WriteLine($"ObjectStore.RefMember(this,ref {_member}_ref,{_member})"); // resist gc
-                    }
+                    var _member = DelegateResolver.LocalMamberName(param.Name, method);
+                    CS.Writer.WriteLine($"{_member} = {param.Name}");
+                    if (!method.IsStatic)
+                        CS.Writer.WriteLine($"ObjectStore.RefMember(this,ref {_member}_ref,{_member})"); // resist gc
                 }
             }
 
@@ -378,6 +375,20 @@ namespace Generater
                 else if (_method.Name == "RemoveListener")
                     eventType = EventType.removeon;
             }
+        }
+
+        public static bool IsUnityEventMethod(MethodDefinition _method)
+        {
+            var firstParam = _method.Parameters.FirstOrDefault()?.ParameterType?.Resolve();
+            if (_method.Parameters.Count == 1 && firstParam.IsDelegate())
+            {
+                if (_method.DeclaringType.IsSubclassOf("UnityEngine.Events.UnityEventBase"))
+                {
+                    if (_method.Name == "AddListener" || _method.Name == "RemoveListener")
+                        return true;
+                }
+            }
+            return false;
         }
 
         public override string Call(string name)
